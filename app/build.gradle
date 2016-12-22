@@ -72,4 +72,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile 'com.jakewharton:butterknife:8.4.0'
+    compile 'uk.co.chrisjenx:calligraphy:2.2.0'
+
 }

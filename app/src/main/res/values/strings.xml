@@ -1,3 +1,7 @@
 <resources>
 
+    <string name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
+    <string name="open_sans_font">fonts/OpenSans-Regular.ttf</string>
+    <string name="avenir_book_font">fonts/Avenir-Book.ttf</string>
+
 </resources>
