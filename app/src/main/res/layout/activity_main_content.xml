@@ -17,10 +17,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
+            <fragment
+                android:id="@+id/fragment"
+                android:name="net.ginteam.carmen.view.fragment.category.CategoryListFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="35dp" />
+                android:layout_height="280dp" />
 
             <TextView
                 android:layout_width="match_parent"

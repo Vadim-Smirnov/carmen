@@ -39,7 +39,7 @@ android {
             signingConfig signingConfigs.debug
 
             resValue "string", "app_name", "Carmen Debug"
-            buildConfigField "String", "BASE_API_URL", "\"http://dev.carmen.com/api/v1\""
+            buildConfigField "String", "BASE_API_URL", "\"http://carmen.b4u.com.ua/api/v1/\""
         }
 
         release {
@@ -52,7 +52,7 @@ android {
             signingConfig signingConfigs.release
 
             resValue "string", "app_name", "Carmen"
-            buildConfigField "String", "BASE_API_URL", "\"http://carmen.com/api/v1\""
+            buildConfigField "String", "BASE_API_URL", "\"http://carmen.b4u.com.ua/api/v1/\""
 
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -64,22 +64,16 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    // Android default packages
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:support-v13:25.1.0'
     compile 'com.android.support:support-v4:25.1.0'
-    // View injections
     compile 'com.jakewharton:butterknife:8.4.0'
-    // Font
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
-    // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.2'
-    // RxAndroid + RxJava
     compile 'io.reactivex:rxjava:1.1.6'
     compile 'io.reactivex:rxandroid:1.2.1'
-
+    testCompile 'junit:junit:4.12'
 }
