@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements CategoryListFragm
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
