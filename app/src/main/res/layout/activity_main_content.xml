@@ -19,9 +19,11 @@
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="net.ginteam.carmen.view.fragment.category.CategoryListFragment"
                 android:layout_width="match_parent"
-                android:layout_height="280dp" />
+                android:layout_height="wrap_content"
+                tools:context=".view.activity.MainActivity"
+                class="net.ginteam.carmen.view.fragment.category.CategoryListFragment"
+                tools:layout="@layout/fragment_category_list"/>
 
             <TextView
                 android:layout_width="match_parent"

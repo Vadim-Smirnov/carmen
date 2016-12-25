@@ -19,4 +19,5 @@ public class CarmenApplication extends Application {
                 .setFontAttrId(R.attr.fontPath)
                 .build());
     }
+
 }

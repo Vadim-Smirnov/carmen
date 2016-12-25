@@ -11,13 +11,9 @@ import android.widget.Toast;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.FetchContract;
 
-import butterknife.Unbinder;
-
 public abstract class BaseFetchingFragment extends Fragment implements FetchContract.View {
 
     protected View mRootView;
-
-    protected Unbinder mUnbinder;
 
     protected ProgressBar mProgressBar;
 

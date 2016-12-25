@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="category_item_spacing">0.5dp</dimen>
+    <dimen name="category_item_top_padding">17dp</dimen>
+    <dimen name="category_item_bottom_padding">39dp</dimen>
+    <dimen name="category_item_height">167dp</dimen>
+    <dimen name="category_title_text_size">20sp</dimen>
+    <dimen name="category_title_bottom_space">7dp</dimen>
+    <dimen name="category_subtitle_text_size">10sp</dimen>
+    <dimen name="category_subtitle_bottom_space">18dp</dimen>
+    <dimen name="category_separator_width">22dp</dimen>
+    <dimen name="category_separator_height">3dp</dimen>
+    <dimen name="category_separator_bottom_space">22dp</dimen>
+    <dimen name="category_image_width">60dp</dimen>
+    <dimen name="category_image_height">23dp</dimen>
+
+</resources>
