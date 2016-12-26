@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Activity -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!-- Category Item -->
     <dimen name="category_item_spacing">0.5dp</dimen>
     <dimen name="category_item_top_padding">17dp</dimen>
     <dimen name="category_item_bottom_padding">39dp</dimen>
