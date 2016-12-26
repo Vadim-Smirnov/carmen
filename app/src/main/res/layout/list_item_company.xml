@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="160dp"
     android:layout_height="288dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <android.support.design.widget.FloatingActionButton
@@ -16,7 +17,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:layout_width="match_parent"
@@ -35,7 +38,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Кафе Русиано"
+                tools:text="Кафе Русиано"
                 android:gravity="center"
                 android:textSize="16sp"
                 android:layout_marginBottom="12.5dp"/>
@@ -58,7 +61,7 @@
                     android:layout_weight="3"
                     android:paddingStart="5dp"
                     android:paddingLeft="5dp"
-                    android:text="300m"
+                    tools:text="300m"
                     android:gravity="start|center"
                     android:textSize="15sp"
                     android:textColor="#999999"

@@ -5,13 +5,4 @@
     <string name="avenir_book_font">fonts/Avenir-Book.ttf</string>
     <string name="pacifico_font">fonts/Pacifico.ttf</string>
 
-    <string name="navigation_drawer_open">Open</string>
-    <string name="navigation_drawer_close">Close</string>
-
-    <plurals name="category_items_count_string">
-        <item quantity="one">%d компания</item>
-        <item quantity="few">%d компаний</item>
-        <item quantity="other">%d компании</item>
-    </plurals>
-
 </resources>

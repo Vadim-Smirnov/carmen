@@ -36,6 +36,8 @@ android {
             res.srcDirs =
                     [
                             'src/main/categories-res',
+                            'src/main/navigation_view-res',
+                            'src/main/custom_view-res',
                             'src/main/res'
                     ]
         }

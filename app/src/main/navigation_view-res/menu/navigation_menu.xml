@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group_feature"
+        android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/main_item"
+            android:checked="true"
+            android:icon="@drawable/ic_home"
+            android:title="Главная"/>
+
+        <item
+            android:id="@+id/category_item"
+            android:icon="@drawable/ic_category"
+            android:title="Рубрики услуг"/>
+
+        <item
+            android:id="@+id/favorite_item"
+            android:icon="@drawable/ic_favorite"
+            android:title="Избранное"/>
+
+        <item
+            android:id="@+id/recent_item"
+            android:icon="@drawable/ic_recent"
+            android:title="Недавние"/>
+
+        <item
+            android:id="@+id/profile_item"
+            android:icon="@drawable/ic_profile"
+            android:title="Профиль"/>
+
+        <item
+            android:id="@+id/logout_item"
+            android:icon="@drawable/ic_logout"
+            android:title="Выйти"/>
+
+    </group>
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:title="Политика конфиденциальности"/>
+
+        <item
+            android:title="Условия пользователя"/>
+
+    </group>
+</menu>
