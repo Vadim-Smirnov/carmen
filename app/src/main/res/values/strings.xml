@@ -3,6 +3,7 @@
     <!-- Fonts -->
     <string name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
     <string name="open_sans_font">fonts/OpenSans-Regular.ttf</string>
+    <string name="open_sans_semibold_font">fonts/OpenSans-Semibold.ttf</string>
     <string name="avenir_book_font">fonts/Avenir-Book.ttf</string>
     <string name="pacifico_font">fonts/Pacifico.ttf</string>
 
@@ -16,5 +17,13 @@
     <!-- Navigation view -->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+    <string name="main_item_text">Главная</string>
+    <string name="category_item_text">Рубрики услуг</string>
+    <string name="favorite_item_text">Избранное</string>
+    <string name="recent_item_text">Недавние</string>
+    <string name="profile_item_text">Профиль</string>
+    <string name="logout_item_text">Выйти</string>
+    <string name="privacy_item_text">Политика конфиденциальности</string>
+    <string name="terms_item_text">Условия пользователя</string>
 
 </resources>

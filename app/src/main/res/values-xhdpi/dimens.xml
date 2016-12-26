@@ -20,4 +20,25 @@
     <dimen name="category_image_width">60dp</dimen>
     <dimen name="category_image_height">23dp</dimen>
 
+    <!-- Company Item -->
+    <dimen name="company_item_like_button_width">34dp</dimen>
+    <dimen name="company_item_like_button_height">34dp</dimen>
+    <dimen name="company_item_like_button_margin">5dp</dimen>
+    <dimen name="company_item_width">160dp</dimen>
+    <dimen name="company_item_height">288dp</dimen>
+    <dimen name="company_item_padding">12.5dp</dimen>
+    <dimen name="company_item_padding_between_details_text">5dp</dimen>
+    <dimen name="company_item_company_name_text_size">16sp</dimen>
+    <dimen name="company_item_company_details_text_size">15sp</dimen>
+
+    <!-- Menu -->
+    <dimen name="menu_header_height">98dp</dimen>
+    <dimen name="menu_header_padding_top">37.5dp</dimen>
+    <dimen name="menu_header_user_name_text_size">35sp</dimen>
+    <dimen name="menu_header_email_text_size">13sp</dimen>
+    <dimen name="menu_header_email_padding_left">0.5dp</dimen>
+    <dimen name="menu_item_text_size">14sp</dimen>
+    <dimen name="menu_item_height">55dp</dimen>
+    <dimen name="menu_padding_side">25dp</dimen>
+
 </resources>

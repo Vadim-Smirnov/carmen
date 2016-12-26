@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="160dp"
-    android:layout_height="288dp"
+    android:layout_width="@dimen/company_item_width"
+    android:layout_height="@dimen/company_item_height"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix"
     android:orientation="vertical">
 
     <android.support.design.widget.FloatingActionButton
-        android:layout_width="34dp"
-        android:layout_height="34dp"
+        android:layout_width="@dimen/company_item_like_button_width"
+        android:layout_height="@dimen/company_item_like_button_height"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/company_item_like_button_margin"
         android:alpha="0.2"/>
 
     <LinearLayout
@@ -32,16 +33,17 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.5"
-            android:padding="12.5dp"
+            android:padding="@dimen/company_item_padding"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/text_view_company_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Кафе Русиано"
                 android:gravity="center"
-                android:textSize="16sp"
-                android:layout_marginBottom="12.5dp"/>
+                android:textSize="@dimen/company_item_company_name_text_size"
+                fontPath="@string/open_sans_font"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,21 +61,26 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:paddingStart="5dp"
-                    android:paddingLeft="5dp"
+                    android:paddingStart="@dimen/company_item_padding_between_details_text"
+                    android:paddingLeft="@dimen/company_item_padding_between_details_text"
                     tools:text="300m"
                     android:gravity="start|center"
-                    android:textSize="15sp"
-                    android:textColor="#999999"
-                    android:alpha="0.75"/>
+                    android:textSize="@dimen/company_item_company_details_text_size"
+                    android:textColor="@color/colorPrimary"
+                    android:alpha="0.75"
+                    fontPath="@string/open_sans_font" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="3"
-                    android:text="130 grn"
+                    tools:text="130 grn"
                     android:gravity="end|center"
-                    android:textSize="15sp"/>
+                    android:textSize="@dimen/company_item_company_details_text_size"
+                    android:alpha="0.75"
+                    android:textColor="@color/colorPrimary"
+                    fontPath="@string/open_sans_semibold_font" />
+
             </LinearLayout>
 
         </LinearLayout>

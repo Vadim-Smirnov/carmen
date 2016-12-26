@@ -2,27 +2,28 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
     android:layout_width="match_parent"
-    android:layout_height="98dp"
-    android:paddingTop="37.5dp"
-    android:orientation="vertical" >
+    android:layout_height="@dimen/menu_header_height"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/menu_header_padding_top"
+    tools:ignore="MissingPrefix">
 
     <TextView
         fontPath="@string/open_sans_light_font"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Марк Твенович"
         android:textColor="@color/colorPrimary"
-        android:textSize="35sp"
-        android:textScaleX="0.9"/>
+        android:textScaleX="0.9"
+        android:textSize="@dimen/menu_header_user_name_text_size"
+        android:text="Марк Твенович"/>
 
     <TextView
+        fontPath="@string/avenir_book_font"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="test@test.com"
-        android:textSize="13sp"
-        android:paddingLeft="0.5dp"
-        fontPath="@string/avenir_book_font"/>
+        android:paddingLeft="@dimen/menu_header_email_padding_left"
+        android:paddingStart="@dimen/menu_header_email_padding_left"
+        android:textSize="@dimen/menu_header_email_text_size"
+        android:text="test@test.com"/>
 
 </LinearLayout>

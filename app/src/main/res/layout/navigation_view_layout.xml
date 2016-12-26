@@ -2,16 +2,15 @@
 <android.support.design.widget.NavigationView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:id="@+id/navigation_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:fitsSystemWindows="false"
-    android:paddingLeft="25dp"
-    android:paddingRight="25dp"
+    android:paddingLeft="@dimen/menu_padding_side"
+    android:paddingRight="@dimen/menu_padding_side"
     android:theme="@style/NavigationTheme"
     android:visibility="visible"
     app:headerLayout="@layout/navigation_view_header"
     app:itemBackground="@drawable/menu_item_devider"
-    app:menu="@menu/navigation_menu" />
+    app:menu="@menu/navigation_menu"/>

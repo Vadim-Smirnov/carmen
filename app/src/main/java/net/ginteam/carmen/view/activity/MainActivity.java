@@ -3,6 +3,7 @@ package net.ginteam.carmen.view.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -72,6 +73,16 @@ public class MainActivity extends AppCompatActivity implements CategoryListFragm
 
         mDrawerLayout.addDrawerListener(toggle);
         mNavigationView.setNavigationItemSelectedListener(this);
+        disableNavigationViewScrollbars(mNavigationView);
+    }
+
+    private void disableNavigationViewScrollbars(NavigationView navigationView) {
+        if (navigationView != null) {
+            NavigationMenuView navigationMenuView = (NavigationMenuView) navigationView.getChildAt(0);
+            if (navigationMenuView != null) {
+                navigationMenuView.setVerticalScrollBarEnabled(false);
+            }
+        }
     }
 
 }

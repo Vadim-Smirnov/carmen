@@ -8,42 +8,42 @@
             android:id="@+id/main_item"
             android:checked="true"
             android:icon="@drawable/ic_home"
-            android:title="Главная"/>
+            android:title="@string/main_item_text"/>
 
         <item
             android:id="@+id/category_item"
             android:icon="@drawable/ic_category"
-            android:title="Рубрики услуг"/>
+            android:title="@string/category_item_text"/>
 
         <item
             android:id="@+id/favorite_item"
             android:icon="@drawable/ic_favorite"
-            android:title="Избранное"/>
+            android:title="@string/favorite_item_text"/>
 
         <item
             android:id="@+id/recent_item"
             android:icon="@drawable/ic_recent"
-            android:title="Недавние"/>
+            android:title="@string/recent_item_text"/>
 
         <item
             android:id="@+id/profile_item"
             android:icon="@drawable/ic_profile"
-            android:title="Профиль"/>
+            android:title="@string/profile_item_text"/>
 
         <item
             android:id="@+id/logout_item"
             android:icon="@drawable/ic_logout"
-            android:title="Выйти"/>
+            android:title="@string/logout_item_text"/>
 
     </group>
 
     <group android:checkableBehavior="single">
 
         <item
-            android:title="Политика конфиденциальности"/>
+            android:title="@string/privacy_item_text"/>
 
         <item
-            android:title="Условия пользователя"/>
+            android:title="@string/terms_item_text"/>
 
     </group>
 </menu>
