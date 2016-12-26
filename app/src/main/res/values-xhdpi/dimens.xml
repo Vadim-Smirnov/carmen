@@ -21,15 +21,21 @@
     <dimen name="category_image_height">23dp</dimen>
 
     <!-- Company Item -->
-    <dimen name="company_item_like_button_width">34dp</dimen>
-    <dimen name="company_item_like_button_height">34dp</dimen>
-    <dimen name="company_item_like_button_margin">5dp</dimen>
     <dimen name="company_item_width">160dp</dimen>
     <dimen name="company_item_height">288dp</dimen>
-    <dimen name="company_item_padding">12.5dp</dimen>
-    <dimen name="company_item_padding_between_details_text">5dp</dimen>
-    <dimen name="company_item_company_name_text_size">16sp</dimen>
-    <dimen name="company_item_company_details_text_size">15sp</dimen>
+    <dimen name="company_item_favorite_button_margin">5dp</dimen>
+    <dimen name="company_item_space">12dp</dimen>
+    <dimen name="company_image_height">162dp</dimen>
+    <dimen name="company_title_text_size">16sp</dimen>
+    <dimen name="company_rating_width">80dp</dimen>
+    <dimen name="company_rating_height">10dp</dimen>
+    <dimen name="company_location_top_margin">21dp</dimen>
+    <dimen name="company_location_left_margin">10dp</dimen>
+    <dimen name="company_location_bottom_margin">20dp</dimen>
+    <dimen name="company_location_space">5dp</dimen>
+    <dimen name="company_location_text_size">12sp</dimen>
+    <dimen name="company_price_right_margin">10dp</dimen>
+    <dimen name="company_price_text_size">14sp</dimen>
 
     <!-- Menu -->
     <dimen name="menu_header_height">98dp</dimen>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/company_item_height"
+    tools:ignore="missingPrefix">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="162dp"
+        android:scaleType="fitXY"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_3"/>
+
+    <TextView
+        android:id="@+id/textView"
+        fontPath="@string/open_sans_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/company_item_space"
+        android:textColor="#1D1D26"
+        android:textSize="@dimen/company_title_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:text="Ресторан \'Пульпито\'"/>
+
+    <net.ginteam.carmen.view.custom.rating.RatingView
+        android:id="@+id/ratingView"
+        android:layout_width="@dimen/company_rating_width"
+        android:layout_height="@dimen/company_rating_height"
+        android:layout_marginTop="@dimen/company_item_space"
+        app:circlesSpacing="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:rating="4"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/company_item_favorite_button_margin"
+        android:alpha="0.2"
+        android:src="@drawable/ic_company_favorite"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/company_location_bottom_margin"
+        android:layout_marginStart="@dimen/company_location_left_margin"
+        android:layout_marginTop="@dimen/company_location_top_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingView"
+        app:srcCompat="@drawable/ic_location"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        fontPath="@string/open_sans_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/company_location_space"
+        android:alpha="0.75"
+        android:textColor="#040404"
+        android:textSize="@dimen/company_location_text_size"
+        app:layout_constraintLeft_toRightOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        tools:text="300 m"/>
+
+    <TextView
+        android:id="@+id/textView4"
+        fontPath="@string/open_sans_semibold_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/company_price_right_margin"
+        android:alpha="0.75"
+        android:textColor="#040404"
+        android:textSize="@dimen/company_price_text_size"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView3"
+        tools:text="130 grn"/>
+
+</android.support.constraint.ConstraintLayout>

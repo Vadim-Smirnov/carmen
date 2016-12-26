@@ -130,7 +130,7 @@ public class RatingView extends View {
                 - mCirclesSpacing;
         int usableHeight = getHeight() - (topPadding + bottomPadding);
 
-        mCirclesRadius = (Math.min(usableWidth, usableHeight) / 2) / mCirclesCount;
+        mCirclesRadius = Math.min(usableHeight, usableWidth) / 2;
         mCircleY = topPadding + (usableHeight / 2);
         mEmptyCirclePaint.setStrokeWidth(mCirclesRadius / 10);
 
