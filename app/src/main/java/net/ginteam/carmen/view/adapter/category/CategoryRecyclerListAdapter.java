@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.category.CategoryModel;
-import net.ginteam.carmen.view.adapter.view_holder.category.CategoryItemViewHolder;
 
 import java.util.List;
 

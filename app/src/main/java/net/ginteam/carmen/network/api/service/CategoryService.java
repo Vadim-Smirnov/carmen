@@ -1,7 +1,8 @@
-package net.ginteam.carmen.network.api;
+package net.ginteam.carmen.network.api.service;
 
 import net.ginteam.carmen.model.ResponseModel;
 import net.ginteam.carmen.model.category.CategoryModel;
+import net.ginteam.carmen.network.api.ApiLinks;
 
 import java.util.List;
 

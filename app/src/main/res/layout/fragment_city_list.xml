@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              tools:context="net.ginteam.carmen.view.fragment.city.CityListFragment">
+
+    <include layout="@layout/progress_bar"/>
+
+    <LinearLayout
+        android:id="@+id/layout_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_city_string"
+            android:layout_margin="@dimen/choose_city_text_view_margins"
+            android:gravity="center"
+            android:textSize="@dimen/city_title_text_size" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_cities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/list_item_city"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -14,6 +14,9 @@
         <item quantity="other">%d компании</item>
     </plurals>
 
+    <!-- City -->
+    <string name="choose_city_string">Выберите Ваш город: </string>
+
     <!-- Navigation view -->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>

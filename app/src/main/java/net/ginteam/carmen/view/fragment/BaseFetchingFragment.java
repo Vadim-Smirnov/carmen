@@ -35,6 +35,7 @@ public abstract class BaseFetchingFragment extends Fragment implements FetchCont
 
     @Override
     public void showError(String message) {
+        mProgressBar.setVisibility(View.GONE);
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 

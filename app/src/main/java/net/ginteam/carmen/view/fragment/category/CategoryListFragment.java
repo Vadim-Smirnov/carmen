@@ -13,9 +13,9 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.category.CategoriesContract;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.presenter.category.CategoriesPresenter;
+import net.ginteam.carmen.view.adapter.category.CategoryItemViewHolder;
 import net.ginteam.carmen.view.adapter.category.CategoryRecyclerListAdapter;
 import net.ginteam.carmen.view.adapter.category.CategoryRecyclerListItemDecorator;
-import net.ginteam.carmen.view.adapter.view_holder.category.CategoryItemViewHolder;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
 
     private static final int CATEGORY_LIST_COLUMNS_COUNT = 2;
 
-    protected RecyclerView mRecyclerViewCategories;
+    private RecyclerView mRecyclerViewCategories;
 
     private CategoriesContract.Presenter mPresenter;
     private CategoryRecyclerListAdapter mRecyclerListAdapter;
@@ -85,7 +85,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
             Log.e("CategoryListFragment", "OnCategorySelected listener is null!");
             return;
         }
-        mCategorySelectedListener.onCategorySelect(category);
+        mCategorySelectedListener.onCategorySelected(category);
     }
 
     private void updateDependencies() {
@@ -98,7 +98,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
 
     public interface OnCategorySelectedListener {
 
-        void onCategorySelect(CategoryModel category);
+        void onCategorySelected(CategoryModel category);
 
     }
 

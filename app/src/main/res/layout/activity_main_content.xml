@@ -25,33 +25,6 @@
                 class="net.ginteam.carmen.view.fragment.category.CategoryListFragment"
                 tools:layout="@layout/fragment_category_list"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingStart="10dp"
-                android:text="Недавно просмотренные"
-                android:layout_marginBottom="20dp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="35dp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingStart="10dp"
-                android:text="Популярные"
-                android:layout_marginBottom="20dp" />
-
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="23.5dp"
-                tools:listitem="@layout/list_item_company"/>
-
         </LinearLayout>
 
     </ScrollView>

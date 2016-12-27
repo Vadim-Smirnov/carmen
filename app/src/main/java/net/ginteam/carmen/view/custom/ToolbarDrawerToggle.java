@@ -23,11 +23,11 @@ public class ToolbarDrawerToggle extends ActionBarDrawerToggle {
         setHomeAsUpIndicator(R.drawable.ic_navigation_menu);
 
         setToolbarNavigationClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
     }
+
 }

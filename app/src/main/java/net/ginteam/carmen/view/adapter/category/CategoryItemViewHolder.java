@@ -1,4 +1,4 @@
-package net.ginteam.carmen.view.adapter.view_holder.category;
+package net.ginteam.carmen.view.adapter.category;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -37,6 +37,11 @@
     <dimen name="company_price_right_margin">10dp</dimen>
     <dimen name="company_price_text_size">14sp</dimen>
 
+    <!-- City Item -->
+    <dimen name="city_title_text_size">16sp</dimen>
+    <dimen name="city_title_vertical_margin">20dp</dimen>
+    <dimen name="choose_city_text_view_margins">20dp</dimen>
+
     <!-- Menu -->
     <dimen name="menu_header_height">98dp</dimen>
     <dimen name="menu_header_padding_top">37.5dp</dimen>

@@ -2,7 +2,7 @@ package net.ginteam.carmen.provider.category;
 
 import net.ginteam.carmen.manager.ApiManager;
 import net.ginteam.carmen.model.category.CategoryModel;
-import net.ginteam.carmen.network.api.CategoryService;
+import net.ginteam.carmen.network.api.service.CategoryService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.Provider;
