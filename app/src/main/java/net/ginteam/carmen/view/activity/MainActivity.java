@@ -1,6 +1,7 @@
 package net.ginteam.carmen.view.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
@@ -14,13 +15,17 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.contract.MainContract;
 import net.ginteam.carmen.model.category.CategoryModel;
+import net.ginteam.carmen.presenter.MainPresenter;
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-public class MainActivity extends AppCompatActivity implements CategoryListFragment.OnCategorySelectedListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements MainContract.View, CategoryListFragment.OnCategorySelectedListener, NavigationView.OnNavigationItemSelectedListener {
+
+    private MainContract.Presenter mPresenter;
 
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
@@ -33,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements CategoryListFragm
 
         initializeToolbar();
         initializeNavigationView();
+
+        mPresenter = new MainPresenter(this);
+        mPresenter.getLastLocation();
     }
 
     @Override
@@ -57,6 +65,28 @@ public class MainActivity extends AppCompatActivity implements CategoryListFragm
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mPresenter.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mPresenter.onRequestPermissionsResult(requestCode,permissions,grantResults);
+    }
+
+    @Override
+    public AppCompatActivity getActivity() {
+        return this;
+    }
+
+    @Override
+    public Context getContext() {
+        return this;
     }
 
     private void initializeToolbar() {
@@ -84,5 +114,4 @@ public class MainActivity extends AppCompatActivity implements CategoryListFragm
             }
         }
     }
-
 }
