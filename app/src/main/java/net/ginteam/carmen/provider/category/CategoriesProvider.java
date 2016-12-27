@@ -32,7 +32,7 @@ public class CategoriesProvider implements Provider<List<CategoryModel>> {
     }
 
     @Override
-    public void fetch(ModelCallback<List<CategoryModel>> completion) {
+    public void fetch(ModelCallback<List<CategoryModel>> completion, Object ... params) {
         if (mCachedCategories != null) {
             completion.onSuccess(mCachedCategories);
             return;

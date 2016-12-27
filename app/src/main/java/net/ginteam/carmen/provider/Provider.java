@@ -6,6 +6,6 @@ package net.ginteam.carmen.provider;
 
 public interface Provider <T> {
 
-    void fetch(ModelCallback <T> completion);
+    void fetch(ModelCallback <T> completion, Object ... params);
 
 }

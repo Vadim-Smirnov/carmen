@@ -16,6 +16,8 @@ public class ApiLinks {
 
         public static final String CATEGORY_BY_ID = CATEGORIES + "/{" + ID + "}";
 
+        public static final String COMPANIES_BY_CATEGORY = CATEGORY_BY_ID + "/companies";
+
         public static final String CITIES = CATALOG + "cities";
 
     }

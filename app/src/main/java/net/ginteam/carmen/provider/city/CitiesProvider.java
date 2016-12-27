@@ -32,7 +32,7 @@ public class CitiesProvider implements Provider<List<CityModel>> {
     }
 
     @Override
-    public void fetch(ModelCallback<List<CityModel>> completion) {
+    public void fetch(ModelCallback<List<CityModel>> completion, Object ... params) {
         if (mCachedCities != null) {
             completion.onSuccess(mCachedCities);
             return;
