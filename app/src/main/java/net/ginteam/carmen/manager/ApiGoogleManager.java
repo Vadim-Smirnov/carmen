@@ -11,12 +11,10 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.ResultCallbacks;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -40,7 +38,6 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
 
     private OnReceiveLocationListener mLocationListener;
 
-    private Status mStatus;
     private Location mLastLocation;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
@@ -66,22 +63,13 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
     @Override
     @SuppressWarnings("all")
     public void onConnected(@Nullable Bundle bundle) {
-        mLocationRequest = LocationRequest.create();
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        mLocationRequest.setInterval(30 * 1000);
-        mLocationRequest.setFastestInterval(5 * 1000);
-
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-                .addLocationRequest(mLocationRequest);
-        builder.setAlwaysShow(true);
-
-        mLocationSettingsResult = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
+        initializeLocationRequest();
 
         mLocationSettingsResult.setResultCallback(new ResultCallback<LocationSettingsResult>() {
             @Override
             public void onResult(@NonNull LocationSettingsResult locationSettingsResult) {
-                mStatus = locationSettingsResult.getStatus();
-                switch (mStatus.getStatusCode()) {
+                Status status = locationSettingsResult.getStatus();
+                switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
                         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
                         if (mLastLocation != null) {
@@ -95,10 +83,8 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
                         break;
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         try {
-                            mStatus.startResolutionForResult(mActivity, REQUEST_LOCATION);
+                            status.startResolutionForResult(mActivity, REQUEST_LOCATION);
                         } catch (IntentSender.SendIntentException ignored) {}
-                        break;
-                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
                         break;
                 }
             }
@@ -118,33 +104,24 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
     }
 
     public void onActivityResult(int requestCode, int resultCode) {
-        switch (requestCode) {
-            case REQUEST_LOCATION:
-                switch (resultCode) {
-                    case Activity.RESULT_OK: {
-                        startLocationUpdate();
-                        break;
-                    }
-                    default:
-                }
+        if (requestCode == REQUEST_LOCATION && resultCode == Activity.RESULT_OK) {
+            startLocationUpdate();
+            return;
         }
+        mLocationListener.onLocationReceiveFailure();
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 500) {
-            boolean permissionsGranted = true;
+            boolean permissionsGranted;
             for (int currentResult : grantResults) {
                 permissionsGranted = (currentResult == PackageManager.PERMISSION_GRANTED);
                 if (!permissionsGranted) {
+                    mLocationListener.onLocationReceiveFailure();
                     return;
                 }
             }
-
-            if (permissionsGranted) {
-                startLocationUpdate();
-            } else {
-//                mPresenter.getCityList();
-            }
+            startLocationUpdate();
         }
     }
 
@@ -153,12 +130,25 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
         mGoogleApiClient.connect();
     }
 
+    private void initializeLocationRequest() {
+        mLocationRequest = LocationRequest.create();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(30 * 1000);
+        mLocationRequest.setFastestInterval(5 * 1000);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
+                .addLocationRequest(mLocationRequest);
+        builder.setAlwaysShow(true);
+
+        mLocationSettingsResult = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
+    }
+
     private void startLocationUpdate() {
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setInterval(0)
                 .setFastestInterval(0);
-        // Request location updates
+
         if (this.checkPermission()) {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,
                     mLocationRequest, this);

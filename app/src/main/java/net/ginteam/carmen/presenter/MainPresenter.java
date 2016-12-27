@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import net.ginteam.carmen.contract.MainContract;
 import net.ginteam.carmen.manager.ApiGoogleManager;
@@ -33,7 +32,7 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onLocationReceiveFailure() {
-
+                Log.e("PIZDA", " sdafa;kghKJd");
             }
         });
     }
