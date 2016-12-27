@@ -17,6 +17,9 @@
     <!-- City -->
     <string name="choose_city_string">Выберите Ваш город: </string>
 
+    <!-- Company -->
+    <string name="recently_watched_companies">Недавно просмотренные</string>
+
     <!-- Navigation view -->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>

@@ -42,10 +42,6 @@ public class CategoryItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setOnCategoryClickListener(final CategoryModel forCategory, final OnCategoryItemClickListener listener) {
-        if (listener == null) {
-            return;
-        }
-
         mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -1,0 +1,79 @@
+package net.ginteam.carmen.view.adapter.company;
+
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import net.ginteam.carmen.R;
+import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.view.custom.rating.RatingView;
+
+/**
+ * Created by Eugene on 12/27/16.
+ */
+
+public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
+
+    private View mView;
+
+    private ImageView mImageViewPhoto;
+    private TextView mTextViewName;
+    private RatingView mRatingViewRating;
+    private FloatingActionButton mFloatButtonAddToFavorite;
+    private TextView mTextViewDistance;
+    private TextView mTextViewPrice;
+
+    public CompanyItemViewHolder(View itemView) {
+        super(itemView);
+
+        mView = itemView;
+        mImageViewPhoto = (ImageView) itemView.findViewById(R.id.image_view_company_photo);
+        mTextViewName = (TextView) itemView.findViewById(R.id.text_view_company_name);
+        mRatingViewRating = (RatingView) itemView.findViewById(R.id.rating_view_company);
+        mFloatButtonAddToFavorite = (FloatingActionButton) itemView.findViewById(R.id.float_button_company_favorite);
+        mTextViewDistance = (TextView) itemView.findViewById(R.id.text_view_company_distance);
+        mTextViewPrice = (TextView) itemView.findViewById(R.id.text_view_company_price);
+    }
+
+    public ImageView getImageViewPhoto() {
+        return mImageViewPhoto;
+    }
+
+    public TextView getTextViewName() {
+        return mTextViewName;
+    }
+
+    public RatingView getRatingViewRating() {
+        return mRatingViewRating;
+    }
+
+    public FloatingActionButton getFloatButtonAddToFavorite() {
+        return mFloatButtonAddToFavorite;
+    }
+
+    public TextView getTextViewDistance() {
+        return mTextViewDistance;
+    }
+
+    public TextView getTextViewPrice() {
+        return mTextViewPrice;
+    }
+
+    public void setOnCompanyItemClickListener(final CompanyModel forCompany, final OnCompanyItemClickListener listener) {
+        mView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onCompanyItemClick(forCompany);
+            }
+        });
+    }
+
+    public interface OnCompanyItemClickListener {
+
+        void onCompanyItemClick(CompanyModel company);
+
+    }
+
+}

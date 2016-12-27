@@ -23,6 +23,7 @@
     <!-- Company Item -->
     <dimen name="company_item_width">160dp</dimen>
     <dimen name="company_item_height">288dp</dimen>
+    <dimen name="company_item_favorite_button_size">34dp</dimen>
     <dimen name="company_item_favorite_button_margin">5dp</dimen>
     <dimen name="company_item_space">12dp</dimen>
     <dimen name="company_image_height">162dp</dimen>
@@ -36,6 +37,11 @@
     <dimen name="company_location_text_size">12sp</dimen>
     <dimen name="company_price_right_margin">10dp</dimen>
     <dimen name="company_price_text_size">14sp</dimen>
+
+    <!-- Company List Fragment -->
+    <dimen name="company_list_fragment_title_text_size">15sp</dimen>
+    <dimen name="company_list_fragment_title_vertical_margin">20dp</dimen>
+    <dimen name="company_list_fragment_horizontal_margin">10dp</dimen>
 
     <!-- City Item -->
     <dimen name="city_title_text_size">16sp</dimen>

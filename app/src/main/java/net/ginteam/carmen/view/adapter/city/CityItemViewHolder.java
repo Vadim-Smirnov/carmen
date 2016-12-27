@@ -29,10 +29,6 @@ public class CityItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setOnCityClickListener(final CityModel forCity, final OnCityItemClickListener listener) {
-        if (listener == null) {
-            return;
-        }
-
         mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

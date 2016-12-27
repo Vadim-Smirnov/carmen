@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="@dimen/company_item_width"
+    android:layout_marginStart="@dimen/company_list_fragment_horizontal_margin"
     android:layout_height="@dimen/company_item_height"
     tools:ignore="missingPrefix">
 
@@ -21,7 +22,7 @@
     <TextView
         android:id="@+id/text_view_company_name"
         fontPath="@string/open_sans_font"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/company_item_space"
         android:textColor="#1D1D26"
@@ -29,7 +30,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_view_company_photo"
-        tools:text="Ресторан \'Пульпито\'"/>
+        tools:text="Ресторан"
+        android:gravity="center"/>
 
     <net.ginteam.carmen.view.custom.rating.RatingView
         android:id="@+id/rating_view_company"
@@ -44,8 +46,8 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/float_button_company_favorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/company_item_favorite_button_size"
+        android:layout_height="@dimen/company_item_favorite_button_size"
         android:layout_margin="@dimen/company_item_favorite_button_margin"
         android:alpha="0.2"
         android:src="@drawable/ic_company_favorite"

@@ -7,6 +7,7 @@ import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.Provider;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,9 @@ public class CompaniesProvider implements Provider <List <CompanyModel>> {
 
     private Map <Integer, List <CompanyModel>> mCachedCompanies;
 
-    private CompaniesProvider() {}
+    private CompaniesProvider() {
+        mCachedCompanies = new HashMap<>();
+    }
 
     public static CompaniesProvider getInstance() {
         if (sInstance == null) {
