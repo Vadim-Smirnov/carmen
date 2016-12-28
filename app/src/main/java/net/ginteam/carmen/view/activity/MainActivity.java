@@ -18,6 +18,8 @@ public class MainActivity extends NavigationViewActivity implements CategoryList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_main);
+
+        Toast.makeText(this, R.string.test, Toast.LENGTH_SHORT).show();
     }
 
     @Override

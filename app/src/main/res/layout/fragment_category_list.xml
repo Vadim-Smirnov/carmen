@@ -8,7 +8,6 @@
         android:id="@+id/recycler_view_categories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#bdbdbd"
         tools:listitem="@layout/list_item_category"/>
 
     <include layout="@layout/progress_bar" />

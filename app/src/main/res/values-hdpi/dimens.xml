@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="test">HDPI</string>
+
+    <!-- Category Item -->
+    <dimen name="category_item_spacing">1dp</dimen>
+    <dimen name="category_item_top_padding">22.7dp</dimen>
+    <dimen name="category_item_bottom_padding">52.7dp</dimen>
+    <dimen name="category_item_height">222.7dp</dimen>
+    <dimen name="category_title_text_size">26sp</dimen>
+    <dimen name="category_title_bottom_space">10dp</dimen>
+    <dimen name="category_subtitle_text_size">14.7sp</dimen>
+    <dimen name="category_subtitle_bottom_space">24dp</dimen>
+    <dimen name="category_separator_width">30dp</dimen>
+    <dimen name="category_separator_height">4dp</dimen>
+    <dimen name="category_separator_bottom_space">30dp</dimen>
+    <dimen name="category_image_width">80dp</dimen>
+    <dimen name="category_image_height">31.3dp</dimen>
+
+</resources>
