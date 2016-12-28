@@ -22,4 +22,26 @@ public class ApiLinks {
 
     }
 
+    public class AUTH {
+
+        private static final String AUTH = "auth/";
+
+        private static final String USERS = AUTH + "users/";
+
+        public static final String NAME = "name";
+
+        public static final String EMAIL = "email";
+
+        public static final String PASSWORD = "password";
+
+        public static final String LOGIN = USERS + "login";
+
+        public static final String REGISTER = USERS + "register";
+
+        public static final String AUTH_HEADER = "Authorization";
+
+        public static final String GET_CURRENT_USER = USERS + "me";
+
+    }
+
 }
