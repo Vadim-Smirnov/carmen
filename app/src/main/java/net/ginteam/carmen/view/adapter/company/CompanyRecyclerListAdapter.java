@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
@@ -36,7 +37,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
     public CompanyItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View companyItemView = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.list_company_item, parent, false);
+                .inflate(R.layout.list_item_company, parent, false);
         return new CompanyItemViewHolder(companyItemView);
     }
 
@@ -46,6 +47,13 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
         holder.getTextViewName().setText(currentCompany.getName());
         holder.getRatingViewRating().setRating(currentCompany.getRating());
         holder.getTextViewPrice().setText(String.valueOf(currentCompany.getPrice()));
+
+        holder.getImageButtonAddToFavorite().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(mContext, "Like",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         if (mCompanyItemClickListener == null) {
             Log.e("CompanyListAdapter", "mCompanyItemClickListener does not set!");

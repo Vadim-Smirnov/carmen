@@ -3,6 +3,7 @@ package net.ginteam.carmen.view.adapter.company;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
     private ImageView mImageViewPhoto;
     private TextView mTextViewName;
     private RatingView mRatingViewRating;
-    private FloatingActionButton mFloatButtonAddToFavorite;
+    private ImageButton mImageButtonAddToFavorite;
     private TextView mTextViewDistance;
     private TextView mTextViewPrice;
 
@@ -32,7 +33,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         mImageViewPhoto = (ImageView) itemView.findViewById(R.id.image_view_company_photo);
         mTextViewName = (TextView) itemView.findViewById(R.id.text_view_company_name);
         mRatingViewRating = (RatingView) itemView.findViewById(R.id.rating_view_company);
-        mFloatButtonAddToFavorite = (FloatingActionButton) itemView.findViewById(R.id.float_button_company_favorite);
+        mImageButtonAddToFavorite = (ImageButton) itemView.findViewById(R.id.image_button_company_favorite);
         mTextViewDistance = (TextView) itemView.findViewById(R.id.text_view_company_distance);
         mTextViewPrice = (TextView) itemView.findViewById(R.id.text_view_company_price);
     }
@@ -49,8 +50,8 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         return mRatingViewRating;
     }
 
-    public FloatingActionButton getFloatButtonAddToFavorite() {
-        return mFloatButtonAddToFavorite;
+    public ImageButton getImageButtonAddToFavorite() {
+        return mImageButtonAddToFavorite;
     }
 
     public TextView getTextViewDistance() {

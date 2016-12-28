@@ -6,11 +6,13 @@ import android.widget.Toast;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.city.CityModel;
+import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
+import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 public class MainActivity extends NavigationViewActivity implements CategoryListFragment.OnCategorySelectedListener,
-        CityListFragment.OnCitySelectedListener {
+        CityListFragment.OnCitySelectedListener, CompanyListFragment.OnCompanySelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,4 +30,8 @@ public class MainActivity extends NavigationViewActivity implements CategoryList
         Toast.makeText(this, city.getName(), Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onCompanySelected(CompanyModel company) {
+        Toast.makeText(this, company.getName(), Toast.LENGTH_SHORT).show();
+    }
 }
