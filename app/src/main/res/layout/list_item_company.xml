@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/company_item_width"
-    android:layout_marginStart="@dimen/company_list_fragment_horizontal_margin"
     android:layout_height="@dimen/company_item_height"
     tools:ignore="missingPrefix">
 

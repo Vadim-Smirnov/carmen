@@ -15,6 +15,7 @@ import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompaniesPresenter;
 import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter;
+import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListItemDecorator;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 import java.util.List;
@@ -92,6 +93,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         mRecyclerViewCompanies = (RecyclerView) mRootView.findViewById(R.id.recycler_view_companies);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerViewCompanies.addItemDecoration(new CompanyRecyclerListItemDecorator(getContext(), R.dimen.company_item_spacing));
         mRecyclerViewCompanies.setLayoutManager(layoutManager);
     }
 

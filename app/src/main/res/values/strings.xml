@@ -10,7 +10,7 @@
     <!-- Category -->
     <plurals name="category_items_count_string">
         <item quantity="one">%d компания</item>
-        <item quantity="few">%d компаний</item>
+        <item quantity="few">%d компании</item>
         <item quantity="other">%d компании</item>
     </plurals>
 
