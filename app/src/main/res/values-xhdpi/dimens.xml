@@ -16,6 +16,7 @@
     <dimen name="field_horizontal_space">25dp</dimen>
     <dimen name="field_text_size">14sp</dimen>
     <dimen name="field_border_width">1dp</dimen>
+    <dimen name="field_bottom_padding">10dp</dimen>
     <dimen name="email_field_bottom_space">20dp</dimen>
     <dimen name="password_field_bottom_space">40dp</dimen>
     <dimen name="button_horizontal_margin">30dp</dimen>
