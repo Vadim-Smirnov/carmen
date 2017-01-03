@@ -82,6 +82,12 @@ public class AuthProvider {
     }
 
     public void fetchCurrentUser(final ModelCallback<UserModel> completion) {
+        String accessToken = PreferencesManager.getInstance().getUserToken();
+        if (accessToken.isEmpty()) {
+            completion.onFailure("");
+            return;
+        }
+
         mAuthService
                 .getCurrentUser()
                 .subscribeOn(Schedulers.newThread())
