@@ -58,4 +58,46 @@
     <dimen name="menu_item_height">55dp</dimen>
     <dimen name="menu_padding_side">25dp</dimen>
 
+    <!-- Company Detail -->
+    <dimen name="company_detail_parallax_toolbar_height">250dp</dimen>
+    <dimen name="company_detail_parallax_toolbar_gradient_height">75.5dp</dimen>
+    
+    <dimen name="company_detail_margin_side">20dp</dimen>
+    <dimen name="company_detail_company_name_margin_top">30dp</dimen>
+    <dimen name="company_detail_category_margin_top">5dp</dimen>
+    <dimen name="company_detail_company_name_text_size">25sp</dimen>
+    <dimen name="company_detail_text_size">15sp</dimen>
+    <dimen name="company_detail_review_count_margin_start">10dp</dimen>
+    <dimen name="company_detail_image_location_margin_end">5dp</dimen>
+    <dimen name="company_detail_image_location_margin_top">14dp</dimen>
+    <dimen name="company_detail_button_show_on_map_width">119dp</dimen>
+    <dimen name="company_detail_button_show_on_map_height">112dp</dimen>
+    <dimen name="company_detail_button_show_on_map_padding_side">10dp</dimen>
+    <dimen name="company_detail_button_show_on_map_padding_top">21dp</dimen>
+    <dimen name="company_detail_button_show_on_map_margin_top">43dp</dimen>
+    <dimen name="company_detail_work_time_margin_end">28dp</dimen>
+    <dimen name="company_detail_work_time_margin_top">20dp</dimen>
+    <dimen name="company_detail_address_margin_top">15dp</dimen>
+    <dimen name="company_detail_address_text_size">13.5sp</dimen>
+    <dimen name="company_detail_service_margin_top">35dp</dimen>
+    <dimen name="company_detail_payment_methods_separate_margin_top">50dp</dimen>
+    <dimen name="company_detail_payment_methods_margin_top">15dp</dimen>
+    <dimen name="company_detail_payment_methods_margin_side">70dp</dimen>
+    <dimen name="company_detail_payment_methods_layout_margin_top">20dp</dimen>
+    <dimen name="company_detail_payment_methods_bottom_separate_margin_top">20dp</dimen>
+    <dimen name="company_detail_additional_services_margin_top">40dp</dimen>
+    <dimen name="company_detail_recycler_additional_services_margin_top">15dp</dimen>
+    <dimen name="company_detail_reviews_text_margin_top">40dp</dimen>
+    <dimen name="company_detail_recycler_reviews_margin_top">20dp</dimen>
+    <dimen name="company_detail_button_all_reviews_margin_top">30dp</dimen>
+    <dimen name="company_detail_button_all_reviews_drawable_padding">10dp</dimen>
+    <dimen name="company_detail_reviews_bottom_separate_margin_top">40dp</dimen>
+    <dimen name="company_detail_vote_object_text_margin_top">15dp</dimen>
+    <dimen name="company_detail_image_map_height">200dp</dimen>
+    <dimen name="company_detail_image_map_margin_top">40dp</dimen>
+    <dimen name="company_detail_button_navigate_margin_top">15dp</dimen>
+    <dimen name="company_detail_button_navigate_drawable_padding">8dp</dimen>
+
+
+
 </resources>

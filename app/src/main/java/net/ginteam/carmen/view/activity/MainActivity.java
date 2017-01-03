@@ -1,5 +1,6 @@
 package net.ginteam.carmen.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -33,5 +34,7 @@ public class MainActivity extends NavigationViewActivity implements CategoryList
     @Override
     public void onCompanySelected(CompanyModel company) {
         Toast.makeText(this, company.getName(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, CompanyDetailActivity.class);
+        startActivity(intent);
     }
 }
