@@ -1,4 +1,4 @@
-package net.ginteam.carmen.presenter;
+package net.ginteam.carmen.presenter.auth;
 
 import android.content.Intent;
 import android.location.Location;

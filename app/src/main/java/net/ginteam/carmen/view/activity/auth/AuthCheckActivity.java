@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.auth.AuthenticationCheckContract;
-import net.ginteam.carmen.presenter.AuthenticationCheckPresenter;
+import net.ginteam.carmen.presenter.auth.AuthenticationCheckPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.MainActivity;
 

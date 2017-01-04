@@ -7,6 +7,9 @@
     <string name="avenir_book_font">fonts/Avenir-Book.ttf</string>
     <string name="pacifico_font">fonts/Pacifico.ttf</string>
 
+    <!-- Auth Menu -->
+    <string name="menu_item_skip_string">Skip</string>
+
     <!-- SignIn Activity -->
     <string name="skip_view_string">Skip</string>
     <string name="email_hint_string">Enter email</string>
@@ -19,10 +22,17 @@
     <string name="sign_up_label_string">SIGN UP</string>
 
     <!-- SignUp Activity -->
+    <string name="name_hint_string">Enter your name</string>
     <string name="confirm_password_hint_string">Confirm password</string>
     <string name="sign_up_string">Sign Up</string>
     <string name="have_account_string">HAVE AN ACCOUNT?</string>
     <string name="sign_in_label_string">SIGN IN</string>
+
+    <!-- Validation Errors -->
+    <string name="wrong_name_string">Please, enter the correct name</string>
+    <string name="wrong_email_string">Please, enter the correct email address</string>
+    <string name="wrong_password_string">Password can not contains at least 6 symbols</string>
+    <string name="wrong_password_confirmation_string">Password does not match</string>
 
     <!-- Category -->
     <plurals name="category_items_count_string">
