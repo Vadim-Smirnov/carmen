@@ -16,7 +16,13 @@
     <string name="sign_in_with_facebook_string">Sign In with Facebook</string>
     <string name="sign_in_with_google_string">Sign In with Google</string>
     <string name="dont_have_account_string">DON\’T HAVE AN ACCOUNT?</string>
-    <string name="sign_up_string">SIGN UP</string>
+    <string name="sign_up_label_string">SIGN UP</string>
+
+    <!-- SignUp Activity -->
+    <string name="confirm_password_hint_string">Confirm password</string>
+    <string name="sign_up_string">Sign Up</string>
+    <string name="have_account_string">HAVE AN ACCOUNT?</string>
+    <string name="sign_in_label_string">SIGN IN</string>
 
     <!-- Category -->
     <plurals name="category_items_count_string">

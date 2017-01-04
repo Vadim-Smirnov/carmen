@@ -31,6 +31,8 @@
         </activity>
         <activity android:name=".view.activity.auth.SignInActivity">
         </activity>
+        <activity android:name=".view.activity.auth.SignUpActivity">
+        </activity>
     </application>
 
 </manifest>
