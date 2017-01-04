@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:ignore="MissingPrefix">
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="39dp"
+        android:layout_height="158dp"
+        android:layout_marginEnd="27dp"
+        android:background="@android:color/transparent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/arrow_down_float"/>
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="1dp"
+        android:layout_height="158dp"
+        android:background="@color/colorSeparate"
+        app:layout_constraintLeft_toLeftOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/textView"
+        fontPath="@string/open_sans_semibold_font"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="20dp"
+        android:text="Безумно быстрое СТО с купальниками розового цвета"
+        android:textColor="@color/colorTextHeader"
+        android:textSize="@dimen/company_detail_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <net.ginteam.carmen.view.custom.rating.RatingView
+        android:id="@+id/rating_view_company"
+        android:layout_width="80dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="22dp"
+        app:circlesSpacing="5dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:rating="4"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        fontPath="@string/open_sans_light_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="05.12.2016"
+        android:textColor="@color/colorTextHeader"
+        android:textSize="@dimen/company_detail_text_size"
+        tools:layout_editor_absoluteY="54dp"
+        tools:layout_editor_absoluteX="115dp"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        fontPath="@string/open_sans_font"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="21dp"
+        android:text="Марк Твен"
+        android:textColor="@color/colorTextHeader"
+        android:textSize="@dimen/company_detail_text_size"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintLeft_toRightOf="@+id/textView2"
+        app:layout_constraintRight_toLeftOf="@+id/imageButton"
+        app:layout_constraintTop_toTopOf="@+id/textView2"/>
+
+    <TextView
+        android:text="Я был восхищен скоростью работы данного СТО, оно было заебись как работало и тд. и тд."
+        fontPath="@string/open_sans_light_font"
+        android:textColor="@color/colorTextHeader"
+        android:textSize="@dimen/company_detail_text_size"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_marginStart="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/imageButton"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"/>
+
+</android.support.constraint.ConstraintLayout>

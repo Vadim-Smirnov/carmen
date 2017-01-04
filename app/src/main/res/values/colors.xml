@@ -3,10 +3,11 @@
 
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#000000</color>
+    <color name="colorAccent">#fff</color>
 
     <color name="colorTransparentBlack">#20000000</color>
 
+    <color name="colorBlack">#000000</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorGray">#4A4A4A</color>
     <color name="colorBlue">#4990E2</color>

@@ -87,8 +87,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="@dimen/company_detail_button_show_on_map_width"
-        android:layout_height="@dimen/company_detail_button_show_on_map_height"
+        android:layout_width="119dp"
+        android:layout_height="112dp"
         android:scaleType="fitXY"
         android:src="@drawable/img_3"
         app:layout_constraintRight_toRightOf="parent"
@@ -96,8 +96,8 @@
 
     <View
         android:id="@+id/view_map_image_gradient"
-        android:layout_width="@dimen/company_detail_button_show_on_map_width"
-        android:layout_height="@dimen/company_detail_button_show_on_map_height"
+        android:layout_width="119dp"
+        android:layout_height="112dp"
         android:background="@drawable/map_image_gradient"
         app:layout_constraintLeft_toLeftOf="@+id/imageView3"
         app:layout_constraintRight_toRightOf="parent"
@@ -106,8 +106,8 @@
     <Button
         android:id="@+id/button_show_on_map"
         fontPath="@string/open_sans_font"
-        android:layout_width="@dimen/company_detail_button_show_on_map_width"
-        android:layout_height="@dimen/company_detail_button_show_on_map_height"
+        android:layout_width="119dp"
+        android:layout_height="112dp"
         android:background="@android:color/transparent"
         android:drawableTop="@drawable/ic_map"
         android:paddingLeft="@dimen/company_detail_button_show_on_map_padding_side"
@@ -371,6 +371,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/company_detail_recycler_reviews_margin_top"
+        tools:listitem = "@layout/list_item_review"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_reviews"/>
@@ -450,8 +451,8 @@
 
     <ImageView
         android:id="@+id/image_view_map"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/company_detail_image_map_height"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         android:layout_marginTop="@dimen/company_detail_image_map_margin_top"
         android:scaleType="fitXY"
         android:src="@drawable/img_3"
