@@ -47,14 +47,14 @@
     <dimen name="category_image_width">60dp</dimen>
     <dimen name="category_image_height">23dp</dimen>
 
-    <!-- Company Item -->
+    <!-- Company Item Vertical -->
     <dimen name="company_item_spacing">10dp</dimen>
     <dimen name="company_item_width">160dp</dimen>
     <dimen name="company_item_height">288dp</dimen>
     <dimen name="company_item_favorite_button_size">34dp</dimen>
     <dimen name="company_item_favorite_button_margin">5dp</dimen>
     <dimen name="company_item_space">12dp</dimen>
-    <dimen name="company_image_height">162dp</dimen>
+    <dimen name="company_image_size">162dp</dimen>
     <dimen name="company_title_text_size">16sp</dimen>
     <dimen name="company_rating_width">80dp</dimen>
     <dimen name="company_rating_height">10dp</dimen>
@@ -65,6 +65,14 @@
     <dimen name="company_location_text_size">12sp</dimen>
     <dimen name="company_price_right_margin">10dp</dimen>
     <dimen name="company_price_text_size">14sp</dimen>
+
+    <!-- Company Item Horizontal -->
+    <dimen name="company_item_photo_right_space">15dp</dimen>
+    <dimen name="company_item_title_bottom_space">7.5dp</dimen>
+    <dimen name="company_item_address_bottom_space">15dp</dimen>
+    <dimen name="company_item_rating_left_space">10dp</dimen>
+    <dimen name="company_item_rating_bottom_space">21dp</dimen>
+    <dimen name="company_price_margin">20dp</dimen>
 
     <!-- Company List Fragment -->
     <dimen name="company_list_fragment_title_text_size">15sp</dimen>

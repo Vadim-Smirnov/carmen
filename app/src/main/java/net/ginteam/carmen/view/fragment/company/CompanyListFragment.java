@@ -2,7 +2,7 @@ package net.ginteam.carmen.view.fragment.company;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import net.ginteam.carmen.presenter.company.CompaniesPresenter;
 import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListItemDecorator;
+import net.ginteam.carmen.view.adapter.company.CompanyRecyclerManagerFactory;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 import java.util.List;
@@ -26,22 +27,46 @@ import java.util.List;
 
 public class CompanyListFragment extends BaseFetchingFragment implements CompaniesContract.View, CompanyItemViewHolder.OnCompanyItemClickListener {
 
+    public enum COMPANY_LIST_TYPE {
+        RECENTLY_WATCHED,
+        POPULAR,
+        BY_CATEGORY
+    }
+
+    private static final String TYPE_ARGUMENT = "type";
+    private static final String CATEGORY_ARGUMENT = "category";
+
     private CompaniesContract.Presenter mPresenter;
+
+    private COMPANY_LIST_TYPE mListType;
+    private int mCategoryId;
 
     private RecyclerView mRecyclerViewCompanies;
     private CompanyRecyclerListAdapter mRecyclerListAdapter;
 
     private OnCompanySelectedListener mCompanySelectedListener;
 
-    public CompanyListFragment() {}
+    public CompanyListFragment() {
+    }
 
-    public static CompanyListFragment newInstance() {
-        return new CompanyListFragment();
+    public static CompanyListFragment newInstance(COMPANY_LIST_TYPE type, @Nullable int categoryId) {
+        CompanyListFragment fragment = new CompanyListFragment();
+
+        Bundle arguments = new Bundle();
+        arguments.putSerializable(TYPE_ARGUMENT, type);
+        arguments.putInt(CATEGORY_ARGUMENT, categoryId);
+        fragment.setArguments(arguments);
+
+        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle arguments = getArguments();
+        mListType = (COMPANY_LIST_TYPE) arguments.getSerializable(TYPE_ARGUMENT);
+        mCategoryId = arguments.getInt(CATEGORY_ARGUMENT, 0);
     }
 
     @Override
@@ -51,7 +76,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
         mPresenter = new CompaniesPresenter();
         mPresenter.attachView(this);
-        mPresenter.fetchData();
+        fetchCompanies();
 
         return mRootView;
     }
@@ -84,17 +109,28 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     @Override
     public void showCompanies(List<CompanyModel> companies) {
-        mRecyclerListAdapter = new CompanyRecyclerListAdapter(getContext(), companies);
+        mRecyclerListAdapter = new CompanyRecyclerListAdapter(getContext(), companies, mListType);
         mRecyclerListAdapter.setOnCompanyItemClickListener(this);
         mRecyclerViewCompanies.setAdapter(mRecyclerListAdapter);
     }
 
     private void updateDependencies() {
         mRecyclerViewCompanies = (RecyclerView) mRootView.findViewById(R.id.recycler_view_companies);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerViewCompanies.addItemDecoration(new CompanyRecyclerListItemDecorator(getContext(), R.dimen.company_item_spacing));
-        mRecyclerViewCompanies.setLayoutManager(layoutManager);
+        mRecyclerViewCompanies.setLayoutManager(CompanyRecyclerManagerFactory.createManagerForListType(mListType));
+    }
+
+    private void fetchCompanies() {
+        switch (mListType) {
+            case RECENTLY_WATCHED:
+                mPresenter.fetchRecentlyWatchedCompanies();
+                break;
+            case POPULAR:
+                mPresenter.fetchPopularCompanies();
+                break;
+            default:
+                mPresenter.fetchCompaniesForCategory(mCategoryId);
+        }
     }
 
     public interface OnCompanySelectedListener {

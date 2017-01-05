@@ -21,12 +21,12 @@ public class CategoriesPresenter implements CategoriesContract.Presenter {
     }
 
     @Override
-    public void fetchData() {
+    public void fetchCategories() {
         mView.showLoading(true);
 
         CategoriesProvider
                 .getInstance()
-                .fetch(new ModelCallback<List<CategoryModel>>() {
+                .fetchCategories(new ModelCallback<List<CategoryModel>>() {
                     @Override
                     public void onSuccess(List<CategoryModel> resultModel) {
                         mView.showLoading(false);

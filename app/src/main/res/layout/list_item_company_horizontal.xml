@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:ignore="missingPrefix">
+
+    <ImageView
+        android:id="@+id/image_view_company_photo"
+        android:layout_width="162dp"
+        android:layout_height="162dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/img_3"/>
+
+    <TextView
+        android:id="@+id/text_view_company_name"
+        fontPath="@string/open_sans_font"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/company_item_photo_right_space"
+        android:layout_marginLeft="@dimen/company_item_photo_right_space"
+        android:layout_marginRight="@dimen/company_item_photo_right_space"
+        android:layout_marginStart="@dimen/company_item_photo_right_space"
+        android:layout_marginTop="@dimen/company_item_photo_right_space"
+        android:gravity="center"
+        android:textColor="#1D1D26"
+        android:textSize="@dimen/company_title_text_size"
+        app:layout_constraintLeft_toRightOf="@+id/image_view_company_photo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Кафе “Гордон-Россе-Чан”"/>
+
+    <TextView
+        android:id="@+id/text_view_company_address"
+        fontPath="@string/open_sans_font"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/company_item_photo_right_space"
+        android:layout_marginTop="@dimen/company_item_title_bottom_space"
+        android:textColor="#417505"
+        app:layout_constraintLeft_toRightOf="@+id/image_view_company_photo"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"
+        tools:text="ул. Великолепия 931/12в"/>
+
+    <net.ginteam.carmen.view.custom.rating.RatingView
+        android:id="@+id/rating_view_company"
+        android:layout_width="80dp"
+        android:layout_height="10dp"
+        android:layout_marginStart="@dimen/company_item_rating_left_space"
+        android:layout_marginTop="@dimen/company_item_address_bottom_space"
+        app:circlesSpacing="5dp"
+        app:layout_constraintLeft_toRightOf="@+id/image_view_company_photo"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_company_address"
+        app:rating="4"/>
+
+    <ImageButton
+        android:id="@+id/image_button_company_favorite"
+        android:layout_width="@dimen/company_item_favorite_button_size"
+        android:layout_height="@dimen/company_item_favorite_button_size"
+        android:layout_margin="@dimen/company_item_favorite_button_margin"
+        android:background="@drawable/round_button"
+        android:src="@drawable/ic_company_favorite"
+        app:layout_constraintRight_toRightOf="@id/image_view_company_photo"
+        app:layout_constraintTop_toTopOf="@id/image_view_company_photo"/>
+
+    <ImageView
+        android:id="@+id/image_view_company_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/company_item_rating_bottom_space"
+        android:layout_marginStart="@dimen/company_item_photo_right_space"
+        android:layout_marginTop="@dimen/company_item_rating_bottom_space"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/image_view_company_photo"
+        app:layout_constraintTop_toBottomOf="@id/rating_view_company"
+        app:srcCompat="@drawable/ic_location"/>
+
+    <TextView
+        android:id="@+id/text_view_company_distance"
+        fontPath="@string/open_sans_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/company_location_space"
+        android:alpha="0.75"
+        android:textColor="#040404"
+        android:textSize="@dimen/company_location_text_size"
+        app:layout_constraintLeft_toRightOf="@id/image_view_company_location"
+        app:layout_constraintTop_toTopOf="@id/image_view_company_location"
+        tools:text="300 m"/>
+
+    <TextView
+        android:id="@+id/text_view_company_price"
+        fontPath="@string/open_sans_semibold_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.75"
+        android:textColor="#040404"
+        android:textSize="@dimen/company_price_text_size"
+        android:layout_marginEnd="@dimen/company_price_margin"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_company_distance"
+        tools:text="130 grn"/>
+
+</android.support.constraint.ConstraintLayout>

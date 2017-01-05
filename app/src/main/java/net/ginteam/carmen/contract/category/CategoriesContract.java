@@ -21,6 +21,8 @@ public interface CategoriesContract {
 
         void selectCategory(CategoryModel category);
 
+        void fetchCategories();
+
     }
 
 }

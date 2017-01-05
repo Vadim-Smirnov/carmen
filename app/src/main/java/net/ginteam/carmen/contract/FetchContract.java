@@ -16,7 +16,7 @@ public interface FetchContract {
 
     interface Presenter <V extends View> extends BaseContract.Presenter <V> {
 
-        void fetchData();
+
 
     }
 

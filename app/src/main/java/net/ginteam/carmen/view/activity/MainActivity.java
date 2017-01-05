@@ -7,6 +7,7 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.view.fragment.MainFragment;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
@@ -20,6 +21,7 @@ public class MainActivity extends NavigationViewActivity implements CategoryList
         super.setContentView(R.layout.activity_main);
 
         Toast.makeText(this, R.string.test, Toast.LENGTH_SHORT).show();
+        prepareFragment(MainFragment.newInstance());
     }
 
     @Override
@@ -36,4 +38,5 @@ public class MainActivity extends NavigationViewActivity implements CategoryList
     public void onCompanySelected(CompanyModel company) {
         Toast.makeText(this, company.getName(), Toast.LENGTH_SHORT).show();
     }
+
 }

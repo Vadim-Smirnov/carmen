@@ -21,12 +21,12 @@ public class CitiesPresenter implements CityContract.Presenter {
     }
 
     @Override
-    public void fetchData() {
+    public void fetchCities() {
         mView.showLoading(true);
 
         CitiesProvider
                 .getInstance()
-                .fetch(new ModelCallback<List<CityModel>>() {
+                .fetchCities(new ModelCallback<List<CityModel>>() {
                     @Override
                     public void onSuccess(List<CityModel> resultModel) {
                         mView.showLoading(false);

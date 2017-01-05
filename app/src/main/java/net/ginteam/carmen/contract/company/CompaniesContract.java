@@ -21,6 +21,12 @@ public interface CompaniesContract {
 
         void selectCompany(CompanyModel company);
 
+        void fetchRecentlyWatchedCompanies();
+
+        void fetchPopularCompanies();
+
+        void fetchCompaniesForCategory(int categoryId);
+
     }
 
 }

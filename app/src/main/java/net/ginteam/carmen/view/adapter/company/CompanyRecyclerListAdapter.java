@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 import java.util.List;
 
@@ -20,12 +21,14 @@ import java.util.List;
 public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyItemViewHolder> {
 
     private Context mContext;
+    private CompanyListFragment.COMPANY_LIST_TYPE mType;
     private List <CompanyModel> mCompanies;
 
     private CompanyItemViewHolder.OnCompanyItemClickListener mCompanyItemClickListener;
 
-    public CompanyRecyclerListAdapter(Context context, List <CompanyModel> companies) {
+    public CompanyRecyclerListAdapter(Context context, List <CompanyModel> companies, CompanyListFragment.COMPANY_LIST_TYPE type) {
         mContext = context;
+        mType = type;
         mCompanies = companies;
     }
 
@@ -37,7 +40,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
     public CompanyItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View companyItemView = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.list_item_company, parent, false);
+                .inflate(getListItemIdForType(mType), parent, false);
         return new CompanyItemViewHolder(companyItemView);
     }
 
@@ -65,6 +68,15 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
     @Override
     public int getItemCount() {
         return mCompanies.size();
+    }
+
+    private int getListItemIdForType(CompanyListFragment.COMPANY_LIST_TYPE type) {
+        switch (type) {
+            case RECENTLY_WATCHED: case POPULAR:
+                return R.layout.list_item_company_vertical;
+            default:
+                return R.layout.list_item_company_horizontal;
+        }
     }
 
 }

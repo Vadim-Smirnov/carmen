@@ -5,7 +5,6 @@ import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.network.api.service.CategoryService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
 import net.ginteam.carmen.provider.ModelCallback;
-import net.ginteam.carmen.provider.Provider;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import rx.schedulers.Schedulers;
  * Created by Eugene on 12/23/16.
  */
 
-public class CategoriesProvider implements Provider<List<CategoryModel>> {
+public class CategoriesProvider {
 
     private static CategoriesProvider sInstance;
 
@@ -31,8 +30,7 @@ public class CategoriesProvider implements Provider<List<CategoryModel>> {
         return sInstance;
     }
 
-    @Override
-    public void fetch(ModelCallback<List<CategoryModel>> completion, Object ... params) {
+    public void fetchCategories(ModelCallback<List<CategoryModel>> completion) {
         if (mCachedCategories != null) {
             completion.onSuccess(mCachedCategories);
             return;

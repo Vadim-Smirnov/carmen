@@ -26,6 +26,8 @@ public class CompanyRecyclerListItemDecorator extends RecyclerView.ItemDecoratio
         if (currentItemPosition == state.getItemCount() - 1) {
             outRect.right = mItemSpacing;
         }
+        outRect.bottom = mItemSpacing;
+        outRect.top = mItemSpacing;
         outRect.left = mItemSpacing;
     }
 }
