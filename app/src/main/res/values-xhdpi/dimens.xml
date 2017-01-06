@@ -58,4 +58,9 @@
     <dimen name="menu_item_height">55dp</dimen>
     <dimen name="menu_padding_side">25dp</dimen>
 
+    <!-- Custom Edit Text -->
+    <dimen name="edit_text_filter_margin_start">17dp</dimen>
+    <dimen name="edit_text_filter_margin_end">24dp</dimen>
+    <dimen name="custom_edit_text_size">17.5sp</dimen>
+
 </resources>
