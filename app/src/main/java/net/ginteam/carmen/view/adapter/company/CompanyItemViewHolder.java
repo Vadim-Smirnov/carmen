@@ -1,6 +1,5 @@
 package net.ginteam.carmen.view.adapter.company;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
@@ -21,6 +20,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
 
     private ImageView mImageViewPhoto;
     private TextView mTextViewName;
+    private TextView mTextViewAddress;
     private RatingView mRatingViewRating;
     private ImageButton mImageButtonAddToFavorite;
     private TextView mTextViewDistance;
@@ -32,6 +32,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         mView = itemView;
         mImageViewPhoto = (ImageView) itemView.findViewById(R.id.image_view_company_photo);
         mTextViewName = (TextView) itemView.findViewById(R.id.text_view_company_name);
+        mTextViewAddress = (TextView) itemView.findViewById(R.id.text_view_company_address);
         mRatingViewRating = (RatingView) itemView.findViewById(R.id.rating_view_company);
         mImageButtonAddToFavorite = (ImageButton) itemView.findViewById(R.id.image_button_company_favorite);
         mTextViewDistance = (TextView) itemView.findViewById(R.id.text_view_company_distance);
@@ -44,6 +45,10 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getTextViewName() {
         return mTextViewName;
+    }
+
+    public TextView getTextViewAddress() {
+        return mTextViewAddress;
     }
 
     public RatingView getRatingViewRating() {

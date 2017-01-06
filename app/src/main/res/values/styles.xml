@@ -8,6 +8,28 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Auth Activity Theme. -->
+    <style name="AuthTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#fff</item>
+
+        <item name="android:actionMenuTextAppearance">@style/ActionMenuTextAppearance</item>
+        <item name="android:actionMenuTextColor">#7fffffff</item>
+    </style>
+
+    <!-- Auth Toolbar -->
+
+    <style name="ActionMenuTextAppearance">
+        <item name="android:textSize">@dimen/skip_text_size</item>
+    </style>
+
+    <style name="AuthTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="fontPath">@string/avenir_book_font</item>
+    </style>
+
+    <style name="AuthTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark"/>
+
     <!-- Toolbar -->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="fontPath">@string/pacifico_font</item>

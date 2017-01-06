@@ -21,12 +21,22 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
     }
 
     @Override
-    public void fetchData() {
+    public void fetchRecentlyWatchedCompanies() {
+
+    }
+
+    @Override
+    public void fetchPopularCompanies() {
+
+    }
+
+    @Override
+    public void fetchCompaniesForCategory(int categoryId) {
         mView.showLoading(true);
 
         CompaniesProvider
                 .getInstance()
-                .fetch(new ModelCallback<List<CompanyModel>>() {
+                .fetchForCategory(categoryId, new ModelCallback<List<CompanyModel>>() {
                     @Override
                     public void onSuccess(List<CompanyModel> resultModel) {
                         mView.showLoading(false);
@@ -35,9 +45,10 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
 
                     @Override
                     public void onFailure(String message) {
+                        mView.showLoading(false);
                         mView.showError(message);
                     }
-                }, 1);
+                });
     }
 
     @Override

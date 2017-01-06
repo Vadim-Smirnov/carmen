@@ -4,9 +4,10 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              tools:ignore="MissingPrefix"
                                              android:layout_width="match_parent"
-                                             android:layout_height="@dimen/category_item_height"
+                                             android:layout_height="wrap_content"
                                              android:orientation="vertical"
                                              android:paddingTop="@dimen/category_item_top_padding"
+                                             android:paddingBottom="@dimen/category_item_bottom_padding"
                                              android:background="#fff">
 
     <TextView
@@ -17,7 +18,8 @@
         android:textColor="#1D1D26"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:text="Автомобиль"/>
+        tools:text="Автомобиль"
+        tools:layout_editor_absoluteY="0dp"/>
 
     <TextView
         tools:text="25 items"
@@ -48,7 +50,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="@dimen/category_separator_bottom_space"
-        app:layout_constraintTop_toTopOf="@+id/view"
-        android:layout_marginBottom="@dimen/category_item_bottom_padding"/>
+        app:layout_constraintTop_toTopOf="@+id/view"/>
 
 </android.support.constraint.ConstraintLayout>

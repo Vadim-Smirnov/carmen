@@ -50,7 +50,7 @@ public class CityListFragment extends BaseFetchingFragment implements CityContra
 
         mPresenter = new CitiesPresenter();
         mPresenter.attachView(this);
-        mPresenter.fetchData();
+        mPresenter.fetchCities();
 
         return mRootView;
     }

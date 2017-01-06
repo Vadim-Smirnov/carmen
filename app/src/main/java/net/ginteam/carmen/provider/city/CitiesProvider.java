@@ -5,7 +5,6 @@ import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.network.api.service.CityService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
 import net.ginteam.carmen.provider.ModelCallback;
-import net.ginteam.carmen.provider.Provider;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import rx.schedulers.Schedulers;
  * Created by Eugene on 12/27/16.
  */
 
-public class CitiesProvider implements Provider<List<CityModel>> {
+public class CitiesProvider {
 
     private static CitiesProvider sInstance;
 
@@ -31,8 +30,7 @@ public class CitiesProvider implements Provider<List<CityModel>> {
         return sInstance;
     }
 
-    @Override
-    public void fetch(ModelCallback<List<CityModel>> completion, Object ... params) {
+    public void fetchCities(ModelCallback<List<CityModel>> completion) {
         if (mCachedCities != null) {
             completion.onSuccess(mCachedCities);
             return;

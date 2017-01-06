@@ -5,7 +5,6 @@ import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.network.api.service.CompanyService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
 import net.ginteam.carmen.provider.ModelCallback;
-import net.ginteam.carmen.provider.Provider;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +17,7 @@ import rx.schedulers.Schedulers;
  * Created by Eugene on 12/27/16.
  */
 
-public class CompaniesProvider implements Provider <List <CompanyModel>> {
+public class CompaniesProvider {
 
     private static CompaniesProvider sInstance;
 
@@ -35,15 +34,17 @@ public class CompaniesProvider implements Provider <List <CompanyModel>> {
         return sInstance;
     }
 
-    @Override
-    public void fetch(ModelCallback<List<CompanyModel>> completion, Object ... params) {
-        int categoryId = (int) params[0];
+    public void fetchForCategory(int categoryId, ModelCallback<List<CompanyModel>> completion) {
         if (mCachedCompanies.containsKey(categoryId)) {
             completion.onSuccess(mCachedCompanies.get(categoryId));
             return;
         }
         fetchFromServer(categoryId, completion);
     }
+
+    public void fetchRecentlyWatched(ModelCallback<List<CompanyModel>> completion) {}
+
+    public void fetchPopular(ModelCallback<List<CompanyModel>> completion) {}
 
     private void fetchFromServer(final int forCategoryId, final ModelCallback<List<CompanyModel>> completion) {
         CompanyService companyService = ApiManager.getInstance().getService(CompanyService.class);

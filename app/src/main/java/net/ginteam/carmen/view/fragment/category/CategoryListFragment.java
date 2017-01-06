@@ -50,7 +50,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
 
         mPresenter = new CategoriesPresenter();
         mPresenter.attachView(this);
-        mPresenter.fetchData();
+        mPresenter.fetchCategories();
 
         return mRootView;
     }

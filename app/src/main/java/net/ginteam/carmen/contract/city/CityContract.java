@@ -21,6 +21,8 @@ public interface CityContract {
 
         void selectCity(CityModel city);
 
+        void fetchCities();
+
     }
 
 }

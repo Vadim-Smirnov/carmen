@@ -5,8 +5,40 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <string name="test">XHDPI</string>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar_items_spacing">10dp</dimen>
+    <dimen name="toolbar_title_text_size">21sp</dimen>
+    <dimen name="toolbar_subtitle_text_size">11.5sp</dimen>
+
+    <!-- SignIn Activity -->
+    <dimen name="skip_text_size">13sp</dimen>
+    <dimen name="skip_margin">25dp</dimen>
+    <dimen name="skip_bottom_space">39dp</dimen>
+    <dimen name="logo_bottom_space">67.5dp</dimen>
+    <dimen name="field_drawable_padding">26.5dp</dimen>
+    <dimen name="field_horizontal_space">25dp</dimen>
+    <dimen name="field_text_size">14sp</dimen>
+    <dimen name="field_border_width">1dp</dimen>
+    <dimen name="field_bottom_padding">10dp</dimen>
+    <dimen name="email_field_bottom_space">20dp</dimen>
+    <dimen name="password_field_bottom_space">40dp</dimen>
+    <dimen name="button_horizontal_margin">30dp</dimen>
+    <dimen name="button_border_width">1dp</dimen>
+    <dimen name="sign_in_text_size">14sp</dimen>
+    <dimen name="sign_in_bottom_space">8.5dp</dimen>
+    <dimen name="or_text_size">13sp</dimen>
+    <dimen name="or_bottom_space">13.5dp</dimen>
+    <dimen name="sign_in_facebook_bottom_space">10dp</dimen>
+    <dimen name="sign_in_drawable_padding">14.5dp</dimen>
+    <dimen name="sign_in_google_bottom_space">30dp</dimen>
+    <dimen name="sign_up_text_size">10sp</dimen>
+    <dimen name="sign_up_bottom_space">35dp</dimen>
+    <dimen name="sign_up_left_space">7.5dp</dimen>
+
     <!-- Category Item -->
-    <dimen name="category_item_spacing">0.5dp</dimen>
+    <dimen name="category_item_spacing">2dp</dimen>
     <dimen name="category_item_top_padding">17dp</dimen>
     <dimen name="category_item_bottom_padding">39dp</dimen>
     <dimen name="category_item_height">167dp</dimen>
@@ -20,13 +52,15 @@
     <dimen name="category_image_width">60dp</dimen>
     <dimen name="category_image_height">23dp</dimen>
 
-    <!-- Company Item -->
+    <!-- Company Item Vertical -->
+    <dimen name="company_item_corner_radius">1dp</dimen>
+    <dimen name="company_item_spacing">10dp</dimen>
     <dimen name="company_item_width">160dp</dimen>
     <dimen name="company_item_height">288dp</dimen>
     <dimen name="company_item_favorite_button_size">34dp</dimen>
     <dimen name="company_item_favorite_button_margin">5dp</dimen>
     <dimen name="company_item_space">12dp</dimen>
-    <dimen name="company_image_height">162dp</dimen>
+    <dimen name="company_image_size">162dp</dimen>
     <dimen name="company_title_text_size">16sp</dimen>
     <dimen name="company_rating_width">80dp</dimen>
     <dimen name="company_rating_height">10dp</dimen>
@@ -37,6 +71,14 @@
     <dimen name="company_location_text_size">12sp</dimen>
     <dimen name="company_price_right_margin">10dp</dimen>
     <dimen name="company_price_text_size">14sp</dimen>
+
+    <!-- Company Item Horizontal -->
+    <dimen name="company_item_photo_right_space">15dp</dimen>
+    <dimen name="company_item_title_bottom_space">7.5dp</dimen>
+    <dimen name="company_item_address_bottom_space">15dp</dimen>
+    <dimen name="company_item_rating_left_space">10dp</dimen>
+    <dimen name="company_item_rating_bottom_space">21dp</dimen>
+    <dimen name="company_price_margin">20dp</dimen>
 
     <!-- Company List Fragment -->
     <dimen name="company_list_fragment_title_text_size">15sp</dimen>
