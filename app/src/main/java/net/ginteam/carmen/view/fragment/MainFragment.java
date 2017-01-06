@@ -44,10 +44,20 @@ public class MainFragment extends Fragment {
         prepareFragment(R.id.categories_fragment_container, CategoryListFragment.newInstance());
 
         prepareFragment(R.id.recently_companies_fragment_container,
-                CompanyListFragment.newInstance(CompanyListFragment.COMPANY_LIST_TYPE.RECENTLY_WATCHED, 0));
+                CompanyListFragment.newInstance(
+                        CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
+                        R.string.recently_watched_title,
+                        0
+                )
+        );
 
         prepareFragment(R.id.popular_companies_fragment_container,
-                CompanyListFragment.newInstance(CompanyListFragment.COMPANY_LIST_TYPE.POPULAR, 0));
+                CompanyListFragment.newInstance(
+                        CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
+                        R.string.popular_title,
+                        0
+                )
+        );
 
         if (mMainFragmentShowedListenter != null) {
             mMainFragmentShowedListenter.onMainFragmentShowed();

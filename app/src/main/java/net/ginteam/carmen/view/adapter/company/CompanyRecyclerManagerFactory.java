@@ -15,7 +15,7 @@ public class CompanyRecyclerManagerFactory {
 
     public static RecyclerView.LayoutManager createManagerForListType(CompanyListFragment.COMPANY_LIST_TYPE type) {
         switch (type) {
-            case RECENTLY_WATCHED: case POPULAR:
+            case HORIZONTAL:
                 return horizontalLayoutManager();
             default:
                 return verticalLayoutManager();
@@ -24,7 +24,7 @@ public class CompanyRecyclerManagerFactory {
 
     public static RecyclerView.ItemDecoration createItemDecoratorForListType(CompanyListFragment.COMPANY_LIST_TYPE type) {
         switch (type) {
-            case RECENTLY_WATCHED: case POPULAR:
+            case HORIZONTAL:
                 return horizontalItemDecorator();
             default:
                 return verticalItemDecorator();

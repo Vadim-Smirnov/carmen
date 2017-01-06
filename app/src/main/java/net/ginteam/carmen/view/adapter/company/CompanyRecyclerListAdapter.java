@@ -79,7 +79,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
 
     private int getListItemIdForType(CompanyListFragment.COMPANY_LIST_TYPE type) {
         switch (type) {
-            case RECENTLY_WATCHED: case POPULAR:
+            case HORIZONTAL:
                 return R.layout.list_item_company_horizontal;
             default:
                 return R.layout.list_item_company_vertical;

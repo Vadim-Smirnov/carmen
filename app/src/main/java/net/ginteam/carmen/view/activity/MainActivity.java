@@ -34,7 +34,7 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     public void onCategorySelected(CategoryModel category) {
         Toast.makeText(this, category.getName(), Toast.LENGTH_SHORT).show();
         prepareFragment(CompanyListFragment.newInstance(
-                CompanyListFragment.COMPANY_LIST_TYPE.BY_CATEGORY, category.getId()),
+                CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL, CompanyListFragment.NO_TITLE, category.getId()),
                 true
         );
         setTitle(category.getName());
