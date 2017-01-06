@@ -1,14 +1,14 @@
-package net.ginteam.carmen.view.activity;
+package net.ginteam.carmen.view.activity.company;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.view.activity.ToolbarActivity;
 
 public class CompanyDetailActivity extends ToolbarActivity {
 
-    public static final String ARGUMENTS_EXTRA = "company_information";
     public static final String COMPANY_ARGUMENT = "company";
 
     private int mCompanyId;
@@ -16,7 +16,7 @@ public class CompanyDetailActivity extends ToolbarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_company_detail);
+        super.setContentView(R.layout.activity_company_detail);
 
         receiveArguments();
     }
@@ -28,7 +28,7 @@ public class CompanyDetailActivity extends ToolbarActivity {
     }
 
     private void receiveArguments() {
-        Bundle arguments = getIntent().getBundleExtra(ARGUMENTS_EXTRA);
+        Bundle arguments = getIntent().getExtras();
         if (arguments != null) {
             mCompanyId = arguments.getInt(COMPANY_ARGUMENT, 0);
             Toast.makeText(this, "Receive ID: " + mCompanyId, Toast.LENGTH_LONG).show();

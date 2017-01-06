@@ -1,6 +1,5 @@
 package net.ginteam.carmen.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -8,6 +7,8 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.utils.ActivityUtils;
+import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
 import net.ginteam.carmen.view.fragment.MainFragment;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
@@ -50,8 +51,10 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     @Override
     public void onCompanySelected(CompanyModel company) {
         Toast.makeText(this, company.getName(), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, CompanyDetailActivity.class);
-        startActivity(intent);
+
+        Bundle arguments = new Bundle();
+        arguments.putInt(CompanyDetailActivity.COMPANY_ARGUMENT, company.getId());
+        ActivityUtils.showActivity(CompanyDetailActivity.class, arguments, false);
     }
 
 }
