@@ -42,7 +42,15 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
         }
     }
 
-    protected void prepareFragment(Fragment fragment) {
+    protected void prepareFragment(Fragment fragment, boolean isNeedBackStack) {
+        if (isNeedBackStack) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.main_fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+            return;
+        }
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)

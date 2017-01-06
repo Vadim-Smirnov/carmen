@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
@@ -15,7 +16,6 @@ import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompaniesPresenter;
 import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter;
-import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListItemDecorator;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerManagerFactory;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
@@ -41,6 +41,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     private COMPANY_LIST_TYPE mListType;
     private int mCategoryId;
 
+    private TextView mTextViewCompanyListTitle;
     private RecyclerView mRecyclerViewCompanies;
     private CompanyRecyclerListAdapter mRecyclerListAdapter;
 
@@ -115,8 +116,14 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     }
 
     private void updateDependencies() {
+        if (mListType == COMPANY_LIST_TYPE.RECENTLY_WATCHED || mListType == COMPANY_LIST_TYPE.POPULAR) {
+            mTextViewCompanyListTitle = (TextView) mRootView.findViewById(R.id.text_view_company_list_title);
+            mTextViewCompanyListTitle.setVisibility(View.VISIBLE);
+            mTextViewCompanyListTitle.setText(getResources().getStringArray(R.array.company_list_titles)[mListType.ordinal()]);
+        }
+
         mRecyclerViewCompanies = (RecyclerView) mRootView.findViewById(R.id.recycler_view_companies);
-        mRecyclerViewCompanies.addItemDecoration(new CompanyRecyclerListItemDecorator(getContext(), R.dimen.company_item_spacing));
+        mRecyclerViewCompanies.addItemDecoration(CompanyRecyclerManagerFactory.createItemDecoratorForListType(mListType));
         mRecyclerViewCompanies.setLayoutManager(CompanyRecyclerManagerFactory.createManagerForListType(mListType));
     }
 

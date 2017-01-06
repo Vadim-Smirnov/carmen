@@ -21,12 +21,16 @@ public class MainActivity extends NavigationViewActivity implements CategoryList
         super.setContentView(R.layout.activity_main);
 
         Toast.makeText(this, R.string.test, Toast.LENGTH_SHORT).show();
-        prepareFragment(MainFragment.newInstance());
+        prepareFragment(MainFragment.newInstance(), false);
     }
 
     @Override
     public void onCategorySelected(CategoryModel category) {
         Toast.makeText(this, category.getName(), Toast.LENGTH_SHORT).show();
+        prepareFragment(CompanyListFragment.newInstance(
+                CompanyListFragment.COMPANY_LIST_TYPE.BY_CATEGORY, category.getId()),
+                true
+        );
     }
 
     @Override

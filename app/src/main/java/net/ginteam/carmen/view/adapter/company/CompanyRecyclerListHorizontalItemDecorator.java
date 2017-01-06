@@ -10,11 +10,11 @@ import android.view.View;
  * Created by Eugene on 12/29/16.
  */
 
-public class CompanyRecyclerListItemDecorator extends RecyclerView.ItemDecoration {
+public class CompanyRecyclerListHorizontalItemDecorator extends RecyclerView.ItemDecoration {
 
     private int mItemSpacing;
 
-    public CompanyRecyclerListItemDecorator(Context context, @DimenRes int itemSpacing) {
+    public CompanyRecyclerListHorizontalItemDecorator(Context context, @DimenRes int itemSpacing) {
         mItemSpacing = context.getResources().getDimensionPixelOffset(itemSpacing);
     }
 
@@ -26,8 +26,6 @@ public class CompanyRecyclerListItemDecorator extends RecyclerView.ItemDecoratio
         if (currentItemPosition == state.getItemCount() - 1) {
             outRect.right = mItemSpacing;
         }
-        outRect.bottom = mItemSpacing;
-        outRect.top = mItemSpacing;
         outRect.left = mItemSpacing;
     }
 }
