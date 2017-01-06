@@ -5,8 +5,40 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <string name="test">XHDPI</string>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar_items_spacing">10dp</dimen>
+    <dimen name="toolbar_title_text_size">21sp</dimen>
+    <dimen name="toolbar_subtitle_text_size">11.5sp</dimen>
+
+    <!-- SignIn Activity -->
+    <dimen name="skip_text_size">13sp</dimen>
+    <dimen name="skip_margin">25dp</dimen>
+    <dimen name="skip_bottom_space">39dp</dimen>
+    <dimen name="logo_bottom_space">67.5dp</dimen>
+    <dimen name="field_drawable_padding">26.5dp</dimen>
+    <dimen name="field_horizontal_space">25dp</dimen>
+    <dimen name="field_text_size">14sp</dimen>
+    <dimen name="field_border_width">1dp</dimen>
+    <dimen name="field_bottom_padding">10dp</dimen>
+    <dimen name="email_field_bottom_space">20dp</dimen>
+    <dimen name="password_field_bottom_space">40dp</dimen>
+    <dimen name="button_horizontal_margin">30dp</dimen>
+    <dimen name="button_border_width">1dp</dimen>
+    <dimen name="sign_in_text_size">14sp</dimen>
+    <dimen name="sign_in_bottom_space">8.5dp</dimen>
+    <dimen name="or_text_size">13sp</dimen>
+    <dimen name="or_bottom_space">13.5dp</dimen>
+    <dimen name="sign_in_facebook_bottom_space">10dp</dimen>
+    <dimen name="sign_in_drawable_padding">14.5dp</dimen>
+    <dimen name="sign_in_google_bottom_space">30dp</dimen>
+    <dimen name="sign_up_text_size">10sp</dimen>
+    <dimen name="sign_up_bottom_space">35dp</dimen>
+    <dimen name="sign_up_left_space">7.5dp</dimen>
+
     <!-- Category Item -->
-    <dimen name="category_item_spacing">0.5dp</dimen>
+    <dimen name="category_item_spacing">2dp</dimen>
     <dimen name="category_item_top_padding">17dp</dimen>
     <dimen name="category_item_bottom_padding">39dp</dimen>
     <dimen name="category_item_height">167dp</dimen>
@@ -68,15 +100,9 @@
     <dimen name="menu_item_height">55dp</dimen>
     <dimen name="menu_padding_side">25dp</dimen>
 
-    <!-- Custom Edit Text -->
-    <dimen name="edit_text_filter_margin_start">17dp</dimen>
-    <dimen name="edit_text_filter_margin_end">24dp</dimen>
-    <dimen name="custom_edit_text_size">17.5sp</dimen>
-
     <!-- Company Detail -->
     <dimen name="company_detail_parallax_toolbar_height">250dp</dimen>
     <dimen name="company_detail_parallax_toolbar_gradient_height">75.5dp</dimen>
-
     <dimen name="company_detail_margin_side">20dp</dimen>
     <dimen name="company_detail_company_name_margin_top">30dp</dimen>
     <dimen name="company_detail_category_margin_top">5dp</dimen>
@@ -113,6 +139,9 @@
     <dimen name="company_detail_button_navigate_margin_top">15dp</dimen>
     <dimen name="company_detail_button_navigate_drawable_padding">8dp</dimen>
 
-
+    <!-- Custom Edit Text -->
+    <dimen name="edit_text_filter_margin_start">17dp</dimen>
+    <dimen name="edit_text_filter_margin_end">24dp</dimen>
+    <dimen name="custom_edit_text_size">17.5sp</dimen>
 
 </resources>
