@@ -33,7 +33,7 @@
     <dimen name="sign_up_left_space">7.5dp</dimen>
 
     <!-- Category Item -->
-    <dimen name="category_item_spacing">1dp</dimen>
+    <dimen name="category_item_spacing">2dp</dimen>
     <dimen name="category_item_top_padding">17dp</dimen>
     <dimen name="category_item_bottom_padding">39dp</dimen>
     <dimen name="category_item_height">167dp</dimen>
@@ -48,6 +48,7 @@
     <dimen name="category_image_height">23dp</dimen>
 
     <!-- Company Item Vertical -->
+    <dimen name="company_item_corner_radius">1dp</dimen>
     <dimen name="company_item_spacing">10dp</dimen>
     <dimen name="company_item_width">160dp</dimen>
     <dimen name="company_item_height">288dp</dimen>

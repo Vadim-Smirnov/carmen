@@ -45,6 +45,7 @@
     <string name="choose_city_string">Выберите Ваш город: </string>
 
     <!-- Company -->
+    <string name="company_price">%d грн</string>
     <string-array name="company_list_titles">
         <item>Недавно просмотренные</item>
         <item>Популярные</item>

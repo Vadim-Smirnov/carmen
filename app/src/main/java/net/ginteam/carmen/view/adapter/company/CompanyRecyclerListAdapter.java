@@ -13,6 +13,7 @@ import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Eugene on 12/27/16.
@@ -48,8 +49,14 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
     public void onBindViewHolder(CompanyItemViewHolder holder, int position) {
         CompanyModel currentCompany = mCompanies.get(position);
         holder.getTextViewName().setText(currentCompany.getName());
+        holder.getTextViewAddress().setText(currentCompany.getAddress());
         holder.getRatingViewRating().setRating(currentCompany.getRating());
-        holder.getTextViewPrice().setText(String.valueOf(currentCompany.getPrice()));
+        holder.getTextViewDistance().setText("300 м");
+        holder.getTextViewPrice().setText(
+                String.format(Locale.getDefault(),
+                        mContext.getString(R.string.company_price),
+                        currentCompany.getPrice())
+        );
 
         holder.getImageButtonAddToFavorite().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,9 +80,9 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
     private int getListItemIdForType(CompanyListFragment.COMPANY_LIST_TYPE type) {
         switch (type) {
             case RECENTLY_WATCHED: case POPULAR:
-                return R.layout.list_item_company_vertical;
-            default:
                 return R.layout.list_item_company_horizontal;
+            default:
+                return R.layout.list_item_company_vertical;
         }
     }
 
