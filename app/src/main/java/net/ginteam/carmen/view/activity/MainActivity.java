@@ -12,7 +12,7 @@ import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
-public class MainActivity extends NavigationViewActivity implements CategoryListFragment.OnCategorySelectedListener,
+public class MainActivity extends NavigationViewActivity implements MainFragment.OnMainFragmentShowedListenter, CategoryListFragment.OnCategorySelectedListener,
         CityListFragment.OnCitySelectedListener, CompanyListFragment.OnCompanySelectedListener {
 
     @Override
@@ -25,12 +25,20 @@ public class MainActivity extends NavigationViewActivity implements CategoryList
     }
 
     @Override
+    public void onMainFragmentShowed() {
+        setTitle(getString(R.string.main_item_text));
+        setSubtitle("");
+    }
+
+    @Override
     public void onCategorySelected(CategoryModel category) {
         Toast.makeText(this, category.getName(), Toast.LENGTH_SHORT).show();
         prepareFragment(CompanyListFragment.newInstance(
                 CompanyListFragment.COMPANY_LIST_TYPE.BY_CATEGORY, category.getId()),
                 true
         );
+        setTitle(category.getName());
+        setSubtitle("Кривой Рог");
     }
 
     @Override

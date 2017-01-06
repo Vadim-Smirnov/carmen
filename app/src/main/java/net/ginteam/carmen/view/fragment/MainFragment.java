@@ -1,8 +1,10 @@
 package net.ginteam.carmen.view.fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +17,23 @@ public class MainFragment extends Fragment {
 
     private View mRootView;
 
+    private OnMainFragmentShowedListenter mMainFragmentShowedListenter;
+
     public MainFragment() {}
 
     public static MainFragment newInstance() {
         return new MainFragment();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mMainFragmentShowedListenter = (OnMainFragmentShowedListenter) context;
+        } catch (ClassCastException exception) {
+            Log.e("MainFragment", "Parent context does not confirm to OnMainFragmentShowedListenter!");
+        }
     }
 
     @Override
@@ -34,6 +49,10 @@ public class MainFragment extends Fragment {
         prepareFragment(R.id.popular_companies_fragment_container,
                 CompanyListFragment.newInstance(CompanyListFragment.COMPANY_LIST_TYPE.POPULAR, 0));
 
+        if (mMainFragmentShowedListenter != null) {
+            mMainFragmentShowedListenter.onMainFragmentShowed();
+        }
+
         return mRootView;
     }
 
@@ -42,6 +61,12 @@ public class MainFragment extends Fragment {
                 .beginTransaction()
                 .replace(containerId, fragment)
                 .commit();
+    }
+
+    public interface OnMainFragmentShowedListenter {
+
+        void onMainFragmentShowed();
+
     }
 
 }

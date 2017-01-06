@@ -7,6 +7,11 @@
 
     <string name="test">XHDPI</string>
 
+    <!-- Toolbar -->
+    <dimen name="toolbar_items_spacing">10dp</dimen>
+    <dimen name="toolbar_title_text_size">21sp</dimen>
+    <dimen name="toolbar_subtitle_text_size">11.5sp</dimen>
+
     <!-- SignIn Activity -->
     <dimen name="skip_text_size">13sp</dimen>
     <dimen name="skip_margin">25dp</dimen>
