@@ -19,6 +19,8 @@ import com.mobsandgeeks.saripaar.annotation.Order;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.utils.ActivityUtils;
+import net.ginteam.carmen.view.activity.MainActivity;
 
 import java.util.List;
 
@@ -61,7 +63,7 @@ public abstract class BaseAuthActivity extends AppCompatActivity implements Vali
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        finish();
+        ActivityUtils.showActivity(MainActivity.class, null, true);
         return true;
     }
 

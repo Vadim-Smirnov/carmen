@@ -21,7 +21,7 @@ public class SignUpActivity extends BaseAuthActivity implements View.OnClickList
     private SignUpContract.Presenter mPresenter;
 
     @Order(4)
-    @Pattern(regex = "^(([\\\\p{L}]+){1}( ?[\\\\p{L}]+)?){1}$", messageResId = R.string.wrong_name_string)
+    @Pattern(regex = "^(([\\p{L}]+){1}( ?[\\p{L}]+)?){1}$", messageResId = R.string.wrong_name_string)
     private EditText mEditTextName;
 
     @Order(3)

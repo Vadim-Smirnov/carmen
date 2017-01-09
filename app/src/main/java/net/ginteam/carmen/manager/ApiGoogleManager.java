@@ -128,6 +128,10 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
 
     public void getLastLocation(OnReceiveLocationListener listener) {
         mLocationListener = listener;
+        if (mLastLocation != null) {
+            mLocationListener.onLocationReceived(mLastLocation);
+            return;
+        }
         mGoogleApiClient.connect();
     }
 

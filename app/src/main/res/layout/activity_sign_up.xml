@@ -74,7 +74,8 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@drawable/input_field_border"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout_name"/>
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_name"
+                tools:layout_editor_absoluteX="0dp"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_email"
@@ -111,7 +112,8 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@drawable/input_field_border"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout_email"/>
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_email"
+                tools:layout_editor_absoluteX="0dp"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_password"
@@ -148,7 +150,8 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@drawable/input_field_border"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout_password"/>
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_password"
+                tools:layout_editor_absoluteX="0dp"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_confirm_password"
@@ -185,7 +188,8 @@
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:background="@drawable/input_field_border"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout_confirm_password"/>
+                app:layout_constraintTop_toBottomOf="@+id/input_layout_confirm_password"
+                tools:layout_editor_absoluteX="0dp"/>
 
             <Button
                 android:id="@+id/button_sign_up"
@@ -235,5 +239,7 @@
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
+
+    <include layout="@layout/progress_bar"/>
 
 </LinearLayout>

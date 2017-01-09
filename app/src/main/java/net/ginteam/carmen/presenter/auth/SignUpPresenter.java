@@ -1,5 +1,7 @@
 package net.ginteam.carmen.presenter.auth;
 
+import android.util.Log;
+
 import net.ginteam.carmen.contract.auth.SignUpContract;
 import net.ginteam.carmen.model.auth.UserModel;
 import net.ginteam.carmen.provider.ModelCallback;

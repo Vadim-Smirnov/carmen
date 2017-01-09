@@ -3,6 +3,7 @@ package net.ginteam.carmen.presenter.auth;
 import android.content.Intent;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import net.ginteam.carmen.contract.auth.AuthenticationCheckContract;
 import net.ginteam.carmen.manager.ApiGoogleManager;

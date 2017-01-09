@@ -9,8 +9,11 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle;
 
 /**
@@ -26,6 +29,9 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
         initializeNavigationView();
+        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
+            updateNavigationHeader();
+        }
     }
 
     @Override
@@ -68,6 +74,7 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
         mNavigationView.setNavigationItemSelectedListener(this);
 
         disableNavigationViewScrollbars(mNavigationView);
+
     }
 
     private void disableNavigationViewScrollbars(NavigationView navigationView) {
@@ -75,6 +82,16 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
         if (navigationMenuView != null) {
             navigationMenuView.setVerticalScrollBarEnabled(false);
         }
+    }
+
+    private void updateNavigationHeader() {
+        View navigationHeader = mNavigationView.getHeaderView(0);
+
+        TextView textViewName = (TextView) navigationHeader.findViewById(R.id.text_view_nav_header_name);
+        TextView textViewEmail = (TextView) navigationHeader.findViewById(R.id.text_view_nav_header_email);
+
+        textViewName.setText(AuthProvider.getInstance().getCurrentCachedUser().getName());
+        textViewEmail.setText(AuthProvider.getInstance().getCurrentCachedUser().getEmail());
     }
 
 }
