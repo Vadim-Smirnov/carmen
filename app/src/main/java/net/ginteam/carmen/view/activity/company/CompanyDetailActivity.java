@@ -28,8 +28,7 @@ public class CompanyDetailActivity extends ToolbarActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ActivityUtils.showActivity(MapActivity.class, null, true);
-                finish();
+                ActivityUtils.showActivity(MapActivity.class, null, false);
             }
         });
     }

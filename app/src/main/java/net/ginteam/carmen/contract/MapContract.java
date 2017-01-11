@@ -12,7 +12,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 public interface MapContract {
 
-    interface View extends FetchContract.View {
+    interface View extends RequestLocationContract.View {
 
         void showGoogleMap(Location userLocation);
 
@@ -22,7 +22,7 @@ public interface MapContract {
 
     }
 
-    interface Presenter extends FetchContract.Presenter<View> {
+    interface Presenter extends RequestLocationContract.Presenter<View> {
 
         void prepareGoogleMap();
 
