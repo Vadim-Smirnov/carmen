@@ -17,7 +17,6 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAKzwJXWkDJpr0mYdSH1bwwI_Zj_7dlPwc"/>
@@ -27,6 +26,7 @@
         <activity android:name=".view.activity.auth.AuthCheckActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
@@ -39,6 +39,8 @@
             android:theme="@style/AuthTheme">
         </activity>
         <activity android:name=".view.activity.company.CompanyDetailActivity">
+        </activity>
+        <activity android:name=".view.activity.ReviewActivity">
         </activity>
     </application>
 
