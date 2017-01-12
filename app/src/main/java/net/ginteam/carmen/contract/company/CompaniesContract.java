@@ -25,6 +25,8 @@ public interface CompaniesContract {
 
         void fetchPopularCompanies();
 
+        void fetchFavoriteCompanies();
+
         void fetchCompaniesForCategory(int categoryId);
 
     }

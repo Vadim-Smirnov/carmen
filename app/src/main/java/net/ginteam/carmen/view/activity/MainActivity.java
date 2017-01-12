@@ -14,7 +14,7 @@ import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
-public class MainActivity extends NavigationViewActivity implements MainFragment.OnMainFragmentShowedListenter, CategoryListFragment.OnCategorySelectedListener,
+public class MainActivity extends NavigationViewActivity implements MainFragment.OnMainFragmentShowedListener, CategoryListFragment.OnCategorySelectedListener,
         CityListFragment.OnCitySelectedListener, CompanyListFragment.OnCompanySelectedListener {
 
     @Override
@@ -36,7 +36,9 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     public void onCategorySelected(CategoryModel category) {
         Toast.makeText(this, category.getName(), Toast.LENGTH_SHORT).show();
         prepareFragment(CompanyListFragment.newInstance(
-                CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL, CompanyListFragment.NO_TITLE, category.getId()),
+                CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
+                CompanyListFragment.FETCH_COMPANY_TYPE.FOR_CATEGORY,
+                category.getId()),
                 true
         );
         setTitle(category.getName());

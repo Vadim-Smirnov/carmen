@@ -17,7 +17,7 @@ public class MainFragment extends Fragment {
 
     private View mRootView;
 
-    private OnMainFragmentShowedListenter mMainFragmentShowedListenter;
+    private OnMainFragmentShowedListener mMainFragmentShowedListener;
 
     public MainFragment() {}
 
@@ -30,9 +30,9 @@ public class MainFragment extends Fragment {
         super.onAttach(context);
 
         try {
-            mMainFragmentShowedListenter = (OnMainFragmentShowedListenter) context;
+            mMainFragmentShowedListener = (OnMainFragmentShowedListener) context;
         } catch (ClassCastException exception) {
-            Log.e("MainFragment", "Parent context does not confirm to OnMainFragmentShowedListenter!");
+            Log.e("MainFragment", "Parent context does not confirm to OnMainFragmentShowedListener!");
         }
     }
 
@@ -42,25 +42,23 @@ public class MainFragment extends Fragment {
         mRootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         prepareFragment(R.id.categories_fragment_container, CategoryListFragment.newInstance());
-
         prepareFragment(R.id.recently_companies_fragment_container,
                 CompanyListFragment.newInstance(
                         CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
-                        R.string.recently_watched_title,
+                        CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED,
                         0
                 )
         );
-
         prepareFragment(R.id.popular_companies_fragment_container,
                 CompanyListFragment.newInstance(
                         CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
-                        R.string.popular_title,
+                        CompanyListFragment.FETCH_COMPANY_TYPE.POPULAR,
                         0
                 )
         );
 
-        if (mMainFragmentShowedListenter != null) {
-            mMainFragmentShowedListenter.onMainFragmentShowed();
+        if (mMainFragmentShowedListener != null) {
+            mMainFragmentShowedListener.onMainFragmentShowed();
         }
 
         return mRootView;
@@ -73,7 +71,7 @@ public class MainFragment extends Fragment {
                 .commit();
     }
 
-    public interface OnMainFragmentShowedListenter {
+    public interface OnMainFragmentShowedListener {
 
         void onMainFragmentShowed();
 

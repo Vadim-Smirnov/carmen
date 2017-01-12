@@ -3,7 +3,6 @@ package net.ginteam.carmen.view.fragment.company;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,16 +32,21 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         VERTICAL
     }
 
-    public static final int NO_TITLE = -1;
+    public enum FETCH_COMPANY_TYPE {
+        POPULAR,
+        RECENTLY_WATCHED,
+        FAVORITE,
+        FOR_CATEGORY
+    }
 
     private static final String TYPE_ARGUMENT = "type";
-    private static final String TITLE_ARGUMENT = "title";
+    private static final String FETCH_TYPE_ARGUMENT = "fetch_type";
     private static final String CATEGORY_ARGUMENT = "category";
 
     private CompaniesContract.Presenter mPresenter;
 
     private COMPANY_LIST_TYPE mListType;
-    private int mTitleId;
+    private FETCH_COMPANY_TYPE mFetchType;
     private int mCategoryId;
 
     private TextView mTextViewCompanyListTitle;
@@ -54,12 +58,13 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     public CompanyListFragment() {
     }
 
-    public static CompanyListFragment newInstance(COMPANY_LIST_TYPE type, @StringRes int title, @Nullable int categoryId) {
+    public static CompanyListFragment newInstance(COMPANY_LIST_TYPE type, FETCH_COMPANY_TYPE fetchType,
+                                                  @Nullable int categoryId) {
         CompanyListFragment fragment = new CompanyListFragment();
 
         Bundle arguments = new Bundle();
         arguments.putSerializable(TYPE_ARGUMENT, type);
-        arguments.putInt(TITLE_ARGUMENT, title);
+        arguments.putSerializable(FETCH_TYPE_ARGUMENT, fetchType);
         arguments.putInt(CATEGORY_ARGUMENT, categoryId);
         fragment.setArguments(arguments);
 
@@ -72,7 +77,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
         Bundle arguments = getArguments();
         mListType = (COMPANY_LIST_TYPE) arguments.getSerializable(TYPE_ARGUMENT);
-        mTitleId = arguments.getInt(TITLE_ARGUMENT, NO_TITLE);
+        mFetchType = (FETCH_COMPANY_TYPE) arguments.getSerializable(FETCH_TYPE_ARGUMENT);
         mCategoryId = arguments.getInt(CATEGORY_ARGUMENT, 0);
     }
 
@@ -122,10 +127,21 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     }
 
     private void updateDependencies() {
-        if (mTitleId != NO_TITLE) {
+        String title = null;
+
+        switch (mFetchType) {
+            case POPULAR:
+                title = getString(R.string.popular_title);
+                break;
+            case RECENTLY_WATCHED:
+                title = getString(R.string.recently_watched_title);
+                break;
+        }
+
+        if (title != null) {
             mTextViewCompanyListTitle = (TextView) mRootView.findViewById(R.id.text_view_company_list_title);
             mTextViewCompanyListTitle.setVisibility(View.VISIBLE);
-            mTextViewCompanyListTitle.setText(getString(mTitleId));
+            mTextViewCompanyListTitle.setText(title);
         }
 
         mRecyclerViewCompanies = (RecyclerView) mRootView.findViewById(R.id.recycler_view_companies);
@@ -134,12 +150,15 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     }
 
     private void fetchCompanies() {
-        switch (mTitleId) {
-            case R.string.popular_title:
+        switch (mFetchType) {
+            case POPULAR:
                 mPresenter.fetchPopularCompanies();
                 break;
-            case R.string.recently_watched_title:
+            case RECENTLY_WATCHED:
                 mPresenter.fetchRecentlyWatchedCompanies();
+                break;
+            case FAVORITE:
+                mPresenter.fetchFavoriteCompanies();
                 break;
             default:
                 mPresenter.fetchCompaniesForCategory(mCategoryId);

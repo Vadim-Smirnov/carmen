@@ -46,6 +46,8 @@ public class CompaniesProvider {
 
     public void fetchPopular(ModelCallback<List<CompanyModel>> completion) {}
 
+    public void fetchFavorite(ModelCallback<List<CompanyModel>> completion) {}
+
     private void fetchFromServer(final int forCategoryId, final ModelCallback<List<CompanyModel>> completion) {
         CompanyService companyService = ApiManager.getInstance().getService(CompanyService.class);
         companyService

@@ -31,6 +31,11 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
     }
 
     @Override
+    public void fetchFavoriteCompanies() {
+
+    }
+
+    @Override
     public void fetchCompaniesForCategory(int categoryId) {
         mView.showLoading(true);
 
