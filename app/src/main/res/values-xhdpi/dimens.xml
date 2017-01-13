@@ -139,9 +139,13 @@
     <dimen name="company_detail_button_navigate_margin_top">15dp</dimen>
     <dimen name="company_detail_button_navigate_drawable_padding">8dp</dimen>
 
-    <!-- Custom Edit Text -->
+    <!-- Filter Edit Text -->
     <dimen name="edit_text_filter_margin_start">17dp</dimen>
     <dimen name="edit_text_filter_margin_end">24dp</dimen>
     <dimen name="custom_edit_text_size">17.5sp</dimen>
+
+    <!-- Filter Option Item -->
+    <dimen name="option_name_text_size">15sp</dimen>
+    <dimen name="option_name_margin">15dp</dimen>
 
 </resources>

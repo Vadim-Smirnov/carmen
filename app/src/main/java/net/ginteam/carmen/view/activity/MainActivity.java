@@ -41,6 +41,7 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
                 category.getId()),
                 true
         );
+        ActivityUtils.showActivity(FilterActivity.class, null, false);
         setTitle(category.getName());
         setSubtitle("Кривой Рог");
     }

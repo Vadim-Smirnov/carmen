@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="CustomEditText">
+    <declare-styleable name="FilterEditText">
         <attr name="filterText" format="string" localization="suggested" />
         <attr name="filterHint" format="string" localization="suggested" />
         <attr name="imageFilledText" format="integer" />
