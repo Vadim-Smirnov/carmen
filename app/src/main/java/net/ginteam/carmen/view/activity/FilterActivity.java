@@ -1,95 +1,52 @@
 package net.ginteam.carmen.view.activity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.LinearLayout;
-
-import com.google.gson.Gson;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.filter.FilterModel;
 import net.ginteam.carmen.view.custom.FilterEditText;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class FilterActivity extends AppCompatActivity implements FilterEditText.OnFilterChangeListener {
-
-    private final String GSON = "[\n" +
-            "    {\n" +
-            "        \"name\" : \"Рейтинг\",\n" +
-            "        \"type\" : \"rating\",\n" +
-            "        \"dialog\" : [\n" +
-            "            {\n" +
-            "                \"key\" : \"3\",\n" +
-            "                \"value\" : \"Средний\"\n" +
-            "            },\n" +
-            "            {\n" +
-            "                \"key\" : \"4\",\n" +
-            "                \"value\" : \"Хороший\"\n" +
-            "            },\n" +
-            "            {\n" +
-            "                \"key\" : \"5\",\n" +
-            "                \"value\" : \"Отличный\"\n" +
-            "            }\n" +
-            "        ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"name\" : \"Цена\",\n" +
-            "        \"type\" : \"price_rel\",\n" +
-            "        \"dialog\" : [\n" +
-            "            {\n" +
-            "                \"key\" : \"50\",\n" +
-            "                \"value\" : \"Дешевый\"\n" +
-            "            },\n" +
-            "            {\n" +
-            "                \"key\" : \"150\",\n" +
-            "                \"value\" : \"Средний\"\n" +
-            "            },\n" +
-            "            {\n" +
-            "                \"key\" : \"250\",\n" +
-            "                \"value\" : \"Дорогой\"\n" +
-            "            }\n" +
-            "        ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"name\" : \"Название\",\n" +
-            "        \"type\" : \"name\",\n" +
-            "        \"dialog\" : null\n" +
-            "    }\n" +
-            "]   ";
-
-    private LinearLayout mLinearLayout;
-    private List <FilterEditText> mFilterEditTexts;
+public class FilterActivity extends ToolbarActivity implements FilterEditText.OnFilterChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        mLinearLayout = (LinearLayout) findViewById(R.id.main_content);
+        updateDependencies();
+    }
 
-        FilterModel[] filterModels = new Gson().fromJson(GSON, FilterModel[].class);
-        mFilterEditTexts = new ArrayList<>();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.filters_menu, menu);
+        return true;
+    }
 
-        for (FilterModel filterModel : filterModels) {
-            FilterEditText filterEditText = new FilterEditText(this);
-            filterEditText.setFilterModel(filterModel);
-            filterEditText.setOnFilterChangeListener(this);
-
-            mFilterEditTexts.add(filterEditText);
-            mLinearLayout.addView(filterEditText);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            case R.id.menu_item_clear_filters:
+                clearFilters();
+                break;
         }
+        return true;
     }
 
     @Override
     public void onFilterChanged(FilterEditText filterEditText) {
-        String result = "";
-        for (FilterEditText filter: mFilterEditTexts) {
-            result += filter.getStringFilter();
-        }
-        Log.d("FilterActivity", result);
+
     }
+
+    private void updateDependencies() {
+        setTitle(getString(R.string.filter_activity_title));
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_button);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    private void clearFilters() {}
 
 }

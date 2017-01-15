@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/AppTheme.AppBarOverlay"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    app:elevation="0dp">
+    app:elevation="0dp"
+    tools:ignore="MissingPrefix">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:layout_collapseMode="pin">
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -23,20 +25,20 @@
             <TextView
                 android:id="@+id/text_view_toolbar_title"
                 fontPath="@string/open_sans_font"
-                android:textColor="#fff"
-                android:textSize="21sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:textColor="#fff"
+                android:textSize="21sp"/>
 
             <TextView
                 android:id="@+id/text_view_toolbar_subtitle"
                 fontPath="@string/open_sans_font"
-                android:textSize="11.5sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="bottom"
                 android:textColor="#fff"
-                android:gravity="bottom"/>
+                android:textSize="11.5sp"/>
 
         </LinearLayout>
 

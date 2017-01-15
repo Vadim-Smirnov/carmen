@@ -61,4 +61,12 @@
     <string name="privacy_item_text">Политика конфиденциальности</string>
     <string name="terms_item_text">Условия пользователя</string>
 
+    <!-- Filter Activity -->
+    <string name="filter_activity_title">Поиск</string>
+    <string name="show_results_string">Показать результаты</string>
+    <string name="results_count_string">Результатов: %d</string>
+
+    <!-- Filter Activity Menu -->
+    <string name="clear_filters_string">Очистить все</string>
+
 </resources>

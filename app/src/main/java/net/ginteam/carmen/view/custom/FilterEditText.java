@@ -103,6 +103,8 @@ public class FilterEditText extends LinearLayout {
                             .getText()
                             .toString()
                             .isEmpty() ? INVISIBLE : VISIBLE);
+
+            callListener();
         }
     };
 
@@ -143,13 +145,11 @@ public class FilterEditText extends LinearLayout {
     }
 
     public String getStringFilter() {
-        String filter = mFilterType + "=";
         if (mFilterModel.getFilterOptions() == null) {
-            filter += mEditTextFilter.getText();
+            return (!mEditTextFilter.getText().toString().isEmpty() ? mFilterType + ":" + mEditTextFilter.getText() + ";" : "");
         } else {
-            filter += (mSelectedFilterOption != null ? mSelectedFilterOption.getKey() : "");
+            return  (mSelectedFilterOption != null ? mFilterType + ":" + mSelectedFilterOption.getKey() + ";" : "");
         }
-        return filter + ";";
     }
 
     public int getImageClearText() {

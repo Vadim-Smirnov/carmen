@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="#000"
+              android:gravity="center"
+              android:orientation="vertical"
+              tools:ignore="MissingPrefix">
+
+    <TextView
+        fontPath="@string/open_sans_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/show_result_title_margin_top"
+        android:text="@string/show_results_string"
+        android:textColor="#fff"
+        android:textSize="@dimen/show_result_text_size"/>
+
+    <TextView
+        fontPath="@string/open_sans_font"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/results_count_margin_bottom"
+        android:layout_marginTop="@dimen/results_count_margin_top"
+        android:text="@string/results_count_string"
+        android:textColor="#9B9B9B"
+        android:textSize="@dimen/results_count_text_size"/>
+
+    <ProgressBar
+        android:id="@+id/progress_bar_filter"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/results_count_margin_bottom"
+        android:layout_marginTop="@dimen/results_count_margin_top"
+        android:progressDrawable="@drawable/white_progress_bar"
+        android:visibility="gone"/>
+
+</LinearLayout>

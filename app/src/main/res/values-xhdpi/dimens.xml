@@ -148,4 +148,12 @@
     <dimen name="option_name_text_size">15sp</dimen>
     <dimen name="option_name_margin">15dp</dimen>
 
+    <!-- Filter Activity -->
+    <dimen name="filters_layout_padding">15dp</dimen>
+    <dimen name="show_result_title_margin_top">7.5dp</dimen>
+    <dimen name="show_result_text_size">15sp</dimen>
+    <dimen name="results_count_margin_top">1.5dp</dimen>
+    <dimen name="results_count_text_size">10sp</dimen>
+    <dimen name="results_count_margin_bottom">17.5dp</dimen>
+
 </resources>
