@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
@@ -25,7 +26,8 @@ import java.util.List;
  * Created by Eugene on 12/27/16.
  */
 
-public class CompanyListFragment extends BaseFetchingFragment implements CompaniesContract.View, CompanyItemViewHolder.OnCompanyItemClickListener {
+public class CompanyListFragment extends BaseFetchingFragment implements CompaniesContract.View, CompanyItemViewHolder.OnCompanyItemClickListener,
+        CompanyItemViewHolder.OnAddToFavoritesClickListener{
 
     public enum COMPANY_LIST_TYPE {
         HORIZONTAL,
@@ -117,13 +119,39 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
             return;
         }
         mCompanySelectedListener.onCompanySelected(company);
+        mPresenter.selectCompany(company);
+    }
+
+    @Override
+    public void onAddToFavoritesClick(CompanyModel company) {
+        if (!company.isFavorite()) {
+            company.setFavorite(true);
+            mRecyclerListAdapter.notifyDataSetChanged();
+            mPresenter.addToFavorites(company);
+
+        } else {
+            company.setFavorite(false);
+            mRecyclerListAdapter.notifyDataSetChanged();
+            mPresenter.removeFromFavorites(company);
+        }
     }
 
     @Override
     public void showCompanies(List<CompanyModel> companies) {
         mRecyclerListAdapter = new CompanyRecyclerListAdapter(getContext(), companies, mListType);
         mRecyclerListAdapter.setOnCompanyItemClickListener(this);
+        mRecyclerListAdapter.setOnAddToFavoritesClickListener(this);
         mRecyclerViewCompanies.setAdapter(mRecyclerListAdapter);
+    }
+
+    @Override
+    public void addToFavorites() {
+        Toast.makeText(getContext(),"add", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void removeFromFavorites() {
+        Toast.makeText(getContext(),"remove", Toast.LENGTH_SHORT).show();
     }
 
     private void updateDependencies() {

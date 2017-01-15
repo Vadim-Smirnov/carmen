@@ -29,8 +29,15 @@ public class CompanyModel {
     @SerializedName("address")
     private String mAddress;
 
+    @SerializedName("is_favorite")
+    private boolean mIsFavorite;
+
     @SerializedName("short_desc")
     private String mShortDescription;
+
+    public CompanyModel() {
+        mIsFavorite = true;
+    }
 
     public int getId() {
         return mId;
@@ -62,6 +69,14 @@ public class CompanyModel {
 
     public String getShortDescription() {
         return mShortDescription;
+    }
+
+    public boolean isFavorite() {
+        return mIsFavorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        mIsFavorite = favorite;
     }
 
 }

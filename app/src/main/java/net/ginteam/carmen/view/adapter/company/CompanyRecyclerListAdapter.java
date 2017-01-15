@@ -26,6 +26,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
     private List <CompanyModel> mCompanies;
 
     private CompanyItemViewHolder.OnCompanyItemClickListener mCompanyItemClickListener;
+    private CompanyItemViewHolder.OnAddToFavoritesClickListener mOnAddToFavoritesClickListener;
 
     public CompanyRecyclerListAdapter(Context context, List <CompanyModel> companies, CompanyListFragment.COMPANY_LIST_TYPE type) {
         mContext = context;
@@ -35,6 +36,10 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
 
     public void setOnCompanyItemClickListener(CompanyItemViewHolder.OnCompanyItemClickListener listener) {
         mCompanyItemClickListener = listener;
+    }
+
+    public void setOnAddToFavoritesClickListener(CompanyItemViewHolder.OnAddToFavoritesClickListener onAddToFavoritesClickListener) {
+        mOnAddToFavoritesClickListener = onAddToFavoritesClickListener;
     }
 
     @Override
@@ -58,12 +63,11 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
                         currentCompany.getPrice())
         );
 
-        holder.getImageButtonAddToFavorite().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Like",Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (mOnAddToFavoritesClickListener == null) {
+            Log.e("CompanyListAdapter", "mOnAddToFavoritesClickListener does not set!");
+            return;
+        }
+        holder.setOnAddToFavoritesClickListener(currentCompany, mOnAddToFavoritesClickListener);
 
         if (mCompanyItemClickListener == null) {
             Log.e("CompanyListAdapter", "mCompanyItemClickListener does not set!");

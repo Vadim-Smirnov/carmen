@@ -23,8 +23,11 @@ public class CompaniesProvider {
 
     private Map <Integer, List <CompanyModel>> mCachedCompanies;
 
+    private CompanyService mCompanyService;
+
     private CompaniesProvider() {
         mCachedCompanies = new HashMap<>();
+        mCompanyService = ApiManager.getInstance().getService(CompanyService.class);
     }
 
     public static CompaniesProvider getInstance() {
@@ -35,22 +38,35 @@ public class CompaniesProvider {
     }
 
     public void fetchForCategory(int categoryId, ModelCallback<List<CompanyModel>> completion) {
-        if (mCachedCompanies.containsKey(categoryId)) {
-            completion.onSuccess(mCachedCompanies.get(categoryId));
-            return;
-        }
+//        if (mCachedCompanies.containsKey(categoryId)) {
+//            completion.onSuccess(mCachedCompanies.get(categoryId));
+//            return;
+//        }
         fetchFromServer(categoryId, completion);
     }
 
-    public void fetchRecentlyWatched(ModelCallback<List<CompanyModel>> completion) {}
+    public void fetchRecentlyWatched(final ModelCallback<List<CompanyModel>> completion) {
+        mCompanyService
+                .fetchRecentlyWatched()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ModelSubscriber<List<CompanyModel>>() {
+                    @Override
+                    public void onSuccess(List<CompanyModel> resultModel) {
+                        completion.onSuccess(resultModel);
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        completion.onFailure(message);
+                    }
+                });
+    }
 
     public void fetchPopular(ModelCallback<List<CompanyModel>> completion) {}
 
-    public void fetchFavorite(ModelCallback<List<CompanyModel>> completion) {}
-
     private void fetchFromServer(final int forCategoryId, final ModelCallback<List<CompanyModel>> completion) {
-        CompanyService companyService = ApiManager.getInstance().getService(CompanyService.class);
-        companyService
+        mCompanyService
                 .fetchCompanies(forCategoryId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

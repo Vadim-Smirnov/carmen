@@ -67,6 +67,15 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         return mTextViewPrice;
     }
 
+    public void setOnAddToFavoritesClickListener(final CompanyModel company, final OnAddToFavoritesClickListener listener) {
+        mImageButtonAddToFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onAddToFavoritesClick(company);
+            }
+        });
+    }
+
     public void setOnCompanyItemClickListener(final CompanyModel forCompany, final OnCompanyItemClickListener listener) {
         mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +88,12 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
     public interface OnCompanyItemClickListener {
 
         void onCompanyItemClick(CompanyModel company);
+
+    }
+
+    public interface OnAddToFavoritesClickListener {
+
+        void onAddToFavoritesClick(CompanyModel company);
 
     }
 

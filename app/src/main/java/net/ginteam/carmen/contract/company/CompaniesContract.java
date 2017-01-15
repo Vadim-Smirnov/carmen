@@ -2,6 +2,7 @@ package net.ginteam.carmen.contract.company;
 
 import net.ginteam.carmen.contract.FetchContract;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 
 import java.util.List;
 
@@ -14,6 +15,10 @@ public interface CompaniesContract {
     interface View extends FetchContract.View {
 
         void showCompanies(List<CompanyModel> companies);
+
+        void addToFavorites();
+
+        void removeFromFavorites();
 
     }
 
@@ -28,6 +33,10 @@ public interface CompaniesContract {
         void fetchFavoriteCompanies();
 
         void fetchCompaniesForCategory(int categoryId);
+
+        void addToFavorites(CompanyModel company);
+
+        void removeFromFavorites(CompanyModel company);
 
     }
 
