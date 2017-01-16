@@ -15,6 +15,7 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompaniesPresenter;
+import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerManagerFactory;
@@ -27,7 +28,7 @@ import java.util.List;
  */
 
 public class CompanyListFragment extends BaseFetchingFragment implements CompaniesContract.View, CompanyItemViewHolder.OnCompanyItemClickListener,
-        CompanyItemViewHolder.OnAddToFavoritesClickListener{
+        CompanyItemViewHolder.OnAddToFavoritesClickListener {
 
     public enum COMPANY_LIST_TYPE {
         HORIZONTAL,
@@ -109,7 +110,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     @Override
     public void onDetach() {
         super.onDetach();
-        mPresenter.detachView();
+//        mPresenter.detachView();
     }
 
     @Override
@@ -124,16 +125,19 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     @Override
     public void onAddToFavoritesClick(CompanyModel company) {
-        if (!company.isFavorite()) {
-            company.setFavorite(true);
-            mRecyclerListAdapter.notifyDataSetChanged();
-            mPresenter.addToFavorites(company);
-
-        } else {
+        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
+            if (!company.isFavorite()) {
+                company.setFavorite(true);
+                mRecyclerListAdapter.notifyDataSetChanged();
+                mPresenter.addToFavorites(company);
+                return;
+            }
             company.setFavorite(false);
             mRecyclerListAdapter.notifyDataSetChanged();
             mPresenter.removeFromFavorites(company);
+            return;
         }
+        Toast.makeText(getContext(), "Авторизуйтесь", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -146,12 +150,12 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     @Override
     public void addToFavorites() {
-        Toast.makeText(getContext(),"add", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "add", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void removeFromFavorites() {
-        Toast.makeText(getContext(),"remove", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "remove", Toast.LENGTH_SHORT).show();
     }
 
     private void updateDependencies() {

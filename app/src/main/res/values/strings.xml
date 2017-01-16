@@ -58,6 +58,7 @@
     <string name="recent_item_text">Недавние</string>
     <string name="profile_item_text">Профиль</string>
     <string name="logout_item_text">Выйти</string>
+    <string name="sign_in_item_text">Войти</string>
     <string name="privacy_item_text">Политика конфиденциальности</string>
     <string name="terms_item_text">Условия пользователя</string>
 
