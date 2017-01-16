@@ -45,8 +45,8 @@ public class MainFragment extends Fragment {
         prepareFragment(R.id.recently_companies_fragment_container,
                 CompanyListFragment.newInstance(
                         CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
-                        CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED,
-                        0
+                        CompanyListFragment.FETCH_COMPANY_TYPE.FOR_CATEGORY,
+                        2
                 )
         );
         prepareFragment(R.id.popular_companies_fragment_container,

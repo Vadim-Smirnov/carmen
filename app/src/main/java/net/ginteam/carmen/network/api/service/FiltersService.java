@@ -12,16 +12,16 @@ import retrofit2.http.Query;
 import rx.Observable;
 
 /**
- * Created by Eugene on 12/27/16.
+ * Created by Eugene on 1/16/17.
  */
 
-public interface CompanyService {
+public interface FiltersService {
 
     @GET(ApiLinks.CATALOG.COMPANIES_BY_CATEGORY)
-    Observable <ResponseModel <List <CompanyModel>>> fetchCompanies(
+    Observable<ResponseModel <List <CompanyModel>>> calculateCount(
             @Path(ApiLinks.CATALOG.ID) int categoryId,
             @Query(ApiLinks.CATALOG.SEARCH) String filter,
-            @Query(ApiLinks.CATALOG.PAGE) int page
+            @Query(ApiLinks.CATALOG.LIMIT) int limit
     );
 
 }

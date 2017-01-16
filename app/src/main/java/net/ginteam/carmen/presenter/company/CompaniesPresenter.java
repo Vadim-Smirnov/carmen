@@ -1,8 +1,9 @@
 package net.ginteam.carmen.presenter.company;
 
 import net.ginteam.carmen.contract.company.CompaniesContract;
+import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
-import net.ginteam.carmen.provider.ModelCallback;
+import net.ginteam.carmen.provider.ModelCallbackWithMeta;
 import net.ginteam.carmen.provider.company.CompaniesProvider;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
 public class CompaniesPresenter implements CompaniesContract.Presenter {
 
     private CompaniesContract.View mView;
+    private boolean mIsFirstLoading;
 
     @Override
     public void selectCompany(CompanyModel company) {
@@ -36,16 +38,22 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
     }
 
     @Override
-    public void fetchCompaniesForCategory(int categoryId) {
+    public void fetchCompaniesForCategory(int categoryId, String filter, int page) {
         mView.showLoading(true);
+        mIsFirstLoading = (page == 1);
 
         CompaniesProvider
                 .getInstance()
-                .fetchForCategory(categoryId, new ModelCallback<List<CompanyModel>>() {
+                .fetchForCategory(categoryId, filter, page, new ModelCallbackWithMeta<List<CompanyModel>>() {
                     @Override
-                    public void onSuccess(List<CompanyModel> resultModel) {
+                    public void onSuccess(List<CompanyModel> resultModel, Pagination pagination) {
                         mView.showLoading(false);
-                        mView.showCompanies(resultModel);
+                        if (mIsFirstLoading) {
+                            mView.showCompanies(resultModel, pagination);
+                            mIsFirstLoading = false;
+                            return;
+                        }
+                        mView.showMoreCompanies(resultModel);
                     }
 
                     @Override

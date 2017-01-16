@@ -1,6 +1,8 @@
 package net.ginteam.carmen.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
@@ -27,6 +29,18 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FilterActivity.REQUEST_CODE && resultCode == RESULT_OK) {
+            String searchFilter = data.getStringExtra(FilterActivity.RESULT_FILTER_ARGUMENT);
+            if (mCurrentFragment.getClass().equals(CompanyListFragment.class)) {
+                ((CompanyListFragment) mCurrentFragment).setSearchFilter(searchFilter);
+            }
+            Log.d("FilterActivity", searchFilter);
+        }
+    }
+
+    @Override
     public void onMainFragmentShowed() {
         setTitle(getString(R.string.main_item_text));
         setSubtitle("");
@@ -41,9 +55,10 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
                 category.getId()),
                 true
         );
-        ActivityUtils.showActivity(FilterActivity.class, null, false);
         setTitle(category.getName());
         setSubtitle("Кривой Рог");
+
+        startFilterActivityForResult(category);
     }
 
     @Override
@@ -58,6 +73,12 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
         Bundle arguments = new Bundle();
         arguments.putInt(CompanyDetailActivity.COMPANY_ARGUMENT, company.getId());
         ActivityUtils.showActivity(CompanyDetailActivity.class, arguments, false);
+    }
+
+    private void startFilterActivityForResult(CategoryModel categoryModel) {
+        Intent intent = new Intent(this, FilterActivity.class);
+        intent.putExtra(FilterActivity.CATEGORY_ID_ARGUMENT, categoryModel.getId());
+        startActivityForResult(intent, FilterActivity.REQUEST_CODE);
     }
 
 }

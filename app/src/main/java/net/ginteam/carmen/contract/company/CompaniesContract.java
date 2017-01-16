@@ -1,6 +1,7 @@
 package net.ginteam.carmen.contract.company;
 
 import net.ginteam.carmen.contract.FetchContract;
+import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
 
 import java.util.List;
@@ -13,7 +14,9 @@ public interface CompaniesContract {
 
     interface View extends FetchContract.View {
 
-        void showCompanies(List<CompanyModel> companies);
+        void showCompanies(List<CompanyModel> companies, Pagination paginationDetails);
+
+        void showMoreCompanies(List <CompanyModel> companies);
 
     }
 
@@ -27,7 +30,7 @@ public interface CompaniesContract {
 
         void fetchFavoriteCompanies();
 
-        void fetchCompaniesForCategory(int categoryId);
+        void fetchCompaniesForCategory(int categoryId, String filter, int pageNumber);
 
     }
 

@@ -3,7 +3,7 @@
 
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#000000</color>
+    <color name="colorAccent">#000</color>
 
     <color name="colorTransparentBlack">#20000000</color>
 

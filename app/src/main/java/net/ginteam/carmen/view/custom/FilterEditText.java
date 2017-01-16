@@ -152,6 +152,10 @@ public class FilterEditText extends LinearLayout {
         }
     }
 
+    public void resetFilter() {
+        mButtonClearClickListener.onClick(this);
+    }
+
     public int getImageClearText() {
         return mImageClearText;
     }

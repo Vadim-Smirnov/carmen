@@ -65,6 +65,49 @@
     <string name="filter_activity_title">Поиск</string>
     <string name="show_results_string">Показать результаты</string>
     <string name="results_count_string">Результатов: %d</string>
+    <string name="filters_example">[
+    {
+        "name" : "Поиск",
+        "type" : "name",
+        "dialog" : null
+    },
+    {
+        "name" : "Рейтинг",
+        "type" : "rating",
+        "dialog" : [
+            {
+                "key" : "3",
+                "value" : "Средний"
+            },
+            {
+                "key" : "4",
+                "value" : "Хороший"
+            },
+            {
+                "key" : "5",
+                "value" : "Отличный"
+            }
+        ]
+    },
+    {
+        "name" : "Цена",
+        "type" : "price_rel",
+        "dialog" : [
+            {
+                "key" : "50",
+                "value" : "Дешевый"
+            },
+            {
+                "key" : "150",
+                "value" : "Средний"
+            },
+            {
+                "key" : "250",
+                "value" : "Дорогой"
+            }
+        ]
+    }
+] </string>
 
     <!-- Filter Activity Menu -->
     <string name="clear_filters_string">Очистить все</string>

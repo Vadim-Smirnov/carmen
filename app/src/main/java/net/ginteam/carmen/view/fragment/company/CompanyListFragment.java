@@ -3,6 +3,7 @@ package net.ginteam.carmen.view.fragment.company;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,13 @@ import android.widget.TextView;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
+import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompaniesPresenter;
 import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerManagerFactory;
+import net.ginteam.carmen.view.adapter.company.PaginationScrollListener;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 import java.util.List;
@@ -25,7 +28,8 @@ import java.util.List;
  * Created by Eugene on 12/27/16.
  */
 
-public class CompanyListFragment extends BaseFetchingFragment implements CompaniesContract.View, CompanyItemViewHolder.OnCompanyItemClickListener {
+public class CompanyListFragment extends BaseFetchingFragment implements CompaniesContract.View,
+        CompanyItemViewHolder.OnCompanyItemClickListener {
 
     public enum COMPANY_LIST_TYPE {
         HORIZONTAL,
@@ -47,10 +51,15 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     private COMPANY_LIST_TYPE mListType;
     private FETCH_COMPANY_TYPE mFetchType;
+
     private int mCategoryId;
+    private String mSearchFilter;
+    private boolean mIsLoading;
+    private int mCurrentPaginationPage;
 
     private TextView mTextViewCompanyListTitle;
     private RecyclerView mRecyclerViewCompanies;
+    private LinearLayoutManager mLayoutManager;
     private CompanyRecyclerListAdapter mRecyclerListAdapter;
 
     private OnCompanySelectedListener mCompanySelectedListener;
@@ -83,11 +92,14 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d("CompanyList", "onCreateView()");
+
         mRootView = inflateBaseFragment(R.layout.fragment_company_list, inflater, container, savedInstanceState);
         updateDependencies();
 
         mPresenter = new CompaniesPresenter();
         mPresenter.attachView(this);
+
         fetchCompanies();
 
         return mRootView;
@@ -104,10 +116,10 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mPresenter.detachView();
+    public void setSearchFilter(String filter) {
+        mSearchFilter = filter;
+        mCurrentPaginationPage = 1;
+        fetchCompanies();
     }
 
     @Override
@@ -120,14 +132,23 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     }
 
     @Override
-    public void showCompanies(List<CompanyModel> companies) {
+    public void showCompanies(List<CompanyModel> companies, final Pagination paginationDetails) {
         mRecyclerListAdapter = new CompanyRecyclerListAdapter(getContext(), companies, mListType);
         mRecyclerListAdapter.setOnCompanyItemClickListener(this);
         mRecyclerViewCompanies.setAdapter(mRecyclerListAdapter);
+        mRecyclerViewCompanies.setOnScrollListener(initializePagination(paginationDetails));
+    }
+
+    @Override
+    public void showMoreCompanies(List<CompanyModel> companies) {
+        mIsLoading = false;
+        mRecyclerListAdapter.hideLoading();
+        mRecyclerListAdapter.addCompanies(companies);
     }
 
     private void updateDependencies() {
         String title = null;
+        mCurrentPaginationPage = 1;
 
         switch (mFetchType) {
             case POPULAR:
@@ -145,8 +166,38 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         }
 
         mRecyclerViewCompanies = (RecyclerView) mRootView.findViewById(R.id.recycler_view_companies);
+        mLayoutManager = (LinearLayoutManager) CompanyRecyclerManagerFactory.createManagerForListType(mListType);
         mRecyclerViewCompanies.addItemDecoration(CompanyRecyclerManagerFactory.createItemDecoratorForListType(mListType));
-        mRecyclerViewCompanies.setLayoutManager(CompanyRecyclerManagerFactory.createManagerForListType(mListType));
+        mRecyclerViewCompanies.setLayoutManager(mLayoutManager);
+
+        mIsLoading = false;
+    }
+
+    private PaginationScrollListener initializePagination(final Pagination paginationDetails) {
+        return new PaginationScrollListener(mLayoutManager) {
+            @Override
+            public void loadMoreItems() {
+                Log.d("Pagination", "loadMoreItems()");
+
+                mCurrentPaginationPage++;
+                mIsLoading = true;
+                mRecyclerListAdapter.showLoading();
+
+                fetchCompanies();
+            }
+
+            @Override
+            public boolean isLastPage() {
+                Log.d("Pagination", "Page: " + mCurrentPaginationPage + " of " + paginationDetails.getTotalPages());
+                return mCurrentPaginationPage == paginationDetails.getTotalPages();
+            }
+
+            @Override
+            public boolean isLoading() {
+                return mIsLoading;
+            }
+
+        };
     }
 
     private void fetchCompanies() {
@@ -161,7 +212,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
                 mPresenter.fetchFavoriteCompanies();
                 break;
             default:
-                mPresenter.fetchCompaniesForCategory(mCategoryId);
+                mPresenter.fetchCompaniesForCategory(mCategoryId, mSearchFilter, mCurrentPaginationPage);
         }
     }
 

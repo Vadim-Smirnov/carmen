@@ -17,6 +17,9 @@ public class ResponseModel <T> {
     @SerializedName("data")
     private T mData;
 
+    @SerializedName("meta")
+    private Meta mMeta;
+
     public boolean isSuccess() {
         return mIsSuccess;
     }
@@ -29,4 +32,21 @@ public class ResponseModel <T> {
         return mData;
     }
 
+    public Meta getMetaData() {
+        return mMeta;
+    }
+
 }
+
+//"meta": {
+//    "pagination": {
+//        "total": 12,
+//        "count": 2,
+//        "per_page": 2,
+//        "current_page": 1,
+//        "total_pages": 6,
+//        "links": {
+//            "next": "http://carmen.b4u.com.ua/api/v1/catalog/companies?limit=2&page=2"
+//        }
+//    }
+//}

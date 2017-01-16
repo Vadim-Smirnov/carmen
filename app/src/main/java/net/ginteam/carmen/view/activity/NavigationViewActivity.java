@@ -25,6 +25,8 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
     protected DrawerLayout mDrawerLayout;
     protected NavigationView mNavigationView;
 
+    protected Fragment mCurrentFragment;
+
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
@@ -49,6 +51,8 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
     }
 
     protected void prepareFragment(Fragment fragment, boolean isNeedBackStack) {
+        mCurrentFragment = fragment;
+
         if (isNeedBackStack) {
             getSupportFragmentManager()
                     .beginTransaction()
