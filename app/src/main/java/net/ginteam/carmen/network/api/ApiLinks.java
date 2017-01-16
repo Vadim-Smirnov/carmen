@@ -12,13 +12,23 @@ public class ApiLinks {
 
         public static final String ID = "id";
 
-        public static final String CATEGORIES = CATALOG + "categories";
+        public static final String CATEGORIES = "categories";
 
-        public static final String CATEGORY_BY_ID = CATEGORIES + "/{" + ID + "}";
+        public static final String GET_CATEGORIES = CATALOG + CATEGORIES;
+
+        public static final String CATEGORY_BY_ID = GET_CATEGORIES + "/{" + ID + "}";
 
         public static final String COMPANIES_BY_CATEGORY = CATEGORY_BY_ID + "/companies";
 
         public static final String CITIES = CATALOG + "cities";
+
+        public static final String COMPANY_BY_ID = CATALOG + "companies/{" + ID + "}";
+
+        public static final String WITH = "with";
+
+        public static final String COMFORTS = "comforts";
+
+        public static final String DETAIL = "detail";
 
     }
 

@@ -15,7 +15,7 @@ import rx.Observable;
 
 public interface CategoryService {
 
-    @GET(ApiLinks.CATALOG.CATEGORIES)
+    @GET(ApiLinks.CATALOG.GET_CATEGORIES)
     Observable <ResponseModel<List<CategoryModel>>> fetchCategories();
 
 }

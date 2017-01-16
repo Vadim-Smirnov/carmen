@@ -2,6 +2,11 @@ package net.ginteam.carmen.model.company;
 
 import com.google.gson.annotations.SerializedName;
 
+import net.ginteam.carmen.model.ResponseModel;
+import net.ginteam.carmen.model.category.CategoryModel;
+
+import java.util.List;
+
 /**
  * Created by Eugene on 12/27/16.
  */
@@ -31,6 +36,15 @@ public class CompanyModel {
 
     @SerializedName("short_desc")
     private String mShortDescription;
+
+    @SerializedName("comforts")
+    private ResponseModel<List<Comfort>> mComforts;
+
+    @SerializedName("detail")
+    private ResponseModel<Detail> mDetail;
+
+    @SerializedName("categories")
+    private ResponseModel<List<CategoryModel>> mCategory;
 
     public int getId() {
         return mId;
@@ -62,6 +76,18 @@ public class CompanyModel {
 
     public String getShortDescription() {
         return mShortDescription;
+    }
+
+    public ResponseModel<List<Comfort>> getComforts() {
+        return mComforts;
+    }
+
+    public ResponseModel<Detail> getDetail() {
+        return mDetail;
+    }
+
+    public ResponseModel<List<CategoryModel>> getCategory() {
+        return mCategory;
     }
 
 }
