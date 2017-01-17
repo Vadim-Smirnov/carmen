@@ -39,6 +39,10 @@ public class AuthProvider {
         return mCachedUser;
     }
 
+    public void setCurrentCachedUser(UserModel currentCachedUser) {
+        mCachedUser = currentCachedUser;
+    }
+
     public void userLogin(final String email, final String password, final ModelCallback<UserModel> completion) {
         mAuthService
                 .login(email, password)

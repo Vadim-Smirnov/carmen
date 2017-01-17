@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
@@ -42,13 +43,15 @@ public class MainFragment extends Fragment {
         mRootView = inflater.inflate(R.layout.fragment_main, container, false);
 
         prepareFragment(R.id.categories_fragment_container, CategoryListFragment.newInstance());
-        prepareFragment(R.id.recently_companies_fragment_container,
-                CompanyListFragment.newInstance(
-                        CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
-                        CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED,
-                        0
-                )
-        );
+        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
+            prepareFragment(R.id.recently_companies_fragment_container,
+                    CompanyListFragment.newInstance(
+                            CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
+                            CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED,
+                            0
+                    )
+            );
+        }
         prepareFragment(R.id.popular_companies_fragment_container,
                 CompanyListFragment.newInstance(
                         CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,

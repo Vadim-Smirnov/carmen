@@ -6,6 +6,8 @@ import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.provider.ModelCallbackWithMeta;
 import net.ginteam.carmen.provider.company.CompaniesProvider;
+import net.ginteam.carmen.provider.company.FavoritesProvider;
+import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 
 import java.util.List;
 
@@ -25,7 +27,23 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
 
     @Override
     public void fetchRecentlyWatchedCompanies() {
+        mView.showLoading(true);
 
+        CompaniesProvider
+                .getInstance()
+                .fetchRecentlyWatched(new ModelCallback<List<CompanyModel>>() {
+                    @Override
+                    public void onSuccess(List<CompanyModel> resultModel) {
+                        mView.showLoading(false);
+                        mView.showCompanies(resultModel);
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        mView.showLoading(false);
+                        mView.showError(message);
+                    }
+                });
     }
 
     @Override
@@ -35,7 +53,23 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
 
     @Override
     public void fetchFavoriteCompanies() {
+        mView.showLoading(true);
 
+        FavoritesProvider
+                .getInstance()
+                .fetchFavorite(new ModelCallback<List<CompanyModel>>() {
+                    @Override
+                    public void onSuccess(List<CompanyModel> resultModel) {
+                        mView.showLoading(false);
+                        mView.showCompanies(resultModel);
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        mView.showLoading(false);
+                        mView.showError(message);
+                    }
+                });
     }
 
     @Override
@@ -60,6 +94,40 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
                     @Override
                     public void onFailure(String message) {
                         mView.showLoading(false);
+                        mView.showError(message);
+                    }
+                });
+    }
+
+    @Override
+    public void addToFavorites(CompanyModel company) {
+        FavoritesProvider
+                .getInstance()
+                .addToFavorites(company, new ModelCallback<String>() {
+                    @Override
+                    public void onSuccess(String resultModel) {
+                        mView.addToFavorites();
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        mView.showError(message);
+                    }
+                });
+    }
+
+    @Override
+    public void removeFromFavorites(CompanyModel company) {
+        FavoritesProvider
+                .getInstance()
+                .removeFromFavorites(company, new ModelCallback<String>() {
+                    @Override
+                    public void onSuccess(String resultModel) {
+                        mView.removeFromFavorites();
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
                         mView.showError(message);
                     }
                 });

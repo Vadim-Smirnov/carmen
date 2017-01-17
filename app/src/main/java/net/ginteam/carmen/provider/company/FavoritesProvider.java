@@ -1,68 +1,62 @@
 package net.ginteam.carmen.provider.company;
 
+import android.util.Log;
+
 import net.ginteam.carmen.manager.ApiManager;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.network.api.service.CompanyService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
 import net.ginteam.carmen.provider.ModelCallback;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by Eugene on 12/27/16.
+ * Created by vadik on 12.01.17.
  */
 
-public class CompaniesProvider {
+public class FavoritesProvider {
 
-    private static CompaniesProvider sInstance;
+    private static FavoritesProvider sInstance;
+
+    private List<CompanyModel> mCachedFavorites;
 
     private CompanyService mCompanyService;
 
-    private CompaniesProvider() {
+    private FavoritesProvider() {
+        mCachedFavorites = new ArrayList<>();
         mCompanyService = ApiManager.getInstance().getService(CompanyService.class);
     }
 
-    public static CompaniesProvider getInstance() {
+    public static FavoritesProvider getInstance() {
         if (sInstance == null) {
-            sInstance = new CompaniesProvider();
+            sInstance = new FavoritesProvider();
         }
         return sInstance;
     }
 
-    public void fetchForCategory(final int categoryId, String filter, int page, final ModelCallbackWithMeta<List<CompanyModel>> completion) {
-        mCompanyService
-                .fetchCompanies(categoryId, filter, page)
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ModelSubscriberWithMeta<List<CompanyModel>>() {
-                    @Override
-                    public void onSuccess(List<CompanyModel> resultModel, Pagination pagination) {
-                        completion.onSuccess(resultModel, pagination);
-                    }
-
-                    @Override
-                    public void onFailure(String message) {
-                        completion.onFailure(message);
-                    }
-                });
+    public void fetchFavorite(ModelCallback<List<CompanyModel>> completion) {
+//        if (!mCachedFavorites.isEmpty()) {
+//            completion.onSuccess(mCachedFavorites);
+//            return;
+//        }
+        fetchFromServer(completion);
     }
 
-    public void fetchCompanyDetail(int companyId, ModelCallback<CompanyModel> completion) {
-        String relations = String.format("%s,%s,%s", ApiLinks.CATALOG.COMFORTS,
-                ApiLinks.CATALOG.DETAIL, ApiLinks.CATALOG.CATEGORIES);
-
+    public void addToFavorites(final CompanyModel selectedCompany, final ModelCallback<String> completion) {
+        Log.e("FAVORITE", "add" + selectedCompany.getId());
         mCompanyService
-                .fetchCompanyDetail(companyId, relations)
+                .addToFavorites(selectedCompany.getId())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ModelSubscriber<CompanyModel>() {
+                .subscribe(new ModelSubscriber<String>() {
                     @Override
-                    public void onSuccess(CompanyModel resultModel) {
+                    public void onSuccess(String resultModel) {
+                        Log.e("FAVORITE", "add good");
+                        mCachedFavorites.add(selectedCompany);
                         completion.onSuccess(resultModel);
                     }
 
@@ -73,14 +67,34 @@ public class CompaniesProvider {
                 });
     }
 
-    public void fetchRecentlyWatched(final ModelCallback<List<CompanyModel>> completion) {
+    public void removeFromFavorites(final CompanyModel selectedCompany, final ModelCallback<String> completion) {
         mCompanyService
-                .fetchRecentlyWatched()
+                .removeFromFavorites(selectedCompany.getId())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ModelSubscriber<String>() {
+                    @Override
+                    public void onSuccess(String resultModel) {
+                        mCachedFavorites.remove(selectedCompany);
+                        completion.onSuccess(resultModel);
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        completion.onFailure(message);
+                    }
+                });
+    }
+
+    private void fetchFromServer(final ModelCallback<List<CompanyModel>> completion) {
+        mCompanyService
+                .fetchFavorites()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<List<CompanyModel>>() {
                     @Override
                     public void onSuccess(List<CompanyModel> resultModel) {
+                        mCachedFavorites.addAll(resultModel);
                         completion.onSuccess(resultModel);
                     }
 
@@ -90,9 +104,5 @@ public class CompaniesProvider {
                     }
                 });
     }
-
-    public void fetchPopular(ModelCallback<List<CompanyModel>> completion) {}
-
-    public void fetchFavorite(ModelCallback<List<CompanyModel>> completion) {}
 
 }

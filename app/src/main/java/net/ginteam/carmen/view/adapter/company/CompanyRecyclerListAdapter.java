@@ -36,6 +36,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
     private boolean mIsLoadingIndicatorShow;
 
     private CompanyItemViewHolder.OnCompanyItemClickListener mCompanyItemClickListener;
+    private CompanyItemViewHolder.OnAddToFavoritesClickListener mOnAddToFavoritesClickListener;
 
     public CompanyRecyclerListAdapter(Context context, List <CompanyModel> companies, CompanyListFragment.COMPANY_LIST_TYPE type) {
         mContext = context;
@@ -46,6 +47,10 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
 
     public void setOnCompanyItemClickListener(CompanyItemViewHolder.OnCompanyItemClickListener listener) {
         mCompanyItemClickListener = listener;
+    }
+
+    public void setOnAddToFavoritesClickListener(CompanyItemViewHolder.OnAddToFavoritesClickListener onAddToFavoritesClickListener) {
+        mOnAddToFavoritesClickListener = onAddToFavoritesClickListener;
     }
 
     public void addCompanies(List <CompanyModel> companies) {
@@ -118,6 +123,14 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
             return;
         }
         companyViewHolder.setOnCompanyItemClickListener(currentCompany, mCompanyItemClickListener);
+
+        if (mOnAddToFavoritesClickListener == null) {
+            Log.e("CompanyListAdapter", "mOnAddToFavoritesClickListener does not set!");
+            return;
+        }
+        companyViewHolder.setOnAddToFavoritesClickListener(currentCompany, mOnAddToFavoritesClickListener);
+
+
     }
 
     @Override

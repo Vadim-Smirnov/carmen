@@ -3,6 +3,7 @@ package net.ginteam.carmen.contract.company;
 import net.ginteam.carmen.contract.FetchContract;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 
 import java.util.List;
 
@@ -18,6 +19,10 @@ public interface CompaniesContract {
 
         void showMoreCompanies(List <CompanyModel> companies);
 
+        void addToFavorites();
+
+        void removeFromFavorites();
+
     }
 
     interface Presenter extends FetchContract.Presenter <View> {
@@ -31,6 +36,10 @@ public interface CompaniesContract {
         void fetchFavoriteCompanies();
 
         void fetchCompaniesForCategory(int categoryId, String filter, int pageNumber);
+
+        void addToFavorites(CompanyModel company);
+
+        void removeFromFavorites(CompanyModel company);
 
     }
 
