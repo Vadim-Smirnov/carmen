@@ -9,12 +9,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.view.View;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompanyDetailPresenter;
+import net.ginteam.carmen.utils.ActivityUtils;
+import net.ginteam.carmen.view.activity.ReviewActivity;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
 import net.ginteam.carmen.view.custom.rating.RatingView;
 
@@ -47,6 +50,14 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_company_detail);
 
+        RatingView ratingView = (RatingView) findViewById(R.id.rating_view_vote_object);
+        ratingView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.showActivity(ReviewActivity.class, null, true);
+                finish();
+            }
+        });
         receiveArguments();
         updateDependencies();
 

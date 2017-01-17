@@ -50,6 +50,10 @@
                 android:value=".view.activity.MainActivity"/>
         </activity>
 
+        <activity android:name=".view.activity.ReviewActivity">
+        </activity>
+
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_api_key"/>
