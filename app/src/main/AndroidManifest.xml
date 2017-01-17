@@ -40,6 +40,8 @@
 
         <activity android:name=".view.activity.company.CompanyDetailActivity"/>
 
+        <activity android:name=".view.activity.MapActivity" />
+
         <activity
             android:name=".view.activity.FilterActivity"
             android:parentActivityName=".view.activity.MainActivity">
@@ -50,7 +52,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAKzwJXWkDJpr0mYdSH1bwwI_Zj_7dlPwc"/>
+            android:value="@string/google_api_key"/>
 
     </application>
 

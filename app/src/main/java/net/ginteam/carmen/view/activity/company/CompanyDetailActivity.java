@@ -114,4 +114,5 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mTextViewWorkTime = (TextView) findViewById(R.id.text_view_work_time);
         mTextViewReviewCount = (TextView) findViewById(R.id.text_view_review_count);
     }
+
 }
