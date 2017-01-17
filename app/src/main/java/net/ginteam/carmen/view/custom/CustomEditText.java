@@ -33,6 +33,8 @@ public class CustomEditText extends LinearLayout {
     private String mFilterHint;
     private int mImageFilledText;
     private int mImageClearText;
+    private boolean mImageFilledTextVisibility;
+    private boolean mImageClearTextVisibility;
 
     public CustomEditText(Context context) {
         super(context);
@@ -81,6 +83,22 @@ public class CustomEditText extends LinearLayout {
         mFilterText = filterText;
     }
 
+    public boolean isImageFilledTextVisibility() {
+        return mImageFilledTextVisibility;
+    }
+
+    public void setImageFilledTextVisibility(boolean imageFilledTextVisibility) {
+        mImageFilledTextVisibility = imageFilledTextVisibility;
+    }
+
+    public boolean isImageClearTextVisibility() {
+        return mImageClearTextVisibility;
+    }
+
+    public void setImageClearTextVisibility(boolean imageClearTextVisibility) {
+        mImageClearTextVisibility = imageClearTextVisibility;
+    }
+
     private void initializeCustomEditText(Context context, AttributeSet attrs) {
         mContext = context;
 
@@ -92,8 +110,10 @@ public class CustomEditText extends LinearLayout {
         try {
             mFilterText = attributes.getString(R.styleable.CustomEditText_filterText);
             mFilterHint = attributes.getString(R.styleable.CustomEditText_filterHint);
-            mImageFilledText = attributes.getResourceId(R.styleable.CustomEditText_imageFilledText, IMAGE_FILLED_TEXT);
+            mImageFilledText = attributes.getResourceId(R.styleable.CustomEditText_imageFilledText, 0);
             mImageClearText = attributes.getResourceId(R.styleable.CustomEditText_imageClearText, IMAGE_CLEAR_TEXT);
+            mImageClearTextVisibility = attributes.getBoolean(R.styleable.CustomEditText_imageClearTextVisibility, true);
+            mImageFilledTextVisibility = attributes.getBoolean(R.styleable.CustomEditText_imageFilledTextVisibility, true);
         } finally {
             attributes.recycle();
         }
@@ -115,6 +135,8 @@ public class CustomEditText extends LinearLayout {
         mImageViewClearEditText.setImageResource(mImageClearText);
         mTextInputLayoutFilter.setHint(mFilterHint);
         mEditTextFilter.setText(mFilterText);
+        mImageViewClearEditText.setVisibility(mImageClearTextVisibility ? VISIBLE : GONE);
+        mImageViewFilledEditText.setVisibility(mImageFilledTextVisibility ? VISIBLE : GONE);
 
         mImageViewClearEditText.setOnClickListener(buttonClearListener);
         mEditTextFilter.addTextChangedListener(onEditTextChange);

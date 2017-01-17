@@ -2,7 +2,9 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
+              tools:ignore="MissingPrefix"
               tools:context="net.ginteam.carmen.view.fragment.city.CityListFragment">
 
     <LinearLayout
@@ -12,12 +14,26 @@
         android:orientation="vertical">
 
         <TextView
+            fontPath="@string/open_sans_font"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/choose_city_string"
-            android:layout_margin="@dimen/choose_city_text_view_margins"
-            android:gravity="center"
-            android:textSize="@dimen/city_title_text_size" />
+            android:layout_marginTop="@dimen/choose_city_text_view_margin_top"
+            android:layout_marginStart="@dimen/choose_city_text_view_margin_start"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/choose_city_text_size"
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"/>
+
+        <net.ginteam.carmen.view.custom.CustomEditText
+            android:id="@+id/custom_edit_text_search_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:imageFilledTextVisibility="false"
+            android:layout_marginEnd="@dimen/choose_city_edit_text_search_city_margin_end"
+            app:filterHint="Город"
+            android:visibility="gone"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_cities"

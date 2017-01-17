@@ -1,5 +1,7 @@
 package net.ginteam.carmen.provider.city;
 
+import android.location.Location;
+
 import net.ginteam.carmen.manager.ApiManager;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.network.api.service.CityService;
@@ -21,7 +23,11 @@ public class CitiesProvider {
 
     private List <CityModel> mCachedCities;
 
-    private CitiesProvider() {}
+    private CityService mCityService;
+
+    private CitiesProvider() {
+        mCityService = ApiManager.getInstance().getService(CityService.class);
+    }
 
     public static CitiesProvider getInstance() {
         if (sInstance == null) {
@@ -38,9 +44,26 @@ public class CitiesProvider {
         fetchFromServer(completion);
     }
 
+    public void fetchCityByPoint(Location location, final ModelCallback<CityModel> completion) {
+        mCityService
+                .fetchCityByPoint(location.getLatitude(), location.getLongitude())
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ModelSubscriber<CityModel>() {
+                    @Override
+                    public void onSuccess(CityModel resultModel) {
+                        completion.onSuccess(resultModel);
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        completion.onFailure(message);
+                    }
+                });
+    }
+
     private void fetchFromServer(final ModelCallback<List<CityModel>> completion) {
-        CityService cityService = ApiManager.getInstance().getService(CityService.class);
-        cityService
+        mCityService
                 .fetchCities()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())

@@ -42,7 +42,7 @@
     </plurals>
 
     <!-- City -->
-    <string name="choose_city_string">Выберите Ваш город: </string>
+    <string name="choose_city_string">Выберите город: </string>
 
     <!-- Company -->
     <string name="company_price">%d грн</string>

@@ -41,6 +41,20 @@ public class CityListFragment extends BaseFetchingFragment implements CityContra
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NO_TITLE, R.style.DialogStyle);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getDialog() == null) {
+            return;
+        }
+        int dialogWidth = (int) getResources().getDimension(R.dimen.dialog_fragment_width);
+        int dialogHeight = (int) getResources().getDimension(R.dimen.dialog_fragment_height);
+
+        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
+        getDialog().setCancelable(false);
     }
 
     @Override
@@ -83,14 +97,14 @@ public class CityListFragment extends BaseFetchingFragment implements CityContra
     public void onCityItemClick(CityModel city) {
         if (mCitySelectedListener == null) {
             Log.e("CityListFragment", "OnCitySelected listener is null!");
-            return;
+//            return;
         }
         mCitySelectedListener.onCitySelected(city);
+        mPresenter.saveCity(city);
     }
 
     private void updateDependencies() {
         mRecyclerViewCities = (RecyclerView) mRootView.findViewById(R.id.recycler_view_cities);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerViewCities.setLayoutManager(layoutManager);
     }

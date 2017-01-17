@@ -15,7 +15,7 @@ import net.ginteam.carmen.view.fragment.city.CityListFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 public class MainActivity extends NavigationViewActivity implements MainFragment.OnMainFragmentShowedListener, CategoryListFragment.OnCategorySelectedListener,
-        CityListFragment.OnCitySelectedListener, CompanyListFragment.OnCompanySelectedListener {
+        CompanyListFragment.OnCompanySelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,6 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
         );
         setTitle(category.getName());
         setSubtitle("Кривой Рог");
-    }
-
-    @Override
-    public void onCitySelected(CityModel city) {
-        Toast.makeText(this, city.getName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override

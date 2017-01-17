@@ -40,4 +40,15 @@ public class PreferencesManager {
         return mPreferences.getString(Constants.PREFERENCES.USER_TOKEN, "");
     }
 
+    public void setCity(String city) {
+        mPreferences
+                .edit()
+                .putString(Constants.PREFERENCES.CITY, city)
+                .apply();
+    }
+
+    public String getCity() {
+        return mPreferences.getString(Constants.PREFERENCES.CITY, "");
+    }
+
 }

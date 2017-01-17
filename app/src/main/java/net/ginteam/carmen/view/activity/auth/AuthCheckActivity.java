@@ -4,17 +4,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.auth.AuthenticationCheckContract;
+import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.presenter.auth.AuthenticationCheckPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.MainActivity;
+import net.ginteam.carmen.view.fragment.city.CityListFragment;
 
-public class AuthCheckActivity extends AppCompatActivity implements AuthenticationCheckContract.View {
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
+public class AuthCheckActivity extends AppCompatActivity implements AuthenticationCheckContract.View,
+        CityListFragment.OnCitySelectedListener{
 
     private AuthenticationCheckContract.Presenter mPresenter;
 
@@ -35,6 +41,11 @@ public class AuthCheckActivity extends AppCompatActivity implements Authenticati
     }
 
     @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+    }
+
+    @Override
     public void showAuthenticationView() {
         Log.d("AuthCheck", "AUTH ACTIVITY SHOW");
         ActivityUtils.showActivity(SignInActivity.class, null, true);
@@ -44,7 +55,9 @@ public class AuthCheckActivity extends AppCompatActivity implements Authenticati
     @Override
     public void showCityListView() {
         Log.d("AuthCheck", "CITY LIST ACTIVITY SHOW");
-        Toast.makeText(getContext(), "CITY LIST ACTIVITY SHOW", Toast.LENGTH_LONG).show();
+        DialogFragment newFragment = CityListFragment.newInstance();
+        newFragment.show(getSupportFragmentManager().beginTransaction(), "dialog");
+
     }
 
     @Override
@@ -75,4 +88,8 @@ public class AuthCheckActivity extends AppCompatActivity implements Authenticati
         return this;
     }
 
+    @Override
+    public void onCitySelected(CityModel city) {
+        mPresenter.fetchCurrentUser();
+    }
 }

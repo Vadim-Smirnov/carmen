@@ -4,12 +4,18 @@ import android.content.Intent;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import net.ginteam.carmen.contract.auth.AuthenticationCheckContract;
 import net.ginteam.carmen.manager.ApiGoogleManager;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.auth.UserModel;
+import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.auth.AuthProvider;
+import net.ginteam.carmen.provider.city.CitiesProvider;
 
 /**
  * Created by vadik on 27.12.16.
@@ -26,24 +32,17 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
                 .getLastLocation(new ApiGoogleManager.OnReceiveLocationListener() {
                     @Override
                     public void onLocationReceived(Location location) {
-                        AuthProvider
-                                .getInstance()
-                                .fetchCurrentUser(new ModelCallback<UserModel>() {
-                                    @Override
-                                    public void onSuccess(UserModel resultModel) {
-                                        mView.showMainView();
-                                    }
-
-                                    @Override
-                                    public void onFailure(String message) {
-                                        mView.showAuthenticationView();
-                                    }
-                                });
+                        saveCity(location);
+                        fetchCurrentUser();
                     }
 
                     @Override
                     public void onLocationReceiveFailure() {
-                        mView.showCityListView();
+                        if (PreferencesManager.getInstance().getCity().isEmpty()) {
+                            mView.showCityListView();
+                            return;
+                        }
+                        fetchCurrentUser();
                     }
                 });
     }
@@ -67,6 +66,43 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
     @Override
     public void detachView() {
         mView = null;
+    }
+
+    @Override
+    public void fetchCurrentUser() {
+        AuthProvider
+                .getInstance()
+                .fetchCurrentUser(new ModelCallback<UserModel>() {
+                    @Override
+                    public void onSuccess(UserModel resultModel) {
+                        mView.showMainView();
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        mView.showAuthenticationView();
+                    }
+                });
+    }
+
+    private void saveCity(Location location) {
+        CitiesProvider
+                .getInstance()
+                .fetchCityByPoint(location, new ModelCallback<CityModel>() {
+                    @Override
+                    public void onSuccess(CityModel resultModel) {
+                        PreferencesManager
+                                .getInstance()
+                                .setCity(new Gson().toJson(resultModel));
+                        Log.e("CityByPoint", "The city received: " +
+                                PreferencesManager.getInstance().getCity());
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        Log.e("CityByPoint", "Error city receiving: " + message);
+                    }
+                });
     }
 
 }

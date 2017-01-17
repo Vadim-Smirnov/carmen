@@ -6,6 +6,8 @@
         <attr name="filterHint" format="string" localization="suggested" />
         <attr name="imageFilledText" format="integer" />
         <attr name="imageClearText" format="integer" />
+        <attr name="imageClearTextVisibility" format="boolean" />
+        <attr name="imageFilledTextVisibility" format="boolean" />
     </declare-styleable>
 
 </resources>

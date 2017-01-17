@@ -20,6 +20,8 @@ public interface AuthenticationCheckContract {
 
         void checkAuthentication();
 
+        void fetchCurrentUser();
+
     }
 
 }
