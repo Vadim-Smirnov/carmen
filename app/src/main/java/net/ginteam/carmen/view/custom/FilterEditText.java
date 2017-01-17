@@ -47,6 +47,7 @@ public class FilterEditText extends LinearLayout {
     private int mImageClearText;
 
     private String mFilterType;
+    private String mFilterQuery;
     private FilterModel mFilterModel;
     private FilterOptionModel mSelectedFilterOption;
     private AlertDialog mFilterDialog;
@@ -56,11 +57,10 @@ public class FilterEditText extends LinearLayout {
     private final OnClickListener mButtonClearClickListener = new OnClickListener() {
         @Override
         public void onClick(View view) {
+            mFilterQuery = "";
             mEditTextFilter.getText().clear();
             mEditTextFilter.clearFocus();
             mSelectedFilterOption = null;
-
-            callListener();
         }
     };
     private final OnTouchListener mEditTextClickListener = new OnTouchListener() {
@@ -69,14 +69,6 @@ public class FilterEditText extends LinearLayout {
             mFilterDialog.show();
             view.requestFocus();
             return false;
-        }
-    };
-    private final OnFocusChangeListener mEditTextFocusChangeListener = new OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View view, boolean b) {
-            if (!b) {
-                callListener();
-            }
         }
     };
     private final TextWatcher mEditTextChangeListener = new TextWatcher() {
@@ -103,6 +95,10 @@ public class FilterEditText extends LinearLayout {
                             .getText()
                             .toString()
                             .isEmpty() ? INVISIBLE : VISIBLE);
+
+            if (mFilterModel.getFilterOptions() == null) {
+                mFilterQuery = "";
+            }
 
             callListener();
         }
@@ -144,50 +140,40 @@ public class FilterEditText extends LinearLayout {
         updateDependenciesWithFilter(mFilterModel);
     }
 
-    public String getStringFilter() {
-        if (mFilterModel.getFilterOptions() == null) {
-            return (!mEditTextFilter.getText().toString().isEmpty() ? mFilterType + ":" + mEditTextFilter.getText() + ";" : "");
-        } else {
-            return  (mSelectedFilterOption != null ? mFilterType + ":" + mSelectedFilterOption.getKey() + ";" : "");
+    public void setFilterQuery(String filter) {
+        mFilterQuery = filter;
+    }
+
+    public String getFilterQuery() {
+        if (mFilterQuery.isEmpty()) {
+            if (mFilterModel.getFilterOptions() == null) {
+                mFilterQuery = (!mEditTextFilter.getText().toString().isEmpty() ? mFilterType + ":" + mEditTextFilter.getText() + ";" : "");
+            } else {
+                mFilterQuery = (mSelectedFilterOption != null ? mFilterType + ":" + mSelectedFilterOption.getKey() + ";" : "");
+            }
+            return mFilterQuery;
         }
+        return mFilterQuery;
     }
 
     public void resetFilter() {
         mButtonClearClickListener.onClick(this);
     }
 
-    public int getImageClearText() {
-        return mImageClearText;
-    }
-
-    public void setImageClearText(int imageClearText) {
-        mImageClearText = imageClearText;
-        mImageViewClearEditText.setImageResource(mImageClearText);
-    }
-
-    public int getImageFilledText() {
-        return mImageFilledText;
-    }
-
-    public void setImageFilledText(int imageFilledText) {
-        mImageFilledText = imageFilledText;
-        mImageViewFilledEditText.setImageResource(mImageFilledText);
-    }
-
-    public String getFilterHint() {
+    public String getHint() {
         return mFilterHint;
     }
 
-    public void setFilterHint(String filterHint) {
+    public void setHint(String filterHint) {
         mFilterHint = filterHint;
         mTextInputLayoutFilter.setHint(mFilterHint);
     }
 
-    public String getFilterText() {
-        return mFilterText;
+    public String getText() {
+        return mEditTextFilter.getText().toString();
     }
 
-    public void setFilterText(String filterText) {
+    public void setText(String filterText) {
         mFilterText = filterText;
         mEditTextFilter.setText(mFilterText);
     }
@@ -235,14 +221,14 @@ public class FilterEditText extends LinearLayout {
 
     private void updateDependenciesWithFilter(FilterModel filter) {
         mFilterType = filter.getType();
-        setFilterHint(filter.getName());
+        mFilterQuery = "";
+        setHint(filter.getName());
 
         if (filter.getFilterOptions() != null) {
             createFilterDialog(filter.getFilterOptions());
             disableEditingForEditText(mEditTextFilter);
         }
 
-        mEditTextFilter.setOnFocusChangeListener(mEditTextFocusChangeListener);
         mEditTextFilter.addTextChangedListener(mEditTextChangeListener);
     }
 
@@ -265,13 +251,14 @@ public class FilterEditText extends LinearLayout {
         editText.setOnTouchListener(mEditTextClickListener);
     }
 
-    private void initializeDialogListView(View view, List <FilterOptionModel> options) {
+    private void initializeDialogListView(View view, List<FilterOptionModel> options) {
         ListView optionsListView = (ListView) view.findViewById(R.id.list_view_dialog_options);
         final FilterOptionsListAdapter optionsListAdapter = new FilterOptionsListAdapter(mContext, options);
         optionsListView.setAdapter(optionsListAdapter);
         optionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                mFilterQuery = "";
                 mSelectedFilterOption = optionsListAdapter.getItem(i);
                 mEditTextFilter.setText(mSelectedFilterOption.getValue());
                 mEditTextFilter.clearFocus();

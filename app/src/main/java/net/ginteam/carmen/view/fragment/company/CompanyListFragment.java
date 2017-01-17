@@ -2,11 +2,15 @@ package net.ginteam.carmen.view.fragment.company;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -29,7 +33,7 @@ import java.util.List;
  */
 
 public class CompanyListFragment extends BaseFetchingFragment implements CompaniesContract.View,
-        CompanyItemViewHolder.OnCompanyItemClickListener {
+        CompanyItemViewHolder.OnCompanyItemClickListener, BottomNavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     public enum COMPANY_LIST_TYPE {
         HORIZONTAL,
@@ -62,6 +66,10 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     private LinearLayoutManager mLayoutManager;
     private CompanyRecyclerListAdapter mRecyclerListAdapter;
 
+    private FloatingActionButton mFloatingActionButton;
+    private BottomNavigationView mBottomNavigationView;
+
+    private OnSelectedItemsListener mSelectedItemsListener;
     private OnCompanySelectedListener mCompanySelectedListener;
 
     public CompanyListFragment() {
@@ -114,6 +122,33 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         } catch (ClassCastException exception) {
             Log.e("CompanyListFragment", "Parent context does not confirm to OnCompanySelectedListener!");
         }
+
+        try {
+            mSelectedItemsListener = (OnSelectedItemsListener) context;
+        } catch (ClassCastException exception) {
+            Log.e("CompanyListFragment", "Parent context does not confirm to OnSelectedItemsListener!");
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.bottom_nav_item_categories:
+                mSelectedItemsListener.onShowCategoriesDialog();
+                break;
+            case R.id.bottom_nav_item_filters:
+                mSelectedItemsListener.onShowFiltersActivity();
+                break;
+            case R.id.bottom_nav_item_sort:
+                mSelectedItemsListener.onShowSortDialog();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        mSelectedItemsListener.onShowMap();
     }
 
     public void setSearchFilter(String filter) {
@@ -163,10 +198,22 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
             mTextViewCompanyListTitle = (TextView) mRootView.findViewById(R.id.text_view_company_list_title);
             mTextViewCompanyListTitle.setVisibility(View.VISIBLE);
             mTextViewCompanyListTitle.setText(title);
+        } else {
+            mFloatingActionButton = (FloatingActionButton) mRootView.findViewById(R.id.float_button_show_map);
+            mBottomNavigationView = (BottomNavigationView) mRootView.findViewById(R.id.bottom_navigation_view);
+
+            if (mSelectedItemsListener != null) {
+                mFloatingActionButton.setOnClickListener(this);
+                mBottomNavigationView.setOnNavigationItemSelectedListener(this);
+            }
+
+            mFloatingActionButton.setVisibility(View.VISIBLE);
+            mBottomNavigationView.setVisibility(View.VISIBLE);
         }
 
         mRecyclerViewCompanies = (RecyclerView) mRootView.findViewById(R.id.recycler_view_companies);
         mLayoutManager = (LinearLayoutManager) CompanyRecyclerManagerFactory.createManagerForListType(mListType);
+
         mRecyclerViewCompanies.addItemDecoration(CompanyRecyclerManagerFactory.createItemDecoratorForListType(mListType));
         mRecyclerViewCompanies.setLayoutManager(mLayoutManager);
 
@@ -219,6 +266,18 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     public interface OnCompanySelectedListener {
 
         void onCompanySelected(CompanyModel company);
+
+    }
+
+    public interface OnSelectedItemsListener {
+
+        void onShowMap();
+
+        void onShowCategoriesDialog();
+
+        void onShowFiltersActivity();
+
+        void onShowSortDialog();
 
     }
 

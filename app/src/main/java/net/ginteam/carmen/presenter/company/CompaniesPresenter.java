@@ -1,6 +1,7 @@
 package net.ginteam.carmen.presenter.company;
 
 import net.ginteam.carmen.contract.company.CompaniesContract;
+import net.ginteam.carmen.manager.FiltersViewStateManager;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.provider.ModelCallbackWithMeta;
@@ -67,6 +68,7 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
     @Override
     public void attachView(CompaniesContract.View view) {
         mView = view;
+        FiltersViewStateManager.getInstance().resetFiltersState();
     }
 
     @Override

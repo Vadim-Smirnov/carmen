@@ -2,6 +2,7 @@ package net.ginteam.carmen.contract.filter;
 
 import net.ginteam.carmen.contract.BaseContract;
 import net.ginteam.carmen.model.filter.FilterModel;
+import net.ginteam.carmen.view.custom.FilterEditText;
 
 import java.util.List;
 
@@ -28,6 +29,10 @@ public interface FilterContract {
         void fetchFiltersForCategory(int categoryId);
 
         void updateResultsWithFilter(int categoryId, String filter);
+
+        void saveViewState(int categoryId, List <FilterEditText> filters, String filterQuery);
+
+        String restoreViewState(int categoryId, List<FilterEditText> filters);
 
     }
 

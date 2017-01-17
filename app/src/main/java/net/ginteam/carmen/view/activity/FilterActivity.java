@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.filter.FilterContract;
@@ -48,7 +47,6 @@ public class FilterActivity extends ToolbarActivity implements FilterContract.Vi
         mPresenter = new FiltersPresenter();
         mPresenter.attachView(this);
         mPresenter.fetchFiltersForCategory(mCategoryId);
-        mPresenter.updateResultsWithFilter(mCategoryId, mResultFilterQuery);
     }
 
     @Override
@@ -78,6 +76,8 @@ public class FilterActivity extends ToolbarActivity implements FilterContract.Vi
 
     @Override
     public void onClick(View view) {
+        mPresenter.saveViewState(mCategoryId, mFilterFieldsList, mResultFilterQuery);
+
         Intent intent = new Intent();
         intent.putExtra(RESULT_FILTER_ARGUMENT, mResultFilterQuery);
         setResult(RESULT_OK, intent);
@@ -103,7 +103,7 @@ public class FilterActivity extends ToolbarActivity implements FilterContract.Vi
 
     @Override
     public void showError(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        mTextViewFiltersResultCount.setText(message);
     }
 
     @Override
@@ -116,11 +116,9 @@ public class FilterActivity extends ToolbarActivity implements FilterContract.Vi
     @Override
     public void showFilters(List<FilterModel> filters) {
         mFilterFieldsList = new ArrayList<>();
-
         for (FilterModel currentFilter : filters) {
             FilterEditText filterField = new FilterEditText(getContext());
             filterField.setFilterModel(currentFilter);
-
             mFilterFieldsList.add(filterField);
         }
         updateFiltersDependencies();
@@ -145,12 +143,13 @@ public class FilterActivity extends ToolbarActivity implements FilterContract.Vi
             currentFilter.setOnFilterChangeListener(this);
             mLayoutFilterFields.addView(currentFilter);
         }
+        mResultFilterQuery = mPresenter.restoreViewState(mCategoryId, mFilterFieldsList);
     }
 
     private String getResultFilterQuery() {
         String resultFilter = "";
         for (FilterEditText currentFilter : mFilterFieldsList) {
-            resultFilter += currentFilter.getStringFilter();
+            resultFilter += currentFilter.getFilterQuery();
         }
         return resultFilter.isEmpty() ? "" : resultFilter.substring(0, resultFilter.length() - 1);
     }

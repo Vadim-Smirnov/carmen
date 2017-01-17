@@ -1,10 +1,12 @@
 package net.ginteam.carmen.presenter.filter;
 
 import net.ginteam.carmen.contract.filter.FilterContract;
+import net.ginteam.carmen.manager.FiltersViewStateManager;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.filter.FilterModel;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.filter.FiltersProvider;
+import net.ginteam.carmen.view.custom.FilterEditText;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
 public class FiltersPresenter implements FilterContract.Presenter {
 
     private FilterContract.View mView;
+
+    private FiltersViewStateManager mFiltersViewStateManager;
 
     @Override
     public void fetchFiltersForCategory(int categoryId) {
@@ -59,8 +63,20 @@ public class FiltersPresenter implements FilterContract.Presenter {
     }
 
     @Override
+    public void saveViewState(int categoryId, List<FilterEditText> filters, String filterQuery) {
+        mFiltersViewStateManager.saveFiltersState(categoryId, filters, filterQuery);
+    }
+
+    @Override
+    public String restoreViewState(int categoryId, List<FilterEditText> filters) {
+        mFiltersViewStateManager.restoreFiltersState(categoryId, filters);
+        return mFiltersViewStateManager.restoreFiltersQuery();
+    }
+
+    @Override
     public void attachView(FilterContract.View view) {
         mView = view;
+        mFiltersViewStateManager = FiltersViewStateManager.getInstance();
     }
 
     @Override

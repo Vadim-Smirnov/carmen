@@ -16,8 +16,11 @@ import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
-public class MainActivity extends NavigationViewActivity implements MainFragment.OnMainFragmentShowedListener, CategoryListFragment.OnCategorySelectedListener,
-        CityListFragment.OnCitySelectedListener, CompanyListFragment.OnCompanySelectedListener {
+public class MainActivity extends NavigationViewActivity implements MainFragment.OnMainFragmentShowedListener,
+        CategoryListFragment.OnCategorySelectedListener, CityListFragment.OnCitySelectedListener,
+        CompanyListFragment.OnCompanySelectedListener, CompanyListFragment.OnSelectedItemsListener {
+
+    private CategoryModel mSelectedCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,26 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     }
 
     @Override
+    public void onShowMap() {
+
+    }
+
+    @Override
+    public void onShowCategoriesDialog() {
+
+    }
+
+    @Override
+    public void onShowFiltersActivity() {
+        startFilterActivityForResult(mSelectedCategory);
+    }
+
+    @Override
+    public void onShowSortDialog() {
+
+    }
+
+    @Override
     public void onCategorySelected(CategoryModel category) {
         Toast.makeText(this, category.getName(), Toast.LENGTH_SHORT).show();
         prepareFragment(CompanyListFragment.newInstance(
@@ -58,7 +81,7 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
         setTitle(category.getName());
         setSubtitle("Кривой Рог");
 
-        startFilterActivityForResult(category);
+        mSelectedCategory = category;
     }
 
     @Override

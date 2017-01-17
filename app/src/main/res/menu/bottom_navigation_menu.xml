@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottom_nav_item_categories"
+        android:enabled="true"
+        android:icon="@drawable/ic_bottom_navigation_categories"
+        android:title=""/>
+
+    <item
+        android:id="@+id/bottom_nav_item_filters"
+        android:enabled="true"
+        android:icon="@drawable/ic_bottom_navigation_filters"
+        android:title=""/>
+
+    <item
+        android:id="@+id/bottom_nav_item_sort"
+        android:enabled="true"
+        android:icon="@drawable/ic_bottom_navigation_sort"
+        android:title=""/>
+
+</menu>
