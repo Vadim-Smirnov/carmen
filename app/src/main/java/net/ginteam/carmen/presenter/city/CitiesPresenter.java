@@ -1,6 +1,9 @@
 package net.ginteam.carmen.presenter.city;
 
+import com.google.gson.Gson;
+
 import net.ginteam.carmen.contract.city.CityContract;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.city.CitiesProvider;
@@ -18,6 +21,13 @@ public class CitiesPresenter implements CityContract.Presenter {
     @Override
     public void selectCity(CityModel city) {
 
+    }
+
+    @Override
+    public void saveCity(CityModel city) {
+        PreferencesManager
+                .getInstance()
+                .setCity(new Gson().toJson(city));
     }
 
     @Override

@@ -143,7 +143,7 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                 .addLocationRequest(mLocationRequest);
-        builder.setAlwaysShow(true);
+        builder.setAlwaysShow(false);
 
         mLocationSettingsResult = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
     }

@@ -26,6 +26,11 @@ public class ApiLinks {
 
         public static final String CITIES = CATALOG + "cities";
 
+        public static final String CITIES_BY_POINT = CITIES + "/findByPoint";
+
+        public static final String LAT = "lat";
+
+        public static final String LON = "lon";
     }
 
     public class AUTH {

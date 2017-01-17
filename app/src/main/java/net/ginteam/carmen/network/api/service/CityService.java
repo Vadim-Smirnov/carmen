@@ -7,6 +7,7 @@ import net.ginteam.carmen.network.api.ApiLinks;
 import java.util.List;
 
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -17,5 +18,12 @@ public interface CityService {
 
     @GET(ApiLinks.CATALOG.CITIES)
     Observable <ResponseModel <List<CityModel>>> fetchCities();
+
+    @GET(ApiLinks.CATALOG.CITIES_BY_POINT)
+    Observable <ResponseModel <CityModel>> fetchCityByPoint(
+            @Query(ApiLinks.CATALOG.LAT) Double lat,
+            @Query(ApiLinks.CATALOG.LON) Double lon
+    );
+
 
 }

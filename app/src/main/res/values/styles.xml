@@ -46,4 +46,12 @@
         <item name="android:textScaleX">0.9</item>
     </style>
 
+    <style name="DialogStyle" parent="Base.ThemeOverlay.AppCompat.Dialog.Alert">
+        <!--<item name="android:windowMinWidthMajor">97%</item>-->
+        <!--<item name="android:windowMinWidthMinor">97%</item>-->
+        <item name="android:windowMinWidthMajor">97%</item>
+        <item name="android:windowMinWidthMinor">97%</item>
+        <!--<item name="android:minHeight">300dp</item>-->
+    </style>
+
 </resources>

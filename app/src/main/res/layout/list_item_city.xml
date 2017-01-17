@@ -9,15 +9,29 @@
 
     <TextView
         android:id="@+id/text_view_city_name"
-        fontPath="@string/open_sans_semibold_font"
-        android:layout_width="wrap_content"
+        fontPath="@string/open_sans_light_font"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/city_title_vertical_margin"
-        android:layout_marginTop="@dimen/city_title_vertical_margin"
+        android:layout_marginBottom="@dimen/city_item_margin_bottom"
+        android:layout_marginTop="@dimen/city_item_margin_top"
+        android:layout_marginStart="@dimen/city_item_vertical_margin"
+        android:layout_marginEnd="@dimen/city_item_vertical_margin"
+        android:textSize="@dimen/city_item_text_size"
+        android:textColor="@color/colorTextHeader"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Кривой Рог"/>
+        tools:text="Кривой Рог" />
+
+    <View
+        android:id="@+id/view_payment_methods_bottom_separate"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/colorSeparate"
+        android:layout_marginTop="@dimen/city_item_margin_bottom"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_city_name"/>
 
 </android.support.constraint.ConstraintLayout>
