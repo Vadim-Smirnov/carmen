@@ -24,4 +24,10 @@ public interface CompanyService {
             @Query(ApiLinks.CATALOG.PAGE) int page
     );
 
+    @GET(ApiLinks.CATALOG.COMPANY_BY_ID)
+    Observable<ResponseModel<CompanyModel>> fetchCompanyDetail(
+            @Path(ApiLinks.CATALOG.ID) int companyId,
+            @Query(ApiLinks.CATALOG.WITH) String relations
+    );
+
 }
