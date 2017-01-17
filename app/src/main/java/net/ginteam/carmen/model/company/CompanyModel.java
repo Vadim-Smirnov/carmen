@@ -89,6 +89,10 @@ public class CompanyModel {
         return mIsFavorite;
     }
 
+    public void setFavorite(boolean isFavorite) {
+        mIsFavorite = isFavorite;
+    }
+
     public ResponseModel<List<Comfort>> getComforts() {
         return mComforts;
     }

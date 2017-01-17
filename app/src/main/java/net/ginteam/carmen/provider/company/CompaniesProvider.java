@@ -1,14 +1,16 @@
 package net.ginteam.carmen.provider.company;
 
 import net.ginteam.carmen.manager.ApiManager;
+import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.network.api.ApiLinks;
 import net.ginteam.carmen.network.api.service.CompanyService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
+import net.ginteam.carmen.network.api.subscriber.ModelSubscriberWithMeta;
 import net.ginteam.carmen.provider.ModelCallback;
+import net.ginteam.carmen.provider.ModelCallbackWithMeta;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -52,7 +54,7 @@ public class CompaniesProvider {
                 });
     }
 
-    public void fetchCompanyDetail(int companyId, ModelCallback<CompanyModel> completion) {
+    public void fetchCompanyDetail(int companyId, final ModelCallback<CompanyModel> completion) {
         String relations = String.format("%s,%s,%s", ApiLinks.CATALOG.COMFORTS,
                 ApiLinks.CATALOG.DETAIL, ApiLinks.CATALOG.CATEGORIES);
 

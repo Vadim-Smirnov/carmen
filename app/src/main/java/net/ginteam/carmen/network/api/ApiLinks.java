@@ -1,7 +1,5 @@
 package net.ginteam.carmen.network.api;
 
-import android.icu.text.SymbolTable;
-
 /**
  * Created by Eugene on 12/23/16.
  */
@@ -19,8 +17,6 @@ public class ApiLinks {
         public static final String PAGE = "page";
 
         public static final String LIMIT = "limit";
-
-        public static final String CATEGORIES = CATALOG + "categories";
 
         public static final String CATEGORIES = "categories";
 
@@ -78,9 +74,9 @@ public class ApiLinks {
 
         public static final String FAVORITES_BY_ID = COMPANIES + "/{" + ID + "}" + FAVORITES;
 
-        private static final String LAST_VIEWED = "/lastViewed";
+        private static final String RECENTLY_WATCHED = "/lastViewed";
 
-        public static final String GET_LAST_VIEWED = COMPANIES + LAST_VIEWED;
+        public static final String GET_RECENTLY_WATCHED = COMPANIES + RECENTLY_WATCHED;
     }
 
 }

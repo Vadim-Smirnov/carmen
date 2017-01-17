@@ -3,7 +3,6 @@ package net.ginteam.carmen.view.activity.company;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.widget.NestedScrollView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -16,12 +15,8 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompanyDetailPresenter;
-import net.ginteam.carmen.provider.ModelCallback;
-import net.ginteam.carmen.provider.company.CompaniesProvider;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
 import net.ginteam.carmen.view.custom.rating.RatingView;
-
-import java.util.List;
 
 public class CompanyDetailActivity extends ToolbarActivity implements CompanyDetailContract.View {
 
@@ -53,10 +48,10 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         super.setContentView(R.layout.activity_company_detail);
 
         receiveArguments();
-        initialize();
+        updateDependencies();
 
         mPresenter = new CompanyDetailPresenter(this);
-        mPresenter.fetchCompanyDetail(1);
+        mPresenter.fetchCompanyDetail(mCompanyId);
     }
 
     @Override
@@ -90,14 +85,13 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
 
     @Override
     public void showCompanyDetail(CompanyModel companyModel) {
-        showLoading(false);
         mTextViewCompanyName.setText(companyModel.getName());
         mTextViewCategory.setText(companyModel.getCategory().getData().get(0).getName());
 //        mTextViewWorkTime.setText(companyModel.getDetail().getData().getWorkTime().get(0));
         mRatingViewCompanyRating.setRating(companyModel.getRating());
     }
 
-    private void initialize() {
+    private void updateDependencies() {
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mNestedScrollView = (NestedScrollView) findViewById(R.id.nested_scroll_view);
         mButtonAllReviews = (Button) findViewById(R.id.button_all_reviews);

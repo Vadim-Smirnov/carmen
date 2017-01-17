@@ -4,10 +4,10 @@ import net.ginteam.carmen.contract.company.CompaniesContract;
 import net.ginteam.carmen.manager.FiltersViewStateManager;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.ModelCallbackWithMeta;
 import net.ginteam.carmen.provider.company.CompaniesProvider;
 import net.ginteam.carmen.provider.company.FavoritesProvider;
-import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
                     @Override
                     public void onSuccess(List<CompanyModel> resultModel) {
                         mView.showLoading(false);
-                        mView.showCompanies(resultModel);
+                        mView.showCompanies(resultModel, null);
                     }
 
                     @Override
@@ -61,7 +61,7 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
                     @Override
                     public void onSuccess(List<CompanyModel> resultModel) {
                         mView.showLoading(false);
-                        mView.showCompanies(resultModel);
+                        mView.showCompanies(resultModel, null);
                     }
 
                     @Override

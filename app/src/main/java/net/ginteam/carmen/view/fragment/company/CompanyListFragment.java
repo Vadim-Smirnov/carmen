@@ -79,8 +79,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     public CompanyListFragment() {
     }
 
-    public static CompanyListFragment newInstance(COMPANY_LIST_TYPE type, FETCH_COMPANY_TYPE fetchType,
-                                                  @Nullable int categoryId) {
+    public static CompanyListFragment newInstance(COMPANY_LIST_TYPE type, FETCH_COMPANY_TYPE fetchType, @Nullable int categoryId) {
         CompanyListFragment fragment = new CompanyListFragment();
 
         Bundle arguments = new Bundle();
@@ -159,6 +158,8 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         mCurrentPaginationPage = 1;
         fetchCompanies();
 
+    }
+
     @Override
     public void onCompanyItemClick(CompanyModel company) {
         if (mCompanySelectedListener == null) {
@@ -192,7 +193,10 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         mRecyclerListAdapter.setOnCompanyItemClickListener(this);
         mRecyclerListAdapter.setOnAddToFavoritesClickListener(this);
         mRecyclerViewCompanies.setAdapter(mRecyclerListAdapter);
-        mRecyclerViewCompanies.setOnScrollListener(initializePagination(paginationDetails));
+
+        if (paginationDetails != null) {
+            mRecyclerViewCompanies.setOnScrollListener(initializePagination(paginationDetails));
+        }
     }
 
     @Override

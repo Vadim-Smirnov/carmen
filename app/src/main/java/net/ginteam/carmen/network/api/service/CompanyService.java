@@ -1,7 +1,6 @@
 package net.ginteam.carmen.network.api.service;
 
 import net.ginteam.carmen.model.ResponseModel;
-import net.ginteam.carmen.model.auth.AuthModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.network.api.ApiLinks;
 
@@ -36,7 +35,7 @@ public interface CompanyService {
     @GET(ApiLinks.AUTH.GET_FAVORITES)
     Observable <ResponseModel <List <CompanyModel>>> fetchFavorites();
 
-    @GET(ApiLinks.AUTH.GET_LAST_VIEWED)
+    @GET(ApiLinks.AUTH.GET_RECENTLY_WATCHED)
     Observable <ResponseModel <List <CompanyModel>>> fetchRecentlyWatched();
 
     @POST(ApiLinks.AUTH.FAVORITES_BY_ID)

@@ -36,11 +36,13 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
                 .fetchCompanyDetail(companyId, new ModelCallback<CompanyModel>() {
                     @Override
                     public void onSuccess(CompanyModel resultModel) {
+                        mView.showLoading(false);
                         mView.showCompanyDetail(resultModel);
                     }
 
                     @Override
                     public void onFailure(String message) {
+                        mView.showLoading(false);
                         mView.showError(message);
                     }
                 });
