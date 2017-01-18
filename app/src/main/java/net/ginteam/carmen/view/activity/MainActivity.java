@@ -13,6 +13,7 @@ import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
 import net.ginteam.carmen.view.fragment.MainFragment;
+import net.ginteam.carmen.view.fragment.SortingFragment;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
@@ -68,7 +69,9 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
 
     @Override
     public void onShowSortDialog() {
-
+        SortingFragment
+                .newInstance(mSelectedCategory.getId())
+                .show(getSupportFragmentManager().beginTransaction(), "dialog");
     }
 
     @Override

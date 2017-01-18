@@ -116,7 +116,23 @@
     }
 ] </string>
 
+    <string name="sorting_example">[
+    {
+        "name" : "Самые",
+        "type" : "new"
+    },
+    {
+        "name" : "Самыедешевые",
+        "type" : "price_ask"
+    },
+    {
+        "name" : "Самыедорогие",
+        "type" : "price_desc"
+    }
+] </string>
+
     <!-- Filter Activity Menu -->
     <string name="clear_filters_string">Очистить все</string>
+
 
 </resources>
