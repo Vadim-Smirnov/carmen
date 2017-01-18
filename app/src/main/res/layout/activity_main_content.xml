@@ -3,19 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar"/>
-
-    <net.ginteam.carmen.view.custom.rating.RatingView
-        android:id="@+id/rating"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        app:circlesSpacing="5dp"
-        app:circlesCount="5"/>
 
     <FrameLayout
         android:id="@+id/main_fragment_container"
