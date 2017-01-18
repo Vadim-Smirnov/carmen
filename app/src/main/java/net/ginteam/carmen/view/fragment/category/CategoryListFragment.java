@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.category.CategoriesContract;
@@ -24,6 +26,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
         CategoryItemViewHolder.OnCategoryItemClickListener {
 
     private static final int CATEGORY_LIST_COLUMNS_COUNT = 2;
+    private static final String DIALOG_ARG = "dialog_arg";
 
     private RecyclerView mRecyclerViewCategories;
 
@@ -32,21 +35,51 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
 
     private OnCategorySelectedListener mCategorySelectedListener;
 
+    private TextView mTextViewCategoryDialogTitle;
+    private Button mButtonCancelCategoryDialog;
+
+    private boolean mIsDialog;
+
     public CategoryListFragment() {}
 
-    public static CategoryListFragment newInstance() {
-        return new CategoryListFragment();
+    public static CategoryListFragment newInstance(boolean isDialog) {
+        CategoryListFragment categoryListFragment = new CategoryListFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(DIALOG_ARG, isDialog);
+        categoryListFragment.setArguments(bundle);
+        return categoryListFragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NO_TITLE, R.style.DialogStyle);
+        mIsDialog = getArguments().getBoolean(DIALOG_ARG);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getDialog() == null) {
+            return;
+        }
+        int dialogWidth = (int) getResources().getDimension(R.dimen.dialog_fragment_width);
+        int dialogHeight = (int) getResources().getDimension(R.dimen.dialog_fragment_height);
+
+        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
+        getDialog().setCancelable(false);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRootView = inflateBaseFragment(R.layout.fragment_category_list, inflater, container, savedInstanceState);
+        mRootView = inflateBaseFragment(mIsDialog ? R.layout.fragment_dialog_category_list :
+                R.layout.fragment_category_list, inflater, container, savedInstanceState);
+
         updateDependencies();
+        if (mIsDialog) {
+            initializeDialogElements();
+        }
 
         mPresenter = new CategoriesPresenter();
         mPresenter.attachView(this);
@@ -74,7 +107,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
 
     @Override
     public void showCategories(List<CategoryModel> categories) {
-        mRecyclerListAdapter = new CategoryRecyclerListAdapter(getContext(), categories);
+        mRecyclerListAdapter = new CategoryRecyclerListAdapter(getContext(), categories, mIsDialog);
         mRecyclerListAdapter.setOnCategoryClickListener(this);
         mRecyclerViewCategories.setAdapter(mRecyclerListAdapter);
     }
@@ -85,6 +118,9 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
             Log.e("CategoryListFragment", "OnCategorySelected listener is null!");
             return;
         }
+        if (getDialog() != null) {
+            getDialog().cancel();
+        }
         mCategorySelectedListener.onCategorySelected(category);
     }
 
@@ -94,6 +130,17 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), CATEGORY_LIST_COLUMNS_COUNT);
         mRecyclerViewCategories.addItemDecoration(new CategoryRecyclerListItemDecorator(getContext(), R.dimen.category_item_spacing));
         mRecyclerViewCategories.setLayoutManager(gridLayoutManager);
+    }
+
+    private void initializeDialogElements() {
+        mTextViewCategoryDialogTitle = (TextView) mRootView.findViewById(R.id.text_view_category_dialog_title);
+        mButtonCancelCategoryDialog = (Button) mRootView.findViewById(R.id.button_category_dialog_cancel);
+        mButtonCancelCategoryDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().cancel();
+            }
+        });
     }
 
     public interface OnCategorySelectedListener {

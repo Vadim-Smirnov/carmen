@@ -21,4 +21,5 @@
 
     <color name="colorCheckBox">#7ED321</color>
 
+    <color name="colorDialogBackground">#DADADA</color>
 </resources>

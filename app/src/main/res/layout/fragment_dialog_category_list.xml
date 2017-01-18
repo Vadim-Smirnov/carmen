@@ -1,0 +1,85 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="net.ginteam.carmen.view.fragment.category.CategoryListFragment">
+
+    <LinearLayout
+        android:id="@+id/liner_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/category_dialog_title_height"
+        android:background="@color/colorWhite"
+        android:paddingBottom="@dimen/category_dialog_title_padding_vertical"
+        android:paddingEnd="@dimen/category_dialog_title_padding_horizontal"
+        android:paddingStart="@dimen/category_dialog_title_padding_horizontal"
+        android:paddingTop="@dimen/category_dialog_title_padding_vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_view_category_dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category_dialog_title"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/category_title_text_size"/>
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_categories"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorDialogBackground"
+        android:paddingTop="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/liner_layout"
+        app:layout_constraintVertical_bias="0.0"
+        tools:listitem="@layout/list_item_category"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/category_dialog_title_height"
+        android:background="@color/colorWhite"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:visibility="invisible"/>
+
+        <Button
+            android:id="@+id/button_category_dialog_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorWhite"
+            android:text="@string/button_category_dialog_cancel"/>
+
+    </LinearLayout>
+
+    <include
+        layout="@layout/progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"/>
+
+</android.support.constraint.ConstraintLayout>

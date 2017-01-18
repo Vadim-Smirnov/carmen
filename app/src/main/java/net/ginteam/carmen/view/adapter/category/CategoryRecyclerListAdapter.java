@@ -19,12 +19,14 @@ import java.util.List;
 public class CategoryRecyclerListAdapter extends RecyclerView.Adapter <CategoryItemViewHolder> {
 
     private Context mContext;
+    private boolean mIsDialog;
     private List <CategoryModel> mCategories;
 
     private CategoryItemViewHolder.OnCategoryItemClickListener mCategoryItemClickListener;
 
-    public CategoryRecyclerListAdapter(Context context, List <CategoryModel> categories) {
+    public CategoryRecyclerListAdapter(Context context, List <CategoryModel> categories, boolean isDialog) {
         mContext = context;
+        mIsDialog = isDialog;
         mCategories = categories;
     }
 
@@ -36,7 +38,8 @@ public class CategoryRecyclerListAdapter extends RecyclerView.Adapter <CategoryI
     public CategoryItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View categoryItemView = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.list_item_category, parent, false);
+                .inflate(mIsDialog ? R.layout.list_item_category_dialog :
+                        R.layout.list_item_category, parent, false);
         return new CategoryItemViewHolder(categoryItemView);
     }
 

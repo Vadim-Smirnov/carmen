@@ -52,6 +52,20 @@
     <dimen name="category_image_width">60dp</dimen>
     <dimen name="category_image_height">23dp</dimen>
 
+    <!-- Category Dialog Item -->
+    <dimen name="category_dialog_item_top_padding">16dp</dimen>
+    <dimen name="category_dialog_item_bottom_padding">17dp</dimen>
+    <dimen name="category_dialog_item_height">125dp</dimen>
+    <dimen name="category_dialog_item_title_text_size">15sp</dimen>
+    <dimen name="category_dialog_item_title_bottom_space">3dp</dimen>
+    <dimen name="category_dialog_item_subtitle_text_size">9sp</dimen>
+    <dimen name="category_dialog_item_subtitle_bottom_space">13.5dp</dimen>
+    <dimen name="category_dialog_item_separator_width">15dp</dimen>
+    <dimen name="category_dialog_item_separator_height">2dp</dimen>
+    <dimen name="category_dialog_item_separator_bottom_space">9dp</dimen>
+    <dimen name="category_dialog_item_image_width">44dp</dimen>
+    <dimen name="category_dialog_item_image_height">18dp</dimen>
+
     <!-- Company Item Vertical -->
     <dimen name="company_item_corner_radius">1dp</dimen>
     <dimen name="company_item_spacing">10dp</dimen>
@@ -169,5 +183,10 @@
     <dimen name="dialog_fragment_width">300dp</dimen>
     <dimen name="dialog_fragment_height">489dp</dimen>
 
+    <!-- Category dialog fragment -->
+    <dimen name="category_dialog_title_padding_horizontal">20dp</dimen>
+    <dimen name="category_dialog_title_padding_vertical">15dp</dimen>
+    <dimen name="category_dialog_title_text_size">21sp</dimen>
+    <dimen name="category_dialog_title_height">57dp</dimen>
 
 </resources>

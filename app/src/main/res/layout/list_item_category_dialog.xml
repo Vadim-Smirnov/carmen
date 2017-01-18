@@ -6,15 +6,15 @@
                                              android:layout_width="match_parent"
                                              android:layout_height="wrap_content"
                                              android:orientation="vertical"
-                                             android:paddingTop="@dimen/category_item_top_padding"
-                                             android:paddingBottom="@dimen/category_item_bottom_padding"
+                                             android:paddingTop="@dimen/category_dialog_item_top_padding"
+                                             android:paddingBottom="@dimen/category_dialog_item_bottom_padding"
                                              android:background="#fff">
 
     <TextView
         android:id="@+id/text_view_category_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/category_title_text_size"
+        android:textSize="@dimen/category_dialog_item_title_text_size"
         android:textColor="#1D1D26"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -26,30 +26,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/text_view_category_items_count"
-        android:layout_marginTop="@dimen/category_title_bottom_space"
+        android:layout_marginTop="@dimen/category_dialog_item_title_bottom_space"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_category_name"
         fontPath="@string/avenir_book_font"/>
 
     <View
-        android:layout_width="@dimen/category_separator_width"
-        android:layout_height="@dimen/category_separator_height"
+        android:layout_width="@dimen/category_dialog_item_separator_width"
+        android:layout_height="@dimen/category_dialog_item_separator_height"
         android:background="#D9D9D9"
         app:layout_constraintTop_toBottomOf="@+id/text_view_category_items_count"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="@dimen/category_subtitle_bottom_space"
+        android:layout_marginTop="@dimen/category_dialog_item_subtitle_bottom_space"
         android:id="@+id/view"/>
 
     <ImageView
-        android:layout_width="@dimen/category_image_width"
-        android:layout_height="@dimen/category_image_height"
+        android:layout_width="@dimen/category_dialog_item_image_width"
+        android:layout_height="@dimen/category_dialog_item_image_height"
         app:srcCompat="@drawable/ic_category_car"
         android:id="@+id/image_view_category_icon"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="@dimen/category_separator_bottom_space"
+        android:layout_marginTop="@dimen/category_dialog_item_separator_bottom_space"
         app:layout_constraintTop_toTopOf="@+id/view"/>
 
 </android.support.constraint.ConstraintLayout>
