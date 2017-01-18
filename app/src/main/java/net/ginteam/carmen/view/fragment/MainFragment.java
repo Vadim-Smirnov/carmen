@@ -42,7 +42,7 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        prepareFragment(R.id.categories_fragment_container, CategoryListFragment.newInstance());
+        prepareFragment(R.id.categories_fragment_container, CategoryListFragment.newInstance(false));
         if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
             prepareFragment(R.id.recently_companies_fragment_container,
                     CompanyListFragment.newInstance(

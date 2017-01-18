@@ -55,7 +55,7 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
                 setTitle(getResources().getString(R.string.main_item_text));
                 break;
             case R.id.category_item:
-                selectedFragment = CategoryListFragment.newInstance();
+                selectedFragment = CategoryListFragment.newInstance(false);
                 setTitle(getResources().getString(R.string.category_item_text));
                 break;
             case R.id.favorite_item:

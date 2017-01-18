@@ -64,6 +64,10 @@
     <string name="privacy_item_text">Политика конфиденциальности</string>
     <string name="terms_item_text">Условия пользователя</string>
 
+    <!-- Category dialog -->
+    <string name="category_dialog_title">Выбор категории</string>
+    <string name="button_category_dialog_cancel">Отмена</string>
+
     <!-- Filter Activity -->
     <string name="filter_activity_title">Поиск</string>
     <string name="show_results_string">Показать результаты</string>
