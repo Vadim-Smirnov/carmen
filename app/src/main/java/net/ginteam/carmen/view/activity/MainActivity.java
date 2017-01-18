@@ -11,6 +11,7 @@ import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
+import net.ginteam.carmen.view.custom.rating.RatingView;
 import net.ginteam.carmen.view.fragment.MainFragment;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
@@ -29,6 +30,15 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
 
         Toast.makeText(this, R.string.test, Toast.LENGTH_SHORT).show();
         prepareFragment(MainFragment.newInstance(), false);
+
+        RatingView ratingView = (RatingView) findViewById(R.id.rating);
+        ratingView.setUserInteractionEnabled(true);
+        ratingView.setOnRatingChangeListener(new RatingView.OnRatingChangeListener() {
+            @Override
+            public void onRatingChanged(RatingView ratingView, int rating) {
+                Toast.makeText(MainActivity.this, "Rating: " + rating, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

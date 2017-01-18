@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import net.ginteam.carmen.R;
@@ -35,6 +36,10 @@ public class RatingView extends View {
     private float mCirclesRadius;
     private float mCircleY;
     private float mCircleX;
+
+    private float mTouchX;
+    private boolean mUserInteractionEnabled;
+    private OnRatingChangeListener mRatingChangeListener;
 
     private Paint mEmptyCirclePaint;
     private Paint mFillCirclePaint;
@@ -69,6 +74,22 @@ public class RatingView extends View {
         invalidate();
     }
 
+    public boolean isUserInteractionEnabled() {
+        return mUserInteractionEnabled;
+    }
+
+    public void setUserInteractionEnabled(boolean userInteractionEnabled) {
+        mUserInteractionEnabled = userInteractionEnabled;
+    }
+
+    public OnRatingChangeListener getOnRatingChangeListener() {
+        return mRatingChangeListener;
+    }
+
+    public void setOnRatingChangeListener(OnRatingChangeListener ratingChangeListener) {
+        mRatingChangeListener = ratingChangeListener;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -78,15 +99,44 @@ public class RatingView extends View {
         }
 
         mCircleX = mCirclesRadius + mCirclesSpacing;
+        int[] ratingArray = new int[mCirclesCount];
+
         for (int i = 0; i < mCirclesCount; i++) {
-            canvas.drawCircle(mCircleX, mCircleY, mCirclesRadius, i < mRating ? mFillCirclePaint : mEmptyCirclePaint);
+            canvas.drawCircle(mCircleX, mCircleY, mCirclesRadius, (i < mRating) || (mUserInteractionEnabled && mCircleX <= mTouchX) ? mFillCirclePaint : mEmptyCirclePaint);
+            if (mUserInteractionEnabled) {
+                ratingArray[i] = (mCircleX < mTouchX) ? (i + 1) : 0;
+            }
             mCircleX += mCirclesRadius * 2 + mCirclesSpacing;
         }
+
+        if (mUserInteractionEnabled && (mTouchX != -1)) {
+            mRating = 0;
+            for (int i = 0; i < mCirclesCount && ratingArray[i] != 0; i++, mRating++);
+            if (mRatingChangeListener != null) {
+                mRatingChangeListener.onRatingChanged(this, mRating);
+            }
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mUserInteractionEnabled) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    mTouchX = event.getX();
+                    invalidate();
+                    break;
+            }
+            return true;
+        }
+        return false;
     }
 
     private void initializeRatingView(Context context, AttributeSet attributeSet) {
         mContext = context;
         mIsMeasureCalculated = false;
+        mUserInteractionEnabled = false;
+        mTouchX = -1;
 
         mCirclesCount = DEFAULT_CIRCLES_COUNT;
         mCirclesColor = DEFAULT_CIRCLES_COLOR;
@@ -135,6 +185,12 @@ public class RatingView extends View {
         mEmptyCirclePaint.setStrokeWidth(mCirclesRadius / 10);
 
         mIsMeasureCalculated = true;
+    }
+
+    public interface OnRatingChangeListener {
+
+        void onRatingChanged(RatingView ratingView, int rating);
+
     }
 
 }
