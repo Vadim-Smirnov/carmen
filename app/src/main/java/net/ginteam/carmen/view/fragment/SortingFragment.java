@@ -1,18 +1,20 @@
 package net.ginteam.carmen.view.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.SortingContract;
 import net.ginteam.carmen.model.SortingModel;
 import net.ginteam.carmen.presenter.SortingPresenter;
-import net.ginteam.carmen.view.adapter.SortingListAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SortingFragment extends BaseFetchingFragment implements SortingContract.View {
@@ -21,10 +23,12 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
 
     private SortingContract.Presenter mPresenter;
 
-    private SortingListAdapter mRecyclerListAdapter;
-    private RecyclerView mRecyclerViewSorting;
+    private List<RadioButton> mRadioButtonList;
+    private RadioGroup mRadioGroup;
 
     private int mCategoryId;
+
+    private Button mButtonCancelDialog;
 
     public SortingFragment() {}
 
@@ -60,8 +64,8 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mRootView = inflateBaseFragment(R.layout.fragment_sorting, inflater, container, savedInstanceState);
-        updateDependencies();
 
+        initialize();
         mPresenter = new SortingPresenter(this);
         mPresenter.attachView(this);
         mPresenter.fetchSortingForCategory(mCategoryId);
@@ -71,13 +75,33 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
 
     @Override
     public void showSorting(List<SortingModel> sortingModels) {
-        mRecyclerListAdapter = new SortingListAdapter(getContext(), sortingModels);
-        mRecyclerViewSorting.setAdapter(mRecyclerListAdapter);
+        mRadioButtonList = new ArrayList<>();
+        for (SortingModel currentFilter : sortingModels) {
+            RadioButton radioButton = new RadioButton(getContext());
+            radioButton.setText(currentFilter.getName());
+            radioButton.setButtonDrawable(ContextCompat.getDrawable(getActivity(),
+                    R.drawable.radiobutton_selector));
+            mRadioButtonList.add(radioButton);
+        }
+        updateSortingDependencies();
     }
 
-    private void updateDependencies() {
-        mRecyclerViewSorting = (RecyclerView) mRootView.findViewById(R.id.recycler_view_sorting);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-        mRecyclerViewSorting.setLayoutManager(layoutManager);
+    private void updateSortingDependencies() {
+        for (RadioButton currentFilter : mRadioButtonList) {
+            mRadioGroup.addView(currentFilter);
+        }
+        mRadioButtonList.get(0).setChecked(true);
     }
+
+    private void initialize() {
+        mRadioGroup = (RadioGroup) mRootView.findViewById(R.id.radio_group_sorting);
+        mButtonCancelDialog = (Button) mRootView.findViewById(R.id.button_sorting_dialog_cancel);
+        mButtonCancelDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDialog().cancel();
+            }
+        });
+    }
+
 }
