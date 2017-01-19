@@ -3,7 +3,6 @@ package net.ginteam.carmen.view.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +53,7 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategoryId = getArguments().getInt(SORTING_ARG);
+        setStyle(STYLE_NO_TITLE, R.style.DialogStyle);
     }
 
     @Override

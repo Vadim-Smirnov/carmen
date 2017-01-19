@@ -59,7 +59,7 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     @Override
     public void onShowCategoriesDialog() {
         DialogFragment newFragment = CategoryListFragment.newInstance(true);
-        newFragment.show(getSupportFragmentManager().beginTransaction(), "dialog");
+        newFragment.show(getSupportFragmentManager(), "dialog");
     }
 
     @Override
@@ -71,7 +71,7 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     public void onShowSortDialog() {
         SortingFragment
                 .newInstance(mSelectedCategory.getId())
-                .show(getSupportFragmentManager().beginTransaction(), "dialog");
+                .show(getSupportFragmentManager(), "dialog");
     }
 
     @Override
