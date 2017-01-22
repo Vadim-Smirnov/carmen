@@ -32,6 +32,11 @@ public interface CompanyService {
             @Query(ApiLinks.CATALOG.WITH) String relations
     );
 
+    @GET(ApiLinks.CATALOG.POPULAR_COMPANIES)
+    Observable<ResponseModel<List<CompanyModel>>> fetchPopular(
+            @Path(ApiLinks.CATALOG.CITY_ID) int cityId
+    );
+
     @GET(ApiLinks.AUTH.GET_FAVORITES)
     Observable <ResponseModel <List <CompanyModel>>> fetchFavorites();
 

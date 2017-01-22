@@ -22,7 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiManager {
 
-    private final int REQUEST_TIMEOUT_SECONDS = 5;
+    private final int REQUEST_TIMEOUT_SECONDS = 15;
 
     private static ApiManager sInstance;
 

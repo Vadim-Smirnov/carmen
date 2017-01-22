@@ -52,8 +52,10 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     }
 
     @Override
-    public void onShowMap() {
-
+    public void onShowMap(int categoryId) {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(MapActivity.CATEGORY_ID_ARG, categoryId);
+        startActivity(intent);
     }
 
     @Override

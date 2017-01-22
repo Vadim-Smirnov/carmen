@@ -2,7 +2,9 @@ package net.ginteam.carmen.presenter.company;
 
 import net.ginteam.carmen.contract.company.CompaniesContract;
 import net.ginteam.carmen.manager.FiltersViewStateManager;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.Pagination;
+import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.ModelCallbackWithMeta;
@@ -48,7 +50,24 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
 
     @Override
     public void fetchPopularCompanies() {
+        mView.showLoading(true);
 
+        CityModel userCity = PreferencesManager.getInstance().getCity();
+        CompaniesProvider
+                .getInstance()
+                .fetchPopular(userCity.getId(), new ModelCallback<List<CompanyModel>>() {
+                    @Override
+                    public void onSuccess(List<CompanyModel> resultModel) {
+                        mView.showLoading(false);
+                        mView.showCompanies(resultModel, null);
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        mView.showLoading(false);
+                        mView.showError(message);
+                    }
+                });
     }
 
     @Override

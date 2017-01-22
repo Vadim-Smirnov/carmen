@@ -24,8 +24,6 @@ public interface MapContract {
 
     interface Presenter extends RequestLocationContract.Presenter<View> {
 
-        void prepareGoogleMap();
-
         void animateToLocation(LatLng location);
 
     }

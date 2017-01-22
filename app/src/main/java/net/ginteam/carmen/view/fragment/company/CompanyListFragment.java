@@ -150,7 +150,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     @Override
     public void onClick(View view) {
-        mSelectedItemsListener.onShowMap();
+        mSelectedItemsListener.onShowMap(mCategoryId);
     }
 
     public void setSearchFilter(String filter) {
@@ -306,7 +306,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     public interface OnSelectedItemsListener {
 
-        void onShowMap();
+        void onShowMap(int categoryId);
 
         void onShowCategoriesDialog();
 

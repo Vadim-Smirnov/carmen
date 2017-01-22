@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -38,7 +37,7 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
 
                     @Override
                     public void onLocationReceiveFailure() {
-                        if (PreferencesManager.getInstance().getCity().isEmpty()) {
+                        if (PreferencesManager.getInstance().getCity() == null) {
                             mView.showCityListView();
                             return;
                         }

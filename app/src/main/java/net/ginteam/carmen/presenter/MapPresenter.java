@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,9 +19,8 @@ import com.google.maps.android.clustering.ClusterManager;
 
 import net.ginteam.carmen.contract.MapContract;
 import net.ginteam.carmen.manager.ApiGoogleManager;
-import net.ginteam.carmen.model.ClusterMarkerLocation;
-
-import java.util.Random;
+import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.utils.CompanyClusterRenderer;
 
 /**
  * Created by vadik on 10.01.17.
@@ -31,18 +31,11 @@ public class MapPresenter implements MapContract.Presenter, OnMapReadyCallback {
     private MapContract.View mView;
     private ApiGoogleManager mApiGoogleManager;
 
-    private ClusterManager<ClusterMarkerLocation> mClusterManager;
+    private ClusterManager<CompanyModel> mClusterManager;
     private GoogleMap mGoogleMap;
     private Location mLastUserLocation;
 
-    public MapPresenter(MapContract.View view) {
-        attachView(view);
-    }
-
-    @Override
-    public void prepareGoogleMap() {
-        mView.getMapView().getMapAsync(this);
-    }
+    public MapPresenter() {}
 
     @Override
     public void animateToLocation(LatLng location) {
@@ -61,6 +54,7 @@ public class MapPresenter implements MapContract.Presenter, OnMapReadyCallback {
     public void attachView(MapContract.View view) {
         mView = view;
         mApiGoogleManager = ApiGoogleManager.getInstance(mView.getActivity());
+        mView.getMapView().getMapAsync(this);
     }
 
     @Override
@@ -92,12 +86,21 @@ public class MapPresenter implements MapContract.Presenter, OnMapReadyCallback {
                 });
 
         mClusterManager = new ClusterManager<>(mView.getContext(), mGoogleMap);
+        mClusterManager.setRenderer(new CompanyClusterRenderer(mView.getContext(), mGoogleMap, mClusterManager));
+        mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<CompanyModel>() {
+            @Override
+            public boolean onClusterItemClick(CompanyModel companyModel) {
+                Log.d("Marker", "CLICK");
+                return true;
+            }
+        });
         mGoogleMap.setOnCameraIdleListener(mClusterManager);
+        mGoogleMap.setOnMarkerClickListener(mClusterManager);
 
         UiSettings googleMapUiSettings = mGoogleMap.getUiSettings();
         googleMapUiSettings.setCompassEnabled(true);
         googleMapUiSettings.setAllGesturesEnabled(true);
-        googleMapUiSettings.setZoomControlsEnabled(true);
+        googleMapUiSettings.setMyLocationButtonEnabled(false);
     }
 
     private boolean checkPermission() {
@@ -117,20 +120,8 @@ public class MapPresenter implements MapContract.Presenter, OnMapReadyCallback {
     }
 
     private void fetchMarker() {
-        double lat;
-        double lng;
-        Random generator = new Random();
-
-        for (int i = 0; i < 1000; i++) {
-            lat = generator.nextDouble() / 3;
-            lng = generator.nextDouble() / 3;
-            if (generator.nextBoolean()) {
-                lat = -lat;
-            }
-            if (generator.nextBoolean()) {
-                lng = -lng;
-            }
-            mClusterManager.addItem(new ClusterMarkerLocation(new LatLng(mLastUserLocation.getLatitude() + lat, mLastUserLocation.getLongitude() + lng)));
+        for (int i = 0; i < 10; i++) {
+            mClusterManager.addItem(new CompanyModel());
         }
     }
 

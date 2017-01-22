@@ -1,15 +1,12 @@
 package net.ginteam.carmen.view.activity;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.MapView;
@@ -18,9 +15,10 @@ import com.google.android.gms.maps.model.LatLng;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.MapContract;
 import net.ginteam.carmen.presenter.MapPresenter;
-import net.ginteam.carmen.view.fragment.city.CityListFragment;
 
 public class MapActivity extends ToolbarActivity implements MapContract.View {
+
+    public static final String CATEGORY_ID_ARG = "category_id";
 
     private MapContract.Presenter mPresenter;
 
@@ -31,12 +29,20 @@ public class MapActivity extends ToolbarActivity implements MapContract.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        mMapView = (MapView) findViewById(R.id.google_map);
+        updateDependencies();
+
         mMapView.onCreate(savedInstanceState);
 
-        mPresenter = new MapPresenter(this);
-        mPresenter.prepareGoogleMap();
+        mPresenter = new MapPresenter();
+        mPresenter.attachView(this);
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -85,4 +91,12 @@ public class MapActivity extends ToolbarActivity implements MapContract.View {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         mPresenter.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
+
+    private void updateDependencies() {
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_map);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mMapView = (MapView) findViewById(R.id.google_map);
+    }
+
 }

@@ -93,8 +93,22 @@ public class CompaniesProvider {
                 });
     }
 
-    public void fetchPopular(ModelCallback<List<CompanyModel>> completion) {}
+    public void fetchPopular(int cityId, final ModelCallback<List<CompanyModel>> completion) {
+        mCompanyService
+                .fetchPopular(cityId)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ModelSubscriber<List<CompanyModel>>() {
+                    @Override
+                    public void onSuccess(List<CompanyModel> resultModel) {
+                        completion.onSuccess(resultModel);
+                    }
 
-    public void fetchFavorite(ModelCallback<List<CompanyModel>> completion) {}
+                    @Override
+                    public void onFailure(String message) {
+                        completion.onFailure(message);
+                    }
+                });
+    }
 
 }

@@ -3,8 +3,11 @@ package net.ginteam.carmen.manager;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+
 import net.ginteam.carmen.CarmenApplication;
 import net.ginteam.carmen.common.Constants;
+import net.ginteam.carmen.model.city.CityModel;
 
 /**
  * Created by Eugene on 12/28/16.
@@ -47,8 +50,9 @@ public class PreferencesManager {
                 .apply();
     }
 
-    public String getCity() {
-        return mPreferences.getString(Constants.PREFERENCES.CITY, "");
+    public CityModel getCity() {
+        String cityJson = mPreferences.getString(Constants.PREFERENCES.CITY, "");
+        return new Gson().fromJson(cityJson, CityModel.class);
     }
 
 }
