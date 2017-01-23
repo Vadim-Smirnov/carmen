@@ -1,6 +1,7 @@
 package net.ginteam.carmen.view.adapter.company;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -105,6 +106,8 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
         companyViewHolder.getTextViewAddress().setText(currentCompany.getAddress());
         companyViewHolder.getRatingViewRating().setRating(currentCompany.getRating());
         companyViewHolder.getTextViewDistance().setText("300 м");
+        companyViewHolder.getImageButtonAddToFavorite().setImageDrawable(ContextCompat.getDrawable(mContext,
+                currentCompany.isFavorite() ? R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable));
         companyViewHolder.getTextViewPrice().setText(
                 String.format(Locale.getDefault(),
                         mContext.getString(R.string.company_price),
@@ -150,6 +153,10 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
             default:
                 return R.layout.list_item_company_vertical;
         }
+    }
+
+    public void removeItem(CompanyModel companyModel) {
+        mCompanies.remove(companyModel);
     }
 
 }

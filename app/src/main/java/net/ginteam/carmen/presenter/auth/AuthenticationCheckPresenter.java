@@ -59,7 +59,7 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
     @Override
     public void attachView(AuthenticationCheckContract.View view) {
         mView = view;
-        mApiGoogleManager = ApiGoogleManager.getInstance(mView.getActivity());
+        mApiGoogleManager = new ApiGoogleManager(mView.getActivity());
     }
 
     @Override

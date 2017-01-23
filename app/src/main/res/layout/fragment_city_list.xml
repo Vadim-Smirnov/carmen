@@ -26,7 +26,7 @@
             android:clickable="true"
             android:focusableInTouchMode="true"/>
 
-        <net.ginteam.carmen.view.custom.CustomEditText
+        <net.ginteam.carmen.view.custom.FilterEditText
             android:id="@+id/custom_edit_text_search_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -175,13 +175,16 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
             if (!company.isFavorite()) {
                 company.setFavorite(true);
-                mRecyclerListAdapter.notifyDataSetChanged();
                 mPresenter.addToFavorites(company);
+                mRecyclerListAdapter.notifyDataSetChanged();
                 return;
             }
             company.setFavorite(false);
-            mRecyclerListAdapter.notifyDataSetChanged();
             mPresenter.removeFromFavorites(company);
+            if (mFetchType == FETCH_COMPANY_TYPE.FAVORITE) {
+                mRecyclerListAdapter.removeItem(company);
+                mRecyclerListAdapter.notifyDataSetChanged();
+            }
             return;
         }
         Toast.makeText(getContext(), "Авторизуйтесь", Toast.LENGTH_SHORT).show();

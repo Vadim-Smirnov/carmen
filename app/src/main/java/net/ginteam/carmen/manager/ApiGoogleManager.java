@@ -31,31 +31,23 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
 
     private static final int REQUEST_LOCATION = 199;
 
-    private static ApiGoogleManager sInstance;
-
     private AppCompatActivity mActivity;
 
     private OnReceiveLocationListener mLocationListener;
 
     private Location mLastLocation;
+
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
     private PendingResult<LocationSettingsResult> mLocationSettingsResult;
 
-    private ApiGoogleManager(AppCompatActivity activity) {
+    public ApiGoogleManager(AppCompatActivity activity) {
         mActivity = activity;
 
         mGoogleApiClient = new GoogleApiClient.Builder(activity)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
                 .build();
-    }
-
-    public static ApiGoogleManager getInstance(AppCompatActivity activity) {
-        if (sInstance == null) {
-            sInstance = new ApiGoogleManager(activity);
-        }
-        return sInstance;
     }
 
     @Override
@@ -82,7 +74,8 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         try {
                             status.startResolutionForResult(mActivity, REQUEST_LOCATION);
-                        } catch (IntentSender.SendIntentException ignored) {}
+                        } catch (IntentSender.SendIntentException ignored) {
+                        }
                         break;
                 }
             }
@@ -128,10 +121,6 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
 
     public void getLastLocation(OnReceiveLocationListener listener) {
         mLocationListener = listener;
-        if (mLastLocation != null) {
-            mLocationListener.onLocationReceived(mLastLocation);
-            return;
-        }
         mGoogleApiClient.connect();
     }
 
@@ -143,7 +132,7 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                 .addLocationRequest(mLocationRequest);
-        builder.setAlwaysShow(false);
+        builder.setAlwaysShow(true);
 
         mLocationSettingsResult = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
     }

@@ -14,17 +14,19 @@ public interface MapContract {
 
     interface View extends RequestLocationContract.View {
 
-        void showGoogleMap(Location userLocation);
+        void showGoogleMap(LatLng userLocation);
 
         MapView getMapView();
 
         AppCompatActivity getActivity();
 
+        void animateToLocation(LatLng location);
+
     }
 
     interface Presenter extends RequestLocationContract.Presenter<View> {
 
-        void animateToLocation(LatLng location);
+        void getLastUserLocation();
 
     }
 
