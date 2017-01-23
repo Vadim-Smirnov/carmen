@@ -50,12 +50,10 @@ public class MapPresenter implements MapContract.Presenter {
 
     @Override
     public void getLastUserLocation() {
-        Log.e("PIZDA", "get" + " ");
         mApiGoogleManager
                 .getLastLocation(new ApiGoogleManager.OnReceiveLocationListener() {
                     @Override
                     public void onLocationReceived(Location location) {
-                        Log.e("PIZDA", "good" + " ");
                         mLastUserLocation = location;
                         mView.showGoogleMap(new LatLng(mLastUserLocation.getLatitude(),
                                 mLastUserLocation.getLongitude()));
@@ -63,8 +61,6 @@ public class MapPresenter implements MapContract.Presenter {
 
                     @Override
                     public void onLocationReceiveFailure() {
-                        Log.e("PIZDA", "ERROR" + " ");
-
                         Point cityPoint = PreferencesManager.getInstance().getCity().getPoint();
                         mView.showGoogleMap(new LatLng(cityPoint.getLatitude(), cityPoint.getLongitude()));
                     }
