@@ -220,7 +220,7 @@ public class FilterEditText extends LinearLayout {
     }
 
     private void updateDependenciesWithFilter(FilterModel filter) {
-        mFilterType = filter.getType();
+        mFilterType = filter.getFilterField();
         mFilterQuery = "";
         setHint(filter.getName());
 

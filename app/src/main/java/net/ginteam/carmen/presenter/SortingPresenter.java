@@ -15,10 +15,8 @@ public class SortingPresenter implements SortingContract.Presenter {
 
     private SortingContract.View mView;
 
-    public SortingPresenter(SortingContract.View view) {
-        attachView(view);
+    public SortingPresenter() {
     }
-
 
     @Override
     public void attachView(SortingContract.View view) {

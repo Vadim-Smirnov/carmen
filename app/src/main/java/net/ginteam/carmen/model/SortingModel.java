@@ -11,8 +11,11 @@ public class SortingModel {
     @SerializedName("name")
     private String mName;
 
-    @SerializedName("type")
-    private String mType;
+    @SerializedName("sort_field")
+    private String mSortedField;
+
+    @SerializedName("sort_type")
+    private String mSortedType;
 
     public String getName() {
         return mName;
@@ -22,11 +25,20 @@ public class SortingModel {
         mName = name;
     }
 
-    public String getType() {
-        return mType;
+    public String getSortedField() {
+        return mSortedField;
     }
 
-    public void setType(String type) {
-        mType = type;
+    public void setSortedField(String sortedField) {
+        mSortedField = sortedField;
     }
+
+    public String getSortedType() {
+        return mSortedType;
+    }
+
+    public void setSortedType(String sortedType) {
+        mSortedType = sortedType;
+    }
+
 }

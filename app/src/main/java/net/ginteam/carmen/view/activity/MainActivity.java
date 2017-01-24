@@ -20,7 +20,8 @@ import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 public class MainActivity extends NavigationViewActivity implements MainFragment.OnMainFragmentShowedListener,
         CategoryListFragment.OnCategorySelectedListener, CityListFragment.OnCitySelectedListener,
-        CompanyListFragment.OnCompanySelectedListener, CompanyListFragment.OnSelectedItemsListener {
+        CompanyListFragment.OnCompanySelectedListener, CompanyListFragment.OnSelectedItemsListener,
+        SortingFragment.OnSortTypeSelectedListener {
 
     private CategoryModel mSelectedCategory;
 
@@ -74,6 +75,13 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
         SortingFragment
                 .newInstance(mSelectedCategory.getId())
                 .show(getSupportFragmentManager(), "dialog");
+    }
+
+    @Override
+    public void onSortSelected(String sortField, String sortType) {
+        if (mCurrentFragment.getClass().equals(CompanyListFragment.class)) {
+            ((CompanyListFragment) mCurrentFragment).setSortQuery(sortField, sortType);
+        }
     }
 
     @Override

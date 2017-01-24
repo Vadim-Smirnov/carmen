@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompaniesPresenter;
@@ -29,6 +30,7 @@ import net.ginteam.carmen.view.adapter.company.PaginationScrollListener;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Eugene on 12/27/16.
@@ -62,6 +64,8 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     private int mCategoryId;
     private String mSearchFilter;
+    private String mSortField;
+    private String mSortType;
     private boolean mIsLoading;
     private int mCurrentPaginationPage;
 
@@ -157,7 +161,13 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         mSearchFilter = filter;
         mCurrentPaginationPage = 1;
         fetchCompanies();
+    }
 
+    public void setSortQuery(String sortField, String sortType) {
+        mSortField = sortField;
+        mSortType = sortType;
+        mCurrentPaginationPage = 1;
+        fetchCompanies();
     }
 
     @Override
@@ -225,7 +235,11 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
         switch (mFetchType) {
             case POPULAR:
-                title = getString(R.string.popular_title);
+                title = String
+                        .format(
+                                Locale.getDefault(),
+                                getString(R.string.popular_title),
+                                PreferencesManager.getInstance().getCity().getName());
                 break;
             case RECENTLY_WATCHED:
                 title = getString(R.string.recently_watched_title);
@@ -297,7 +311,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
                 mPresenter.fetchFavoriteCompanies();
                 break;
             default:
-                mPresenter.fetchCompaniesForCategory(mCategoryId, mSearchFilter, mCurrentPaginationPage);
+                mPresenter.fetchCompaniesForCategory(mCategoryId, mSearchFilter, mSortField, mSortType, mCurrentPaginationPage);
         }
     }
 
