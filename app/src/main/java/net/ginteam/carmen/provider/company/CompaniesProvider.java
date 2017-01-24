@@ -36,9 +36,10 @@ public class CompaniesProvider {
         return sInstance;
     }
 
-    public void fetchForCategory(final int categoryId, String filter, int page, final ModelCallbackWithMeta<List<CompanyModel>> completion) {
+    public void fetchForCategory(final int categoryId, String filter, String sortField, String sortType,
+                                 int page, final ModelCallbackWithMeta<List<CompanyModel>> completion) {
         mCompanyService
-                .fetchCompanies(categoryId, filter, page)
+                .fetchCompanies(categoryId, filter, sortField, sortType, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriberWithMeta<List<CompanyModel>>() {

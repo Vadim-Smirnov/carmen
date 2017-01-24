@@ -49,7 +49,7 @@
     <!-- Company -->
     <string name="company_price">%d грн</string>
     <string name="recently_watched_title">Недавно просмотренные</string>
-    <string name="popular_title">Популярные</string>
+    <string name="popular_title">Популярные в городе %s</string>
 
     <!-- Navigation view -->
     <string name="navigation_drawer_open">Open</string>
@@ -75,12 +75,12 @@
     <string name="filters_example">[
     {
         "name" : "Поиск",
-        "type" : "name",
+        "filter_field" : "name",
         "dialog" : null
     },
     {
         "name" : "Рейтинг",
-        "type" : "rating",
+        "filter_field" : "rating",
         "dialog" : [
             {
                 "key" : "3",
@@ -98,7 +98,7 @@
     },
     {
         "name" : "Цена",
-        "type" : "price_rel",
+        "filter_field" : "price_rel",
         "dialog" : [
             {
                 "key" : "50",
@@ -116,23 +116,25 @@
     }
 ] </string>
 
-    <string name="sorting_example">[
-    {
-        "name" : "Самые",
-        "type" : "new"
-    },
-    {
-        "name" : "Самыедешевые",
-        "type" : "price_ask"
-    },
-    {
-        "name" : "Самыедорогие",
-        "type" : "price_desc"
-    }
-] </string>
-
     <!-- Filter Activity Menu -->
     <string name="clear_filters_string">Очистить все</string>
 
+    <!-- Sort Fragment -->
+    <string name="sort_field_tag_id">field</string>
+    <string name="sort_type_tag_id">type</string>
+    <string name="sort_fragment_title">Сортировка</string>
+    <string name="sort_confirm_button_text">Применить</string>
+    <string name="sorting_example">[
+    {
+        "name" : "От&#160;дешевых&#160;к&#160;дорогим",
+        "sort_field" : "price_rel",
+        "sort_type" : "asc"
+    },
+    {
+        "name" : "От&#160;дорогих&#160;к&#160;дешевым",
+        "sort_field" : "price_rel",
+        "sort_type" : "desc"
+    }
+] </string>
 
 </resources>

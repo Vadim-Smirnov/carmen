@@ -23,6 +23,8 @@ public interface CompanyService {
     Observable <ResponseModel <List <CompanyModel>>> fetchCompanies(
             @Path(ApiLinks.CATALOG.ID) int categoryId,
             @Query(ApiLinks.CATALOG.SEARCH) String filter,
+            @Query(ApiLinks.CATALOG.SORT_FIELD) String sortField,
+            @Query(ApiLinks.CATALOG.SORT_TYPE) String sortType,
             @Query(ApiLinks.CATALOG.PAGE) int page
     );
 

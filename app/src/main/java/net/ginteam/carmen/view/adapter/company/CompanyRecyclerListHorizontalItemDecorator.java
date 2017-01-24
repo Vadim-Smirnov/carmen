@@ -27,5 +27,6 @@ public class CompanyRecyclerListHorizontalItemDecorator extends RecyclerView.Ite
             outRect.right = mItemSpacing;
         }
         outRect.left = mItemSpacing;
+        outRect.bottom = mItemSpacing;
     }
 }

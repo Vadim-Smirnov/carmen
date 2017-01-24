@@ -92,13 +92,16 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
     }
 
     @Override
-    public void fetchCompaniesForCategory(int categoryId, String filter, int page) {
-        mView.showLoading(true);
+    public void fetchCompaniesForCategory(int categoryId, String filter, String sortField,
+                                          String sortType, int page) {
         mIsFirstLoading = (page == 1);
+        if (mIsFirstLoading) {
+            mView.showLoading(true);
+        }
 
         CompaniesProvider
                 .getInstance()
-                .fetchForCategory(categoryId, filter, page, new ModelCallbackWithMeta<List<CompanyModel>>() {
+                .fetchForCategory(categoryId, filter, sortField, sortType, page, new ModelCallbackWithMeta<List<CompanyModel>>() {
                     @Override
                     public void onSuccess(List<CompanyModel> resultModel, Pagination pagination) {
                         mView.showLoading(false);

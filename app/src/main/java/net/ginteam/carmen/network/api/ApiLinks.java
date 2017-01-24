@@ -14,6 +14,10 @@ public class ApiLinks {
 
         public static final String SEARCH = "search";
 
+        public static final String SORT_FIELD = "orderBy";
+
+        public static final String SORT_TYPE = "sortedBy";
+
         public static final String PAGE = "page";
 
         public static final String LIMIT = "limit";

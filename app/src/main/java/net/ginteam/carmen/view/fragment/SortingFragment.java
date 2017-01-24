@@ -1,11 +1,14 @@
 package net.ginteam.carmen.view.fragment;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -17,9 +20,11 @@ import net.ginteam.carmen.presenter.SortingPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SortingFragment extends BaseFetchingFragment implements SortingContract.View {
+public class SortingFragment extends BaseFetchingFragment implements SortingContract.View, View.OnClickListener {
 
     private static final String SORTING_ARG = "sorting_arg";
+    private static final int SORT_FIELD = R.string.sort_field_tag_id;
+    private static final int SORT_TYPE = R.string.sort_type_tag_id;
 
     private SortingContract.Presenter mPresenter;
 
@@ -27,8 +32,7 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
     private RadioGroup mRadioGroup;
 
     private int mCategoryId;
-
-    private Button mButtonCancelDialog;
+    private OnSortTypeSelectedListener mSortTypeSelectedListener;
 
     public SortingFragment() {}
 
@@ -41,8 +45,41 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mCategoryId = getArguments().getInt(SORTING_ARG);
+        setStyle(STYLE_NO_TITLE, R.style.DialogStyle);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            mSortTypeSelectedListener = (OnSortTypeSelectedListener) context;
+        } catch (ClassCastException exception) {
+            Log.e("SortingFragment", "Parent context does not confirm to OnSortTypeSelectedListener!");
+        }
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        mRootView = inflateBaseFragment(R.layout.fragment_sorting, inflater, container, savedInstanceState);
+
+        updateDependencies();
+
+        mPresenter = new SortingPresenter();
+        mPresenter.attachView(this);
+        mPresenter.fetchSortingForCategory(mCategoryId);
+
+        return mRootView;
+    }
+
+    @Override
     public void onStart() {
         super.onStart();
+
         if (getDialog() == null) {
             return;
         }
@@ -54,54 +91,70 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mCategoryId = getArguments().getInt(SORTING_ARG);
-        setStyle(STYLE_NO_TITLE, R.style.DialogStyle);
-    }
+    public void onClick(View view) {
+        if (view.getId() == R.id.button_confirm_sort) {
+            // Find checked radio button
+            int checkedItemId = mRadioGroup.getCheckedRadioButtonId();
+            CompoundButton checkedView = (CompoundButton) mRootView.findViewById(checkedItemId);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mRootView = inflateBaseFragment(R.layout.fragment_sorting, inflater, container, savedInstanceState);
+            // Get sort params from checked view
+            String sortedField = checkedView.getTag(SORT_FIELD).toString();
+            String sortedType = checkedView.getTag(SORT_TYPE).toString();
 
-        initialize();
-        mPresenter = new SortingPresenter(this);
-        mPresenter.attachView(this);
-        mPresenter.fetchSortingForCategory(mCategoryId);
-
-        return mRootView;
+            if (mSortTypeSelectedListener != null) {
+                mSortTypeSelectedListener.onSortSelected(sortedField, sortedType);
+            }
+        }
+        getDialog().dismiss();
     }
 
     @Override
     public void showSorting(List<SortingModel> sortingModels) {
         mRadioButtonList = new ArrayList<>();
+
+        int sortItemMargin = (int) getResources().getDimension(R.dimen.sort_item_margin);
+        int sortTitlePadding = (int) getResources().getDimension(R.dimen.sort_title_left_margin);
+
+        RadioGroup.LayoutParams layoutParams =
+                new RadioGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                );
+        layoutParams.topMargin = sortItemMargin;
+
         for (SortingModel currentFilter : sortingModels) {
             RadioButton radioButton = new RadioButton(getContext());
             radioButton.setText(currentFilter.getName());
-            radioButton.setButtonDrawable(ContextCompat.getDrawable(getActivity(),
-                    R.drawable.radiobutton_selector));
+            radioButton.setButtonDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.radiobutton_selector));
+            radioButton.setLayoutParams(layoutParams);
+            radioButton.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.open_sans_font)));
+            radioButton.setPadding(sortTitlePadding, 0, 0, 0);
+
+            radioButton.setTag(SORT_FIELD, currentFilter.getSortedField());
+            radioButton.setTag(SORT_TYPE, currentFilter.getSortedType());
+
             mRadioButtonList.add(radioButton);
         }
         updateSortingDependencies();
     }
 
     private void updateSortingDependencies() {
-        for (RadioButton currentFilter : mRadioButtonList) {
-            mRadioGroup.addView(currentFilter);
+        for (RadioButton currentView : mRadioButtonList) {
+            mRadioGroup.addView(currentView);
         }
-        mRadioButtonList.get(0).setChecked(true);
+//        mRadioButtonList.get(0).setChecked(true);
     }
 
-    private void initialize() {
+    private void updateDependencies() {
         mRadioGroup = (RadioGroup) mRootView.findViewById(R.id.radio_group_sorting);
-        mButtonCancelDialog = (Button) mRootView.findViewById(R.id.button_sorting_dialog_cancel);
-        mButtonCancelDialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getDialog().cancel();
-            }
-        });
+        mRootView.findViewById(R.id.button_sorting_dialog_cancel).setOnClickListener(this);
+        mRootView.findViewById(R.id.button_confirm_sort).setOnClickListener(this);
+    }
+
+    public interface OnSortTypeSelectedListener {
+
+        void onSortSelected(String sortField, String sortType);
+
     }
 
 }

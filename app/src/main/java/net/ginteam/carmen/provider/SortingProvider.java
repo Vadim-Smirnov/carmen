@@ -1,12 +1,13 @@
 package net.ginteam.carmen.provider;
 
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 
 import net.ginteam.carmen.CarmenApplication;
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.SortingModel;
 
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -43,7 +44,9 @@ public class SortingProvider {
 
     private void fetchFromResources(ModelCallback<List<SortingModel>> completion) {
         String json = CarmenApplication.getContext().getString(R.string.sorting_example);
-        SortingModel[] sortingModels = new Gson().fromJson(json, SortingModel[].class);
+        JsonReader jr = new JsonReader(new StringReader(json));
+        jr.setLenient(true);
+        SortingModel[] sortingModels = new Gson().fromJson(jr, SortingModel[].class);
         completion.onSuccess(Arrays.asList(sortingModels));
     }
 }

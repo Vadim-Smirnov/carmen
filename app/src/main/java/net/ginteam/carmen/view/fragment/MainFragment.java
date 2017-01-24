@@ -3,6 +3,7 @@ package net.ginteam.carmen.view.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,11 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.provider.auth.AuthProvider;
-import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
-import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
+import net.ginteam.carmen.contract.MainContract;
+import net.ginteam.carmen.presenter.MainPresenter;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements MainContract.View {
+
+    private MainContract.Presenter mPresenter;
 
     private View mRootView;
 
@@ -42,32 +44,25 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_main, container, false);
 
-        prepareFragment(R.id.categories_fragment_container, CategoryListFragment.newInstance(false));
-        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
-            prepareFragment(R.id.recently_companies_fragment_container,
-                    CompanyListFragment.newInstance(
-                            CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
-                            CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED,
-                            0
-                    )
-            );
-        }
-        prepareFragment(R.id.popular_companies_fragment_container,
-                CompanyListFragment.newInstance(
-                        CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
-                        CompanyListFragment.FETCH_COMPANY_TYPE.POPULAR,
-                        0
-                )
-        );
-
-        if (mMainFragmentShowedListener != null) {
-            mMainFragmentShowedListener.onMainFragmentShowed();
-        }
+        mPresenter = new MainPresenter();
+        mPresenter.attachView(this);
 
         return mRootView;
     }
 
-    private void prepareFragment(int containerId, Fragment fragment) {
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        mPresenter.onStart();
+
+        if (mMainFragmentShowedListener != null) {
+            mMainFragmentShowedListener.onMainFragmentShowed();
+        }
+    }
+
+    @Override
+    public void showFragment(@LayoutRes int containerId, BaseFetchingFragment fragment) {
         getChildFragmentManager()
                 .beginTransaction()
                 .replace(containerId, fragment)

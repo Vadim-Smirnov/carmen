@@ -189,4 +189,8 @@
     <dimen name="category_dialog_title_text_size">21sp</dimen>
     <dimen name="category_dialog_title_height">57dp</dimen>
 
+    <!-- Sort Dialog Fragment -->
+    <dimen name="sort_item_margin">20dp</dimen>
+    <dimen name="sort_title_left_margin">12.5dp</dimen>
+
 </resources>

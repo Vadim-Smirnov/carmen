@@ -13,8 +13,8 @@ public class FilterModel {
     @SerializedName("name")
     private String mName;
 
-    @SerializedName("type")
-    private String mType;
+    @SerializedName("filter_field")
+    private String mFilterField;
 
     @SerializedName("dialog")
     private List<FilterOptionModel> mFilterOptions;
@@ -23,8 +23,8 @@ public class FilterModel {
         return mName;
     }
 
-    public String getType() {
-        return mType;
+    public String getFilterField() {
+        return mFilterField;
     }
 
     public List<FilterOptionModel> getFilterOptions() {
