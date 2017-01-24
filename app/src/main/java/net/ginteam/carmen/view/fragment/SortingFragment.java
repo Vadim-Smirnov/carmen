@@ -8,12 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.SortingContract;
+import net.ginteam.carmen.manager.SortViewStateManager;
 import net.ginteam.carmen.model.SortingModel;
 import net.ginteam.carmen.presenter.SortingPresenter;
 
@@ -32,6 +32,8 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
     private RadioGroup mRadioGroup;
 
     private int mCategoryId;
+    private String mSortedField;
+    private String mSortedType;
     private OnSortTypeSelectedListener mSortTypeSelectedListener;
 
     public SortingFragment() {}
@@ -95,15 +97,22 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
         if (view.getId() == R.id.button_confirm_sort) {
             // Find checked radio button
             int checkedItemId = mRadioGroup.getCheckedRadioButtonId();
-            CompoundButton checkedView = (CompoundButton) mRootView.findViewById(checkedItemId);
+            RadioButton checkedView = (RadioButton) mRootView.findViewById(checkedItemId);
+
+            if (checkedView == null) {
+                return;
+            }
 
             // Get sort params from checked view
-            String sortedField = checkedView.getTag(SORT_FIELD).toString();
-            String sortedType = checkedView.getTag(SORT_TYPE).toString();
+            int checkedItemIndex = mRadioGroup.indexOfChild(checkedView);
+            mSortedField = checkedView.getTag(SORT_FIELD).toString();
+            mSortedType = checkedView.getTag(SORT_TYPE).toString();
 
             if (mSortTypeSelectedListener != null) {
-                mSortTypeSelectedListener.onSortSelected(sortedField, sortedType);
+                mSortTypeSelectedListener.onSortSelected(mSortedField, mSortedType);
             }
+
+            mPresenter.saveViewState(mCategoryId, checkedItemIndex, mSortedField, mSortedType);
         }
         getDialog().dismiss();
     }
@@ -142,7 +151,13 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
         for (RadioButton currentView : mRadioButtonList) {
             mRadioGroup.addView(currentView);
         }
-//        mRadioButtonList.get(0).setChecked(true);
+
+        SortViewStateManager.SortViewState sortViewState = mPresenter.restoreViewState(mCategoryId);
+        if (sortViewState != null) {
+            mSortedField = sortViewState.getSortField();
+            mSortedType = sortViewState.getSortType();
+            mRadioButtonList.get(sortViewState.getCheckedViewIndex()).setChecked(true);
+        }
     }
 
     private void updateDependencies() {

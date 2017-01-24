@@ -1,5 +1,6 @@
 package net.ginteam.carmen.contract;
 
+import net.ginteam.carmen.manager.SortViewStateManager;
 import net.ginteam.carmen.model.SortingModel;
 
 import java.util.List;
@@ -19,6 +20,10 @@ public interface SortingContract {
     interface Presenter extends FetchContract.Presenter <View> {
 
         void fetchSortingForCategory(int categoryId);
+
+        void saveViewState(int categoryId, int checkedViewId, String sortField, String sortType);
+
+        SortViewStateManager.SortViewState restoreViewState(int categoryId);
 
     }
 

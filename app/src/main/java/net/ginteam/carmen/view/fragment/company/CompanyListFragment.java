@@ -201,6 +201,14 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     }
 
     @Override
+    public void showLoading(boolean isLoading) {
+        super.showLoading(isLoading);
+        if (mRecyclerViewCompanies != null) {
+            mRecyclerViewCompanies.setVisibility(isLoading ? View.GONE : View.VISIBLE);
+        }
+    }
+
+    @Override
     public void showCompanies(List<CompanyModel> companies, final Pagination paginationDetails) {
         mRecyclerListAdapter = new CompanyRecyclerListAdapter(getContext(), companies, mListType);
         mRecyclerListAdapter.setOnCompanyItemClickListener(this);

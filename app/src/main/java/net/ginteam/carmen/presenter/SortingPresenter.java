@@ -1,6 +1,9 @@
 package net.ginteam.carmen.presenter;
 
+import android.support.annotation.IdRes;
+
 import net.ginteam.carmen.contract.SortingContract;
+import net.ginteam.carmen.manager.SortViewStateManager;
 import net.ginteam.carmen.model.SortingModel;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.SortingProvider;
@@ -19,13 +22,17 @@ public class SortingPresenter implements SortingContract.Presenter {
     }
 
     @Override
-    public void attachView(SortingContract.View view) {
-        mView = view;
+    public void saveViewState(int categoryId, @IdRes int checkedViewId, String sortField, String sortType) {
+        SortViewStateManager
+                .getInstance()
+                .saveViewState(new SortViewStateManager.SortViewState(categoryId, checkedViewId, sortField, sortType));
     }
 
     @Override
-    public void detachView() {
-        mView = null;
+    public SortViewStateManager.SortViewState restoreViewState(int categoryId) {
+        return SortViewStateManager
+                .getInstance()
+                .restoreViewState(categoryId);
     }
 
     @Override
@@ -48,4 +55,15 @@ public class SortingPresenter implements SortingContract.Presenter {
                     }
                 });
     }
+
+    @Override
+    public void attachView(SortingContract.View view) {
+        mView = view;
+    }
+
+    @Override
+    public void detachView() {
+        mView = null;
+    }
+
 }
