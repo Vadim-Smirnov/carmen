@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
@@ -85,16 +86,16 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     }
 
     @Override
-    public void onCategorySelected(CategoryModel category) {
+    public void onCategorySelected(CategoryModel category, boolean isDialog) {
         Toast.makeText(this, category.getName(), Toast.LENGTH_SHORT).show();
         prepareFragment(CompanyListFragment.newInstance(
                 CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                 CompanyListFragment.FETCH_COMPANY_TYPE.FOR_CATEGORY,
                 category.getId()),
-                true
+                !isDialog
         );
         setTitle(category.getName());
-        setSubtitle("Кривой Рог");
+        setSubtitle(PreferencesManager.getInstance().getCity().getName());
 
         mSelectedCategory = category;
     }

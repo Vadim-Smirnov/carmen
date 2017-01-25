@@ -77,6 +77,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
                 R.layout.fragment_category_list, inflater, container, savedInstanceState);
 
         updateDependencies();
+
         if (mIsDialog) {
             initializeDialogElements();
         }
@@ -121,7 +122,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
         if (getDialog() != null) {
             getDialog().cancel();
         }
-        mCategorySelectedListener.onCategorySelected(category);
+        mCategorySelectedListener.onCategorySelected(category, mIsDialog);
     }
 
     private void updateDependencies() {
@@ -145,7 +146,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
 
     public interface OnCategorySelectedListener {
 
-        void onCategorySelected(CategoryModel category);
+        void onCategorySelected(CategoryModel category, boolean fromDialog);
 
     }
 

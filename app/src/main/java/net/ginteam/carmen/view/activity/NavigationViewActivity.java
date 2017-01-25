@@ -1,16 +1,13 @@
 package net.ginteam.carmen.view.activity;
 
-import android.content.SharedPreferences;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +37,9 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
+
         initializeNavigationView();
+
         if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
             updateNavigationHeader();
         }
@@ -54,25 +53,30 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
                 selectedFragment = MainFragment.newInstance();
                 setTitle(getResources().getString(R.string.main_item_text));
                 break;
+
             case R.id.category_item:
                 selectedFragment = CategoryListFragment.newInstance(false);
                 setTitle(getResources().getString(R.string.category_item_text));
                 break;
+
             case R.id.favorite_item:
                 selectedFragment = CompanyListFragment
                         .newInstance(CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                                 CompanyListFragment.FETCH_COMPANY_TYPE.FAVORITE, 0);
                 setTitle(getResources().getString(R.string.favorite_item_text));
                 break;
+
             case R.id.recent_item:
                 selectedFragment = CompanyListFragment
                         .newInstance(CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                                 CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED, 0);
                 setTitle(getResources().getString(R.string.recent_item_text));
                 break;
+
             case R.id.sign_in_item:
                 ActivityUtils.showActivity(SignInActivity.class, null, true);
                 return true;
+
             case R.id.logout_item:
                 PreferencesManager.getInstance().setUserToken(null);
                 AuthProvider.getInstance().setCurrentCachedUser(null);
@@ -81,9 +85,12 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
         }
         setSubtitle("");
         mDrawerLayout.closeDrawer(GravityCompat.START);
+
         if (selectedFragment != null) {
-            prepareFragment(selectedFragment, false);
+            clearFragmentBackStack();
+            prepareFragment(selectedFragment, true);
         }
+
         return true;
     }
 
@@ -91,8 +98,7 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
+        } else {
             super.onBackPressed();
         }
     }
@@ -108,10 +114,18 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
                     .commit();
             return;
         }
+
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, fragment)
                 .commit();
+    }
+
+    private void clearFragmentBackStack() {
+        int fragmentsCount = getSupportFragmentManager().getBackStackEntryCount();
+        for (int i = 0; i < fragmentsCount; i++) {
+            getSupportFragmentManager().popBackStackImmediate();
+        }
     }
 
     private void initializeNavigationView() {
@@ -156,4 +170,5 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
             navigationViewMenu.findItem(R.id.sign_in_item).setVisible(true);
         }
     }
+
 }

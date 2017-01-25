@@ -53,7 +53,6 @@ public class MainFragment extends Fragment implements MainContract.View {
     @Override
     public void onStart() {
         super.onStart();
-
         mPresenter.onStart();
 
         if (mMainFragmentShowedListener != null) {
