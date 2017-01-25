@@ -4,9 +4,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.SerializedName;
 import com.google.maps.android.clustering.ClusterItem;
 
+import net.ginteam.carmen.model.Point;
+import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.ResponseModel;
 import net.ginteam.carmen.model.category.CategoryModel;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 
@@ -14,7 +17,7 @@ import java.util.Random;
  * Created by Eugene on 12/27/16.
  */
 
-public class CompanyModel implements ClusterItem {
+public class CompanyModel implements ClusterItem, Serializable {
 
     @SerializedName("id")
     private int mId;
@@ -51,6 +54,12 @@ public class CompanyModel implements ClusterItem {
 
     @SerializedName("categories")
     private ResponseModel<List<CategoryModel>> mCategory;
+
+    @SerializedName("point")
+    private Point mPoint;
+
+    @SerializedName("ratings")
+    private ResponseModel<List<Rating>> mRatings;
 
     public CompanyModel() {
         mIsFavorite = true;
@@ -98,29 +107,23 @@ public class CompanyModel implements ClusterItem {
 
     @Override
     public LatLng getPosition() {
-        Random generator = new Random();
-        double lat, lng;
-        lat = generator.nextDouble() / 3;
-        lng = generator.nextDouble() / 3;
-        if (generator.nextBoolean()) {
-            lat = -lat;
-        }
-        if (generator.nextBoolean()) {
-            lng = -lng;
-        }
-        return new LatLng(lat, lng);
+        return new LatLng(mPoint.getLatitude(), mPoint.getLongitude());
     }
 
-    public ResponseModel<List<Comfort>> getComforts() {
-        return mComforts;
+    public List<Comfort> getComforts() {
+        return mComforts.getData();
     }
 
-    public ResponseModel<Detail> getDetail() {
-        return mDetail;
+    public Detail getDetail() {
+        return mDetail.getData();
     }
 
-    public ResponseModel<List<CategoryModel>> getCategory() {
-        return mCategory;
+    public List<CategoryModel> getCategory() {
+        return mCategory.getData();
+    }
+
+    public List<Rating> getRatings() {
+        return mRatings.getData();
     }
 
 }

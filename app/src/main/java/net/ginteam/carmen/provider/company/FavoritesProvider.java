@@ -47,7 +47,6 @@ public class FavoritesProvider {
     }
 
     public void addToFavorites(final CompanyModel selectedCompany, final ModelCallback<String> completion) {
-        Log.e("FAVORITE", "add" + selectedCompany.getId());
         mCompanyService
                 .addToFavorites(selectedCompany.getId())
                 .subscribeOn(Schedulers.newThread())
@@ -55,7 +54,6 @@ public class FavoritesProvider {
                 .subscribe(new ModelSubscriber<String>() {
                     @Override
                     public void onSuccess(String resultModel) {
-                        Log.e("FAVORITE", "add good");
                         mCachedFavorites.add(selectedCompany);
                         completion.onSuccess(resultModel);
                     }

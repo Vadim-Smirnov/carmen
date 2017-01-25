@@ -20,7 +20,7 @@ public interface CompaniesContract {
 
         void addToFavorites();
 
-        void removeFromFavorites();
+        void removeFromFavorites(CompanyModel companyModel);
 
     }
 
@@ -36,6 +36,8 @@ public interface CompaniesContract {
 
         void fetchCompaniesForCategory(int categoryId, String filter, String sortField,
                                        String sortType, int pageNumber);
+
+        void addToFavoriteClick(CompanyModel companyModel);
 
         void addToFavorites(CompanyModel company);
 

@@ -76,18 +76,18 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setOnCompanyItemClickListener(final CompanyModel forCompany, final OnCompanyItemClickListener listener) {
+    public void setOnCompanyItemClickListener(final CompanyModel forCompany, final int position, final OnCompanyItemClickListener listener) {
         mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.onCompanyItemClick(forCompany);
+                listener.onCompanyItemClick(forCompany, position);
             }
         });
     }
 
     public interface OnCompanyItemClickListener {
 
-        void onCompanyItemClick(CompanyModel company);
+        void onCompanyItemClick(CompanyModel company, int position);
 
     }
 

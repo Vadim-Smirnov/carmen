@@ -125,7 +125,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
             Log.e("CompanyListAdapter", "mCompanyItemClickListener does not set!");
             return;
         }
-        companyViewHolder.setOnCompanyItemClickListener(currentCompany, mCompanyItemClickListener);
+        companyViewHolder.setOnCompanyItemClickListener(currentCompany, position, mCompanyItemClickListener);
 
         if (mOnAddToFavoritesClickListener == null) {
             Log.e("CompanyListAdapter", "mOnAddToFavoritesClickListener does not set!");

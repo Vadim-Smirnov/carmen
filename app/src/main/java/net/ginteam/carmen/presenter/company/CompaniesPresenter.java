@@ -1,5 +1,9 @@
 package net.ginteam.carmen.presenter.company;
 
+import android.util.Log;
+import android.widget.Toast;
+
+import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
 import net.ginteam.carmen.manager.FiltersViewStateManager;
 import net.ginteam.carmen.manager.PreferencesManager;
@@ -9,6 +13,7 @@ import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.ModelCallbackWithMeta;
+import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.provider.company.CompaniesProvider;
 import net.ginteam.carmen.provider.company.FavoritesProvider;
 
@@ -123,6 +128,21 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
     }
 
     @Override
+    public void addToFavoriteClick(CompanyModel companyModel) {
+        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
+            if (!companyModel.isFavorite()) {
+                companyModel.setFavorite(true);
+                addToFavorites(companyModel);
+                return;
+            }
+            companyModel.setFavorite(false);
+            removeFromFavorites(companyModel);
+            return;
+        }
+        mView.showError(mView.getContext().getResources().getString(R.string.message_sign_in));
+    }
+
+    @Override
     public void addToFavorites(CompanyModel company) {
         FavoritesProvider
                 .getInstance()
@@ -130,28 +150,32 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
                     @Override
                     public void onSuccess(String resultModel) {
                         mView.addToFavorites();
+                        Log.d("COMPANIES_PRESENTER", "Add to favorite success");
                     }
 
                     @Override
                     public void onFailure(String message) {
                         mView.showError(message);
+                        Log.e("COMPANIES_PRESENTER", "Add to favorite error: " + message);
                     }
                 });
     }
 
     @Override
-    public void removeFromFavorites(CompanyModel company) {
+    public void removeFromFavorites(final CompanyModel company) {
         FavoritesProvider
                 .getInstance()
                 .removeFromFavorites(company, new ModelCallback<String>() {
                     @Override
                     public void onSuccess(String resultModel) {
-                        mView.removeFromFavorites();
+                        mView.removeFromFavorites(company);
+                        Log.d("COMPANIES_PRESENTER", "Remove from favorite success");
                     }
 
                     @Override
                     public void onFailure(String message) {
                         mView.showError(message);
+                        Log.e("COMPANIES_PRESENTER", "Remove from favorite error: " + message);
                     }
                 });
     }

@@ -137,6 +137,14 @@
     }
 ] </string>
 
+    <!-- Company detail -->
+    <plurals name="review_count_string">
+        <item quantity="one">%1$d отзыв</item>
+        <item quantity="few">%1$d отзыва</item>
+        <item quantity="many">%1$d отзывов</item>
+        <item quantity="other">%1$d отзывов</item>
+    </plurals>
+
     <!-- Map Activity -->
     <string name="search_button_string">Повторить поиск</string>
     <string name="filter_button_string">Фильтры</string>
