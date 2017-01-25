@@ -50,6 +50,8 @@ public class ApiLinks {
 
         public static final String DETAIL = "detail";
 
+        public static final String RATINGS = "ratings";
+
     }
 
     public class AUTH {

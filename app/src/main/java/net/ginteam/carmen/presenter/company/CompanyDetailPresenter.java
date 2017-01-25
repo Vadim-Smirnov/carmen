@@ -1,9 +1,21 @@
 package net.ginteam.carmen.presenter.company;
 
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+
+import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
+import net.ginteam.carmen.model.company.Comfort;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.provider.ModelCallback;
+import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.provider.company.CompaniesProvider;
+import net.ginteam.carmen.provider.company.FavoritesProvider;
+import net.ginteam.carmen.view.fragment.company.AdditionalServicesFragment;
+
+import java.util.List;
 
 /**
  * Created by vadik on 16.01.17.
@@ -18,16 +30,6 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
     }
 
     @Override
-    public void attachView(CompanyDetailContract.View view) {
-        mView = view;
-    }
-
-    @Override
-    public void detachView() {
-        mView = null;
-    }
-
-    @Override
     public void fetchCompanyDetail(int companyId) {
         mView.showLoading(true);
 
@@ -38,13 +40,94 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
                     public void onSuccess(CompanyModel resultModel) {
                         mView.showLoading(false);
                         mView.showCompanyDetail(resultModel);
+                        Log.d("DETAIL_PRESENTER", "Fetch detail success");
+                        List<Comfort> comforts = resultModel.getComforts();
+                        if (!comforts.isEmpty()) {
+                            mView.showFragment(R.id.additional_services_fragment_container,
+                                    AdditionalServicesFragment.newInstance(comforts));
+                        }
                     }
 
                     @Override
                     public void onFailure(String message) {
                         mView.showLoading(false);
                         mView.showError(message);
+                        Log.e("DETAIL_PRESENTER", "Fetch detail error: " + message);
                     }
                 });
+    }
+
+    @Override
+    public void onClick(View selectedView) {
+        switch (selectedView.getId()) {
+            case R.id.button_open_navigate:
+                mView.openNavigator();
+                break;
+            case R.id.button_show_on_map:
+                mView.showMap();
+                break;
+        }
+    }
+
+    @Override
+    public void addToFavoriteClick(CompanyModel companyModel, Menu menu) {
+        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
+            if (companyModel.isFavorite()) {
+                removeFromFavorite(companyModel);
+                companyModel.setFavorite(false);
+            } else {
+                addToFavorite(companyModel);
+                companyModel.setFavorite(true);
+            }
+            menu.getItem(0).setIcon(ContextCompat.getDrawable(mView.getContext(),
+                    companyModel.isFavorite() ? R.drawable.ic_company_favorite_enable :
+                            R.drawable.ic_company_favorite_disable));
+            return;
+        }
+        mView.showError(mView.getContext().getResources().getString(R.string.message_sign_in));
+    }
+
+    @Override
+    public void addToFavorite(CompanyModel companyModel) {
+        FavoritesProvider
+                .getInstance()
+                .addToFavorites(companyModel, new ModelCallback<String>() {
+                    @Override
+                    public void onSuccess(String resultModel) {
+                        Log.d("DETAIL_PRESENTER", "Add to favorite success");
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        Log.e("DETAIL_PRESENTER", "Add to favorite error: " + message);
+                    }
+                });
+    }
+
+    @Override
+    public void removeFromFavorite(CompanyModel companyModel) {
+        FavoritesProvider
+                .getInstance()
+                .removeFromFavorites(companyModel, new ModelCallback<String>() {
+                    @Override
+                    public void onSuccess(String resultModel) {
+                        Log.d("DETAIL_PRESENTER", "Remove from favorite success");
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        Log.e("DETAIL_PRESENTER", "Remove from favorite error: " + message);
+                    }
+                });
+    }
+
+    @Override
+    public void attachView(CompanyDetailContract.View view) {
+        mView = view;
+    }
+
+    @Override
+    public void detachView() {
+        mView = null;
     }
 }

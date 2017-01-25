@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
@@ -22,7 +21,6 @@ import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompaniesPresenter;
-import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerManagerFactory;
@@ -80,6 +78,8 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     private OnSelectedItemsListener mSelectedItemsListener;
     private OnCompanySelectedListener mCompanySelectedListener;
 
+    private int selectedCompanyPosition;
+
     public CompanyListFragment() {
     }
 
@@ -118,6 +118,12 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         fetchCompanies();
 
         return mRootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        fetchCompanies();
     }
 
     @Override
@@ -171,33 +177,19 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     }
 
     @Override
-    public void onCompanyItemClick(CompanyModel company) {
+    public void onCompanyItemClick(CompanyModel company, int position) {
         if (mCompanySelectedListener == null) {
             Log.e("CompanyListFragment", "onCompanySelected listener is null!");
             return;
         }
         mCompanySelectedListener.onCompanySelected(company);
+        selectedCompanyPosition = position;
         mPresenter.selectCompany(company);
     }
 
     @Override
     public void onAddToFavoritesClick(CompanyModel company) {
-        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
-            if (!company.isFavorite()) {
-                company.setFavorite(true);
-                mPresenter.addToFavorites(company);
-                mRecyclerListAdapter.notifyDataSetChanged();
-                return;
-            }
-            company.setFavorite(false);
-            mPresenter.removeFromFavorites(company);
-            if (mFetchType == FETCH_COMPANY_TYPE.FAVORITE) {
-                mRecyclerListAdapter.removeItem(company);
-                mRecyclerListAdapter.notifyDataSetChanged();
-            }
-            return;
-        }
-        Toast.makeText(getContext(), "Авторизуйтесь", Toast.LENGTH_SHORT).show();
+        mPresenter.addToFavoriteClick(company);
     }
 
     @Override
@@ -229,12 +221,15 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     @Override
     public void addToFavorites() {
-        Toast.makeText(getContext(), "add", Toast.LENGTH_SHORT).show();
+        mRecyclerListAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void removeFromFavorites() {
-        Toast.makeText(getContext(), "remove", Toast.LENGTH_SHORT).show();
+    public void removeFromFavorites(CompanyModel companyModel) {
+        if (mFetchType == FETCH_COMPANY_TYPE.FAVORITE) {
+            mRecyclerListAdapter.removeItem(companyModel);
+            mRecyclerListAdapter.notifyDataSetChanged();
+        }
     }
 
     private void updateDependencies() {
@@ -320,6 +315,10 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
                 break;
             default:
                 mPresenter.fetchCompaniesForCategory(mCategoryId, mSearchFilter, mSortField, mSortType, mCurrentPaginationPage);
+        }
+
+        if (selectedCompanyPosition != 0) {
+            mRecyclerViewCompanies.scrollToPosition(selectedCompanyPosition);
         }
     }
 

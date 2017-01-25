@@ -56,8 +56,8 @@ public class CompaniesProvider {
     }
 
     public void fetchCompanyDetail(int companyId, final ModelCallback<CompanyModel> completion) {
-        String relations = String.format("%s,%s,%s", ApiLinks.CATALOG.COMFORTS,
-                ApiLinks.CATALOG.DETAIL, ApiLinks.CATALOG.CATEGORIES);
+        String relations = String.format("%s,%s,%s,%s", ApiLinks.CATALOG.COMFORTS,
+                ApiLinks.CATALOG.DETAIL, ApiLinks.CATALOG.CATEGORIES, ApiLinks.CATALOG.RATINGS);
 
         mCompanyService
                 .fetchCompanyDetail(companyId, relations)

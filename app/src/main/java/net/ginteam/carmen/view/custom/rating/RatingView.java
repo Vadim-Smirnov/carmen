@@ -122,7 +122,7 @@ public class RatingView extends View {
     public boolean onTouchEvent(MotionEvent event) {
         if (mUserInteractionEnabled) {
             switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
+                case MotionEvent.ACTION_UP:
                     mTouchX = event.getX();
                     invalidate();
                     break;
