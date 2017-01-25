@@ -193,4 +193,20 @@
     <dimen name="sort_item_margin">20dp</dimen>
     <dimen name="sort_title_left_margin">12.5dp</dimen>
 
+    <!-- Map Activity -->
+    <dimen name="search_button_text_size">15sp</dimen>
+    <dimen name="search_button_corner_radius">50dp</dimen>
+    <dimen name="search_button_width">206dp</dimen>
+    <dimen name="search_button_height">30dp</dimen>
+    <dimen name="search_button_horizontal_padding">13.5dp</dimen>
+    <dimen name="search_button_vertical_padding">3.5dp</dimen>
+
+    <dimen name="filter_button_text_size">15sp</dimen>
+    <dimen name="filter_button_corner_radius">45dp</dimen>
+    <dimen name="filter_button_width">145dp</dimen>
+    <dimen name="filter_button_height">40dp</dimen>
+    <dimen name="filter_button_horizontal_padding">20dp</dimen>
+    <dimen name="filter_button_vertical_padding">10dp</dimen>
+    <dimen name="filter_button_bottom_space">25dp</dimen>
+
 </resources>

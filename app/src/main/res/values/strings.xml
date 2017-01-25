@@ -137,4 +137,8 @@
     }
 ] </string>
 
+    <!-- Map Activity -->
+    <string name="search_button_string">Повторить поиск</string>
+    <string name="filter_button_string">Фильтры</string>
+
 </resources>

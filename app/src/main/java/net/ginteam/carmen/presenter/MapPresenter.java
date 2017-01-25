@@ -3,9 +3,9 @@ package net.ginteam.carmen.presenter;
 import android.content.Intent;
 import android.location.Location;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 
 import net.ginteam.carmen.contract.MapContract;
 import net.ginteam.carmen.manager.ApiGoogleManager;
@@ -24,19 +24,6 @@ public class MapPresenter implements MapContract.Presenter {
     private Location mLastUserLocation;
 
     public MapPresenter() {}
-
-    @Override
-    public void attachView(MapContract.View view) {
-        mView = view;
-        mApiGoogleManager = new ApiGoogleManager(mView.getActivity());
-    }
-
-    @Override
-    public void detachView() {
-        mView = null;
-    }
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -65,6 +52,22 @@ public class MapPresenter implements MapContract.Presenter {
                         mView.showGoogleMap(new LatLng(cityPoint.getLatitude(), cityPoint.getLongitude()));
                     }
                 });
+    }
+
+    @Override
+    public void fetchCompaniesByBounds(LatLngBounds bounds) {
+
+    }
+
+    @Override
+    public void attachView(MapContract.View view) {
+        mView = view;
+        mApiGoogleManager = new ApiGoogleManager(mView.getActivity());
+    }
+
+    @Override
+    public void detachView() {
+        mView = null;
     }
 
 }
