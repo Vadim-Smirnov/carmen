@@ -15,7 +15,7 @@
         android:layout_marginEnd="@dimen/company_detail_margin_side"
         android:layout_marginStart="@dimen/company_detail_margin_side"
         android:layout_marginTop="@dimen/company_detail_reviews_text_margin_top"
-        android:text="Отзывы"
+        android:text="@string/reviews_title_text"
         android:textColor="@color/colorTextHeader"
         android:textSize="@dimen/company_detail_text_size"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -25,20 +25,20 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_reviews"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/company_detail_recycler_reviews_margin_top"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_reviews"
         tools:listitem="@layout/list_item_review"
-        android:layout_marginBottom="@dimen/company_detail_button_all_reviews_margin_top"
-        app:layout_constraintBottom_toTopOf="@+id/button_all_reviews"/>
+        app:layout_constraintHorizontal_bias="0.0"/>
 
     <Button
         android:id="@+id/button_all_reviews"
         fontPath="@string/open_sans_font"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
         android:layout_marginEnd="@dimen/company_detail_margin_side"
         android:layout_marginLeft="@dimen/company_detail_margin_side"
         android:layout_marginRight="@dimen/company_detail_margin_side"
@@ -54,6 +54,8 @@
         android:textSize="@dimen/company_detail_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_view_reviews"
+        app:layout_constraintHorizontal_bias="1.0"/>
 
 </android.support.constraint.ConstraintLayout>

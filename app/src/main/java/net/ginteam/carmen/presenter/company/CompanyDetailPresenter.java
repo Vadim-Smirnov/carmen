@@ -7,13 +7,17 @@ import android.view.View;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
+import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.company.Comfort;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.provider.company.CompaniesProvider;
 import net.ginteam.carmen.provider.company.FavoritesProvider;
+import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 import net.ginteam.carmen.view.fragment.company.AdditionalServicesFragment;
+import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
+import net.ginteam.carmen.view.fragment.company.ReviewsFragment;
 
 import java.util.List;
 
@@ -40,11 +44,22 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
                     public void onSuccess(CompanyModel resultModel) {
                         mView.showLoading(false);
                         mView.showCompanyDetail(resultModel);
-                        Log.d("DETAIL_PRESENTER", "Fetch detail success");
+                        BaseFetchingFragment popularCompaniesFragment = CompanyListFragment.newInstance(
+                                CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
+                                CompanyListFragment.FETCH_COMPANY_TYPE.POPULAR,
+                                0
+                        );
+                        mView.showFragment(R.id.popular_companies_fragment_container, popularCompaniesFragment);
+                        Log.d("DETAIL_PRESENTER", "Fetch detail success" + resultModel.getName());
                         List<Comfort> comforts = resultModel.getComforts();
                         if (!comforts.isEmpty()) {
                             mView.showFragment(R.id.additional_services_fragment_container,
                                     AdditionalServicesFragment.newInstance(comforts));
+                        }
+                        List<Rating> ratings = resultModel.getRatings();
+                        if (!ratings.isEmpty()) {
+                            mView.showFragment(R.id.reviews_fragment_container,
+                                    ReviewsFragment.newInstance(ratings));
                         }
                     }
 

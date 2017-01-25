@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +22,8 @@ import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompanyDetailPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.MapActivity;
-import net.ginteam.carmen.view.activity.VoteObjectActivity;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
+import net.ginteam.carmen.view.activity.VoteObjectActivity;
 import net.ginteam.carmen.view.custom.rating.RatingView;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
@@ -42,8 +39,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
 
     private Menu mMenu;
 
-    private ProgressBar mProgressBar;
-    private CoordinatorLayout mCoordinatorLayoutCompanyDetailActivity;
+    private LinearLayout mProgressBar;
     private TextView mTextViewCompanyName;
     private TextView mTextViewCategory;
     private RatingView mRatingViewCompanyRating;
@@ -81,6 +77,9 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
             case R.id.action_favorite:
                 mPresenter.addToFavoriteClick(mCompanyModel, mMenu);
                 break;
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -88,7 +87,6 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     @Override
     public void showLoading(boolean isLoading) {
         mProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-        mCoordinatorLayoutCompanyDetailActivity.setVisibility(isLoading ? View.GONE : View.VISIBLE);
     }
 
     @Override
@@ -181,8 +179,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        mCoordinatorLayoutCompanyDetailActivity = (CoordinatorLayout) findViewById(R.id.activity_company_detail);
+        mProgressBar = (LinearLayout) findViewById(R.id.progress_bar);
 
         mButtonCash = (Button) findViewById(R.id.button_cash);
         mButtonCashLess = (Button) findViewById(R.id.button_cashless);

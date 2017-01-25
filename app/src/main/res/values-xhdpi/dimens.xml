@@ -192,5 +192,23 @@
     <!-- Sort Dialog Fragment -->
     <dimen name="sort_item_margin">20dp</dimen>
     <dimen name="sort_title_left_margin">12.5dp</dimen>
+    
+    <!-- Review item -->
+    <dimen name="image_button_expand_width">39dp</dimen>
+    <dimen name="image_button_expand_height">158dp</dimen>
+    <dimen name="image_button_expand_margin_end">27dp</dimen>
+    <dimen name="review_item_bottom_margin">35dp</dimen>
+    <dimen name="review_title_margin_start">20dp</dimen>
+    <dimen name="review_title_margin_end">25dp</dimen>
+    <dimen name="review_rating_width">80dp</dimen>
+    <dimen name="review_rating_height">10dp</dimen>
+    <dimen name="review_rating_side_margin">15dp</dimen>
+    <dimen name="text_view_date_margin_start">8dp</dimen>
+    <dimen name="text_view_date_margin_top">22dp</dimen>
+    <dimen name="text_view_user_name_margin_start">20dp</dimen>
+    <dimen name="text_view_user_name_margin_end">25dp</dimen>
+    <dimen name="review_text_margin_start">20dp</dimen>
+    <dimen name="review_text_margin_end">25dp</dimen>
+    <dimen name="review_text_margin_top">15dp</dimen>
 
 </resources>

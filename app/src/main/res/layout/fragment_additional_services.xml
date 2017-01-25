@@ -26,7 +26,7 @@
         android:layout_marginEnd="@dimen/company_detail_margin_side"
         android:layout_marginStart="@dimen/company_detail_margin_side"
         android:layout_marginTop="@dimen/company_detail_additional_services_margin_top"
-        android:text="Дополнительные услуги"
+        android:text="@string/additional_services_title_text"
         android:textColor="@color/colorTextHeader"
         android:textSize="@dimen/company_detail_text_size"
         app:layout_constraintLeft_toLeftOf="parent"

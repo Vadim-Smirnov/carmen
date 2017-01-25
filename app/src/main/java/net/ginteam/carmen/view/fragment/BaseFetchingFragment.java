@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -16,7 +17,7 @@ public abstract class BaseFetchingFragment extends DialogFragment implements Fet
 
     protected View mRootView;
 
-    protected ProgressBar mProgressBar;
+    protected LinearLayout mProgressBar;
 
     public BaseFetchingFragment() {}
 
@@ -24,7 +25,7 @@ public abstract class BaseFetchingFragment extends DialogFragment implements Fet
                                        Bundle savedInstanceState) {
         mRootView = inflater.inflate(layoutRes, container, false);
 
-        mProgressBar = (ProgressBar) mRootView.findViewById(R.id.progress_bar);
+        mProgressBar = (LinearLayout) mRootView.findViewById(R.id.progress_bar);
 
         return mRootView;
     }

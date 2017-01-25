@@ -145,6 +145,15 @@
         <item quantity="other">%1$d отзывов</item>
     </plurals>
 
+    <string name="button_show_on_map_text">Отобразить на карте</string>
+    <string name="work_time_text">Открыто до </string>
+    <string name="payment_methods_text">Способы оплаты</string>
+    <string name="button_cash_text">Наличными</string>
+    <string name="button_cashless_text">Безналичными</string>
+    <string name="button_open_navigator_text">Открыть в навигаторе</string>
+    <string name="additional_services_title_text">Дополнительные услуги</string>
+    <string name="reviews_title_text">Отзывы</string>
+
     <!-- Error message -->
     <string name="message_sign_in">Авторизуйтесь</string>
 

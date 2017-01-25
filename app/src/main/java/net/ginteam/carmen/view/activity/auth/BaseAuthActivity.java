@@ -9,6 +9,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -30,7 +31,7 @@ public abstract class BaseAuthActivity extends AppCompatActivity implements Vali
 
     private Toolbar mToolbar;
 
-    protected ProgressBar mProgressBar;
+    protected LinearLayout mProgressBar;
 
     @Order(1)
     @Email(messageResId = R.string.wrong_email_string)
@@ -94,7 +95,7 @@ public abstract class BaseAuthActivity extends AppCompatActivity implements Vali
     }
 
     protected void updateDependencies() {
-        mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
+        mProgressBar = (LinearLayout) findViewById(R.id.progress_bar);
         mEditTextEmail = (EditText) findViewById(R.id.edit_text_email);
         mEditTextPassword = (EditText) findViewById(R.id.edit_text_password);
 

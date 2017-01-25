@@ -35,6 +35,9 @@ public class Rating {
     @SerializedName("answer_date")
     private String mAnswerDate;
 
+    @SerializedName("created_at")
+    private String mCreatedAt;
+
     public int getId() {
         return mId;
     }
@@ -69,5 +72,9 @@ public class Rating {
 
     public String getAnswerDate() {
         return mAnswerDate;
+    }
+
+    public String getCreatedAt() {
+        return mCreatedAt;
     }
 }
