@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/text_view_marker_price"
+    fontPath="@string/open_sans_semibold_font"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ic_selected_marker"
+    android:paddingTop="5dp"
+    android:gravity="center_horizontal|top"
+    android:textColor="#000"
+    android:textSize="15sp"
+    tools:text="0"
+    tools:ignore="MissingPrefix"/>

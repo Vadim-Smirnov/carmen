@@ -3,6 +3,7 @@ package net.ginteam.carmen.provider.company;
 import net.ginteam.carmen.manager.ApiManager;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.model.company.MapCompanyModel;
 import net.ginteam.carmen.network.api.ApiLinks;
 import net.ginteam.carmen.network.api.service.CompanyService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
@@ -46,6 +47,24 @@ public class CompaniesProvider {
                     @Override
                     public void onSuccess(List<CompanyModel> resultModel, Pagination pagination) {
                         completion.onSuccess(resultModel, pagination);
+                    }
+
+                    @Override
+                    public void onFailure(String message) {
+                        completion.onFailure(message);
+                    }
+                });
+    }
+
+    public void fetchForBounds(int categoryId, String filters, String bounds, final ModelCallback<List<MapCompanyModel>> completion) {
+        mCompanyService
+                .fetchCompanies(categoryId, filters, bounds)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ModelSubscriber<List<MapCompanyModel>>() {
+                    @Override
+                    public void onSuccess(List<MapCompanyModel> resultModel) {
+                        completion.onSuccess(resultModel);
                     }
 
                     @Override

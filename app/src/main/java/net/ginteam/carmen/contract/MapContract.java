@@ -6,7 +6,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
-import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.model.company.MapCompanyModel;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ public interface MapContract {
 
         void animateToLocation(LatLng location);
 
-        void showCompanies(List <CompanyModel> companies);
+        void showCompanies(List <MapCompanyModel> companies);
 
         void showSearchControl(boolean show);
 
@@ -38,7 +38,7 @@ public interface MapContract {
 
         void getLastUserLocation();
 
-        void fetchCompaniesByBounds(LatLngBounds bounds);
+        void fetchCompaniesByBounds(int categoryId, String filters, LatLngBounds bounds);
 
     }
 

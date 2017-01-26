@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="net.ginteam.carmen.view.activity.FilterActivity">
+    tools:context="net.ginteam.carmen.view.activity.filter.FilterActivity">
 
     <include
         android:id="@+id/layout_toolbar"

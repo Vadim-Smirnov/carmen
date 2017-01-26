@@ -122,18 +122,16 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
         });
 
         if (mCompanyItemClickListener == null) {
-            Log.e("CompanyListAdapter", "mCompanyItemClickListener does not set!");
+            Log.e("CompanyListAdapter", "OnCompanyItemClickListener does not set!");
             return;
         }
         companyViewHolder.setOnCompanyItemClickListener(currentCompany, position, mCompanyItemClickListener);
 
         if (mOnAddToFavoritesClickListener == null) {
-            Log.e("CompanyListAdapter", "mOnAddToFavoritesClickListener does not set!");
+            Log.e("CompanyListAdapter", "OnAddToFavoritesClickListener does not set!");
             return;
         }
         companyViewHolder.setOnAddToFavoritesClickListener(currentCompany, mOnAddToFavoritesClickListener);
-
-
     }
 
     @Override

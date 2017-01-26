@@ -149,4 +149,7 @@
     <string name="search_button_string">Повторить поиск</string>
     <string name="filter_button_string">Фильтры</string>
 
+    <!-- Error message -->
+    <string name="message_sign_in">Авторизуйтесь</string>
+
 </resources>

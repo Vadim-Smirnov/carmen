@@ -94,6 +94,16 @@
     <dimen name="company_item_rating_bottom_space">21dp</dimen>
     <dimen name="company_price_margin">20dp</dimen>
 
+    <!-- Company Item Map -->
+    <dimen name="map_company_item_selection_indicator_height">10dp</dimen>
+    <dimen name="map_company_item_width">162.5dp</dimen>
+    <dimen name="map_company_item_height">161dp</dimen>
+    <dimen name="map_company_item_photo_height">110dp</dimen>
+    <dimen name="map_company_item_photo_bottom_space">5dp</dimen>
+    <dimen name="map_company_item_title_text_size">15sp</dimen>
+    <dimen name="map_company_item_price_text_size">14sp</dimen>
+    <dimen name="map_company_item_padding">10dp</dimen>
+
     <!-- Company List Fragment -->
     <dimen name="float_button_margin_right">16dp</dimen>
     <dimen name="float_button_margin_bottom">72dp</dimen>

@@ -1,4 +1,4 @@
-package net.ginteam.carmen.view.activity;
+package net.ginteam.carmen.view.activity.filter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,7 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.filter.FilterContract;
 import net.ginteam.carmen.model.filter.FilterModel;
 import net.ginteam.carmen.presenter.filter.FiltersPresenter;
+import net.ginteam.carmen.view.activity.ToolbarActivity;
 import net.ginteam.carmen.view.custom.FilterEditText;
 
 import java.util.ArrayList;
