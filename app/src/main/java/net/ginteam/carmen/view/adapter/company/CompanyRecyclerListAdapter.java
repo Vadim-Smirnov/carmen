@@ -60,6 +60,12 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
         notifyItemRangeInserted(insertPosition, companies.size());
     }
 
+    public void removeItem(CompanyModel companyModel) {
+        int removeIndex = mCompanies.indexOf(companyModel);
+        mCompanies.remove(removeIndex);
+        notifyItemRemoved(removeIndex);
+    }
+
     public void showLoading() {
         mIsLoadingIndicatorShow = true;
         mCompanies.add(new CompanyModel());
@@ -151,10 +157,6 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
             default:
                 return R.layout.list_item_company_vertical;
         }
-    }
-
-    public void removeItem(CompanyModel companyModel) {
-        mCompanies.remove(companyModel);
     }
 
 }
