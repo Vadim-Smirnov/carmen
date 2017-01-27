@@ -60,6 +60,12 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
         notifyItemRangeInserted(insertPosition, companies.size());
     }
 
+    public void removeItem(CompanyModel companyModel) {
+        int removeIndex = mCompanies.indexOf(companyModel);
+        mCompanies.remove(removeIndex);
+        notifyItemRemoved(removeIndex);
+    }
+
     public void showLoading() {
         mIsLoadingIndicatorShow = true;
         mCompanies.add(new CompanyModel());
@@ -122,18 +128,16 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
         });
 
         if (mCompanyItemClickListener == null) {
-            Log.e("CompanyListAdapter", "mCompanyItemClickListener does not set!");
+            Log.e("CompanyListAdapter", "OnCompanyItemClickListener does not set!");
             return;
         }
         companyViewHolder.setOnCompanyItemClickListener(currentCompany, position, mCompanyItemClickListener);
 
         if (mOnAddToFavoritesClickListener == null) {
-            Log.e("CompanyListAdapter", "mOnAddToFavoritesClickListener does not set!");
+            Log.e("CompanyListAdapter", "OnAddToFavoritesClickListener does not set!");
             return;
         }
         companyViewHolder.setOnAddToFavoritesClickListener(currentCompany, mOnAddToFavoritesClickListener);
-
-
     }
 
     @Override
@@ -153,10 +157,6 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
             default:
                 return R.layout.list_item_company_vertical;
         }
-    }
-
-    public void removeItem(CompanyModel companyModel) {
-        mCompanies.remove(companyModel);
     }
 
 }

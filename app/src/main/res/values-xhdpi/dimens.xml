@@ -94,6 +94,16 @@
     <dimen name="company_item_rating_bottom_space">21dp</dimen>
     <dimen name="company_price_margin">20dp</dimen>
 
+    <!-- Company Item Map -->
+    <dimen name="map_company_item_selection_indicator_height">10dp</dimen>
+    <dimen name="map_company_item_width">162.5dp</dimen>
+    <dimen name="map_company_item_height">161dp</dimen>
+    <dimen name="map_company_item_photo_height">110dp</dimen>
+    <dimen name="map_company_item_photo_bottom_space">5dp</dimen>
+    <dimen name="map_company_item_title_text_size">15sp</dimen>
+    <dimen name="map_company_item_price_text_size">14sp</dimen>
+    <dimen name="map_company_item_padding">10dp</dimen>
+
     <!-- Company List Fragment -->
     <dimen name="float_button_margin_right">16dp</dimen>
     <dimen name="float_button_margin_bottom">72dp</dimen>
@@ -217,5 +227,21 @@
     <dimen name="review_text_margin_start">20dp</dimen>
     <dimen name="review_text_margin_end">25dp</dimen>
     <dimen name="review_text_margin_top">15dp</dimen>
+
+    <!-- Map Activity -->
+    <dimen name="search_button_text_size">15sp</dimen>
+    <dimen name="search_button_corner_radius">50dp</dimen>
+    <dimen name="search_button_width">206dp</dimen>
+    <dimen name="search_button_height">30dp</dimen>
+    <dimen name="search_button_horizontal_padding">13.5dp</dimen>
+    <dimen name="search_button_vertical_padding">3.5dp</dimen>
+
+    <dimen name="filter_button_text_size">15sp</dimen>
+    <dimen name="filter_button_corner_radius">45dp</dimen>
+    <dimen name="filter_button_width">145dp</dimen>
+    <dimen name="filter_button_height">40dp</dimen>
+    <dimen name="filter_button_horizontal_padding">20dp</dimen>
+    <dimen name="filter_button_vertical_padding">10dp</dimen>
+    <dimen name="filter_button_bottom_space">25dp</dimen>
 
 </resources>

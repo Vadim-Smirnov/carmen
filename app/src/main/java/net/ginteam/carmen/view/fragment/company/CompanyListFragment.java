@@ -254,7 +254,9 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
             mTextViewCompanyListTitle = (TextView) mRootView.findViewById(R.id.text_view_company_list_title);
             mTextViewCompanyListTitle.setVisibility(View.VISIBLE);
             mTextViewCompanyListTitle.setText(title);
-        } else {
+        }
+
+        if (mFetchType == FETCH_COMPANY_TYPE.FOR_CATEGORY) {
             mFloatingActionButton = (FloatingActionButton) mRootView.findViewById(R.id.float_button_show_map);
             mBottomNavigationView = (BottomNavigationView) mRootView.findViewById(R.id.bottom_navigation_view);
 

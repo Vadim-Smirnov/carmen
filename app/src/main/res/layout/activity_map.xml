@@ -1,31 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="net.ginteam.carmen.view.activity.MapActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="net.ginteam.carmen.view.activity.map.MapActivity"
+    android:animateLayoutChanges="true"
+    tools:ignore="MissingPrefix">
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/google_map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:apiKey="@string/google_api_key"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view_companies"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0"/>
 
     <include
         android:id="@+id/layout_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         layout="@layout/transparent_toolbar"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/button_repeat_search"
+        fontPath="@string/open_sans_font"
+        android:layout_width="@dimen/search_button_width"
+        android:layout_height="@dimen/search_button_height"
+        android:background="@drawable/map_search_button"
+        android:gravity="center"
+        android:paddingBottom="@dimen/search_button_vertical_padding"
+        android:paddingLeft="@dimen/search_button_horizontal_padding"
+        android:paddingRight="@dimen/search_button_horizontal_padding"
+        android:paddingTop="@dimen/search_button_vertical_padding"
+        android:text="@string/search_button_string"
+        android:textAllCaps="false"
+        android:textColor="#fff"
+        android:textSize="@dimen/search_button_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_toolbar"/>
+
+    <Button
+        android:id="@+id/button_filters"
+        fontPath="@string/open_sans_font"
+        android:layout_width="@dimen/filter_button_width"
+        android:layout_height="@dimen/filter_button_height"
+        android:background="@drawable/map_filter_button"
+        android:drawableRight="@drawable/ic_map_filter"
+        android:gravity="center"
+        android:paddingBottom="@dimen/filter_button_vertical_padding"
+        android:paddingLeft="@dimen/filter_button_horizontal_padding"
+        android:paddingRight="@dimen/filter_button_horizontal_padding"
+        android:paddingTop="@dimen/filter_button_vertical_padding"
+        android:text="@string/filter_button_string"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textSize="@dimen/filter_button_text_size"
+        android:layout_marginBottom="@dimen/filter_button_bottom_space"
+        app:layout_constraintBottom_toTopOf="@+id/recycler_view_companies"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_companies"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

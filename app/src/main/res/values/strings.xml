@@ -154,6 +154,10 @@
     <string name="additional_services_title_text">Дополнительные услуги</string>
     <string name="reviews_title_text">Отзывы</string>
 
+    <!-- Map Activity -->
+    <string name="search_button_string">Повторить поиск</string>
+    <string name="filter_button_string">Фильтры</string>
+
     <!-- Error message -->
     <string name="message_sign_in">Авторизуйтесь</string>
 

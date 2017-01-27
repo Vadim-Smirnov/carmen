@@ -45,10 +45,10 @@
             android:name=".view.activity.company.CompanyDetailActivity"
             android:screenOrientation="portrait"/>
 
-        <activity android:name=".view.activity.MapActivity"/>
+        <activity android:name=".view.activity.map.MapActivity"/>
 
         <activity
-            android:name=".view.activity.FilterActivity"
+            android:name=".view.activity.filter.FilterActivity"
             android:parentActivityName=".view.activity.MainActivity"
             android:screenOrientation="portrait">
             <meta-data

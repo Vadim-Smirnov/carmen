@@ -13,6 +13,8 @@ import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
+import net.ginteam.carmen.view.activity.filter.FilterActivity;
+import net.ginteam.carmen.view.activity.map.MapActivity;
 import net.ginteam.carmen.view.fragment.MainFragment;
 import net.ginteam.carmen.view.fragment.SortingFragment;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
