@@ -7,27 +7,21 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompanyDetailPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
-import net.ginteam.carmen.view.activity.MapActivity;
+import net.ginteam.carmen.view.activity.map.MapActivity;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
 import net.ginteam.carmen.view.activity.VoteObjectActivity;
 import net.ginteam.carmen.view.custom.rating.RatingView;
