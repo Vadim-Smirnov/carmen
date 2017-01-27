@@ -8,7 +8,6 @@ import android.view.View;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
 import net.ginteam.carmen.model.Rating;
-import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.company.Comfort;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.provider.ModelCallback;
@@ -48,7 +47,7 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
                         BaseFetchingFragment popularCompaniesFragment = CompanyListFragment.newInstance(
                                 CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
                                 CompanyListFragment.FETCH_COMPANY_TYPE.POPULAR,
-                                0
+                                null
                         );
                         mView.showFragment(R.id.popular_companies_fragment_container, popularCompaniesFragment);
                         Log.d("DETAIL_PRESENTER", "Fetch detail success" + resultModel.getName());

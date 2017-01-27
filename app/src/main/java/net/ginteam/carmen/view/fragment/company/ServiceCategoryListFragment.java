@@ -3,7 +3,6 @@ package net.ginteam.carmen.view.fragment.company;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.LinearLayout;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.category.CategoryModel;
-import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 import java.util.ArrayList;
@@ -57,9 +55,7 @@ public class ServiceCategoryListFragment extends BaseFetchingFragment {
         mLinearLayoutFragments = (LinearLayout) mRootView.findViewById(R.id.linear_layout_fragments);
     }
 
-
     private void showServiceCategories() {
-
         for (CategoryModel currentCategory : mCategories) {
             LinearLayout rowLayout = new LinearLayout(getContext());
             FragmentManager fragMan = getFragmentManager();

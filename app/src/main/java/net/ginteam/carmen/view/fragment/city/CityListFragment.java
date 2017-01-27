@@ -45,19 +45,6 @@ public class CityListFragment extends BaseFetchingFragment implements CityContra
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        if (getDialog() == null) {
-            return;
-        }
-        int dialogWidth = (int) getResources().getDimension(R.dimen.dialog_fragment_width);
-        int dialogHeight = (int) getResources().getDimension(R.dimen.dialog_fragment_height);
-
-        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
-        getDialog().setCancelable(false);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRootView = inflateBaseFragment(R.layout.fragment_city_list, inflater, container, savedInstanceState);
         updateDependencies();

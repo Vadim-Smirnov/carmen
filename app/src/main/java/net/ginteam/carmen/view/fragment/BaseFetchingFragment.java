@@ -1,19 +1,16 @@
 package net.ginteam.carmen.view.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.FetchContract;
 
-public abstract class BaseFetchingFragment extends DialogFragment implements FetchContract.View {
+public abstract class BaseFetchingFragment extends BaseFragment implements FetchContract.View {
 
     protected View mRootView;
 

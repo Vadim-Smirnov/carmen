@@ -7,7 +7,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
@@ -15,13 +14,12 @@ import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
 import net.ginteam.carmen.view.activity.filter.FilterActivity;
 import net.ginteam.carmen.view.activity.map.MapActivity;
-import net.ginteam.carmen.view.fragment.MainFragment;
 import net.ginteam.carmen.view.fragment.SortingFragment;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
-public class MainActivity extends NavigationViewActivity implements MainFragment.OnMainFragmentShowedListener,
+public class MainActivity extends NavigationViewActivity implements
         CategoryListFragment.OnCategorySelectedListener, CityListFragment.OnCitySelectedListener,
         CompanyListFragment.OnCompanySelectedListener, CompanyListFragment.OnSelectedItemsListener,
         SortingFragment.OnSortTypeSelectedListener {
@@ -34,7 +32,7 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
         super.setContentView(R.layout.activity_main);
 
         Toast.makeText(this, R.string.test, Toast.LENGTH_SHORT).show();
-        prepareFragment(MainFragment.newInstance(), false);
+        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
     }
 
     @Override
@@ -47,12 +45,6 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
             }
             Log.d("FilterActivity", searchFilter);
         }
-    }
-
-    @Override
-    public void onMainFragmentShowed() {
-        setTitle(getString(R.string.main_item_text));
-        setSubtitle("");
     }
 
     @Override
@@ -90,14 +82,13 @@ public class MainActivity extends NavigationViewActivity implements MainFragment
     @Override
     public void onCategorySelected(CategoryModel category, boolean isDialog) {
         Toast.makeText(this, category.getName(), Toast.LENGTH_SHORT).show();
+
         prepareFragment(CompanyListFragment.newInstance(
                 CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                 CompanyListFragment.FETCH_COMPANY_TYPE.FOR_CATEGORY,
-                category.getId()),
+                category),
                 !isDialog
         );
-        setTitle(category.getName());
-        setSubtitle(PreferencesManager.getInstance().getCity().getName());
 
         mSelectedCategory = category;
     }

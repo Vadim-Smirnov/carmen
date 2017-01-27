@@ -1,7 +1,6 @@
 package net.ginteam.carmen.presenter.company;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
@@ -27,6 +26,13 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
 
     private CompaniesContract.View mView;
     private boolean mIsFirstLoading;
+
+    @Override
+    public String getUserCityName() {
+        return PreferencesManager
+                .getInstance()
+                .getCity().getName();
+    }
 
     @Override
     public void selectCompany(CompanyModel company) {

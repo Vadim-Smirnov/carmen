@@ -27,7 +27,7 @@ import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
  * Created by Eugene on 12/27/16.
  */
 
-public class NavigationViewActivity extends ToolbarActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationViewActivity extends FragmentsActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     protected DrawerLayout mDrawerLayout;
     protected NavigationView mNavigationView;
@@ -48,29 +48,27 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment selectedFragment = null;
+        item.setChecked(true);
+
         switch (item.getItemId()) {
             case R.id.main_item:
                 selectedFragment = MainFragment.newInstance();
-                setTitle(getResources().getString(R.string.main_item_text));
                 break;
 
             case R.id.category_item:
                 selectedFragment = CategoryListFragment.newInstance(false);
-                setTitle(getResources().getString(R.string.category_item_text));
                 break;
 
             case R.id.favorite_item:
                 selectedFragment = CompanyListFragment
                         .newInstance(CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
-                                CompanyListFragment.FETCH_COMPANY_TYPE.FAVORITE, 0);
-                setTitle(getResources().getString(R.string.favorite_item_text));
+                                CompanyListFragment.FETCH_COMPANY_TYPE.FAVORITE, null);
                 break;
 
             case R.id.recent_item:
                 selectedFragment = CompanyListFragment
                         .newInstance(CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
-                                CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED, 0);
-                setTitle(getResources().getString(R.string.recent_item_text));
+                                CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED, null);
                 break;
 
             case R.id.sign_in_item:
@@ -83,13 +81,9 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
                 ActivityUtils.showActivity(SignInActivity.class, null, true);
                 return true;
         }
-        setSubtitle("");
-        mDrawerLayout.closeDrawer(GravityCompat.START);
 
-        if (selectedFragment != null) {
-            clearFragmentBackStack();
-            prepareFragment(selectedFragment, true);
-        }
+        mDrawerLayout.closeDrawer(GravityCompat.START);
+        prepareFragment(selectedFragment, false);
 
         return true;
     }
@@ -98,34 +92,14 @@ public class NavigationViewActivity extends ToolbarActivity implements Navigatio
     public void onBackPressed() {
         if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    protected void prepareFragment(Fragment fragment, boolean isNeedBackStack) {
-        mCurrentFragment = fragment;
-
-        if (isNeedBackStack) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.main_fragment_container, fragment)
-                    .addToBackStack(null)
-                    .commit();
             return;
         }
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, fragment)
-                .commit();
+        super.onBackPressed();
     }
 
-    private void clearFragmentBackStack() {
-        int fragmentsCount = getSupportFragmentManager().getBackStackEntryCount();
-        for (int i = 0; i < fragmentsCount; i++) {
-            getSupportFragmentManager().popBackStackImmediate();
-        }
+    @Override
+    public void showMainFragment() {
+        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
     }
 
     private void initializeNavigationView() {

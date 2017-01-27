@@ -25,7 +25,7 @@ public class MainPresenter implements MainContract.Presenter {
             mRecentlyWatchedCompaniesFragment = CompanyListFragment.newInstance(
                     CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
                     CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED,
-                    0
+                    null
             );
             mView.showFragment(R.id.recently_companies_fragment_container, mRecentlyWatchedCompaniesFragment);
         }
@@ -39,7 +39,7 @@ public class MainPresenter implements MainContract.Presenter {
         mPopularCompaniesFragment = CompanyListFragment.newInstance(
                 CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL,
                 CompanyListFragment.FETCH_COMPANY_TYPE.POPULAR,
-                0
+                null
         );
 
         mView.showFragment(R.id.categories_fragment_container, mCategoriesFragment);

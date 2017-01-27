@@ -48,6 +48,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
         Bundle bundle = new Bundle();
         bundle.putBoolean(DIALOG_ARG, isDialog);
         categoryListFragment.setArguments(bundle);
+
         return categoryListFragment;
     }
 
@@ -61,14 +62,9 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
     @Override
     public void onStart() {
         super.onStart();
-        if (getDialog() == null) {
-            return;
+        if (isNotNestedFragment() && !mIsDialog) {
+            setToolbarTitle(getString(R.string.category_item_text), "");
         }
-        int dialogWidth = (int) getResources().getDimension(R.dimen.dialog_fragment_width);
-        int dialogHeight = (int) getResources().getDimension(R.dimen.dialog_fragment_height);
-
-        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
-        getDialog().setCancelable(false);
     }
 
     @Override

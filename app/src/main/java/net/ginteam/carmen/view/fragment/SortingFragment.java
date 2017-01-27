@@ -79,20 +79,6 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-
-        if (getDialog() == null) {
-            return;
-        }
-        int dialogWidth = (int) getResources().getDimension(R.dimen.dialog_fragment_width);
-        int dialogHeight = (int) getResources().getDimension(R.dimen.dialog_fragment_height);
-
-        getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
-        getDialog().setCancelable(false);
-    }
-
-    @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_confirm_sort) {
             // Find checked radio button

@@ -14,12 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
 import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.Pagination;
+import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompaniesPresenter;
 import net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder;
@@ -61,7 +61,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     private COMPANY_LIST_TYPE mListType;
     private FETCH_COMPANY_TYPE mFetchType;
 
-    private int mCategoryId;
+    private CategoryModel mSelectedCategory;
     private String mSearchFilter;
     private String mSortField;
     private String mSortType;
@@ -84,13 +84,13 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     public CompanyListFragment() {
     }
 
-    public static CompanyListFragment newInstance(COMPANY_LIST_TYPE type, FETCH_COMPANY_TYPE fetchType, @Nullable int categoryId) {
+    public static CompanyListFragment newInstance(COMPANY_LIST_TYPE type, FETCH_COMPANY_TYPE fetchType, @Nullable CategoryModel categoryModel) {
         CompanyListFragment fragment = new CompanyListFragment();
 
         Bundle arguments = new Bundle();
         arguments.putSerializable(TYPE_ARGUMENT, type);
         arguments.putSerializable(FETCH_TYPE_ARGUMENT, fetchType);
-        arguments.putInt(CATEGORY_ARGUMENT, categoryId);
+        arguments.putSerializable(CATEGORY_ARGUMENT, categoryModel);
         fragment.setArguments(arguments);
 
         return fragment;
@@ -103,7 +103,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         Bundle arguments = getArguments();
         mListType = (COMPANY_LIST_TYPE) arguments.getSerializable(TYPE_ARGUMENT);
         mFetchType = (FETCH_COMPANY_TYPE) arguments.getSerializable(FETCH_TYPE_ARGUMENT);
-        mCategoryId = arguments.getInt(CATEGORY_ARGUMENT, 0);
+        mSelectedCategory = (CategoryModel) arguments.getSerializable(CATEGORY_ARGUMENT);
     }
 
     @Override
@@ -111,12 +111,11 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         Log.d("CompanyList", "onCreateView()");
 
         mRootView = inflateBaseFragment(R.layout.fragment_company_list, inflater, container, savedInstanceState);
+
         updateDependencies();
 
         mPresenter = new CompaniesPresenter();
         mPresenter.attachView(this);
-
-        fetchCompanies();
 
         return mRootView;
     }
@@ -124,6 +123,8 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     @Override
     public void onStart() {
         super.onStart();
+
+        updateTitleDependencies();
         fetchCompanies();
     }
 
@@ -161,7 +162,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     @Override
     public void onClick(View view) {
-        mSelectedItemsListener.onShowMap(mCategoryId);
+        mSelectedItemsListener.onShowMap(mSelectedCategory.getId());
     }
 
     public void setSearchFilter(String filter) {
@@ -196,6 +197,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     @Override
     public void showLoading(boolean isLoading) {
         super.showLoading(isLoading);
+
         if (mRecyclerViewCompanies != null) {
             mRecyclerViewCompanies.setVisibility(isLoading ? View.GONE : View.VISIBLE);
         }
@@ -234,27 +236,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     }
 
     private void updateDependencies() {
-        String title = null;
         mCurrentPaginationPage = 1;
-
-        switch (mFetchType) {
-            case POPULAR:
-                title = String
-                        .format(
-                                Locale.getDefault(),
-                                getString(R.string.popular_title),
-                                PreferencesManager.getInstance().getCity().getName());
-                break;
-            case RECENTLY_WATCHED:
-                title = getString(R.string.recently_watched_title);
-                break;
-        }
-
-        if (title != null) {
-            mTextViewCompanyListTitle = (TextView) mRootView.findViewById(R.id.text_view_company_list_title);
-            mTextViewCompanyListTitle.setVisibility(View.VISIBLE);
-            mTextViewCompanyListTitle.setText(title);
-        }
 
         if (mFetchType == FETCH_COMPANY_TYPE.FOR_CATEGORY) {
             mFloatingActionButton = (FloatingActionButton) mRootView.findViewById(R.id.float_button_show_map);
@@ -276,6 +258,43 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         mRecyclerViewCompanies.setLayoutManager(mLayoutManager);
 
         mIsLoading = false;
+    }
+
+    private void updateTitleDependencies() {
+        if (mListType == COMPANY_LIST_TYPE.HORIZONTAL) {
+            String title = null;
+
+            switch (mFetchType) {
+                case POPULAR:
+                    title = String
+                            .format(
+                                    Locale.getDefault(),
+                                    getString(R.string.popular_title),
+                                    PreferencesManager.getInstance().getCity().getName());
+                    break;
+                case RECENTLY_WATCHED:
+                    title = getString(R.string.recently_watched_title);
+                    break;
+            }
+
+            if (title != null) {
+                mTextViewCompanyListTitle = (TextView) mRootView.findViewById(R.id.text_view_company_list_title);
+                mTextViewCompanyListTitle.setVisibility(View.VISIBLE);
+                mTextViewCompanyListTitle.setText(title);
+            }
+        } else {
+            switch (mFetchType) {
+                case RECENTLY_WATCHED:
+                    setToolbarTitle(getString(R.string.recent_item_text), "");
+                    break;
+                case FAVORITE:
+                    setToolbarTitle(getString(R.string.favorite_item_text), "");
+                    break;
+                case FOR_CATEGORY:
+                    setToolbarTitle(mSelectedCategory.getName(), mPresenter.getUserCityName());
+                    break;
+            }
+        }
     }
 
     private PaginationScrollListener initializePagination(final Pagination paginationDetails) {
@@ -317,7 +336,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
                 mPresenter.fetchFavoriteCompanies();
                 break;
             default:
-                mPresenter.fetchCompaniesForCategory(mCategoryId, mSearchFilter, mSortField, mSortType, mCurrentPaginationPage);
+                mPresenter.fetchCompaniesForCategory(mSelectedCategory.getId(), mSearchFilter, mSortField, mSortType, mCurrentPaginationPage);
         }
 
         if (selectedCompanyPosition != 0) {

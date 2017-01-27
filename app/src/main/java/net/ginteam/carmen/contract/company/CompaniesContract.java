@@ -26,6 +26,8 @@ public interface CompaniesContract {
 
     interface Presenter extends FetchContract.Presenter <View> {
 
+        String getUserCityName();
+
         void selectCompany(CompanyModel company);
 
         void fetchRecentlyWatchedCompanies();
