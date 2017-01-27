@@ -31,8 +31,25 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
                 .getLastLocation(new ApiGoogleManager.OnReceiveLocationListener() {
                     @Override
                     public void onLocationReceived(Location location) {
-                        saveCity(location);
-                        fetchCurrentUser();
+                        fetchCity(location, new ModelCallback<CityModel>() {
+                            @Override
+                            public void onSuccess(CityModel resultModel) {
+                                PreferencesManager
+                                        .getInstance()
+                                        .setCity(new Gson().toJson(resultModel));
+
+                                Log.e("CityByPoint", "The city received: " + PreferencesManager.getInstance().getCity());
+
+                                fetchCurrentUser();
+                            }
+
+                            @Override
+                            public void onFailure(String message) {
+                                Log.e("CityByPoint", "Error city receiving: " + message);
+                                mView.showCityListView();
+                                fetchCurrentUser();
+                            }
+                        });
                     }
 
                     @Override
@@ -53,7 +70,7 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        mApiGoogleManager.onRequestPermissionsResult(requestCode, permissions,grantResults);
+        mApiGoogleManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
@@ -84,24 +101,10 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
                 });
     }
 
-    private void saveCity(Location location) {
+    private void fetchCity(Location location, ModelCallback<CityModel> completion) {
         CitiesProvider
                 .getInstance()
-                .fetchCityByPoint(location, new ModelCallback<CityModel>() {
-                    @Override
-                    public void onSuccess(CityModel resultModel) {
-                        PreferencesManager
-                                .getInstance()
-                                .setCity(new Gson().toJson(resultModel));
-                        Log.e("CityByPoint", "The city received: " +
-                                PreferencesManager.getInstance().getCity());
-                    }
-
-                    @Override
-                    public void onFailure(String message) {
-                        Log.e("CityByPoint", "Error city receiving: " + message);
-                    }
-                });
+                .fetchCityByPoint(location, completion);
     }
 
 }

@@ -134,6 +134,7 @@
     <dimen name="menu_padding_side">25dp</dimen>
 
     <!-- Company Detail -->
+    <dimen name="company_detail_float_button_margin">16dp</dimen>
     <dimen name="company_detail_parallax_toolbar_height">250dp</dimen>
     <dimen name="company_detail_parallax_toolbar_gradient_height">75.5dp</dimen>
     <dimen name="company_detail_margin_side">20dp</dimen>

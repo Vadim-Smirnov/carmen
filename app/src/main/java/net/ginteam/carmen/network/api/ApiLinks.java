@@ -44,7 +44,7 @@ public class ApiLinks {
 
         public static final String LAT = "lat";
 
-        public static final String LON = "lon";
+        public static final String LNG = "lng";
 
         public static final String COMPANY_BY_ID = CATALOG + "companies/{" + ID + "}";
 

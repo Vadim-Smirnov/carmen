@@ -12,7 +12,6 @@
     <include layout="@layout/progress_bar"/>
 
     <android.support.design.widget.CoordinatorLayout
-
         android:id="@+id/activity_company_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,6 +28,15 @@
             <include layout="@layout/company_detail_content"/>
 
         </android.support.v4.widget.NestedScrollView>
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="@dimen/company_detail_float_button_margin"
+            android:src="@drawable/ic_call"
+            app:backgroundTint="#4990E2"
+            app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

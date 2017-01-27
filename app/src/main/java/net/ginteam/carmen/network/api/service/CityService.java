@@ -22,7 +22,7 @@ public interface CityService {
     @GET(ApiLinks.CATALOG.CITIES_BY_POINT)
     Observable <ResponseModel <CityModel>> fetchCityByPoint(
             @Query(ApiLinks.CATALOG.LAT) Double lat,
-            @Query(ApiLinks.CATALOG.LON) Double lon
+            @Query(ApiLinks.CATALOG.LNG) Double lon
     );
 
 
