@@ -132,10 +132,12 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
         if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
             if (!companyModel.isFavorite()) {
                 companyModel.setFavorite(true);
+                mView.addToFavorites();
                 addToFavorites(companyModel);
                 return;
             }
             companyModel.setFavorite(false);
+            mView.removeFromFavorites(companyModel);
             removeFromFavorites(companyModel);
             return;
         }
@@ -149,13 +151,11 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
                 .addToFavorites(company, new ModelCallback<String>() {
                     @Override
                     public void onSuccess(String resultModel) {
-                        mView.addToFavorites();
                         Log.d("COMPANIES_PRESENTER", "Add to favorite success");
                     }
 
                     @Override
                     public void onFailure(String message) {
-                        mView.showError(message);
                         Log.e("COMPANIES_PRESENTER", "Add to favorite error: " + message);
                     }
                 });
@@ -168,13 +168,11 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
                 .removeFromFavorites(company, new ModelCallback<String>() {
                     @Override
                     public void onSuccess(String resultModel) {
-                        mView.removeFromFavorites(company);
                         Log.d("COMPANIES_PRESENTER", "Remove from favorite success");
                     }
 
                     @Override
                     public void onFailure(String message) {
-                        mView.showError(message);
                         Log.e("COMPANIES_PRESENTER", "Remove from favorite error: " + message);
                     }
                 });

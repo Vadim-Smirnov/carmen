@@ -7,14 +7,20 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
@@ -60,7 +66,8 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         receiveArguments();
         updateDependencies();
 
-        mPresenter = new CompanyDetailPresenter(this);
+        mPresenter = new CompanyDetailPresenter();
+        mPresenter.attachView(this);
         mPresenter.fetchCompanyDetail(mCompanyId);
     }
 
@@ -199,5 +206,8 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mTextViewDistance = (TextView) findViewById(R.id.text_view_distance);
         mTextViewWorkTime = (TextView) findViewById(R.id.text_view_work_time);
         mTextViewReviewCount = (TextView) findViewById(R.id.text_view_review_count);
+    }
+
+    private void showMapImage() {
     }
 }

@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompaniesContract;
@@ -228,8 +229,8 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     public void removeFromFavorites(CompanyModel companyModel) {
         if (mFetchType == FETCH_COMPANY_TYPE.FAVORITE) {
             mRecyclerListAdapter.removeItem(companyModel);
-            mRecyclerListAdapter.notifyDataSetChanged();
         }
+        mRecyclerListAdapter.notifyDataSetChanged();
     }
 
     private void updateDependencies() {

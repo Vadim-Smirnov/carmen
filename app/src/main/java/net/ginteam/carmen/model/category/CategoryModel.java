@@ -2,13 +2,18 @@ package net.ginteam.carmen.model.category;
 
 import com.google.gson.annotations.SerializedName;
 
+import net.ginteam.carmen.model.ResponseModel;
+import net.ginteam.carmen.model.Service;
+
+import java.io.Serializable;
+import java.util.List;
 import java.util.Locale;
 
 /**
  * Created by Eugene on 12/23/16.
  */
 
-public class CategoryModel {
+public class CategoryModel implements Serializable {
 
     @SerializedName("id")
     private int mId;
@@ -18,6 +23,9 @@ public class CategoryModel {
 
     @SerializedName("active")
     private boolean mIsActive;
+
+    @SerializedName("service")
+    private List<Service> mServices;
 
     public int getId() {
         return mId;
@@ -29,6 +37,10 @@ public class CategoryModel {
 
     public boolean isActive() {
         return mIsActive;
+    }
+
+    public List<Service> getServices() {
+        return mServices;
     }
 
     @Override

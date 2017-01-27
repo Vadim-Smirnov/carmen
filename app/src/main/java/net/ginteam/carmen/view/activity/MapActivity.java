@@ -4,14 +4,12 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -24,7 +22,6 @@ import com.google.maps.android.clustering.ClusterManager;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.MapContract;
-import net.ginteam.carmen.manager.ApiGoogleManager;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.MapPresenter;
 import net.ginteam.carmen.utils.CompanyClusterRenderer;

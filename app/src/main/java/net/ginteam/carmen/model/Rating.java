@@ -2,11 +2,13 @@ package net.ginteam.carmen.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by vadik on 24.01.17.
  */
 
-public class Rating {
+public class Rating implements Serializable {
 
     @SerializedName("id")
     private int mId;

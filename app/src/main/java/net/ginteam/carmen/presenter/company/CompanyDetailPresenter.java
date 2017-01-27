@@ -8,6 +8,7 @@ import android.view.View;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
 import net.ginteam.carmen.model.Rating;
+import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.company.Comfort;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.provider.ModelCallback;
@@ -18,6 +19,7 @@ import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 import net.ginteam.carmen.view.fragment.company.AdditionalServicesFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 import net.ginteam.carmen.view.fragment.company.ReviewsFragment;
+import net.ginteam.carmen.view.fragment.company.ServiceCategoryListFragment;
 
 import java.util.List;
 
@@ -29,8 +31,7 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
 
     private CompanyDetailContract.View mView;
 
-    public CompanyDetailPresenter(CompanyDetailContract.View view) {
-        attachView(view);
+    public CompanyDetailPresenter() {
     }
 
     @Override
@@ -61,6 +62,8 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
                             mView.showFragment(R.id.reviews_fragment_container,
                                     ReviewsFragment.newInstance(ratings));
                         }
+                        mView.showFragment(R.id.service_category_fragment_container,
+                                ServiceCategoryListFragment.newInstance(resultModel.getCategory()));
                     }
 
                     @Override

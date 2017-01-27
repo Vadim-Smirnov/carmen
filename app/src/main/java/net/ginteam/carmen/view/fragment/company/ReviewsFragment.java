@@ -1,7 +1,6 @@
 package net.ginteam.carmen.view.fragment.company;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -50,8 +49,10 @@ public class ReviewsFragment extends BaseFetchingFragment {
         mRootView = inflateBaseFragment(R.layout.fragment_reviews, inflater, container, savedInstanceState);
 
         updateDependencies();
-        mReviewsAdapter = new ReviewsAdapter(getContext(), mRatingList);
-        mRecyclerViewReviews.setAdapter(mReviewsAdapter);
+        if (mRatingList != null) {
+            mReviewsAdapter = new ReviewsAdapter(getContext(), mRatingList);
+            mRecyclerViewReviews.setAdapter(mReviewsAdapter);
+        }
 
         return mRootView;
     }
