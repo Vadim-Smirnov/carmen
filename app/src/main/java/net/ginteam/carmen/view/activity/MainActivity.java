@@ -36,6 +36,11 @@ public class MainActivity extends NavigationViewActivity implements
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == FilterActivity.REQUEST_CODE && resultCode == RESULT_OK) {
@@ -87,7 +92,7 @@ public class MainActivity extends NavigationViewActivity implements
                 CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                 CompanyListFragment.FETCH_COMPANY_TYPE.FOR_CATEGORY,
                 category),
-                !isDialog
+                false
         );
 
         mSelectedCategory = category;

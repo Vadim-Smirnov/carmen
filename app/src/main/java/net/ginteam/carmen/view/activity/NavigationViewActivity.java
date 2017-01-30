@@ -99,6 +99,7 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
     @Override
     public void showMainFragment() {
+//        cleanBackStack();
         onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
     }
 
@@ -106,8 +107,8 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-
-        ActionBarDrawerToggle toggle = new ToolbarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ToolbarDrawerToggle(this, mDrawerLayout, mToolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.syncState();
 
         mDrawerLayout.addDrawerListener(toggle);
@@ -115,7 +116,6 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
         disableNavigationViewScrollbars(mNavigationView);
         prepareNavigationViewMenu(mNavigationView.getMenu());
-
     }
 
     private void disableNavigationViewScrollbars(NavigationView navigationView) {
