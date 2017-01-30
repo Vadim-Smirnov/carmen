@@ -1,20 +1,33 @@
 package net.ginteam.carmen.view.activity.company;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
@@ -52,6 +65,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     private Button mButtonCash;
     private Button mButtonCashLess;
     private ImageView mImageViewMap;
+    private FloatingActionButton mActionButtonCall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,6 +137,9 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                         companyModel.getRatings().size(),
                         companyModel.getRatings().size()));
         mRatingViewCompanyRating.setRating(companyModel.getRating());
+        mActionButtonCall.setVisibility(companyModel.getDetail().getPhones().isEmpty() ?
+                View.GONE : View.VISIBLE);
+        showMapImage();
     }
 
     @Override
@@ -158,6 +175,32 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                 .beginTransaction()
                 .replace(containerId, fragment)
                 .commit();
+    }
+
+    @Override
+    public void call() {
+        final Intent intent = new Intent(Intent.ACTION_DIAL);
+        if (mCompanyModel.getDetail().getPhones().size() > 1) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Выберите номер:");
+
+            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item);
+            for (String currentNumber : mCompanyModel.getDetail().getPhones()) {
+                arrayAdapter.add(currentNumber);
+            }
+            builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    intent.setData(Uri.parse("tel:" + arrayAdapter.getItem(which)));
+                    startActivity(intent);
+                }
+            });
+
+            builder.show();
+        } else {
+            intent.setData(Uri.parse("tel:" + mCompanyModel.getDetail().getPhones().get(0)));
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -206,8 +249,22 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mTextViewDistance = (TextView) findViewById(R.id.text_view_distance);
         mTextViewWorkTime = (TextView) findViewById(R.id.text_view_work_time);
         mTextViewReviewCount = (TextView) findViewById(R.id.text_view_review_count);
+        mActionButtonCall = (FloatingActionButton) findViewById(R.id.action_button_call);
+        mActionButtonCall.setOnClickListener(this);
     }
 
     private void showMapImage() {
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int mapHeight = (int) getResources().getDimension(R.dimen.company_detail_image_map_height);
+        String url =
+                String.format("http://maps.googleapis.com/maps/api/staticmap?center=%1$s," +
+                                "%2$s&markers=color:red|size:mid|%1$s,%2$s&zoom=14&scale=2&" +
+                                "size=%3$sx%4$s&format=png&visual_refresh=true",
+                        mCompanyModel.getPosition().latitude, mCompanyModel.getPosition().longitude,
+                        size.x, mapHeight);
+
+        Picasso.with(getContext()).load(url).into(mImageViewMap);
     }
 }

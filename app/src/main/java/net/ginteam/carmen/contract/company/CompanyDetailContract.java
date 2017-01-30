@@ -24,6 +24,8 @@ public interface CompanyDetailContract {
 
         void showFragment(@IdRes int containerId, BaseFetchingFragment fragment);
 
+        void call();
+
     }
 
     interface Presenter extends FetchContract.Presenter<View> {

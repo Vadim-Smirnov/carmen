@@ -55,7 +55,6 @@ public class CompaniesProvider {
                     @Override
                     public void onSuccess(List<CompanyModel> resultModel, Pagination pagination) {
                         completion.onSuccess(resultModel, pagination);
-                        Log.e("PIZDA", resultModel.get(0).getDistance() + "");
                     }
 
                     @Override

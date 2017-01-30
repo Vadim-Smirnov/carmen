@@ -83,6 +83,8 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
             case R.id.button_show_on_map:
                 mView.showMap();
                 break;
+            case R.id.action_button_call:
+                mView.call();
         }
     }
 
