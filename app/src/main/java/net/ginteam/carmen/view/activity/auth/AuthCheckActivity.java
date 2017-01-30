@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.auth.AuthenticationCheckContract;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.presenter.auth.AuthenticationCheckPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
@@ -91,5 +92,6 @@ public class AuthCheckActivity extends AppCompatActivity implements Authenticati
     @Override
     public void onCitySelected(CityModel city) {
         mPresenter.fetchCurrentUser();
+        PreferencesManager.getInstance().setUserLocation("");
     }
 }

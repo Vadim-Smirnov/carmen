@@ -48,6 +48,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     private TextView mTextViewDistance;
     private TextView mTextViewWorkTime;
     private TextView mTextViewAddress;
+    private ImageView mImageViewLocation;
     private Button mButtonCash;
     private Button mButtonCashLess;
     private ImageView mImageViewMap;
@@ -111,7 +112,11 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mTextViewCategory.setText(companyModel.getCategory().get(0).getName());
         mTextViewAddress.setText(companyModel.getAddress());
         mTextViewWorkTime.append(companyModel.getDetail().getWorkTime().get(1));
-        mTextViewDistance.setText("1.2 km");
+
+        mTextViewDistance.setText(companyModel.getDistance() == 0 ? "" :
+                String.format("%.1f km", companyModel.getDistance() / 1000));
+        mImageViewLocation.setVisibility(mTextViewDistance.getText().toString().isEmpty() ?
+                View.INVISIBLE : View.VISIBLE);
         mTextViewReviewCount
                 .setText(getResources().getQuantityString(
                         R.plurals.review_count_string,
@@ -193,6 +198,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mRatingViewVoteObject.setOnRatingChangeListener(this);
 
         mImageViewMap = (ImageView) findViewById(R.id.image_view_map);
+        mImageViewLocation = (ImageView) findViewById(R.id.image_view_location);
         mRatingViewCompanyRating = (RatingView) findViewById(R.id.rating_view_company);
         mTextViewAddress = (TextView) findViewById(R.id.text_view_address);
         mTextViewCategory = (TextView) findViewById(R.id.text_view_category);

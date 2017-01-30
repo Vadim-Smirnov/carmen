@@ -62,6 +62,9 @@ public class CompanyModel implements ClusterItem, Serializable {
     @SerializedName("ratings")
     private ResponseModel<List<Rating>> mRatings;
 
+    @SerializedName("distance")
+    private double mDistance;
+
     public CompanyModel() {
         mIsFavorite = true;
     }
@@ -125,6 +128,10 @@ public class CompanyModel implements ClusterItem, Serializable {
 
     public List<Rating> getRatings() {
         return mRatings.getData();
+    }
+
+    public double getDistance() {
+        return mDistance;
     }
 
 }

@@ -23,7 +23,7 @@ import static net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter
  * Created by Eugene on 12/27/16.
  */
 
-public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerView.ViewHolder> {
+public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     enum ITEM_VIEW_TYPE {
         COMPANY,
@@ -32,14 +32,14 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
 
     private Context mContext;
     private CompanyListFragment.COMPANY_LIST_TYPE mType;
-    private List <CompanyModel> mCompanies;
+    private List<CompanyModel> mCompanies;
 
     private boolean mIsLoadingIndicatorShow;
 
     private CompanyItemViewHolder.OnCompanyItemClickListener mCompanyItemClickListener;
     private CompanyItemViewHolder.OnAddToFavoritesClickListener mOnAddToFavoritesClickListener;
 
-    public CompanyRecyclerListAdapter(Context context, List <CompanyModel> companies, CompanyListFragment.COMPANY_LIST_TYPE type) {
+    public CompanyRecyclerListAdapter(Context context, List<CompanyModel> companies, CompanyListFragment.COMPANY_LIST_TYPE type) {
         mContext = context;
         mType = type;
         mCompanies = companies;
@@ -54,7 +54,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
         mOnAddToFavoritesClickListener = onAddToFavoritesClickListener;
     }
 
-    public void addCompanies(List <CompanyModel> companies) {
+    public void addCompanies(List<CompanyModel> companies) {
         int insertPosition = mCompanies.size();
         mCompanies.addAll(companies);
         notifyItemRangeInserted(insertPosition, companies.size());
@@ -111,7 +111,13 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
         companyViewHolder.getTextViewName().setText(currentCompany.getName());
         companyViewHolder.getTextViewAddress().setText(currentCompany.getAddress());
         companyViewHolder.getRatingViewRating().setRating(currentCompany.getRating());
-        companyViewHolder.getTextViewDistance().setText("300 м");
+        companyViewHolder.getTextViewDistance()
+                .setText(currentCompany.getDistance() == 0 ? "" :
+                        String.format("%.1f km", currentCompany.getDistance() / 1000));
+
+        companyViewHolder.getImageViewLocation().setVisibility(
+                companyViewHolder.getTextViewDistance().getText().toString().isEmpty() ?
+                        View.INVISIBLE : View.VISIBLE);
         companyViewHolder.getImageButtonAddToFavorite().setImageDrawable(ContextCompat.getDrawable(mContext,
                 currentCompany.isFavorite() ? R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable));
         companyViewHolder.getTextViewPrice().setText(
@@ -123,7 +129,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <RecyclerVi
         companyViewHolder.getImageButtonAddToFavorite().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, "Like",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Like", Toast.LENGTH_SHORT).show();
             }
         });
 

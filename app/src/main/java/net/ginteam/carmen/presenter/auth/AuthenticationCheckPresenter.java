@@ -31,6 +31,10 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
                 .getLastLocation(new ApiGoogleManager.OnReceiveLocationListener() {
                     @Override
                     public void onLocationReceived(Location location) {
+                        PreferencesManager
+                                .getInstance()
+                                .setUserLocation(String.format("%s %s", location.getLatitude(), location.getLongitude()));
+
                         fetchCity(location, new ModelCallback<CityModel>() {
                             @Override
                             public void onSuccess(CityModel resultModel) {
@@ -47,7 +51,7 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
                             public void onFailure(String message) {
                                 Log.e("CityByPoint", "Error city receiving: " + message);
                                 mView.showCityListView();
-                                fetchCurrentUser();
+//                                fetchCurrentUser();
                             }
                         });
                     }

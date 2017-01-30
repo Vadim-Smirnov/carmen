@@ -1,6 +1,11 @@
 package net.ginteam.carmen.provider.company;
 
+import android.util.Log;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import net.ginteam.carmen.manager.ApiManager;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
@@ -25,9 +30,11 @@ public class CompaniesProvider {
     private static CompaniesProvider sInstance;
 
     private CompanyService mCompanyService;
+    private LatLng mUserLocation;
 
     private CompaniesProvider() {
         mCompanyService = ApiManager.getInstance().getService(CompanyService.class);
+        mUserLocation = PreferencesManager.getInstance().getUserLocation();
     }
 
     public static CompaniesProvider getInstance() {
@@ -40,13 +47,15 @@ public class CompaniesProvider {
     public void fetchForCategory(final int categoryId, String filter, String sortField, String sortType,
                                  int page, final ModelCallbackWithMeta<List<CompanyModel>> completion) {
         mCompanyService
-                .fetchCompanies(categoryId, filter, sortField, sortType, page)
+                .fetchCompanies(categoryId, mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
+                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude), filter, sortField, sortType, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriberWithMeta<List<CompanyModel>>() {
                     @Override
                     public void onSuccess(List<CompanyModel> resultModel, Pagination pagination) {
                         completion.onSuccess(resultModel, pagination);
+                        Log.e("PIZDA", resultModel.get(0).getDistance() + "");
                     }
 
                     @Override
@@ -79,7 +88,8 @@ public class CompaniesProvider {
                 ApiLinks.CATALOG.DETAIL, ApiLinks.CATALOG.CATEGORIES, ApiLinks.CATALOG.RATINGS);
 
         mCompanyService
-                .fetchCompanyDetail(companyId, relations)
+                .fetchCompanyDetail(companyId,mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
+                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude), relations)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<CompanyModel>() {
@@ -115,7 +125,8 @@ public class CompaniesProvider {
 
     public void fetchPopular(int cityId, final ModelCallback<List<CompanyModel>> completion) {
         mCompanyService
-                .fetchPopular(cityId)
+                .fetchPopular(cityId,mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
+                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<List<CompanyModel>>() {

@@ -3,6 +3,7 @@ package net.ginteam.carmen.manager;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
 
 import net.ginteam.carmen.CarmenApplication;
@@ -53,6 +54,20 @@ public class PreferencesManager {
     public CityModel getCity() {
         String cityJson = mPreferences.getString(Constants.PREFERENCES.CITY, "");
         return new Gson().fromJson(cityJson, CityModel.class);
+    }
+
+    public void setUserLocation(String userLocation) {
+        mPreferences
+                .edit()
+                .putString(Constants.PREFERENCES.USER_LOCATION, userLocation)
+                .apply();
+    }
+//
+    public LatLng getUserLocation() {
+       String userLocation = mPreferences.getString(Constants.PREFERENCES.USER_LOCATION, "");
+
+        return !userLocation.isEmpty() ? new LatLng(Double.valueOf(userLocation.split(" ")[0]),
+                Double.valueOf(userLocation.split(" ")[1])) : null;
     }
 
 }

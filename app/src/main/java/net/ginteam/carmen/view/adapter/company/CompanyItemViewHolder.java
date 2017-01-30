@@ -25,12 +25,14 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
     private ImageButton mImageButtonAddToFavorite;
     private TextView mTextViewDistance;
     private TextView mTextViewPrice;
+    private ImageView mImageViewLocation;
 
     public CompanyItemViewHolder(View itemView) {
         super(itemView);
 
         mView = itemView;
         mImageViewPhoto = (ImageView) itemView.findViewById(R.id.image_view_company_photo);
+        mImageViewLocation = (ImageView) itemView.findViewById(R.id.image_view_company_location);
         mTextViewName = (TextView) itemView.findViewById(R.id.text_view_company_name);
         mTextViewAddress = (TextView) itemView.findViewById(R.id.text_view_company_address);
         mRatingViewRating = (RatingView) itemView.findViewById(R.id.rating_view_company);
@@ -65,6 +67,10 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getTextViewPrice() {
         return mTextViewPrice;
+    }
+
+    public ImageView getImageViewLocation() {
+        return mImageViewLocation;
     }
 
     public void setOnAddToFavoritesClickListener(final CompanyModel company, final OnAddToFavoritesClickListener listener) {
