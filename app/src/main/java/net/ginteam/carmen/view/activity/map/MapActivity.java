@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -29,14 +30,16 @@ import com.google.maps.android.clustering.ClusterManager;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.MapContract;
+import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
 import net.ginteam.carmen.presenter.MapPresenter;
-import net.ginteam.carmen.utils.CompanyClusterRenderer;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
+import net.ginteam.carmen.view.activity.filter.FilterActivity;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListHorizontalItemDecorator;
 import net.ginteam.carmen.view.adapter.company.map.CompanyItemViewHolder;
 import net.ginteam.carmen.view.adapter.company.map.CompanyRecyclerListAdapter;
+import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 import java.util.Collection;
 import java.util.List;
@@ -83,6 +86,12 @@ public class MapActivity extends ToolbarActivity implements MapContract.View, On
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.detachView();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             onBackPressed();
@@ -97,10 +106,11 @@ public class MapActivity extends ToolbarActivity implements MapContract.View, On
             mPresenter.fetchCompaniesByBounds(
                     mCategoryId,
                     mFilters,
-                    mGoogleMap.getProjection().getVisibleRegion().latLngBounds
+                    getCurrentMapBounds()
             );
             return;
         }
+        startFilterActivityForResult(mCategoryId);
     }
 
     @Override
@@ -155,7 +165,7 @@ public class MapActivity extends ToolbarActivity implements MapContract.View, On
             mPresenter.fetchCompaniesByBounds(
                     mCategoryId,
                     mFilters,
-                    mGoogleMap.getProjection().getVisibleRegion().latLngBounds
+                    getCurrentMapBounds()
             );
             mIsNeedAutomaticallyFetch = false;
         }
@@ -264,6 +274,13 @@ public class MapActivity extends ToolbarActivity implements MapContract.View, On
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == FilterActivity.REQUEST_CODE && resultCode == RESULT_OK) {
+            mFilters = data.getStringExtra(FilterActivity.RESULT_FILTER_ARGUMENT);
+            mPresenter.fetchCompaniesByBounds(mCategoryId, mFilters, getCurrentMapBounds());
+            Log.d("FilterActivity", mFilters);
+            return;
+        }
         mPresenter.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -280,6 +297,10 @@ public class MapActivity extends ToolbarActivity implements MapContract.View, On
         }
         mGoogleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(boundsBuilder.build(), zoom));
         mIsNeedAutomaticallyFetch = true;
+    }
+
+    private LatLngBounds getCurrentMapBounds() {
+        return mGoogleMap.getProjection().getVisibleRegion().latLngBounds;
     }
 
     private void updateDependencies() {
@@ -316,6 +337,12 @@ public class MapActivity extends ToolbarActivity implements MapContract.View, On
         googleMapUiSettings.setCompassEnabled(false);
         googleMapUiSettings.setAllGesturesEnabled(true);
         googleMapUiSettings.setMyLocationButtonEnabled(false);
+    }
+
+    private void startFilterActivityForResult(int categoryId) {
+        Intent intent = new Intent(this, FilterActivity.class);
+        intent.putExtra(FilterActivity.CATEGORY_ID_ARGUMENT, categoryId);
+        startActivityForResult(intent, FilterActivity.REQUEST_CODE);
     }
 
     private boolean checkPermission() {

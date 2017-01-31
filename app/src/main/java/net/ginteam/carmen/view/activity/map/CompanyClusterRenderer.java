@@ -1,4 +1,4 @@
-package net.ginteam.carmen.utils;
+package net.ginteam.carmen.view.activity.map;
 
 import android.content.Context;
 import android.graphics.Bitmap;
