@@ -128,8 +128,10 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
         companyViewHolder.getImageViewLocation().setVisibility(
                 companyViewHolder.getTextViewDistance().getText().toString().isEmpty() ?
                         View.INVISIBLE : View.VISIBLE);
-        companyViewHolder.getImageButtonAddToFavorite().setImageDrawable(ContextCompat.getDrawable(mContext,
-                currentCompany.isFavorite() ? R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable));
+
+        companyViewHolder.getImageButtonAddToFavorite().setImageResource(currentCompany.isFavorite() ?
+                R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable);
+
         companyViewHolder.getTextViewPrice().setText(
                 String.format(Locale.getDefault(),
                         mContext.getString(R.string.company_price),

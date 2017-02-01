@@ -86,8 +86,8 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<CompanyItem
                         currentCompany.getPrice())
         );
 
-        holder.getImageButtonAddToFavorite().setImageDrawable(ContextCompat.getDrawable(mContext,
-                currentCompany.isFavorite() ? R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable));
+        holder.getImageButtonAddToFavorite().setImageResource(currentCompany.isFavorite() ?
+                R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable);
 
         if (mCompanyItemClickListener == null) {
             Log.e("CompanyListAdapter", "OnCompanyItemClickListener does not set!");
