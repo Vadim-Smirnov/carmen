@@ -2,6 +2,7 @@ package net.ginteam.carmen.view.adapter.company;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -116,7 +117,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
         }
 
         CompanyModel currentCompany = mCompanies.get(position);
-        CompanyItemViewHolder companyViewHolder = (CompanyItemViewHolder) holder;
+        final CompanyItemViewHolder companyViewHolder = (CompanyItemViewHolder) holder;
 
         companyViewHolder.getTextViewName().setText(currentCompany.getName());
         companyViewHolder.getTextViewAddress().setText(currentCompany.getAddress());
@@ -124,6 +125,12 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
         companyViewHolder.getTextViewDistance()
                 .setText(currentCompany.getDistance() == 0 ? "" :
                         String.format("%.1f km", currentCompany.getDistance() / 1000));
+
+        companyViewHolder.getImageViewPhoto().getLayoutParams().height =
+                calculateImageSizeForType(mType);
+        companyViewHolder.getImageViewPhoto().getLayoutParams().width =
+                calculateImageSizeForType(mType);
+        companyViewHolder.getImageViewPhoto().requestLayout();
 
         companyViewHolder.getImageViewLocation().setVisibility(
                 companyViewHolder.getTextViewDistance().getText().toString().isEmpty() ?
@@ -183,6 +190,18 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
             Point screenSize = DisplayUtils.getScreenSize(mContext);
             int itemSpacing = (int) mContext.getResources().getDimension(R.dimen.company_item_spacing);
             itemWidth = (screenSize.x / 2) - (VISIBLE_ITEMS * itemSpacing);
+        }
+        return itemWidth;
+    }
+
+    private int calculateImageSizeForType(CompanyListFragment.COMPANY_LIST_TYPE type) {
+        int itemWidth = RecyclerView.LayoutParams.MATCH_PARENT;
+        Point screenSize = DisplayUtils.getScreenSize(mContext);
+        if (type == CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL) {
+            int itemSpacing = (int) mContext.getResources().getDimension(R.dimen.company_item_spacing);
+            itemWidth = (screenSize.x / 2) - (VISIBLE_ITEMS * itemSpacing);
+        } else {
+            itemWidth = 43 * screenSize.x / 100;
         }
         return itemWidth;
     }

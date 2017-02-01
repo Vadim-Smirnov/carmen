@@ -86,6 +86,10 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<CompanyItem
                         currentCompany.getPrice())
         );
 
+        holder.getImageViewPhoto().getLayoutParams().height = calculateImageSize();
+        holder.getImageViewPhoto().requestLayout();
+        holder.itemView.requestLayout();
+
         holder.getImageButtonAddToFavorite().setImageResource(currentCompany.isFavorite() ?
                 R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable);
 
@@ -111,6 +115,11 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<CompanyItem
         Point screenSize = DisplayUtils.getScreenSize(mContext);
         int itemSpacing = (int) mContext.getResources().getDimension(R.dimen.company_item_spacing);
         return (screenSize.x / 2) - (VISIBLE_ITEMS * itemSpacing);
+    }
+
+    private int calculateImageSize() {
+        Point screenSize = DisplayUtils.getScreenSize(mContext);
+        return calculateItemWidth() * 64 / 100;
     }
 
 }
