@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.manager.PreferencesManager;
+import net.ginteam.carmen.model.auth.UserModel;
 import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.auth.SignInActivity;
@@ -34,13 +35,15 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
     protected Fragment mCurrentFragment;
 
+    private UserModel mCurrentUser;
+
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
 
         initializeNavigationView();
 
-        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
+        if (mCurrentUser != null) {
             updateNavigationHeader();
         }
     }
@@ -99,13 +102,16 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
     @Override
     public void showMainFragment() {
-//        cleanBackStack();
         onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
     }
 
     private void initializeNavigationView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mCurrentUser = AuthProvider.getInstance().getCurrentCachedUser();
+
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        mNavigationView.inflateMenu(mCurrentUser == null ? R.menu.navigation_menu_unauth :
+                R.menu.navigation_menu);
 
         ActionBarDrawerToggle toggle = new ToolbarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -136,13 +142,12 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
     }
 
     private void prepareNavigationViewMenu(Menu navigationViewMenu) {
-        if (AuthProvider.getInstance().getCurrentCachedUser() == null) {
-            navigationViewMenu.findItem(R.id.profile_item).setVisible(false);
-            navigationViewMenu.findItem(R.id.recent_item).setVisible(false);
-            navigationViewMenu.findItem(R.id.favorite_item).setVisible(false);
-            navigationViewMenu.findItem(R.id.logout_item).setVisible(false);
-            navigationViewMenu.findItem(R.id.sign_in_item).setVisible(true);
-        }
+        mNavigationView.getHeaderView(0).findViewById(R.id.navigation_header_auth).setVisibility(
+                mCurrentUser == null ? View.GONE : View.VISIBLE);
+
+        mNavigationView.getHeaderView(0).findViewById(R.id.navigation_header_unauth).setVisibility(
+                mCurrentUser == null ? View.VISIBLE : View.GONE);
+
     }
 
 }

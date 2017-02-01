@@ -12,5 +12,4 @@
     android:theme="@style/NavigationTheme"
     android:visibility="visible"
     app:headerLayout="@layout/navigation_view_header"
-    app:itemBackground="@drawable/menu_item_devider"
-    app:menu="@menu/navigation_menu"/>
+    app:itemBackground="@drawable/menu_item_devider" />
