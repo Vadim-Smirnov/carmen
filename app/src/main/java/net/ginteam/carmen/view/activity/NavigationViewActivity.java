@@ -35,16 +35,22 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
     protected Fragment mCurrentFragment;
 
-    private UserModel mCurrentUser;
-
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
-
         initializeNavigationView();
+    }
 
-        if (mCurrentUser != null) {
-            updateNavigationHeader();
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
+            mNavigationView.getMenu().clear();
+            mNavigationView.removeHeaderView(mNavigationView.getHeaderView(0));
+            mNavigationView.inflateMenu(R.menu.navigation_menu_full);
+            mNavigationView.inflateHeaderView(R.layout.navigation_view_user_header);
+            setupUserCredentialsInHeader(mNavigationView.getHeaderView(0), AuthProvider.getInstance().getCurrentCachedUser());
         }
     }
 
@@ -107,11 +113,7 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
     private void initializeNavigationView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mCurrentUser = AuthProvider.getInstance().getCurrentCachedUser();
-
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mNavigationView.inflateMenu(mCurrentUser == null ? R.menu.navigation_menu_unauth :
-                R.menu.navigation_menu);
 
         ActionBarDrawerToggle toggle = new ToolbarDrawerToggle(this, mDrawerLayout, mToolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -121,7 +123,6 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
         mNavigationView.setNavigationItemSelectedListener(this);
 
         disableNavigationViewScrollbars(mNavigationView);
-        prepareNavigationViewMenu(mNavigationView.getMenu());
     }
 
     private void disableNavigationViewScrollbars(NavigationView navigationView) {
@@ -131,23 +132,12 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
         }
     }
 
-    private void updateNavigationHeader() {
-        View navigationHeader = mNavigationView.getHeaderView(0);
+    private void setupUserCredentialsInHeader(View headerView, UserModel user) {
+        TextView textViewName = (TextView) headerView.findViewById(R.id.text_view_nav_header_name);
+        TextView textViewEmail = (TextView) headerView.findViewById(R.id.text_view_nav_header_email);
 
-        TextView textViewName = (TextView) navigationHeader.findViewById(R.id.text_view_nav_header_name);
-        TextView textViewEmail = (TextView) navigationHeader.findViewById(R.id.text_view_nav_header_email);
-
-        textViewName.setText(AuthProvider.getInstance().getCurrentCachedUser().getName());
-        textViewEmail.setText(AuthProvider.getInstance().getCurrentCachedUser().getEmail());
-    }
-
-    private void prepareNavigationViewMenu(Menu navigationViewMenu) {
-        mNavigationView.getHeaderView(0).findViewById(R.id.navigation_header_auth).setVisibility(
-                mCurrentUser == null ? View.GONE : View.VISIBLE);
-
-        mNavigationView.getHeaderView(0).findViewById(R.id.navigation_header_unauth).setVisibility(
-                mCurrentUser == null ? View.VISIBLE : View.GONE);
-
+        textViewName.setText(user.getName());
+        textViewEmail.setText(user.getEmail());
     }
 
 }

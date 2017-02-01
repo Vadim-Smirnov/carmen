@@ -49,10 +49,9 @@
     <style name="DialogStyle" parent="Base.ThemeOverlay.AppCompat.Dialog.Alert">
         <item name="android:windowMinWidthMajor">97%</item>
         <item name="android:windowMinWidthMinor">97%</item>
-
     </style>
 
-    <style name="list_item_appearance">
+    <style name="ListItemAppearance">
         <item name="android:layout_margin">25dp</item>
     </style>
 

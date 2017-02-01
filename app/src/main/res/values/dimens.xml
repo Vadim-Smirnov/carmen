@@ -131,7 +131,6 @@
     <dimen name="menu_header_email_padding_left">0.5dp</dimen>
     <dimen name="menu_item_text_size">14sp</dimen>
     <dimen name="menu_item_height">55dp</dimen>
-    <dimen name="menu_padding_side">25dp</dimen>
 
     <!-- Company Detail -->
     <dimen name="company_detail_float_button_margin">16dp</dimen>
@@ -210,7 +209,7 @@
     <!-- Sort Dialog Fragment -->
     <dimen name="sort_item_margin">20dp</dimen>
     <dimen name="sort_title_left_margin">12.5dp</dimen>
-    
+
     <!-- Review item -->
     <dimen name="image_button_expand_width">39dp</dimen>
     <dimen name="image_button_expand_height">158dp</dimen>

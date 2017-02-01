@@ -46,4 +46,5 @@
             android:title="@string/terms_item_text"/>
 
     </group>
+
 </menu>
