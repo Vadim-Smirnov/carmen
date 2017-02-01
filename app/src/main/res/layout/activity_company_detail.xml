@@ -36,7 +36,7 @@
             android:layout_gravity="end|bottom"
             android:layout_margin="@dimen/company_detail_float_button_margin"
             android:src="@drawable/ic_call"
-            app:backgroundTint="#4990E2"
+            app:backgroundTint="#3EC7C2"
             app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
 
     </android.support.design.widget.CoordinatorLayout>

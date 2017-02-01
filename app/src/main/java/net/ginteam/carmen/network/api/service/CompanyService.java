@@ -54,10 +54,16 @@ public interface CompanyService {
     );
 
     @GET(ApiLinks.AUTH.GET_FAVORITES)
-    Observable<ResponseModel<List<CompanyModel>>> fetchFavorites();
+    Observable<ResponseModel<List<CompanyModel>>> fetchFavorites(
+            @Query(ApiLinks.CATALOG.LAT) String lat,
+            @Query(ApiLinks.CATALOG.LNG) String lng
+    );
 
     @GET(ApiLinks.AUTH.GET_RECENTLY_WATCHED)
-    Observable<ResponseModel<List<CompanyModel>>> fetchRecentlyWatched();
+    Observable<ResponseModel<List<CompanyModel>>> fetchRecentlyWatched(
+            @Query(ApiLinks.CATALOG.LAT) String lat,
+            @Query(ApiLinks.CATALOG.LNG) String lng
+    );
 
     @POST(ApiLinks.AUTH.FAVORITES_BY_ID)
     Observable<ResponseModel<String>> addToFavorites(@Path(ApiLinks.AUTH.ID) int id);

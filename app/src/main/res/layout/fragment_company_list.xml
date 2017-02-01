@@ -42,7 +42,7 @@
         android:layout_marginEnd="@dimen/float_button_margin_right"
         android:visibility="gone"
         android:src="@drawable/ic_float_button_map"
-        app:backgroundTint="#6563A4"
+        app:backgroundTint="#3EC7C2"
         app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
 
     <android.support.design.widget.BottomNavigationView

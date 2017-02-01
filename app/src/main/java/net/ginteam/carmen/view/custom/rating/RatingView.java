@@ -20,7 +20,7 @@ import net.ginteam.carmen.R;
 public class RatingView extends View {
 
     private static final int DEFAULT_CIRCLES_COUNT = 5;
-    private static final int DEFAULT_CIRCLES_COLOR = Color.parseColor("#B8E986");
+    private static final int DEFAULT_CIRCLES_COLOR = Color.parseColor("#3EC7C2");
     private static final int DEFAULT_CIRCLES_SPACING = 0;
     private static final int DEFAULT_RATING = 0;
 

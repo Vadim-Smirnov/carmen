@@ -106,7 +106,8 @@ public class CompaniesProvider {
 
     public void fetchRecentlyWatched(final ModelCallback<List<CompanyModel>> completion) {
         mCompanyService
-                .fetchRecentlyWatched()
+                .fetchRecentlyWatched(mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
+                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<List<CompanyModel>>() {

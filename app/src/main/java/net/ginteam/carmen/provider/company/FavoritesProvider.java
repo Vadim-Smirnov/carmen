@@ -2,7 +2,10 @@ package net.ginteam.carmen.provider.company;
 
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import net.ginteam.carmen.manager.ApiManager;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.network.api.service.CompanyService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
@@ -85,8 +88,10 @@ public class FavoritesProvider {
     }
 
     private void fetchFromServer(final ModelCallback<List<CompanyModel>> completion) {
+        LatLng userLocation = PreferencesManager.getInstance().getUserLocation();
         mCompanyService
-                .fetchFavorites()
+                .fetchFavorites(userLocation == null ? "0" : String.valueOf(userLocation.latitude),
+                        userLocation == null ? "0" : String.valueOf(userLocation.longitude))
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<List<CompanyModel>>() {
