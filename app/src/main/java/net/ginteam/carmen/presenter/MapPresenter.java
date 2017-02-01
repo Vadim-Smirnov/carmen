@@ -16,12 +16,9 @@ import net.ginteam.carmen.model.Point;
 import net.ginteam.carmen.model.company.MapCompanyModel;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.company.CompaniesProvider;
-import net.ginteam.carmen.view.activity.filter.FilterActivity;
 
 import java.util.List;
 import java.util.Locale;
-
-import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by vadik on 10.01.17.

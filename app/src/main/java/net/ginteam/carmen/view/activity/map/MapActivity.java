@@ -329,6 +329,7 @@ public class MapActivity extends ToolbarActivity implements MapContract.View, On
         mClusterManager.setRenderer(new CompanyClusterRenderer(getContext(), mGoogleMap, mClusterManager));
         mClusterManager.setOnClusterItemClickListener(this);
         mClusterManager.setOnClusterClickListener(this);
+
         mGoogleMap.setOnCameraIdleListener(this);
         mGoogleMap.setOnCameraMoveStartedListener(this);
         mGoogleMap.setOnMarkerClickListener(mClusterManager);

@@ -2,6 +2,7 @@ package net.ginteam.carmen.view.adapter.company.map;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,8 @@ import android.view.ViewGroup;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
+import net.ginteam.carmen.utils.DisplayUtils;
+import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 import java.util.List;
 import java.util.Locale;
@@ -20,7 +23,9 @@ import java.util.Locale;
  * Created by Eugene on 1/25/17.
  */
 
-public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyItemViewHolder> {
+public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<CompanyItemViewHolder> {
+
+    private static final int VISIBLE_ITEMS = 3;
 
     private Context mContext;
     private List<MapCompanyModel> mCompanies;
@@ -29,7 +34,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
     private CompanyItemViewHolder.OnCompanyItemClickListener mCompanyItemClickListener;
     private net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder.OnAddToFavoritesClickListener mOnAddToFavoritesClickListener;
 
-    public CompanyRecyclerListAdapter(Context context, List <MapCompanyModel> companies) {
+    public CompanyRecyclerListAdapter(Context context, List<MapCompanyModel> companies) {
         mContext = context;
         mCompanies = companies;
         mSelectionIndex = -1;
@@ -55,6 +60,11 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
         View companyItemView = LayoutInflater
                 .from(parent.getContext())
                 .inflate(R.layout.list_item_company_map, parent, false);
+
+        companyItemView.setLayoutParams(
+                new RecyclerView.LayoutParams(calculateItemWidth(), ViewGroup.LayoutParams.WRAP_CONTENT)
+        );
+
         return new CompanyItemViewHolder(companyItemView);
     }
 
@@ -95,6 +105,12 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter <CompanyIte
     @Override
     public int getItemCount() {
         return mCompanies.size();
+    }
+
+    private int calculateItemWidth() {
+        Point screenSize = DisplayUtils.getScreenSize(mContext);
+        int itemSpacing = (int) mContext.getResources().getDimension(R.dimen.company_item_spacing);
+        return (screenSize.x / 2) - (VISIBLE_ITEMS * itemSpacing);
     }
 
 }

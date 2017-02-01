@@ -1,16 +1,19 @@
 package net.ginteam.carmen.view.adapter.company;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.utils.DisplayUtils;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 import java.util.List;
@@ -29,6 +32,8 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
         COMPANY,
         LOADING
     }
+
+    private static final int VISIBLE_ITEMS = 3;
 
     private Context mContext;
     private CompanyListFragment.COMPANY_LIST_TYPE mType;
@@ -90,6 +95,11 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
             View companyItemView = LayoutInflater
                     .from(parent.getContext())
                     .inflate(getListItemIdForType(mType), parent, false);
+
+            companyItemView.setLayoutParams(
+                    new RecyclerView.LayoutParams(calculateItemWidthForType(mType), ViewGroup.LayoutParams.WRAP_CONTENT)
+            );
+
             return new CompanyItemViewHolder(companyItemView);
         } else {
             View loadingItemView = LayoutInflater
@@ -163,6 +173,16 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
             default:
                 return R.layout.list_item_company_vertical;
         }
+    }
+
+    private int calculateItemWidthForType(CompanyListFragment.COMPANY_LIST_TYPE type) {
+        int itemWidth = RecyclerView.LayoutParams.MATCH_PARENT;
+        if (type == CompanyListFragment.COMPANY_LIST_TYPE.HORIZONTAL) {
+            Point screenSize = DisplayUtils.getScreenSize(mContext);
+            int itemSpacing = (int) mContext.getResources().getDimension(R.dimen.company_item_spacing);
+            itemWidth = (screenSize.x / 2) - (VISIBLE_ITEMS * itemSpacing);
+        }
+        return itemWidth;
     }
 
 }
