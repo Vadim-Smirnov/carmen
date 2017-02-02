@@ -45,7 +45,7 @@ public class MainActivity extends NavigationViewActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == FilterActivity.REQUEST_CODE && resultCode == RESULT_OK) {
             String searchFilter = data.getStringExtra(FilterActivity.RESULT_FILTER_ARGUMENT);
-            if (mCurrentFragment.getClass().equals(CompanyListFragment.class)) {
+            if (CompanyListFragment.class.equals(mCurrentFragment.getClass())) {
                 ((CompanyListFragment) mCurrentFragment).setSearchFilter(searchFilter);
             }
             Log.d("FilterActivity", searchFilter);
@@ -79,7 +79,7 @@ public class MainActivity extends NavigationViewActivity implements
 
     @Override
     public void onSortSelected(String sortField, String sortType) {
-        if (mCurrentFragment.getClass().equals(CompanyListFragment.class)) {
+        if (CompanyListFragment.class.equals(mCurrentFragment.getClass())) {
             ((CompanyListFragment) mCurrentFragment).setSortQuery(sortField, sortType);
         }
     }

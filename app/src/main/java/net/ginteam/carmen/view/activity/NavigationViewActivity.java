@@ -33,8 +33,6 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
     protected DrawerLayout mDrawerLayout;
     protected NavigationView mNavigationView;
 
-    protected Fragment mCurrentFragment;
-
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
