@@ -25,7 +25,12 @@
         <item name="android:textAllCaps">false</item>
         <item name="android:layout_marginStart">@dimen/button_horizontal_margin</item>
         <item name="android:layout_marginEnd">@dimen/button_horizontal_margin</item>
+        <item name="android:text">@string/sign_in_string</item>
         <item name="fontPath">@string/avenir_book_font</item>
+    </style>
+
+    <style name="Button.SignUp" parent="Button.SignIn">
+        <item name="android:text">@string/sign_up_string</item>
     </style>
 
     <style name="Button.SocialSignIn" parent="Button.SignIn">
