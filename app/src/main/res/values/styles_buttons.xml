@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Button" />
+
+    <style name="Button.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Button.Wrapped">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Button.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Button.SignIn" parent="Button.WrappedHeight">
+        <item name="android:textSize">@dimen/sign_in_text_size</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:background">@color/colorApplicationBlue</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:layout_marginStart">@dimen/button_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/button_horizontal_margin</item>
+        <item name="android:text">@string/sign_in_string</item>
+        <item name="fontPath">@string/avenir_book_font</item>
+    </style>
+
+    <style name="Button.SignUp" parent="Button.SignIn">
+        <item name="android:text">@string/sign_up_string</item>
+    </style>
+
+    <style name="Button.SocialSignIn" parent="Button.SignIn">
+        <item name="android:background">@drawable/social_sign_in_button_border</item>
+        <item name="android:paddingStart">@dimen/sign_in_drawable_padding</item>
+    </style>
+
+    <style name="Button.SocialSignIn.Facebook" parent="Button.SocialSignIn">
+        <item name="android:drawableStart">@drawable/ic_facebook</item>
+        <item name="android:text">@string/sign_in_with_facebook_string</item>
+    </style>
+
+    <style name="Button.SocialSignIn.Google" parent="Button.SocialSignIn">
+        <item name="android:drawableStart">@drawable/ic_google</item>
+        <item name="android:text">@string/sign_in_with_google_string</item>
+    </style>
+
+</resources>

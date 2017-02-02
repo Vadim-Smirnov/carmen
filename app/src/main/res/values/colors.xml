@@ -13,6 +13,8 @@
     <color name="colorBlue">#4990E2</color>
     <color name="colorGreen">#417505</color>
 
+    <color name="colorApplicationBlue">#3EC7C2</color>
+
     <!-- Company detail colors -->
     <color name="colorMapGradientEnd">#51ffffff</color>
     <color name="colorDistance">#BF040404</color>

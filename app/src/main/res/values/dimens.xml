@@ -7,6 +7,8 @@
 
     <string name="test">XHDPI</string>
 
+    <dimen name="divider_height">1dp</dimen>
+
     <!-- Toolbar -->
     <dimen name="toolbar_items_spacing">10dp</dimen>
     <dimen name="toolbar_title_text_size">21sp</dimen>
