@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.utils.DisplayUtils;
@@ -131,6 +133,10 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
         companyViewHolder.getImageViewPhoto().getLayoutParams().width =
                 calculateImageSizeForType(mType);
         companyViewHolder.getImageViewPhoto().requestLayout();
+
+        if (!currentCompany.getImageUrl().isEmpty()) {
+            Picasso.with(mContext).load(currentCompany.getImageUrl().get(0)).into(companyViewHolder.getImageViewPhoto());
+        }
 
         companyViewHolder.getImageViewLocation().setVisibility(
                 companyViewHolder.getTextViewDistance().getText().toString().isEmpty() ?

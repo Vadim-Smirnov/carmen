@@ -22,6 +22,13 @@ public class CityModel {
     @SerializedName("point")
     private Point mPoint;
 
+    @SerializedName("bound")
+    private String mBound;
+
+    public String getBound() {
+        return mBound;
+    }
+
     public Point getPoint() {
         return mPoint;
     }
