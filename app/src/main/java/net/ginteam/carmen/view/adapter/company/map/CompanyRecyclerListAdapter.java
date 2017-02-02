@@ -25,7 +25,7 @@ import java.util.Locale;
 
 public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<CompanyItemViewHolder> {
 
-    private static final int VISIBLE_ITEMS = 3;
+    private static final int VISIBLE_ITEMS = 2;
 
     private Context mContext;
     private List<MapCompanyModel> mCompanies;

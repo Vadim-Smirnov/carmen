@@ -14,10 +14,10 @@ public class Detail {
     private List<String> mPhones;
 
     @SerializedName("email")
-    private String mEmail;
+    private List<String> mEmail;
 
     @SerializedName("website")
-    private String mWebsite;
+    private List<String> mWebsite;
 
     @SerializedName("work_time")
     private List<String> mWorkTime;
@@ -29,11 +29,11 @@ public class Detail {
         return mPhones;
     }
 
-    public String getEmail() {
+    public List<String> getEmail() {
         return mEmail;
     }
 
-    public String getWebsite() {
+    public List<String> getWebsite() {
         return mWebsite;
     }
 

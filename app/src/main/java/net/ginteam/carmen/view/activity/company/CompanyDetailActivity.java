@@ -123,9 +123,13 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                 companyModel.isFavorite() ? R.drawable.ic_company_favorite_enable :
                         R.drawable.ic_company_favorite_disable));
         mTextViewCompanyName.setText(companyModel.getName());
-        mTextViewCategory.setText(companyModel.getCategory().get(0).getName());
+//        mTextViewCategory.setText(companyModel.getCategory().get(0).getName());
         mTextViewAddress.setText(companyModel.getAddress());
-        mTextViewWorkTime.append(companyModel.getDetail().getWorkTime().get(1));
+        if (!companyModel.getDetail().getWorkTime().isEmpty()) {
+            mTextViewWorkTime.append(companyModel.getDetail().getWorkTime().get(1));
+        } else {
+            mTextViewWorkTime.setText("");
+        }
 
         mTextViewDistance.setText(companyModel.getDistance() == 0 ? "" :
                 String.format("%.1f km", companyModel.getDistance() / 1000));
