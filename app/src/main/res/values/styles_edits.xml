@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="EditText" />
+
+    <style name="TextInputLayout" />
+
+    <style name="EditText.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="EditText.WrappedHeight.Transparent" parent="EditText.WrappedHeight">
+        <item name="android:alpha">0.5</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:drawablePadding">@dimen/field_drawable_padding</item>
+        <item name="android:paddingTop">@dimen/field_bottom_padding</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/field_text_size</item>
+    </style>
+
+    <style name="EditText.Email" parent="EditText.WrappedHeight.Transparent">
+        <item name="android:drawableStart">@drawable/ic_email</item>
+        <item name="android:inputType">textEmailAddress</item>
+    </style>
+
+    <style name="EditText.Password" parent="EditText.WrappedHeight.Transparent">
+        <item name="android:drawableStart">@drawable/ic_password</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="TextInputLayout.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextInputLayout.WrappedHeight.WhiteHint" parent="TextInputLayout.WrappedHeight">
+        <item name="android:textColorHint">@color/colorWhite</item>
+        <item name="fontPath">@string/avenir_book_font</item>
+        <item name="android:paddingBottom">@dimen/field_bottom_padding</item>
+        <item name="android:layout_marginStart">@dimen/field_horizontal_space</item>
+        <item name="android:layout_marginEnd">@dimen/field_horizontal_space</item>
+    </style>
+
+    <style name="TextInputLayout.Email" parent="TextInputLayout.WrappedHeight.WhiteHint">
+        <item name="android:hint">@string/email_hint_string</item>
+    </style>
+
+    <style name="TextInputLayout.Password" parent="TextInputLayout.WrappedHeight.WhiteHint">
+        <item name="android:hint">@string/password_hint_string</item>
+    </style>
+
+    <style name="TextInputLayout.Divider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/divider_height</item>
+        <item name="android:background">@drawable/input_field_border</item>
+    </style>
+
+</resources>

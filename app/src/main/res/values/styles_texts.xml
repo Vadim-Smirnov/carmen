@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextView" />
+
+    <style name="TextView.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="TextView.Wrapped">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextView.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TextView.Wrapped.WhiteColor" parent="TextView.Wrapped">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:alpha">0.5</item>
+        <item name="fontPath">@string/avenir_book_font</item>
+    </style>
+
+    <style name="TextView.SignMessage" parent="TextView.Wrapped.WhiteColor">
+        <item name="android:textSize">@dimen/sign_up_text_size</item>
+    </style>
+
+    <style name="TextView.SignAction" parent="TextView.SignMessage">
+        <item name="android:alpha">1</item>
+    </style>
+
+</resources>
