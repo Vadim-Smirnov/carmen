@@ -21,16 +21,6 @@ public abstract class FragmentsActivity extends ToolbarActivity implements BaseF
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
-
-        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-            @Override
-            public void onBackStackChanged() {
-                int fragmentsCount = getSupportFragmentManager().getBackStackEntryCount();
-                for (int i = 0; i < fragmentsCount; i++) {
-                    Log.d("Manager", getSupportFragmentManager().getBackStackEntryAt(i).getName());
-                }
-            }
-        });
     }
 
     @Override
