@@ -4,9 +4,17 @@
     <declare-styleable name="RatingView">
 
         <attr name="circlesColor" format="color" />
-        <attr name="circlesCount" format="integer" />
-        <attr name="circlesSpacing" format="dimension" />
+        <attr name="viewsCount" format="integer" />
+        <attr name="viewsSpacing" format="dimension" />
         <attr name="rating" format="integer" />
+
+    </declare-styleable>
+
+    <declare-styleable name="CarmenRatingView">
+
+        <attr name="indicatorSpacing" format="dimension" />
+        <attr name="emptyIndicator" format="integer" />
+        <attr name="fillIndicator" format="integer" />
 
     </declare-styleable>
 

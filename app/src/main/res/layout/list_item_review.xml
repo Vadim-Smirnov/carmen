@@ -49,7 +49,7 @@
         android:layout_height="@dimen/review_rating_height"
         android:layout_marginLeft="@dimen/review_rating_side_margin"
         android:layout_marginStart="@dimen/review_rating_side_margin"
-        app:circlesSpacing="5dp"
+        app:viewsSpacing="5dp"
         app:layout_constraintBottom_toBottomOf="@+id/text_view_date"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_view_date"

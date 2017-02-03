@@ -145,9 +145,9 @@ public class RatingView extends View {
 
         TypedArray attributes = context.obtainStyledAttributes(attributeSet, R.styleable.RatingView, 0, 0);
         try {
-            mCirclesCount = attributes.getInteger(R.styleable.RatingView_circlesCount, DEFAULT_CIRCLES_COUNT);
+            mCirclesCount = attributes.getInteger(R.styleable.RatingView_viewsCount, DEFAULT_CIRCLES_COUNT);
             mCirclesColor = attributes.getColor(R.styleable.RatingView_circlesColor, DEFAULT_CIRCLES_COLOR);
-            mCirclesSpacing = attributes.getDimension(R.styleable.RatingView_circlesSpacing, DEFAULT_CIRCLES_SPACING);
+            mCirclesSpacing = attributes.getDimension(R.styleable.RatingView_viewsSpacing, DEFAULT_CIRCLES_SPACING);
             mRating = attributes.getInteger(R.styleable.RatingView_rating, DEFAULT_RATING);
         } finally {
             attributes.recycle();
