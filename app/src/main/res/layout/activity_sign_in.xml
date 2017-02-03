@@ -1,130 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/LinearLayout.Sign"
-    tools:context="net.ginteam.carmen.view.activity.auth.SignInActivity"
     tools:ignore="MissingPrefix">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <android.support.constraint.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <include
-                android:id="@+id/layout_auth_toolbar"
-                layout="@layout/auth_toolbar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
 
             <ImageView
-                android:id="@+id/image_view_logo"
                 style="@style/ImageView.Wrapped.Logo"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout_auth_toolbar" />
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/text_view_skip_auth"
+                style="@style/TextView.Wrapped"
+                android:text="@string/skip_view_string"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:paddingEnd="@dimen/field_horizontal_space"
+                android:paddingStart="@dimen/field_horizontal_space"
+                android:textColor="@color/colorWhite" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_email"
-                style="@style/TextInputLayout.Email"
-                android:layout_marginTop="@dimen/logo_bottom_space"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image_view_logo">
+                style="@style/TextInputLayout.Email">
 
                 <EditText
                     android:id="@+id/edit_text_email"
-                    style="@style/EditText.Email" />
+                    style="@style/EditText.Email"/>
 
             </android.support.design.widget.TextInputLayout>
 
             <View
-                style="@style/TextInputLayout.Divider"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout_email" />
+                style="@style/TextInputLayout.Divider"/>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_password"
                 style="@style/TextInputLayout.Password"
-                android:layout_marginTop="@dimen/email_field_bottom_space"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout_email">
+                android:layout_marginTop="10dp">
 
                 <EditText
                     android:id="@+id/edit_text_password"
-                    style="@style/EditText.Password" />
+                    style="@style/EditText.Password"/>
 
             </android.support.design.widget.TextInputLayout>
 
             <View
-                style="@style/TextInputLayout.Divider"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout_password" />
+                style="@style/TextInputLayout.Divider"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="0.2">
 
             <Button
                 android:id="@+id/button_sign_in"
-                style="@style/Button.SignIn"
-                android:layout_marginTop="@dimen/password_field_bottom_space"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/input_layout_password" />
+                style="@style/Button.SignIn"/>
 
             <TextView
-                android:id="@+id/text_view_or"
                 style="@style/TextView.Wrapped.WhiteColor"
+                android:layout_marginBottom="@dimen/or_bottom_space"
+                android:layout_marginTop="@dimen/sign_in_bottom_space"
                 android:text="@string/or_string"
-                android:textSize="@dimen/or_text_size"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_sign_in" />
+                android:textSize="@dimen/or_text_size"/>
 
             <Button
                 android:id="@+id/button_sign_in_facebook"
                 style="@style/Button.SocialSignIn.Facebook"
-                android:layout_marginTop="@dimen/or_bottom_space"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/text_view_or" />
+                android:layout_marginBottom="@dimen/sign_in_facebook_bottom_space"/>
 
             <Button
                 android:id="@+id/button_sign_in_google"
-                style="@style/Button.SocialSignIn.Google"
-                android:layout_marginTop="@dimen/sign_in_facebook_bottom_space"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_sign_in_facebook" />
+                style="@style/Button.SocialSignIn.Google"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_weight="0.8"
+            android:paddingBottom="1dp">
 
             <TextView
-                android:id="@+id/text_view_dont_have_account"
                 style="@style/TextView.SignMessage"
-                android:layout_marginBottom="@dimen/sign_up_bottom_space"
-                android:layout_marginTop="@dimen/sign_in_google_bottom_space"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:paddingRight="4dp"
                 android:text="@string/dont_have_account_string"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_sign_in_google" />
+                android:textAlignment="viewEnd"/>
 
             <TextView
                 android:id="@+id/text_view_sign_up"
                 style="@style/TextView.SignAction"
-                android:layout_marginStart="@dimen/sign_up_left_space"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:paddingLeft="4dp"
                 android:text="@string/sign_up_label_string"
-                app:layout_constraintBaseline_toBaselineOf="@+id/text_view_dont_have_account"
-                app:layout_constraintLeft_toRightOf="@+id/text_view_dont_have_account" />
+                android:textAlignment="viewStart"/>
 
-        </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
 
-    </ScrollView>
+    </LinearLayout>
 
-    <include layout="@layout/progress_bar" />
+    <include layout="@layout/progress_bar"/>
 
 </LinearLayout>

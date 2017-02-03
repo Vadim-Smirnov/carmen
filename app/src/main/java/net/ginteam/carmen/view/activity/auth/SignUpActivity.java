@@ -36,8 +36,6 @@ public class SignUpActivity extends BaseAuthActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_sign_up);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         mPresenter = new SignUpPresenter();
         mPresenter.attachView(this);
     }

@@ -78,6 +78,9 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
                                 CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED, null);
                 break;
 
+            case R.id.profile_item:
+                return true;
+
             case R.id.sign_in_item:
                 ActivityUtils.showActivity(SignInActivity.class, null, true);
                 return true;

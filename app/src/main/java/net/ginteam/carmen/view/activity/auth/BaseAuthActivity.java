@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -29,8 +30,6 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 public abstract class BaseAuthActivity extends AppCompatActivity implements Validator.ValidationListener {
 
-    private Toolbar mToolbar;
-
     protected LinearLayout mProgressBar;
 
     @Order(1)
@@ -46,26 +45,12 @@ public abstract class BaseAuthActivity extends AppCompatActivity implements Vali
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
-        initializeToolbar();
         updateDependencies();
     }
 
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.auth_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        ActivityUtils.showActivity(MainActivity.class, null, true);
-        return true;
     }
 
     public AppCompatActivity getActivity() {
@@ -98,15 +83,15 @@ public abstract class BaseAuthActivity extends AppCompatActivity implements Vali
         mProgressBar = (LinearLayout) findViewById(R.id.progress_bar);
         mEditTextEmail = (EditText) findViewById(R.id.edit_text_email);
         mEditTextPassword = (EditText) findViewById(R.id.edit_text_password);
+        findViewById(R.id.text_view_skip_auth).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityUtils.showActivity(MainActivity.class, null, true);
+            }
+        });
 
         mFieldsValidator = new Validator(this);
         mFieldsValidator.setValidationListener(this);
-    }
-
-    private void initializeToolbar() {
-        mToolbar = (Toolbar) findViewById(R.id.auth_toolbar);
-        setSupportActionBar(mToolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
 }
