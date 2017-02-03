@@ -205,6 +205,10 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
     @Override
     public void showCompanies(List<CompanyModel> companies, final Pagination paginationDetails) {
+        if (mTextViewCompanyListTitle != null) {
+            mTextViewCompanyListTitle.setVisibility(View.VISIBLE);
+        }
+
         mRecyclerListAdapter = new CompanyRecyclerListAdapter(getContext(), companies, mListType);
         mRecyclerListAdapter.setOnCompanyItemClickListener(this);
         mRecyclerListAdapter.setOnAddToFavoritesClickListener(this);
@@ -279,7 +283,6 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
 
             if (title != null) {
                 mTextViewCompanyListTitle = (TextView) mRootView.findViewById(R.id.text_view_company_list_title);
-                mTextViewCompanyListTitle.setVisibility(View.VISIBLE);
                 mTextViewCompanyListTitle.setText(title);
             }
         } else {
