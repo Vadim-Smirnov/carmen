@@ -57,8 +57,7 @@ public class AuthCheckActivity extends AppCompatActivity implements Authenticati
     public void showCityListView() {
         Log.d("AuthCheck", "CITY LIST ACTIVITY SHOW");
         DialogFragment newFragment = CityListFragment.newInstance();
-        newFragment.show(getSupportFragmentManager().beginTransaction(), "dialog");
-
+        newFragment.show(getSupportFragmentManager(), "dialog");
     }
 
     @Override
