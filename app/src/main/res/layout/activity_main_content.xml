@@ -8,21 +8,6 @@
 
     <include layout="@layout/toolbar"/>
 
-    <net.ginteam.carmen.view.custom.rating.CircleRatingView
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:padding="20dp"
-        app:rating="3"
-        app:viewsSpacing="5dp" />
-
-    <net.ginteam.carmen.view.custom.rating.CarmenRatingVIew
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        android:rating="3"
-        app:emptyIndicator="@drawable/ic_large_empty_new_rating"
-        app:fillIndicator="@drawable/ic_large_fill_new_rating"/>
-
     <FrameLayout
         android:id="@+id/main_fragment_container"
         android:layout_width="match_parent"

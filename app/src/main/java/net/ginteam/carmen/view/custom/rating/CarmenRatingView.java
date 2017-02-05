@@ -15,7 +15,7 @@ import net.ginteam.carmen.R;
  * Created by eugene_shcherbinock on 2/3/17.
  */
 
-public class CarmenRatingVIew extends AppCompatRatingBar {
+public class CarmenRatingView extends AppCompatRatingBar {
 
     private int mHeight;
 
@@ -28,17 +28,17 @@ public class CarmenRatingVIew extends AppCompatRatingBar {
     private Bitmap mEmptyIndicatorBitmap;
     private Bitmap mFillIndicatorBitmap;
 
-    public CarmenRatingVIew(Context context) {
+    public CarmenRatingView(Context context) {
         super(context);
         initializeView(context, null);
     }
 
-    public CarmenRatingVIew(final Context context, final AttributeSet attrs) {
+    public CarmenRatingView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
         initializeView(context, attrs);
     }
 
-    public CarmenRatingVIew(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CarmenRatingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initializeView(context, attrs);
     }
