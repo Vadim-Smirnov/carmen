@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Button">
-        <item name="android:foreground">@drawable/ripple_effect</item>
-    </style>
+    <style name="Button" />
 
     <style name="Button.Base">
         <item name="android:layout_width">match_parent</item>
