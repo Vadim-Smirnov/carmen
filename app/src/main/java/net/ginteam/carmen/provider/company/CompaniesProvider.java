@@ -48,7 +48,8 @@ public class CompaniesProvider {
                                  int page, final ModelCallbackWithMeta<List<CompanyModel>> completion) {
         mCompanyService
                 .fetchCompanies(categoryId, mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
-                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude), filter, sortField, sortType, page)
+                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude),
+                        PreferencesManager.getInstance().getCity().getBound(), filter, sortField, sortType, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriberWithMeta<List<CompanyModel>>() {

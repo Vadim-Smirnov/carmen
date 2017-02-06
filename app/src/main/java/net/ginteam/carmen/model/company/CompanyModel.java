@@ -26,8 +26,8 @@ public class CompanyModel implements ClusterItem, Serializable {
     @SerializedName("name")
     private String mName;
 
-    @SerializedName("image")
-    private String mImageUrl;
+    @SerializedName("picture")
+    private List<String> mImageUrl;
 
     @SerializedName("city_id")
     private int mCityId;
@@ -77,7 +77,7 @@ public class CompanyModel implements ClusterItem, Serializable {
         return mName;
     }
 
-    public String getImageUrl() {
+    public List<String> getImageUrl() {
         return mImageUrl;
     }
 

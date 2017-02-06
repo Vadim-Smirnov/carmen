@@ -25,6 +25,7 @@ public interface CompanyService {
             @Path(ApiLinks.CATALOG.ID) int categoryId,
             @Query(ApiLinks.CATALOG.LAT) String lat,
             @Query(ApiLinks.CATALOG.LNG) String lng,
+            @Query(ApiLinks.CATALOG.BOUND) String bound,
             @Query(ApiLinks.CATALOG.SEARCH) String filter,
             @Query(ApiLinks.CATALOG.SORT_FIELD) String sortField,
             @Query(ApiLinks.CATALOG.SORT_TYPE) String sortType,

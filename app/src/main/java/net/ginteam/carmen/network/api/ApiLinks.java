@@ -46,6 +46,8 @@ public class ApiLinks {
 
         public static final String LNG = "lng";
 
+        public static final String BOUND = "bound";
+
         public static final String COMPANY_BY_ID = CATALOG + "companies/{" + ID + "}";
 
         public static final String WITH = "with";
