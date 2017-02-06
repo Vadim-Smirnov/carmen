@@ -28,12 +28,14 @@ public class AuthCheckActivity extends AppCompatActivity implements Authenticati
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_auth_check);
 
         mPresenter = new AuthenticationCheckPresenter();
         mPresenter.attachView(this);
         mPresenter.checkAuthentication();
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {}
 
     @Override
     protected void onDestroy() {
@@ -57,7 +59,7 @@ public class AuthCheckActivity extends AppCompatActivity implements Authenticati
     public void showCityListView() {
         Log.d("AuthCheck", "CITY LIST ACTIVITY SHOW");
         DialogFragment newFragment = CityListFragment.newInstance();
-        newFragment.show(getSupportFragmentManager().beginTransaction(), "dialog");
+        newFragment.show(getSupportFragmentManager(), "dialog");
 
     }
 

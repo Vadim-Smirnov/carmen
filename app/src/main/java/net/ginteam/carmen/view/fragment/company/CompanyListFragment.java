@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,11 +101,12 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Bundle arguments = getArguments();
         mListType = (COMPANY_LIST_TYPE) arguments.getSerializable(TYPE_ARGUMENT);
         mFetchType = (FETCH_COMPANY_TYPE) arguments.getSerializable(FETCH_TYPE_ARGUMENT);
         mSelectedCategory = (CategoryModel) arguments.getSerializable(CATEGORY_ARGUMENT);
+
+        setHasOptionsMenu(mFetchType == FETCH_COMPANY_TYPE.FOR_CATEGORY);
     }
 
     @Override
@@ -118,6 +121,12 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         mPresenter.attachView(this);
 
         return mRootView;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.company_list_menu, menu);
     }
 
     @Override

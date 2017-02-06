@@ -109,7 +109,8 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
     @Override
     public void showMainFragment() {
-        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
+        onNavigationItemSelected(mNavigationView.getMenu()
+                .getItem(AuthProvider.getInstance().getCurrentCachedUser() != null ? 0 : 1));
     }
 
     private void initializeNavigationView() {

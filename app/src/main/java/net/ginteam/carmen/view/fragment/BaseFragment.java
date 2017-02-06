@@ -36,7 +36,7 @@ public abstract class BaseFragment extends DialogFragment {
         int dialogHeight = (int) getResources().getDimension(R.dimen.dialog_fragment_height);
 
         getDialog().getWindow().setLayout(dialogWidth, dialogHeight);
-        getDialog().setCancelable(false);
+        getDialog().setCancelable(true);
     }
 
     public boolean isNotNestedFragment() {

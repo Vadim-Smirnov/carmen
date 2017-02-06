@@ -19,6 +19,11 @@
         <item name="android:textSize">@dimen/field_text_size</item>
     </style>
 
+    <style name="EditText.Name" parent="EditText.WrappedHeight.Transparent">
+        <item name="android:drawableStart">@drawable/ic_profile</item>
+        <item name="android:inputType">text</item>
+    </style>
+
     <style name="EditText.Email" parent="EditText.WrappedHeight.Transparent">
         <item name="android:drawableStart">@drawable/ic_email</item>
         <item name="android:inputType">textEmailAddress</item>

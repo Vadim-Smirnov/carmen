@@ -36,7 +36,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
     private OnCategorySelectedListener mCategorySelectedListener;
 
     private TextView mTextViewCategoryDialogTitle;
-    private Button mButtonCancelCategoryDialog;
+    private TextView mButtonCancelCategoryDialog;
 
     private boolean mIsDialog;
 
@@ -131,7 +131,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
 
     private void initializeDialogElements() {
         mTextViewCategoryDialogTitle = (TextView) mRootView.findViewById(R.id.text_view_category_dialog_title);
-        mButtonCancelCategoryDialog = (Button) mRootView.findViewById(R.id.button_category_dialog_cancel);
+        mButtonCancelCategoryDialog = (TextView) mRootView.findViewById(R.id.button_category_dialog_cancel);
         mButtonCancelCategoryDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
 import net.ginteam.carmen.view.custom.rating.RatingView;
 
 /**
@@ -21,7 +22,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
     private ImageView mImageViewPhoto;
     private TextView mTextViewName;
     private TextView mTextViewAddress;
-    private RatingView mRatingViewRating;
+    private CarmenRatingView mRatingViewRating;
     private ImageButton mImageButtonAddToFavorite;
     private TextView mTextViewDistance;
     private TextView mTextViewPrice;
@@ -35,7 +36,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         mImageViewLocation = (ImageView) itemView.findViewById(R.id.image_view_company_location);
         mTextViewName = (TextView) itemView.findViewById(R.id.text_view_company_name);
         mTextViewAddress = (TextView) itemView.findViewById(R.id.text_view_company_address);
-        mRatingViewRating = (RatingView) itemView.findViewById(R.id.rating_view_company);
+        mRatingViewRating = (CarmenRatingView) itemView.findViewById(R.id.rating_view_company);
         mImageButtonAddToFavorite = (ImageButton) itemView.findViewById(R.id.image_button_company_favorite);
         mTextViewDistance = (TextView) itemView.findViewById(R.id.text_view_company_distance);
         mTextViewPrice = (TextView) itemView.findViewById(R.id.text_view_company_price);
@@ -53,7 +54,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         return mTextViewAddress;
     }
 
-    public RatingView getRatingViewRating() {
+    public CarmenRatingView getRatingViewRating() {
         return mRatingViewRating;
     }
 

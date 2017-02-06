@@ -5,8 +5,12 @@
         android:checkableBehavior="single">
 
         <item
+            android:id="@+id/sign_in_item"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/sign_in_item_text"/>
+
+        <item
             android:id="@+id/main_item"
-            android:checked="true"
             android:icon="@drawable/ic_home"
             android:title="@string/main_item_text"/>
 
@@ -14,11 +18,6 @@
             android:id="@+id/category_item"
             android:icon="@drawable/ic_category"
             android:title="@string/category_item_text"/>
-
-        <item
-            android:id="@+id/sign_in_item"
-            android:icon="@drawable/ic_logout"
-            android:title="@string/sign_in_item_text"/>
 
     </group>
 

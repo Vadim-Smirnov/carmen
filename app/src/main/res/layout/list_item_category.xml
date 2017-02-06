@@ -19,6 +19,7 @@
 
         <TextView
             android:id="@+id/text_view_category_name"
+            fontPath="@string/open_sans_light_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#1D1D26"
@@ -28,6 +29,8 @@
         <TextView
             android:id="@+id/text_view_category_items_count"
             fontPath="@string/avenir_book_font"
+            android:textColor="#1D1D26"
+            android:alpha="0.5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/category_title_bottom_space"

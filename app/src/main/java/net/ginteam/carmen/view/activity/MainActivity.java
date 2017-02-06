@@ -10,6 +10,7 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
 import net.ginteam.carmen.view.activity.filter.FilterActivity;
@@ -32,7 +33,8 @@ public class MainActivity extends NavigationViewActivity implements
         super.setContentView(R.layout.activity_main);
 
         Toast.makeText(this, R.string.test, Toast.LENGTH_SHORT).show();
-        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
+        onNavigationItemSelected(mNavigationView.getMenu()
+                .getItem(AuthProvider.getInstance().getCurrentCachedUser() != null ? 0 : 1));
     }
 
     @Override

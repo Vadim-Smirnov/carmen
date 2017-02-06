@@ -8,9 +8,6 @@
     app:cardCornerRadius="@dimen/company_item_corner_radius"
     tools:ignore="missingPrefix">
 
-
-
-
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -45,7 +42,7 @@
                 android:layout_marginRight="@dimen/company_item_photo_right_space"
                 android:layout_marginStart="@dimen/company_item_photo_right_space"
                 android:layout_marginTop="@dimen/company_item_photo_right_space"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:textColor="#1D1D26"
                 android:textSize="@dimen/company_title_text_size"
                 android:ellipsize="end"
@@ -70,13 +67,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"
                 tools:text="ул. Великолепия 931/12в"/>
 
-            <net.ginteam.carmen.view.custom.rating.RatingView
+            <net.ginteam.carmen.view.custom.rating.CarmenRatingView
                 android:id="@+id/rating_view_company"
                 android:layout_width="80dp"
                 android:layout_height="10dp"
                 android:layout_marginStart="@dimen/company_item_rating_left_space"
                 android:layout_marginTop="@dimen/company_item_address_bottom_space"
-                app:viewsSpacing="5dp"
+                android:isIndicator="true"
+                app:indicatorSpacing="5dp"
                 app:layout_constraintLeft_toRightOf="@+id/image_view_company_photo"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_company_address"
                 app:rating="4"/>
