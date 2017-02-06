@@ -35,14 +35,16 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_view_company_photo"
             tools:text="Ресторан"
-            android:gravity="center"/>
+            android:gravity="center"
+            app:layout_constraintHorizontal_bias="0.0"/>
 
-        <net.ginteam.carmen.view.custom.rating.RatingView
+        <net.ginteam.carmen.view.custom.rating.CarmenRatingView
             android:id="@+id/rating_view_company"
             android:layout_width="80dp"
             android:layout_height="10dp"
             android:layout_marginTop="@dimen/company_item_space"
-            app:viewsSpacing="5dp"
+            app:indicatorSpacing="5dp"
+            android:isIndicator="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"
@@ -75,13 +77,15 @@
             fontPath="@string/open_sans_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/company_location_space"
-            android:alpha="0.75"
-            android:textColor="#040404"
+            android:layout_marginStart="6dp"
+            android:textColor="#BF040404"
             android:textSize="@dimen/company_location_text_size"
             app:layout_constraintLeft_toRightOf="@+id/image_view_company_location"
+            tools:text="300 m"
+            android:layout_marginLeft="6dp"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_company_location"
-            tools:text="300 m"/>
+            app:layout_constraintTop_toTopOf="@+id/image_view_company_location"
+            app:layout_constraintVertical_bias="0.5"/>
 
         <TextView
             android:id="@+id/text_view_company_price"
@@ -90,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/company_price_right_margin"
             android:alpha="0.75"
-            android:textColor="#040404"
+            android:textColor="#BF040404"
             android:textSize="@dimen/company_price_text_size"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@id/text_view_company_distance"

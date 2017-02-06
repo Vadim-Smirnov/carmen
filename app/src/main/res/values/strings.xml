@@ -66,7 +66,7 @@
 
     <!-- Category dialog -->
     <string name="category_dialog_title">Выбор категории</string>
-    <string name="button_category_dialog_cancel">Отмена</string>
+    <string name="button_category_dialog_cancel">ОТМЕНА</string>
 
     <!-- Filter Activity -->
     <string name="filter_activity_title">Поиск</string>
@@ -123,7 +123,7 @@
     <string name="sort_field_tag_id">field</string>
     <string name="sort_type_tag_id">type</string>
     <string name="sort_fragment_title">Сортировка</string>
-    <string name="sort_confirm_button_text">Применить</string>
+    <string name="sort_confirm_button_text">ПРИМЕНИТЬ</string>
     <string name="sorting_example">[
     {
         "name" : "От&#160;дешевых&#160;к&#160;дорогим",

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
 import net.ginteam.carmen.view.custom.rating.RatingView;
 
 /**
@@ -22,7 +23,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
     private ImageView mImageViewPhoto;
     private ImageButton mImageButtonAddToFavorite;
     private TextView mTextViewName;
-    private RatingView mRatingViewRating;
+    private CarmenRatingView mRatingViewRating;
     private TextView mTextViewPrice;
 
     public CompanyItemViewHolder(View itemView) {
@@ -34,7 +35,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         mImageViewPhoto = (ImageView) itemView.findViewById(R.id.image_view_company_photo);
         mImageButtonAddToFavorite = (ImageButton) itemView.findViewById(R.id.image_button_company_favorite);
         mTextViewName = (TextView) itemView.findViewById(R.id.text_view_company_name);
-        mRatingViewRating = (RatingView) itemView.findViewById(R.id.rating_view_company);
+        mRatingViewRating = (CarmenRatingView) itemView.findViewById(R.id.rating_view_company);
         mTextViewPrice = (TextView) itemView.findViewById(R.id.text_view_company_price);
     }
 
@@ -54,7 +55,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         return mTextViewName;
     }
 
-    public RatingView getRatingViewRating() {
+    public CarmenRatingView getRatingViewRating() {
         return mRatingViewRating;
     }
 

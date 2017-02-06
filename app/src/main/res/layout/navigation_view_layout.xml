@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.NavigationView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_view"
@@ -7,8 +8,10 @@
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:fitsSystemWindows="false"
+    android:paddingEnd="25dp"
+    android:paddingStart="25dp"
     android:theme="@style/NavigationTheme"
     app:headerLayout="@layout/navigation_view_default_header"
     app:itemBackground="@drawable/menu_item_divider"
     app:menu="@menu/navigation_menu_short"
-    tools:ignore="MissingPrefix" />
+    tools:ignore="MissingPrefix"/>

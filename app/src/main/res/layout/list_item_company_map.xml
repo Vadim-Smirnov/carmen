@@ -52,18 +52,19 @@
             android:textSize="@dimen/map_company_item_title_text_size"
             android:maxLines="1"
             android:ellipsize="end"
-            android:gravity="center"
+            android:gravity="center|start"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_view_company_photo"
             tools:text="Ресторан"/>
 
-        <net.ginteam.carmen.view.custom.rating.RatingView
+        <net.ginteam.carmen.view.custom.rating.CarmenRatingView
             android:id="@+id/rating_view_company"
             android:layout_width="80dp"
             android:layout_height="10dp"
             android:layout_marginBottom="@dimen/map_company_item_padding"
-            app:viewsSpacing="5dp"
+            app:indicatorSpacing="5dp"
+            android:isIndicator="true"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"
             app:rating="4"/>

@@ -57,6 +57,12 @@ public class CityListFragment extends BaseFetchingFragment implements CityContra
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        getDialog().setCancelable(false);
+    }
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
 

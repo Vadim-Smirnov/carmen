@@ -40,13 +40,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"/>
 
-    <net.ginteam.carmen.view.custom.rating.RatingView
+    <net.ginteam.carmen.view.custom.rating.CarmenRatingView
         android:id="@+id/rating_view_company"
         android:layout_width="105dp"
         android:layout_height="15dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="14dp"
-        app:viewsSpacing="5dp"
+        android:isIndicator="true"
+        app:indicatorSpacing="5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_category"
         app:rating="4"/>
@@ -286,13 +287,15 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_vote_object"/>
 
-    <net.ginteam.carmen.view.custom.rating.RatingView
+    <net.ginteam.carmen.view.custom.rating.CarmenRatingView
         android:id="@+id/rating_view_vote_object"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:padding="2dp"
-        app:viewsSpacing="10dp"
+        app:emptyIndicator="@drawable/ic_large_empty_rating"
+        app:fillIndicator="@drawable/ic_large_fill_rating"
+        app:indicatorSpacing="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"

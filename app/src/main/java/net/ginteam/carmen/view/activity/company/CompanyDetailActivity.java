@@ -37,6 +37,7 @@ import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.map.MapActivity;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
 import net.ginteam.carmen.view.activity.VoteObjectActivity;
+import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
 import net.ginteam.carmen.view.custom.rating.RatingView;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
@@ -55,8 +56,8 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     private LinearLayout mProgressBar;
     private TextView mTextViewCompanyName;
     private TextView mTextViewCategory;
-    private RatingView mRatingViewCompanyRating;
-    private RatingView mRatingViewVoteObject;
+    private CarmenRatingView mRatingViewCompanyRating;
+    private CarmenRatingView mRatingViewVoteObject;
     private TextView mTextViewReviewCount;
     private TextView mTextViewDistance;
     private TextView mTextViewWorkTime;
@@ -240,13 +241,12 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         findViewById(R.id.button_open_navigate).setOnClickListener(this);
         findViewById(R.id.button_show_on_map).setOnClickListener(this);
 
-        mRatingViewVoteObject = (RatingView) findViewById(R.id.rating_view_vote_object);
-        mRatingViewVoteObject.setUserInteractionEnabled(true);
-        mRatingViewVoteObject.setOnRatingChangeListener(this);
+        mRatingViewVoteObject = (CarmenRatingView) findViewById(R.id.rating_view_vote_object);
+//        mRatingViewVoteObject.setOnClickListener(this);
 
         mImageViewMap = (ImageView) findViewById(R.id.image_view_map);
         mImageViewLocation = (ImageView) findViewById(R.id.image_view_location);
-        mRatingViewCompanyRating = (RatingView) findViewById(R.id.rating_view_company);
+        mRatingViewCompanyRating = (CarmenRatingView) findViewById(R.id.rating_view_company);
         mTextViewAddress = (TextView) findViewById(R.id.text_view_address);
         mTextViewCategory = (TextView) findViewById(R.id.text_view_category);
         mTextViewCompanyName = (TextView) findViewById(R.id.text_view_company_name);
