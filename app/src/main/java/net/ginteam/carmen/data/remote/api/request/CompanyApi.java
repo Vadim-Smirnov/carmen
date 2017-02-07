@@ -3,7 +3,7 @@ package net.ginteam.carmen.data.remote.api.request;
 import net.ginteam.carmen.model.ResponseModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
-import net.ginteam.carmen.network.api.ApiLinks;
+import net.ginteam.carmen.data.remote.api.ApiLinks;
 
 import java.util.List;
 

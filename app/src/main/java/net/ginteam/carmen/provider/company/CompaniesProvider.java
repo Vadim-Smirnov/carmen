@@ -7,7 +7,7 @@ import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.Pagination;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
-import net.ginteam.carmen.network.api.ApiLinks;
+import net.ginteam.carmen.data.remote.api.ApiLinks;
 import net.ginteam.carmen.network.api.service.CompanyService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriberWithMeta;

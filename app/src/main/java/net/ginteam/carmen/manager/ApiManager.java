@@ -3,7 +3,7 @@ package net.ginteam.carmen.manager;
 import android.util.Log;
 
 import net.ginteam.carmen.BuildConfig;
-import net.ginteam.carmen.network.api.ApiLinks;
+import net.ginteam.carmen.data.remote.api.ApiLinks;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
