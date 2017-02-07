@@ -33,6 +33,12 @@ public class MainActivity extends NavigationViewActivity implements
         super.setContentView(R.layout.activity_main);
 
         Toast.makeText(this, R.string.test, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         onNavigationItemSelected(mNavigationView.getMenu()
                 .getItem(AuthProvider.getInstance().getCurrentCachedUser() != null ? 0 : 1));
     }

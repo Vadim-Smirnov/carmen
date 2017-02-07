@@ -92,7 +92,7 @@
     <dimen name="company_item_photo_right_space">15dp</dimen>
     <dimen name="company_item_title_bottom_space">7.5dp</dimen>
     <dimen name="company_item_address_bottom_space">15dp</dimen>
-    <dimen name="company_item_rating_left_space">10dp</dimen>
+    <dimen name="company_item_rating_left_space">15dp</dimen>
     <dimen name="company_item_rating_bottom_space">21dp</dimen>
     <dimen name="company_price_margin">20dp</dimen>
 

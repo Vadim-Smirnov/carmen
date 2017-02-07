@@ -44,6 +44,17 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"/>
 
+            <LinearLayout
+                android:id="@+id/gallery_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingEnd="18dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:gravity="center|end"
+                android:orientation="horizontal"/>
+
         </RelativeLayout>
 
         <android.support.v7.widget.Toolbar

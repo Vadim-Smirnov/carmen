@@ -7,25 +7,26 @@ import android.support.v13.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.LinearLayout;
 
 /**
  * Created by Eugene on 1/16/17.
  */
 
-public class BottomNavigationBehavior extends CoordinatorLayout.Behavior<BottomNavigationView> {
+public class BottomNavigationBehavior extends CoordinatorLayout.Behavior<LinearLayout> {
 
     public BottomNavigationBehavior(Context context, AttributeSet attributeSet) {
         super();
     }
 
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, BottomNavigationView child,
+    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, LinearLayout child,
                                        View directTargetChild, View target, int nestedScrollAxes) {
         return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
 
     @Override
-    public void onNestedScroll(CoordinatorLayout coordinatorLayout, BottomNavigationView child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
+    public void onNestedScroll(CoordinatorLayout coordinatorLayout, LinearLayout child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
 
         if (dyConsumed > 0) {

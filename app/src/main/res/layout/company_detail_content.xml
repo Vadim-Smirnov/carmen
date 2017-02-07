@@ -44,7 +44,7 @@
         android:id="@+id/rating_view_company"
         android:layout_width="105dp"
         android:layout_height="15dp"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="@dimen/company_detail_margin_side"
         android:layout_marginTop="14dp"
         android:isIndicator="true"
         app:indicatorSpacing="5dp"

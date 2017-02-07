@@ -46,19 +46,41 @@
         app:backgroundTint="#3EC7C2"
         app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottom_navigation_view"
+    <LinearLayout
+        android:id="@+id/bottom_navigation_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#000"
+        android:paddingTop="13dp"
+        android:paddingBottom="13dp"
+        android:orientation="horizontal"
         android:visibility="gone"
-        android:gravity="bottom"
-        android:animateLayoutChanges="false"
-        app:itemIconTint="@drawable/dadada"
-        app:itemTextColor="@drawable/dadada"
-        app:layout_behavior="net.ginteam.carmen.view.adapter.company.BottomNavigationBehavior"
-        app:menu="@menu/bottom_navigation_menu"/>
+        android:gravity="center"
+        app:layout_behavior="net.ginteam.carmen.view.adapter.company.BottomNavigationBehavior">
+
+        <ImageView
+            android:id="@+id/bottom_nav_item_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_bottom_navigation_categories"/>
+
+        <ImageView
+            android:id="@+id/bottom_nav_item_filters"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_bottom_navigation_filters"/>
+
+        <ImageView
+            android:id="@+id/bottom_nav_item_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_bottom_navigation_sort"/>
+
+    </LinearLayout>
 
     <include layout="@layout/progress_bar"/>
 
