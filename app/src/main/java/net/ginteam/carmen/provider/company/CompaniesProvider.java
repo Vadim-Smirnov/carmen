@@ -1,7 +1,5 @@
 package net.ginteam.carmen.provider.company;
 
-import android.util.Log;
-
 import com.google.android.gms.maps.model.LatLng;
 
 import net.ginteam.carmen.manager.ApiManager;
@@ -49,7 +47,7 @@ public class CompaniesProvider {
         mCompanyService
                 .fetchCompanies(categoryId, mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
                         mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude),
-                        PreferencesManager.getInstance().getCity().getBound(), filter, sortField, sortType, page)
+                        PreferencesManager.getInstance().getCity().getBounds(), filter, sortField, sortType, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriberWithMeta<List<CompanyModel>>() {

@@ -25,7 +25,7 @@ public class CityModel {
     @SerializedName("bound")
     private String mBound;
 
-    public String getBound() {
+    public String getBounds() {
         return mBound;
     }
 

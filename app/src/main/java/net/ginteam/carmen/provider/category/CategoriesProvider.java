@@ -1,15 +1,9 @@
 package net.ginteam.carmen.provider.category;
 
-import net.ginteam.carmen.manager.ApiManager;
 import net.ginteam.carmen.model.category.CategoryModel;
-import net.ginteam.carmen.network.api.service.CategoryService;
-import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
 import net.ginteam.carmen.provider.ModelCallback;
 
 import java.util.List;
-
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Eugene on 12/23/16.
@@ -39,23 +33,24 @@ public class CategoriesProvider {
     }
 
     private void fetchFromServer(final ModelCallback<List<CategoryModel>> completion) {
-        CategoryService categoryService = ApiManager.getInstance().getService(CategoryService.class);
-        categoryService
-                .fetchCategories()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ModelSubscriber<List<CategoryModel>>() {
-                    @Override
-                    public void onSuccess(List<CategoryModel> resultModel) {
-                        mCachedCategories = resultModel;
-                        completion.onSuccess(resultModel);
-                    }
+//        CategoryService categoryService = ApiManager.getInstance().getService(CategoryService.class);
+//        categoryService
+//                .fetchCategories()
+//                .subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new ModelSubscriber<List<CategoryModel>>() {
+//                    @Override
+//                    public void onSuccess(List<CategoryModel> resultModel) {
+//                        mCachedCategories = resultModel;
+//                        completion.onSuccess(resultModel);
+//                    }
+//
+//                    @Override
+//                    public void onFailure(String message) {
+//                        completion.onFailure(message);
+//                    }
+//                });
 
-                    @Override
-                    public void onFailure(String message) {
-                        completion.onFailure(message);
-                    }
-                });
     }
 
 }
