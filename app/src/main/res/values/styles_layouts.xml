@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LinearLayout" />
+
+    <style name="LinearLayout.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="LinearLayout.Vertical" parent="LinearLayout.Base">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="LinearLayout.Wrapped.Horizontal" parent="LinearLayout.Wrapped">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="LinearLayout.Wrapped">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="LinearLayout.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="FragmentContainer" parent="LinearLayout.Base" />
+
+    <style name="LinearLayout.Sign" parent="LinearLayout.Base">
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@color/colorBlack</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <!-- Toolbar -->
+    <style name="AppBarLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:theme">@style/AppTheme.AppBarOverlay</item>
+        <item name="app:elevation">0dp</item>
+    </style>
+
+    <style name="AppBarLayout.Transparent" parent="AppBarLayout">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="AppBarLayout.Toolbar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="app:popupTheme">@style/AppTheme.PopupOverlay</item>
+        <item name="app:layout_collapseMode">pin</item>
+    </style>
+
+    <style name="AppBarLayout.Toolbar.Transparent" parent="AppBarLayout.Toolbar">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="AppBarLayout.Gallery">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/company_detail_parallax_toolbar_height</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="CollapsingToolbarLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:theme">@style/AppTheme.AppBarOverlay</item>
+    </style>
+
+    <style name="CollapsingToolbarLayout.Gallery" parent="CollapsingToolbarLayout">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="app:layout_scrollFlags">scroll|exitUntilCollapsed</item>
+        <item name="app:contentScrim">@color/colorPrimary</item>
+    </style>
+
+    <style name="RelativeLayout" />
+
+    <style name="RelativeLayout.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="RelativeLayout.Gallery" parent="RelativeLayout.Base">
+        <item name="app:layout_collapseMode">parallax</item>
+    </style>
+
+    <style name="GalleryDecorator">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/company_detail_parallax_toolbar_gradient_height</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="GalleryDecorator.Top" parent="GalleryDecorator">
+        <item name="android:background">@drawable/gallery_gradient_top</item>
+    </style>
+
+    <style name="GalleryDecorator.Bottom" parent="GalleryDecorator">
+        <item name="android:background">@drawable/gallery_gradient_bottom</item>
+    </style>
+
+</resources>

@@ -1,58 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.AppBarLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_bar_layout"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/company_detail_parallax_toolbar_height"
-    android:fitsSystemWindows="true">
+    style="@style/AppBarLayout.Gallery">
 
     <android.support.design.widget.CollapsingToolbarLayout
         android:id="@+id/collapsing_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed"
-        android:fitsSystemWindows="true"
-        app:contentScrim="@color/colorPrimary"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        style="@style/CollapsingToolbarLayout.Gallery">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_collapseMode="parallax">
+            style="@style/RelativeLayout.Gallery">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_gallery"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_collapseMode="parallax"
+                style="@style/RelativeLayout.Gallery"
                 tools:listitem = "@layout/list_item_gallery"
                 android:background="@drawable/img_3"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/company_detail_parallax_toolbar_gradient_height"
-                android:background="@drawable/gallery_gradient_bottom"
-                android:layout_alignBottom="@+id/recycler_view_gallery"
-                android:layout_centerHorizontal="true"/>
+                style="@style/GalleryDecorator.Bottom"
+                android:layout_alignBottom="@+id/recycler_view_gallery"/>
 
             <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/company_detail_parallax_toolbar_gradient_height"
-                android:background="@drawable/gallery_gradient_top"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"/>
+                style="@style/GalleryDecorator.Top"
+                android:layout_alignParentTop="true"/>
 
         </RelativeLayout>
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:layout_collapseMode="pin"/>
+            style="@style/AppBarLayout.Toolbar.Transparent"/>
 
     </android.support.design.widget.CollapsingToolbarLayout>
 
