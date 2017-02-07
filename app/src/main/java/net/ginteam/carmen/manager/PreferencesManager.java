@@ -62,7 +62,7 @@ public class PreferencesManager {
                 .putString(Constants.PREFERENCES.USER_LOCATION, userLocation)
                 .apply();
     }
-//
+
     public LatLng getUserLocation() {
        String userLocation = mPreferences.getString(Constants.PREFERENCES.USER_LOCATION, "");
 
