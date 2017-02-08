@@ -30,7 +30,7 @@ public class ApiLinks {
 
         public static final String GET_CATEGORIES = CATALOG + CATEGORIES;
 
-        public static final String CATEGORY_BY_ID = GET_CATEGORIES + "/{" + ID + "}";
+        private static final String CATEGORY_BY_ID = GET_CATEGORIES + "/{" + ID + "}";
 
         public static final String COMPANIES_BY_CATEGORY = CATEGORY_BY_ID + "/companies";
 
