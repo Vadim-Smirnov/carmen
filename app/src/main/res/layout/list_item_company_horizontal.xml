@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,7 +20,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_3"/>
+            app:srcCompat="@drawable/img_3" />
 
         <TextView
             android:id="@+id/text_view_company_name"
@@ -29,26 +28,25 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/company_item_space"
+            android:gravity="center"
             android:textColor="#1D1D26"
             android:textSize="@dimen/company_title_text_size"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_view_company_photo"
-            tools:text="Ресторан"
-            android:gravity="center"
-            app:layout_constraintHorizontal_bias="0.0"/>
+            tools:text="Ресторан" />
 
         <net.ginteam.carmen.view.custom.rating.CarmenRatingView
             android:id="@+id/rating_view_company"
             android:layout_width="80dp"
             android:layout_height="10dp"
             android:layout_marginTop="@dimen/company_item_space"
-            app:indicatorSpacing="5dp"
             android:isIndicator="true"
+            app:crv_indicatorSpacing="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"
-            app:rating="4"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"/>
 
         <ImageButton
             android:id="@+id/image_button_company_favorite"
@@ -58,7 +56,7 @@
             android:background="@drawable/round_button"
             android:src="@drawable/ic_company_favorite_disable"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/image_view_company_location"
@@ -70,22 +68,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rating_view_company"
-            app:srcCompat="@drawable/ic_location"/>
+            app:srcCompat="@drawable/ic_location" />
 
         <TextView
             android:id="@+id/text_view_company_distance"
             fontPath="@string/open_sans_font"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
             android:textColor="#BF040404"
             android:textSize="@dimen/company_location_text_size"
-            app:layout_constraintLeft_toRightOf="@+id/image_view_company_location"
-            tools:text="300 m"
-            android:layout_marginLeft="6dp"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_company_location"
+            app:layout_constraintLeft_toRightOf="@+id/image_view_company_location"
             app:layout_constraintTop_toTopOf="@+id/image_view_company_location"
-            app:layout_constraintVertical_bias="0.5"/>
+            app:layout_constraintVertical_bias="0.5"
+            tools:text="300 m" />
 
         <TextView
             android:id="@+id/text_view_company_price"
@@ -96,9 +94,9 @@
             android:alpha="0.75"
             android:textColor="#BF040404"
             android:textSize="@dimen/company_price_text_size"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBaseline_toBaselineOf="@id/text_view_company_distance"
-            tools:text="130 grn"/>
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="130 grn" />
 
         <TextView
             android:id="@+id/text_view_company_address"
@@ -108,11 +106,11 @@
             android:layout_marginStart="@dimen/company_item_photo_right_space"
             android:layout_marginTop="@dimen/company_item_title_bottom_space"
             android:textColor="#417505"
+            android:visibility="gone"
             app:layout_constraintLeft_toRightOf="@+id/image_view_company_photo"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"
-            tools:text="ул. Великолепия 931/12в"
-            android:visibility="gone"/>
+            tools:text="ул. Великолепия 931/12в" />
 
     </android.support.constraint.ConstraintLayout>
 

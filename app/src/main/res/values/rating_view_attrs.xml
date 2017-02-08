@@ -11,11 +11,10 @@
     </declare-styleable>
 
     <declare-styleable name="CarmenRatingView">
-
-        <attr name="indicatorSpacing" format="dimension" />
-        <attr name="emptyIndicator" format="integer" />
-        <attr name="fillIndicator" format="integer" />
-
+        <attr name="crv_indicatorSpacing" format="dimension" />
+        <attr name="crv_indicatorColor" format="color" />
+        <attr name="crv_emptyDrawable" format="reference" />
+        <attr name="crv_fillDrawable" format="reference" />
     </declare-styleable>
 
 </resources>
