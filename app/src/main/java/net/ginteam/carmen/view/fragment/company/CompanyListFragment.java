@@ -39,7 +39,6 @@ import java.util.Locale;
 
 public class CompanyListFragment extends BaseFetchingFragment implements CompaniesContract.View,
         CompanyItemViewHolder.OnCompanyItemClickListener, CompanyItemViewHolder.OnAddToFavoritesClickListener,
-        BottomNavigationView.OnNavigationItemSelectedListener,
         View.OnClickListener {
 
     public enum COMPANY_LIST_TYPE {
@@ -76,7 +75,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     private CompanyRecyclerListAdapter mRecyclerListAdapter;
 
     private FloatingActionButton mFloatingActionButton;
-    private BottomNavigationView mBottomNavigationView;
+//    private BottomNavigationView mBottomNavigationView;
 
     private OnSelectedItemsListener mSelectedItemsListener;
     private OnCompanySelectedListener mCompanySelectedListener;
@@ -154,8 +153,9 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         }
     }
 
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.bottom_nav_item_categories:
                 mSelectedItemsListener.onShowCategoriesDialog();
                 break;
@@ -165,13 +165,11 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
             case R.id.bottom_nav_item_sort:
                 mSelectedItemsListener.onShowSortDialog();
                 break;
+            default:
+                mSelectedItemsListener.onShowMap(mSelectedCategory.getId());
+                break;
         }
-        return true;
-    }
 
-    @Override
-    public void onClick(View view) {
-        mSelectedItemsListener.onShowMap(mSelectedCategory.getId());
     }
 
     public void setSearchFilter(String filter) {
@@ -251,17 +249,20 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     private void updateDependencies() {
         mCurrentPaginationPage = 1;
 
+        mRootView.findViewById(R.id.bottom_nav_item_categories).setOnClickListener(this);
+        mRootView.findViewById(R.id.bottom_nav_item_filters).setOnClickListener(this);
+        mRootView.findViewById(R.id.bottom_nav_item_sort).setOnClickListener(this);
+
         if (mFetchType == FETCH_COMPANY_TYPE.FOR_CATEGORY) {
             mFloatingActionButton = (FloatingActionButton) mRootView.findViewById(R.id.float_button_show_map);
-            mBottomNavigationView = (BottomNavigationView) mRootView.findViewById(R.id.bottom_navigation_view);
+
 
             if (mSelectedItemsListener != null) {
                 mFloatingActionButton.setOnClickListener(this);
-                mBottomNavigationView.setOnNavigationItemSelectedListener(this);
             }
 
             mFloatingActionButton.setVisibility(View.VISIBLE);
-            mBottomNavigationView.setVisibility(View.VISIBLE);
+            mRootView.findViewById(R.id.bottom_navigation_layout).setVisibility(View.VISIBLE);
         }
 
         mRecyclerViewCompanies = (RecyclerView) mRootView.findViewById(R.id.recycler_view_companies);

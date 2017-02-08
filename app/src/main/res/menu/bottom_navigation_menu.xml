@@ -6,20 +6,20 @@
         android:enabled="true"
         android:checkable="false"
         android:icon="@drawable/ic_bottom_navigation_categories"
-        android:title=""/>
+        android:title="228"/>
 
     <item
         android:id="@+id/bottom_nav_item_filters"
         android:enabled="true"
         android:checkable="false"
         android:icon="@drawable/ic_bottom_navigation_filters"
-        android:title=""/>
+        android:title="228"/>
 
     <item
         android:id="@+id/bottom_nav_item_sort"
         android:enabled="true"
         android:checkable="false"
         android:icon="@drawable/ic_bottom_navigation_sort"
-        android:title=""/>
+        android:title="228"/>
 
 </menu>

@@ -40,7 +40,7 @@
     <dimen name="sign_up_left_space">7.5dp</dimen>
 
     <!-- Category Item -->
-    <dimen name="category_item_spacing">2dp</dimen>
+    <dimen name="category_item_spacing">1dp</dimen>
     <dimen name="category_item_top_padding">17dp</dimen>
     <dimen name="category_item_bottom_padding">39dp</dimen>
     <dimen name="category_item_height">167dp</dimen>
@@ -63,7 +63,7 @@
     <dimen name="category_dialog_item_subtitle_text_size">9sp</dimen>
     <dimen name="category_dialog_item_subtitle_bottom_space">13.5dp</dimen>
     <dimen name="category_dialog_item_separator_width">15dp</dimen>
-    <dimen name="category_dialog_item_separator_height">2dp</dimen>
+    <dimen name="category_dialog_item_separator_height">1dp</dimen>
     <dimen name="category_dialog_item_separator_bottom_space">9dp</dimen>
     <dimen name="category_dialog_item_image_width">44dp</dimen>
     <dimen name="category_dialog_item_image_height">18dp</dimen>
@@ -92,7 +92,7 @@
     <dimen name="company_item_photo_right_space">15dp</dimen>
     <dimen name="company_item_title_bottom_space">7.5dp</dimen>
     <dimen name="company_item_address_bottom_space">15dp</dimen>
-    <dimen name="company_item_rating_left_space">10dp</dimen>
+    <dimen name="company_item_rating_left_space">15dp</dimen>
     <dimen name="company_item_rating_bottom_space">21dp</dimen>
     <dimen name="company_price_margin">20dp</dimen>
 

@@ -97,12 +97,6 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
     }
 
     @Override
-    public void onDetach() {
-        super.onDetach();
-        mPresenter.detachView();
-    }
-
-    @Override
     public void showCategories(List<CategoryModel> categories) {
         mRecyclerListAdapter = new CategoryRecyclerListAdapter(getContext(), categories, mIsDialog);
         mRecyclerListAdapter.setOnCategoryClickListener(this);

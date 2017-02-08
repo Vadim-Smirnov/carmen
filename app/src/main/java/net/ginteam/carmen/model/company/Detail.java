@@ -2,13 +2,14 @@ package net.ginteam.carmen.model.company;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by vadik on 16.01.17.
  */
 
-public class Detail {
+public class Detail implements Serializable {
 
     @SerializedName("phones")
     private List<String> mPhones;

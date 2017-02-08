@@ -1,25 +1,23 @@
 package net.ginteam.carmen.view.activity.company;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -34,9 +32,10 @@ import net.ginteam.carmen.contract.company.CompanyDetailContract;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompanyDetailPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
-import net.ginteam.carmen.view.activity.map.MapActivity;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
 import net.ginteam.carmen.view.activity.VoteObjectActivity;
+import net.ginteam.carmen.view.activity.map.MapActivity;
+import net.ginteam.carmen.view.adapter.company.GalleryRecyclerAdapter;
 import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
 import net.ginteam.carmen.view.custom.rating.RatingView;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
@@ -52,6 +51,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     private CompanyDetailContract.Presenter mPresenter;
 
     private Menu mMenu;
+    private GalleryRecyclerAdapter mGalleryRecyclerAdapter;
 
     private LinearLayout mProgressBar;
     private TextView mTextViewCompanyName;
@@ -67,6 +67,13 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     private Button mButtonCashLess;
     private ImageView mImageViewMap;
     private FloatingActionButton mActionButtonCall;
+    private RecyclerView mRecyclerViewGallery;
+    private LinearLayout mLinearLayoutIndicator;
+
+    private float mCoordinateX;
+    private int mCurrentPreviewPosition;
+    private int mImagesCount;
+    private ImageView[] mIndicator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,6 +127,11 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     public void showCompanyDetail(CompanyModel companyModel) {
         mCompanyModel = companyModel;
 
+        mGalleryRecyclerAdapter = new GalleryRecyclerAdapter(getContext(), mCompanyModel.getImageUrl());
+        mRecyclerViewGallery.setAdapter(mGalleryRecyclerAdapter);
+        mRecyclerViewGallery.setOnTouchListener(mOnChangeTemplatePreview);
+        showIndicator();
+
         mMenu.getItem(0).setIcon(ContextCompat.getDrawable(getContext(),
                 companyModel.isFavorite() ? R.drawable.ic_company_favorite_enable :
                         R.drawable.ic_company_favorite_disable));
@@ -131,7 +143,6 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         } else {
             mTextViewWorkTime.setText("");
         }
-
         mTextViewDistance.setText(companyModel.getDistance() == 0 ? "" :
                 String.format("%.1f km", companyModel.getDistance() / 1000));
         mImageViewLocation.setVisibility(mTextViewDistance.getText().toString().isEmpty() ?
@@ -244,6 +255,10 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mRatingViewVoteObject = (CarmenRatingView) findViewById(R.id.rating_view_vote_object);
 //        mRatingViewVoteObject.setOnClickListener(this);
 
+        mRecyclerViewGallery = (RecyclerView) findViewById(R.id.recycler_view_gallery);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerViewGallery.setLayoutManager(layoutManager);
+
         mImageViewMap = (ImageView) findViewById(R.id.image_view_map);
         mImageViewLocation = (ImageView) findViewById(R.id.image_view_location);
         mRatingViewCompanyRating = (CarmenRatingView) findViewById(R.id.rating_view_company);
@@ -254,6 +269,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mTextViewWorkTime = (TextView) findViewById(R.id.text_view_work_time);
         mTextViewReviewCount = (TextView) findViewById(R.id.text_view_review_count);
         mActionButtonCall = (FloatingActionButton) findViewById(R.id.action_button_call);
+        mLinearLayoutIndicator = (LinearLayout) findViewById(R.id.gallery_indicator);
         mActionButtonCall.setOnClickListener(this);
     }
 
@@ -270,5 +286,72 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                         size.x, mapHeight);
 
         Picasso.with(getContext()).load(url).into(mImageViewMap);
+    }
+
+    private View.OnTouchListener mOnChangeTemplatePreview = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(final View v, MotionEvent event) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    mCoordinateX = event.getX();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if (mCoordinateX > event.getX()) {
+                        if (mCurrentPreviewPosition + 1 < mGalleryRecyclerAdapter.getItemCount()) {
+                            mCurrentPreviewPosition++;
+                        }
+                    } else if (mCoordinateX < event.getX()) {
+                        if (mCurrentPreviewPosition - 1 >= 0) {
+                            mCurrentPreviewPosition--;
+                        }
+                    }
+                    v.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            ((RecyclerView) v).scrollToPosition(mCurrentPreviewPosition);
+                            setIndicator(mCurrentPreviewPosition);
+                        }
+                    }, 50);
+
+                    break;
+            }
+            return false;
+        }
+    };
+
+    private void showIndicator() {
+        mImagesCount = mGalleryRecyclerAdapter.getItemCount();
+
+        if (mImagesCount > 1) {
+            mIndicator = new ImageView[mImagesCount];
+
+            for (int i = 0; i < mImagesCount; i++) {
+                mIndicator[i] = new ImageView(getContext());
+                mIndicator[i].setImageDrawable(ContextCompat.getDrawable(getContext(),
+                        R.drawable.nonselecteditem_dot));
+
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                params.setMargins(5, 0, 5, 0);
+
+                mLinearLayoutIndicator.addView(mIndicator[i], params);
+            }
+            mIndicator[0].setImageDrawable(ContextCompat.getDrawable(getContext(),
+                    R.drawable.selecteditem_dot));
+        }
+    }
+
+    private void setIndicator(int position) {
+        if (mImagesCount > 1) {
+            for (int i = 0; i < mImagesCount; i++) {
+                mIndicator[i].setImageDrawable(ContextCompat.getDrawable(getContext(),
+                        R.drawable.nonselecteditem_dot));
+            }
+            mIndicator[position].setImageDrawable(ContextCompat.getDrawable(getContext(),
+                    R.drawable.selecteditem_dot));
+        }
     }
 }
