@@ -85,6 +85,8 @@ public class CarmenRatingView extends AppCompatRatingBar {
         if (!isDrawablesSet) {
             mRadius = Math.min(mWidth, mHeight) / 2;
             mEmptyCircle.setStrokeWidth(mHeight / 10);
+            mWidth += DisplayUtils.dpToPx(2);
+            mHeight += DisplayUtils.dpToPx(2);
         } else {
             mScaledEmptyIndicatorBitmap = ScalingUtils.createScaledBitmap(mEmptyIndicatorBitmap,
                     mFillIndicatorBitmap.getWidth(), mHeight, ScalingUtils.ScalingLogic.FIT);
@@ -116,7 +118,7 @@ public class CarmenRatingView extends AppCompatRatingBar {
 
     private float getFirstPosition() {
         if (!isDrawablesSet) {
-            return mRadius;
+            return mRadius + DisplayUtils.dpToPx(2);
         }
         return 0;
     }
@@ -131,7 +133,7 @@ public class CarmenRatingView extends AppCompatRatingBar {
 
     private void drawEmptyIndicator(Canvas canvas, float position) {
         if (!isDrawablesSet) {
-            canvas.drawCircle(position, getHeight() / 2, mRadius, mEmptyCircle);
+            canvas.drawCircle(position, getHeight() / 2, mRadius - mEmptyCircle.getStrokeWidth() / 2, mEmptyCircle);
             return;
         }
         canvas.drawBitmap(mScaledEmptyIndicatorBitmap, position, 0, mDrawablePaint);
