@@ -1,28 +1,29 @@
-package net.ginteam.carmen.data.remote.api.request;
+package net.ginteam.carmen.network.api.service;
 
 import net.ginteam.carmen.model.ResponseModel;
 import net.ginteam.carmen.model.city.CityModel;
-import net.ginteam.carmen.data.remote.api.ApiLinks;
+import net.ginteam.carmen.network.api.ApiLinks;
 
 import java.util.List;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import rx.Observable;
 
 /**
- * Created by eugene_shcherbinock on 2/7/17.
+ * Created by Eugene on 12/27/16.
  */
 
-public interface CityApi {
+public interface CityService {
 
     @GET(ApiLinks.CATALOG.CITIES)
-    Call<ResponseModel<List<CityModel>>> fetchCities();
+    Observable <ResponseModel <List<CityModel>>> fetchCities();
 
     @GET(ApiLinks.CATALOG.CITIES_BY_POINT)
-    Call<ResponseModel<CityModel>> fetchCityByPoint(
+    Observable <ResponseModel <CityModel>> fetchCityByPoint(
             @Query(ApiLinks.CATALOG.LAT) Double lat,
             @Query(ApiLinks.CATALOG.LNG) Double lon
     );
+
 
 }

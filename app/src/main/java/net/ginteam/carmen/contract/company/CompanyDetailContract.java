@@ -1,7 +1,6 @@
 package net.ginteam.carmen.contract.company;
 
 import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
 import android.view.Menu;
 
 import net.ginteam.carmen.contract.FetchContract;

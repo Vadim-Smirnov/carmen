@@ -1,7 +1,6 @@
 package net.ginteam.carmen.view.adapter.company;
 
 import android.content.Context;
-import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v13.view.ViewCompat;
 import android.util.AttributeSet;

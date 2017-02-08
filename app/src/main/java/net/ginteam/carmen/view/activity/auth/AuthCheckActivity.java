@@ -7,15 +7,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.Toast;
 
-import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.auth.AuthenticationCheckContract;
 import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.presenter.auth.AuthenticationCheckPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
-import net.ginteam.carmen.utils.NetworkUtils;
 import net.ginteam.carmen.view.activity.MainActivity;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
 

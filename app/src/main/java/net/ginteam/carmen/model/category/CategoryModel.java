@@ -2,7 +2,6 @@ package net.ginteam.carmen.model.category;
 
 import com.google.gson.annotations.SerializedName;
 
-import net.ginteam.carmen.model.ResponseModel;
 import net.ginteam.carmen.model.Service;
 
 import java.io.Serializable;

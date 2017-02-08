@@ -3,7 +3,6 @@ package net.ginteam.carmen.view.adapter.company.map;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,7 +13,6 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
 import net.ginteam.carmen.utils.DisplayUtils;
-import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 import java.util.List;
 import java.util.Locale;

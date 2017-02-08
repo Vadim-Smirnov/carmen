@@ -30,7 +30,6 @@ import com.google.maps.android.clustering.ClusterManager;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.MapContract;
-import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
 import net.ginteam.carmen.presenter.MapPresenter;
@@ -39,7 +38,6 @@ import net.ginteam.carmen.view.activity.filter.FilterActivity;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListHorizontalItemDecorator;
 import net.ginteam.carmen.view.adapter.company.map.CompanyItemViewHolder;
 import net.ginteam.carmen.view.adapter.company.map.CompanyRecyclerListAdapter;
-import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 import java.util.Collection;
 import java.util.List;

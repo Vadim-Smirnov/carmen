@@ -1,25 +1,27 @@
-package net.ginteam.carmen.data.remote.api.request;
+package net.ginteam.carmen.network.api.service;
 
 import net.ginteam.carmen.model.ResponseModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
-import net.ginteam.carmen.data.remote.api.ApiLinks;
+import net.ginteam.carmen.network.api.ApiLinks;
 
 import java.util.List;
 
-import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import rx.Observable;
 
 /**
- * Created by eugene_shcherbinock on 2/7/17.
+ * Created by Eugene on 12/27/16.
  */
 
-public interface CompanyApi {
+public interface CompanyService {
 
     @GET(ApiLinks.CATALOG.COMPANIES_BY_CATEGORY)
-    Call<ResponseModel<List<CompanyModel>>> fetchCompanies(
+    Observable<ResponseModel<List<CompanyModel>>> fetchCompanies(
             @Path(ApiLinks.CATALOG.ID) int categoryId,
             @Query(ApiLinks.CATALOG.LAT) String lat,
             @Query(ApiLinks.CATALOG.LNG) String lng,
@@ -31,14 +33,14 @@ public interface CompanyApi {
     );
 
     @GET(ApiLinks.CATALOG.COMPANIES_BY_BOUNDS)
-    Call<ResponseModel<List<MapCompanyModel>>> fetchCompanies(
+    Observable<ResponseModel<List<MapCompanyModel>>> fetchCompanies(
             @Path(ApiLinks.CATALOG.ID) int categoryId,
             @Query(ApiLinks.CATALOG.SEARCH) String filter,
             @Query(ApiLinks.CATALOG.BOUNDS) String bounds
     );
 
     @GET(ApiLinks.CATALOG.COMPANY_BY_ID)
-    Call<ResponseModel<CompanyModel>> fetchCompanyDetail(
+    Observable<ResponseModel<CompanyModel>> fetchCompanyDetail(
             @Path(ApiLinks.CATALOG.ID) int companyId,
             @Query(ApiLinks.CATALOG.LAT) String lat,
             @Query(ApiLinks.CATALOG.LNG) String lng,
@@ -46,16 +48,29 @@ public interface CompanyApi {
     );
 
     @GET(ApiLinks.CATALOG.POPULAR_COMPANIES)
-    Call<ResponseModel<List<CompanyModel>>> fetchPopular(
+    Observable<ResponseModel<List<CompanyModel>>> fetchPopular(
             @Path(ApiLinks.CATALOG.CITY_ID) int cityId,
             @Query(ApiLinks.CATALOG.LAT) String lat,
             @Query(ApiLinks.CATALOG.LNG) String lng
     );
 
-    @GET(ApiLinks.AUTH.GET_RECENTLY_WATCHED)
-    Call<ResponseModel<List<CompanyModel>>> fetchRecentlyWatched(
+    @GET(ApiLinks.AUTH.GET_FAVORITES)
+    Observable<ResponseModel<List<CompanyModel>>> fetchFavorites(
             @Query(ApiLinks.CATALOG.LAT) String lat,
             @Query(ApiLinks.CATALOG.LNG) String lng
     );
+
+    @GET(ApiLinks.AUTH.GET_RECENTLY_WATCHED)
+    Observable<ResponseModel<List<CompanyModel>>> fetchRecentlyWatched(
+            @Query(ApiLinks.CATALOG.LAT) String lat,
+            @Query(ApiLinks.CATALOG.LNG) String lng
+    );
+
+    @POST(ApiLinks.AUTH.FAVORITES_BY_ID)
+    Observable<ResponseModel<String>> addToFavorites(@Path(ApiLinks.AUTH.ID) int id);
+
+    @DELETE(ApiLinks.AUTH.FAVORITES_BY_ID)
+    Observable<ResponseModel<String>> removeFromFavorites(@Path(ApiLinks.AUTH.ID) int id);
+
 
 }

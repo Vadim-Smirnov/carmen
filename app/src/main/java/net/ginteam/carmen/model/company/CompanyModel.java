@@ -7,12 +7,10 @@ import com.google.maps.android.clustering.ClusterItem;
 import net.ginteam.carmen.model.Point;
 import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.ResponseModel;
-import net.ginteam.carmen.model.Service;
 import net.ginteam.carmen.model.category.CategoryModel;
 
 import java.io.Serializable;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by Eugene on 12/27/16.

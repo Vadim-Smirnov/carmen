@@ -3,17 +3,17 @@
 
     <style name="Button" />
 
-    <style name="Button.Base">
+    <style name="Button.Base" parent="Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="Button.Wrapped">
+    <style name="Button.Wrapped" parent="Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="Button.WrappedHeight">
+    <style name="Button.WrappedHeight" parent="Button">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>

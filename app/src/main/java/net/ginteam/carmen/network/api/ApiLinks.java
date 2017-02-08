@@ -1,4 +1,4 @@
-package net.ginteam.carmen.data.remote.api;
+package net.ginteam.carmen.network.api;
 
 /**
  * Created by Eugene on 12/23/16.

@@ -1,35 +1,35 @@
-package net.ginteam.carmen.data.remote.api.request;
+package net.ginteam.carmen.network.api.service;
 
 import net.ginteam.carmen.model.ResponseModel;
 import net.ginteam.carmen.model.auth.AuthModel;
 import net.ginteam.carmen.model.auth.UserModel;
-import net.ginteam.carmen.data.remote.api.ApiLinks;
+import net.ginteam.carmen.network.api.ApiLinks;
 
-import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import rx.Observable;
 
 /**
- * Created by eugene_shcherbinock on 2/7/17.
+ * Created by Eugene on 12/28/16.
  */
 
-public interface UserApi {
+public interface AuthService {
 
     @POST(ApiLinks.AUTH.LOGIN)
-    Call<ResponseModel<AuthModel>> login(
+    Observable <ResponseModel<AuthModel>> login(
             @Query(ApiLinks.AUTH.EMAIL) String email,
             @Query(ApiLinks.AUTH.PASSWORD) String password
     );
 
     @POST(ApiLinks.AUTH.REGISTER)
-    Call<ResponseModel<AuthModel>> register(
+    Observable <ResponseModel<AuthModel>> register(
             @Query(ApiLinks.AUTH.NAME) String name,
             @Query(ApiLinks.AUTH.EMAIL) String email,
             @Query(ApiLinks.AUTH.PASSWORD) String password
     );
 
     @GET(ApiLinks.AUTH.GET_CURRENT_USER)
-    Call<ResponseModel<UserModel>> getCurrentUser();
+    Observable <ResponseModel<UserModel>> getCurrentUser();
 
 }
