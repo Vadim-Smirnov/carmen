@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.auth.SignInContract;
 import net.ginteam.carmen.presenter.auth.SignInPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
+import net.ginteam.carmen.utils.NetworkUtils;
 import net.ginteam.carmen.view.activity.MainActivity;
 
 public class SignInActivity extends BaseAuthActivity implements SignInContract.View, View.OnClickListener {

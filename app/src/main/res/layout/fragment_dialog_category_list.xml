@@ -4,25 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="net.ginteam.carmen.view.fragment.category.CategoryListFragment"
-    android:orientation="vertical">
+    tools:ignore="MissingPrefix">
 
     <LinearLayout
         android:id="@+id/liner_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="0.9"
         android:background="@color/colorWhite"
+        android:gravity="center|start"
         android:paddingEnd="@dimen/category_dialog_title_padding_horizontal"
         android:paddingStart="@dimen/category_dialog_title_padding_horizontal"
-        android:gravity="center|start"
-        android:layout_weight="0.9"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.5">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/text_view_category_dialog_title"
+            fontPath="@string/open_sans_font"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category_dialog_title"
@@ -39,7 +41,6 @@
         android:layout_weight="0.25"
         android:background="@color/colorDialogBackground"
         android:paddingTop="@dimen/category_dialog_item_separator_height"
-        android:paddingBottom="@dimen/category_dialog_item_separator_height"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -49,36 +50,38 @@
         tools:listitem="@layout/list_item_category"/>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/category_dialog_item_separator_height"
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/category_dialog_item_separator_height"
+        android:layout_weight="0.9"
         android:background="@color/colorWhite"
         android:orientation="horizontal"
-        android:layout_weight="0.9"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
         <TextView
+            fontPath="@string/open_sans_font"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="#4a4a4a"
-            android:gravity="center"
-            android:textSize="@dimen/category_dialog_item_title_text_size"
             android:background="@color/colorWhite"
+            android:gravity="center"
+            android:textColor="#4a4a4a"
+            android:textSize="@dimen/category_dialog_item_title_text_size"
             android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/button_category_dialog_cancel"
+            fontPath="@string/open_sans_font"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="#4a4a4a"
             android:gravity="center"
-            android:textSize="@dimen/category_dialog_item_title_text_size"
-            android:text="@string/button_category_dialog_cancel"/>
+            android:text="@string/button_category_dialog_cancel"
+            android:textColor="#4a4a4a"
+            android:textSize="@dimen/category_dialog_item_title_text_size"/>
 
     </LinearLayout>
 
@@ -89,7 +92,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </LinearLayout>

@@ -15,6 +15,7 @@ import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.presenter.auth.AuthenticationCheckPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
+import net.ginteam.carmen.utils.NetworkUtils;
 import net.ginteam.carmen.view.activity.MainActivity;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
 
