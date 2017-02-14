@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="@dimen/company_item_corner_radius"
-    tools:ignore="missingPrefix">
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:cardCornerRadius="@dimen/company_item_corner_radius"
+                                    tools:ignore="missingPrefix">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
             android:background="@android:color/transparent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/image_view_company_photo"
@@ -28,7 +28,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_selection_indicator"
-            app:srcCompat="@drawable/img_3" />
+            app:srcCompat="@drawable/img_3"/>
 
         <ImageButton
             android:id="@+id/image_button_company_favorite"
@@ -38,7 +38,7 @@
             android:background="@drawable/round_button"
             android:src="@drawable/ic_company_favorite_disable"
             app:layout_constraintRight_toRightOf="@+id/image_view_company_photo"
-            app:layout_constraintTop_toTopOf="@+id/image_view_company_photo" />
+            app:layout_constraintTop_toTopOf="@+id/image_view_company_photo"/>
 
         <TextView
             android:id="@+id/text_view_company_name"
@@ -46,6 +46,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/map_company_item_photo_bottom_space"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/map_company_item_photo_bottom_space"
             android:ellipsize="end"
             android:gravity="center|start"
@@ -55,32 +56,36 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_view_company_photo"
-            tools:text="Ресторан" />
+            tools:text="Ресторан"/>
 
         <net.ginteam.carmen.view.custom.rating.CarmenRatingView
             android:id="@+id/rating_view_company"
             android:layout_width="80dp"
             android:layout_height="10dp"
             android:layout_marginBottom="@dimen/map_company_item_padding"
+            android:layout_marginStart="@dimen/map_company_item_padding"
+            android:layout_marginTop="@dimen/map_company_item_padding"
             android:isIndicator="true"
+            android:rating="4"
             app:crv_indicatorSpacing="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_company_name" />
+            app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"/>
 
-        <TextView
-            android:id="@+id/text_view_company_price"
-            fontPath="@string/open_sans_semibold_font"
+        <net.ginteam.carmen.view.custom.rating.CarmenRatingView
+            android:id="@+id/rating_view_company_price"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:layout_marginEnd="4dp"
-            android:alpha="0.75"
-            android:textColor="#040404"
-            android:textSize="@dimen/map_company_item_price_text_size"
-            app:layout_constraintLeft_toRightOf="@+id/rating_view_company"
+            android:layout_height="10dp"
+            android:layout_marginEnd="@dimen/map_company_item_padding"
+            android:isIndicator="true"
+            android:numStars="4"
+            android:rating="2"
+            app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating"
+            app:crv_fillDrawable="@drawable/ic_medium_price_fill_rating"
+            app:crv_indicatorSpacing="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_view_company"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"
-            tools:text="130 grn" />
+            app:layout_constraintTop_toTopOf="@+id/rating_view_company"/>
 
     </android.support.constraint.ConstraintLayout>
 

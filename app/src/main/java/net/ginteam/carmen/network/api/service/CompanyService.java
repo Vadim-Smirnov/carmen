@@ -23,8 +23,6 @@ public interface CompanyService {
     @GET(ApiLinks.CATALOG.COMPANIES_BY_CATEGORY)
     Observable<ResponseModel<List<CompanyModel>>> fetchCompanies(
             @Path(ApiLinks.CATALOG.ID) int categoryId,
-            @Query(ApiLinks.CATALOG.LAT) String lat,
-            @Query(ApiLinks.CATALOG.LNG) String lng,
             @Query(ApiLinks.CATALOG.BOUND) String bound,
             @Query(ApiLinks.CATALOG.SEARCH) String filter,
             @Query(ApiLinks.CATALOG.SORT_FIELD) String sortField,
@@ -42,29 +40,19 @@ public interface CompanyService {
     @GET(ApiLinks.CATALOG.COMPANY_BY_ID)
     Observable<ResponseModel<CompanyModel>> fetchCompanyDetail(
             @Path(ApiLinks.CATALOG.ID) int companyId,
-            @Query(ApiLinks.CATALOG.LAT) String lat,
-            @Query(ApiLinks.CATALOG.LNG) String lng,
             @Query(ApiLinks.CATALOG.WITH) String relations
     );
 
     @GET(ApiLinks.CATALOG.POPULAR_COMPANIES)
     Observable<ResponseModel<List<CompanyModel>>> fetchPopular(
-            @Path(ApiLinks.CATALOG.CITY_ID) int cityId,
-            @Query(ApiLinks.CATALOG.LAT) String lat,
-            @Query(ApiLinks.CATALOG.LNG) String lng
+            @Path(ApiLinks.CATALOG.CITY_ID) int cityId
     );
 
     @GET(ApiLinks.AUTH.GET_FAVORITES)
-    Observable<ResponseModel<List<CompanyModel>>> fetchFavorites(
-            @Query(ApiLinks.CATALOG.LAT) String lat,
-            @Query(ApiLinks.CATALOG.LNG) String lng
-    );
+    Observable<ResponseModel<List<CompanyModel>>> fetchFavorites();
 
     @GET(ApiLinks.AUTH.GET_RECENTLY_WATCHED)
-    Observable<ResponseModel<List<CompanyModel>>> fetchRecentlyWatched(
-            @Query(ApiLinks.CATALOG.LAT) String lat,
-            @Query(ApiLinks.CATALOG.LNG) String lng
-    );
+    Observable<ResponseModel<List<CompanyModel>>> fetchRecentlyWatched();
 
     @POST(ApiLinks.AUTH.FAVORITES_BY_ID)
     Observable<ResponseModel<String>> addToFavorites(@Path(ApiLinks.AUTH.ID) int id);

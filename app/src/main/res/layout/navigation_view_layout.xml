@@ -11,6 +11,7 @@
     android:paddingEnd="25dp"
     android:paddingStart="25dp"
     android:theme="@style/NavigationTheme"
+
     app:headerLayout="@layout/navigation_view_default_header"
     app:itemBackground="@drawable/menu_item_divider"
     app:menu="@menu/navigation_menu_short"

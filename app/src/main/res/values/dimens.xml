@@ -173,7 +173,7 @@
     <dimen name="company_detail_image_map_margin_top">40dp</dimen>
     <dimen name="company_detail_button_navigate_margin_top">15dp</dimen>
     <dimen name="company_detail_button_navigate_drawable_padding">8dp</dimen>
-    <dimen name="company_detail_recycler_view_services_margin_top">13dp</dimen>
+    <dimen name="company_detail_recycler_view_services_margin_top">20dp</dimen>
     <dimen name="company_detail_button_all_services_margin_start">40dp</dimen>
     <dimen name="company_detail_button_all_services_padding">10dp</dimen>
 

@@ -32,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/category_title_bottom_space"
+            android:textSize="10sp"
             android:alpha="0.5"
             android:textColor="#1D1D26"
             tools:text="25 items"/>
@@ -47,7 +48,7 @@
             android:id="@+id/view"
             android:layout_width="@dimen/category_separator_width"
             android:layout_height="@dimen/category_separator_height"
-            android:background="#d9d9d9"
+            android:background="#ffd9d9d9"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

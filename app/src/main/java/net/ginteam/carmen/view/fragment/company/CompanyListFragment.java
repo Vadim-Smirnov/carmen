@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import net.ginteam.carmen.R;
@@ -71,8 +72,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     private LinearLayoutManager mLayoutManager;
     private CompanyRecyclerListAdapter mRecyclerListAdapter;
 
-    private FloatingActionButton mFloatingActionButton;
-//    private BottomNavigationView mBottomNavigationView;
+    private ImageButton mFloatingActionButton;
 
     private OnSelectedItemsListener mSelectedItemsListener;
     private OnCompanySelectedListener mCompanySelectedListener;
@@ -251,7 +251,7 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         mRootView.findViewById(R.id.bottom_nav_item_sort).setOnClickListener(this);
 
         if (mFetchType == FETCH_COMPANY_TYPE.FOR_CATEGORY) {
-            mFloatingActionButton = (FloatingActionButton) mRootView.findViewById(R.id.float_button_show_map);
+            mFloatingActionButton = (ImageButton) mRootView.findViewById(R.id.float_button_show_map);
 
 
             if (mSelectedItemsListener != null) {
@@ -295,13 +295,13 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         } else {
             switch (mFetchType) {
                 case RECENTLY_WATCHED:
-                    setToolbarTitle(getString(R.string.recent_item_text), "");
+                    setToolbarTitle(getString(R.string.recent_item_text), "", false);
                     break;
                 case FAVORITE:
-                    setToolbarTitle(getString(R.string.favorite_item_text), "");
+                    setToolbarTitle(getString(R.string.favorite_item_text), "", false);
                     break;
                 case FOR_CATEGORY:
-                    setToolbarTitle(mSelectedCategory.getName(), mPresenter.getUserCityName());
+                    setToolbarTitle(mSelectedCategory.getName(), mPresenter.getUserCityName(), false);
                     break;
             }
         }

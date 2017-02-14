@@ -17,7 +17,6 @@ import net.ginteam.carmen.utils.DisplayUtils;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 import java.util.List;
-import java.util.Locale;
 
 import static net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter.ITEM_VIEW_TYPE.COMPANY;
 import static net.ginteam.carmen.view.adapter.company.CompanyRecyclerListAdapter.ITEM_VIEW_TYPE.LOADING;
@@ -132,7 +131,8 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
         companyViewHolder.getImageViewPhoto().requestLayout();
 
         if (!currentCompany.getImageUrl().isEmpty()) {
-            Picasso.with(mContext).load(currentCompany.getImageUrl().get(0)).into(companyViewHolder.getImageViewPhoto());
+            if (!currentCompany.getImageUrl().get(0).isEmpty())
+            Picasso.with(mContext).load(currentCompany.getImageUrl().get(0)).placeholder( R.drawable.placeholder_animation).into(companyViewHolder.getImageViewPhoto());
         }
 
         companyViewHolder.getImageViewLocation().setVisibility(
@@ -142,11 +142,6 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
         companyViewHolder.getImageButtonAddToFavorite().setImageResource(currentCompany.isFavorite() ?
                 R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable);
 
-        companyViewHolder.getTextViewPrice().setText(
-                String.format(Locale.getDefault(),
-                        mContext.getString(R.string.company_price),
-                        currentCompany.getPrice())
-        );
 
         companyViewHolder.getImageButtonAddToFavorite().setOnClickListener(new View.OnClickListener() {
             @Override

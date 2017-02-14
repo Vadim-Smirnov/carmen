@@ -45,9 +45,7 @@ public class CompaniesProvider {
     public void fetchForCategory(final int categoryId, String filter, String sortField, String sortType,
                                  int page, final ModelCallbackWithMeta<List<CompanyModel>> completion) {
         mCompanyService
-                .fetchCompanies(categoryId, mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
-                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude),
-                        PreferencesManager.getInstance().getCity().getBounds(), filter, sortField, sortType, page)
+                .fetchCompanies(categoryId, PreferencesManager.getInstance().getCity().getBounds(), filter, sortField, sortType, page)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriberWithMeta<List<CompanyModel>>() {
@@ -86,8 +84,7 @@ public class CompaniesProvider {
                 ApiLinks.CATALOG.DETAIL, ApiLinks.CATALOG.CATEGORIES, ApiLinks.CATALOG.RATINGS);
 
         mCompanyService
-                .fetchCompanyDetail(companyId,mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
-                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude), relations)
+                .fetchCompanyDetail(companyId, relations)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<CompanyModel>() {
@@ -105,8 +102,7 @@ public class CompaniesProvider {
 
     public void fetchRecentlyWatched(final ModelCallback<List<CompanyModel>> completion) {
         mCompanyService
-                .fetchRecentlyWatched(mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
-                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude))
+                .fetchRecentlyWatched()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<List<CompanyModel>>() {
@@ -124,8 +120,7 @@ public class CompaniesProvider {
 
     public void fetchPopular(int cityId, final ModelCallback<List<CompanyModel>> completion) {
         mCompanyService
-                .fetchPopular(cityId,mUserLocation == null ? "0" : String.valueOf(mUserLocation.latitude),
-                        mUserLocation == null ? "0" : String.valueOf(mUserLocation.longitude))
+                .fetchPopular(cityId)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<List<CompanyModel>>() {

@@ -20,8 +20,8 @@ public class Detail implements Serializable {
     @SerializedName("website")
     private List<String> mWebsite;
 
-    @SerializedName("work_time")
-    private List<String> mWorkTime;
+//    @SerializedName("work_time")
+//    private List<String> mWorkTime;
 
     @SerializedName("desc")
     private String mDesc;
@@ -38,9 +38,9 @@ public class Detail implements Serializable {
         return mWebsite;
     }
 
-    public List<String> getWorkTime() {
-        return mWorkTime;
-    }
+//    public List<String> getWorkTime() {
+//        return mWorkTime;
+//    }
 
     public String getDesc() {
         return mDesc;

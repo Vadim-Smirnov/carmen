@@ -86,10 +86,8 @@ public class FavoritesProvider {
     }
 
     private void fetchFromServer(final ModelCallback<List<CompanyModel>> completion) {
-        LatLng userLocation = PreferencesManager.getInstance().getUserLocation();
         mCompanyService
-                .fetchFavorites(userLocation == null ? "0" : String.valueOf(userLocation.latitude),
-                        userLocation == null ? "0" : String.valueOf(userLocation.longitude))
+                .fetchFavorites()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<List<CompanyModel>>() {

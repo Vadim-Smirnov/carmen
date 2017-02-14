@@ -2,8 +2,11 @@ package net.ginteam.carmen.manager;
 
 import android.util.Log;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import net.ginteam.carmen.BuildConfig;
 import net.ginteam.carmen.network.api.ApiLinks;
+import net.ginteam.carmen.utils.ValidationUtils;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -50,7 +53,7 @@ public class ApiManager {
         return sInstance;
     }
 
-    public <T> T getService(Class <T> serviceClass) {
+    public <T> T getService(Class<T> serviceClass) {
         return mRetrofit.create(serviceClass);
     }
 
@@ -62,16 +65,19 @@ public class ApiManager {
 
             Log.d("HttpInterceptor", "Request URL: " + apiRequest.url().toString());
 
+            Request.Builder builder = apiRequest.newBuilder();
             String authToken = PreferencesManager.getInstance().getUserToken();
             if (!authToken.isEmpty()) {
                 Log.d("HttpInterceptor", "Auth token: " + authToken);
 
-                apiRequest = apiRequest
-                        .newBuilder()
-                        .addHeader(ApiLinks.AUTH.AUTH_HEADER, "Bearer " + authToken)
-                        .build();
+                builder.addHeader(ApiLinks.AUTH.AUTH_HEADER, "Bearer " + authToken);
             }
 
+            LatLng userLocation = PreferencesManager.getInstance().getUserLocation();
+            ValidationUtils.Pair<String, String> pair = ValidationUtils.validateUserLocation(userLocation);
+            builder.addHeader(ApiLinks.CATALOG.LAT, pair.first).addHeader(ApiLinks.CATALOG.LNG, pair.second);
+
+            apiRequest = builder.build();
             Log.d("HttpInterceptor", "Request headers: " + apiRequest.headers().toString());
 
             return chain.proceed(apiRequest);

@@ -27,7 +27,9 @@ public class CategoryRecyclerListItemDecorator extends RecyclerView.ItemDecorati
             outRect.left = mItemSpacing;
         }
         int currentItemPosition = parent.getChildAdapterPosition(view);
-        if (currentItemPosition != state.getItemCount() - 1 && currentItemPosition != state.getItemCount() - 2) {
+
+        if (currentItemPosition != state.getItemCount() - 1 ||
+                (parent.getChildCount() % 2 == 0 && currentItemPosition != state.getItemCount() - 2)) {
             outRect.bottom = mItemSpacing;
         }
     }

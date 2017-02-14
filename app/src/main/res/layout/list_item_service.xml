@@ -10,7 +10,7 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginStart="@dimen/service_item_image_margin_side"
         android:layout_marginEnd="@dimen/service_item_image_margin_side"
         android:src="@drawable/ic_arrow_right"/>

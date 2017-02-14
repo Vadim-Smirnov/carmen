@@ -29,15 +29,16 @@
 
         </android.support.v4.widget.NestedScrollView>
 
-        <android.support.design.widget.FloatingActionButton
+        <ImageButton
             android:id="@+id/action_button_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="91dp"
+            android:layout_height="91dp"
             android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/company_detail_float_button_margin"
-            android:src="@drawable/ic_call"
-            app:backgroundTint="#3EC7C2"
-            app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/floating_button_animation"
+            android:padding="10dp"
+            android:src="@drawable/ic_call"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

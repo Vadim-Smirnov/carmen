@@ -24,7 +24,6 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
     private CarmenRatingView mRatingViewRating;
     private ImageButton mImageButtonAddToFavorite;
     private TextView mTextViewDistance;
-    private TextView mTextViewPrice;
     private ImageView mImageViewLocation;
 
     public CompanyItemViewHolder(View itemView) {
@@ -38,7 +37,6 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         mRatingViewRating = (CarmenRatingView) itemView.findViewById(R.id.rating_view_company);
         mImageButtonAddToFavorite = (ImageButton) itemView.findViewById(R.id.image_button_company_favorite);
         mTextViewDistance = (TextView) itemView.findViewById(R.id.text_view_company_distance);
-        mTextViewPrice = (TextView) itemView.findViewById(R.id.text_view_company_price);
     }
 
     public ImageView getImageViewPhoto() {
@@ -65,9 +63,7 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         return mTextViewDistance;
     }
 
-    public TextView getTextViewPrice() {
-        return mTextViewPrice;
-    }
+
 
     public ImageView getImageViewLocation() {
         return mImageViewLocation;

@@ -52,8 +52,8 @@ public class CategoryRecyclerListAdapter extends RecyclerView.Adapter <CategoryI
                         .getResources()
                         .getQuantityString(
                                 R.plurals.category_items_count_string,
-                                currentCategory.getId(),
-                                currentCategory.getId()
+                                currentCategory.getCompaniesCount(),
+                                currentCategory.getCompaniesCount()
                         ));
 
         if (mCategoryItemClickListener == null) {

@@ -1,6 +1,7 @@
 package net.ginteam.carmen.provider.category;
 
 import net.ginteam.carmen.manager.ApiManager;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.network.api.service.CategoryService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;
@@ -41,7 +42,7 @@ public class CategoriesProvider {
     private void fetchFromServer(final ModelCallback<List<CategoryModel>> completion) {
         CategoryService categoryService = ApiManager.getInstance().getService(CategoryService.class);
         categoryService
-                .fetchCategories()
+                .fetchCategories(PreferencesManager.getInstance().getCity().getId())
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<List<CategoryModel>>() {

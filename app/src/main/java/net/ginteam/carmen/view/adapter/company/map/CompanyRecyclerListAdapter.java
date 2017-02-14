@@ -77,12 +77,7 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<CompanyItem
         }
 
         holder.getTextViewName().setText(currentCompany.getName());
-        holder.getRatingViewRating().setRating(currentCompany.getRating());
-        holder.getTextViewPrice().setText(
-                String.format(Locale.getDefault(),
-                        mContext.getString(R.string.company_price),
-                        currentCompany.getPrice())
-        );
+        holder.getRatingViewRating().setRating(4);
 
         holder.getImageViewPhoto().getLayoutParams().height = calculateImageSize();
         holder.getImageViewPhoto().requestLayout();

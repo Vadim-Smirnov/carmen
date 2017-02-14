@@ -8,6 +8,13 @@
         android:id="@+id/toolbar"
         style="@style/AppBarLayout.Toolbar">
 
+        <ImageView
+            android:id="@+id/image_view_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_2"
+            android:visibility="gone"/>
+
         <LinearLayout
             style="@style/LinearLayout.Wrapped.Horizontal">
 

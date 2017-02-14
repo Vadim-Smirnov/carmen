@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import net.ginteam.carmen.R;
@@ -35,6 +36,10 @@ public class ToolbarActivity extends AppCompatActivity {
 
     protected void setSubtitle(String subtitle) {
         ((TextView) mToolbar.findViewById(R.id.text_view_toolbar_subtitle)).setText(subtitle);
+    }
+
+    protected void setVisibleImage(boolean isVisible) {
+        mToolbar.findViewById(R.id.image_view_logo).setVisibility(isVisible ? View.VISIBLE : View.GONE);
     }
 
     private void initializeToolbar() {

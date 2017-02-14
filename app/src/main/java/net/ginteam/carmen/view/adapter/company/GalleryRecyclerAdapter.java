@@ -38,7 +38,9 @@ public class GalleryRecyclerAdapter extends RecyclerView.Adapter<GalleryItemView
     @Override
     public void onBindViewHolder(GalleryItemViewHolder holder, int position) {
         String imageUrl = mImages.get(position);
-        Picasso.with(mContext).load(imageUrl).into(holder.getImageViewGallery());
+        if (!imageUrl.isEmpty()) {
+            Picasso.with(mContext).load(imageUrl).into(holder.getImageViewGallery());
+        }
     }
 
     @Override

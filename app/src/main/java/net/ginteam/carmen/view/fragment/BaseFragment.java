@@ -43,15 +43,15 @@ public abstract class BaseFragment extends DialogFragment {
         return getParentFragment() == null;
     }
 
-    public void setToolbarTitle(String title, String subtitle) {
+    public void setToolbarTitle(String title, String subtitle, boolean visibleImage) {
         if (mSetToolbarTitleListener != null) {
-            mSetToolbarTitleListener.setToolbarTitle(title, subtitle);
+            mSetToolbarTitleListener.setToolbarTitle(title, subtitle, visibleImage);
         }
     }
 
     public interface OnSetToolbarTitleListener {
 
-        void setToolbarTitle(String title, String subtitle);
+        void setToolbarTitle(String title, String subtitle, boolean visibleImage);
 
     }
 

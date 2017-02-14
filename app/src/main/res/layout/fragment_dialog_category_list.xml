@@ -16,11 +16,7 @@
         android:background="@color/colorWhite"
         android:gravity="center|start"
         android:paddingEnd="@dimen/category_dialog_title_padding_horizontal"
-        android:paddingStart="@dimen/category_dialog_title_padding_horizontal"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:paddingStart="@dimen/category_dialog_title_padding_horizontal">
 
         <TextView
             android:id="@+id/text_view_category_dialog_title"
@@ -33,33 +29,29 @@
 
     </LinearLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view_categories"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.25"
-        android:background="@color/colorDialogBackground"
-        android:paddingTop="@dimen/category_dialog_item_separator_height"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/liner_layout"
-        app:layout_constraintVertical_bias="0.0"
-        tools:listitem="@layout/list_item_category"/>
+        android:layout_weight="0.25">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_categories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorDialogBackground"
+            android:paddingTop="@dimen/category_dialog_item_separator_height"
+            tools:listitem="@layout/list_item_category"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/category_dialog_item_separator_height"
+        android:paddingTop="@dimen/category_dialog_item_separator_height"
         android:layout_weight="0.9"
-        android:background="@color/colorWhite"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        android:background="@color/colorDialogBackground"
+        android:orientation="horizontal">
 
         <TextView
             fontPath="@string/open_sans_font"
@@ -69,14 +61,14 @@
             android:background="@color/colorWhite"
             android:gravity="center"
             android:textColor="#4a4a4a"
-            android:textSize="@dimen/category_dialog_item_title_text_size"
-            android:visibility="invisible"/>
+            android:textSize="@dimen/category_dialog_item_title_text_size"/>
 
         <TextView
             android:id="@+id/button_category_dialog_cancel"
             fontPath="@string/open_sans_font"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorWhite"
             android:layout_weight="1"
             android:gravity="center"
             android:text="@string/button_category_dialog_cancel"
@@ -88,10 +80,6 @@
     <include
         layout="@layout/progress_bar"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="0dp"/>
 
 </LinearLayout>

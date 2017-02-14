@@ -62,7 +62,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
     public void onStart() {
         super.onStart();
         if (isNotNestedFragment() && !mIsDialog) {
-            setToolbarTitle(getString(R.string.category_item_text), "");
+            setToolbarTitle(getString(R.string.category_item_text), "", false);
         }
     }
 
@@ -118,6 +118,14 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
         mRecyclerViewCategories = (RecyclerView) mRootView.findViewById(R.id.recycler_view_categories);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), CATEGORY_LIST_COLUMNS_COUNT);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if(position == mRecyclerListAdapter.getItemCount() - 1 && mRecyclerListAdapter.getItemCount() % 2 != 0)
+                    return CATEGORY_LIST_COLUMNS_COUNT;
+                return 1;
+            }
+        });
         mRecyclerViewCategories.addItemDecoration(new CategoryRecyclerListItemDecorator(getContext(), R.dimen.category_item_spacing));
         mRecyclerViewCategories.setLayoutManager(gridLayoutManager);
     }

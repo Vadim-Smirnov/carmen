@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorWhite"
     tools:ignore="MissingPrefix">
 
     <LinearLayout
@@ -34,17 +35,17 @@
 
     </LinearLayout>
 
-    <android.support.design.widget.FloatingActionButton
+    <ImageButton
         android:id="@+id/float_button_show_map"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="91dp"
+        android:layout_height="91dp"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="@dimen/float_button_margin_bottom"
-        android:layout_marginEnd="@dimen/float_button_margin_right"
+        android:background="@drawable/floating_button_design"
+        android:padding="10dp"
         android:src="@drawable/ic_float_button_map"
+        android:layout_marginBottom="@dimen/float_button_margin_bottom"
         android:visibility="gone"
-        app:backgroundTint="#3EC7C2"
-        app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
+        android:layout_marginEnd="1dp"/>
 
     <LinearLayout
         android:id="@+id/bottom_navigation_layout"
@@ -52,8 +53,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="#000"
-        android:paddingTop="13dp"
-        android:paddingBottom="13dp"
         android:orientation="horizontal"
         android:visibility="gone"
         android:gravity="center"
@@ -62,21 +61,27 @@
         <ImageView
             android:id="@+id/bottom_nav_item_categories"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
             android:layout_weight="1"
             android:src="@drawable/ic_bottom_navigation_categories"/>
 
         <ImageView
             android:id="@+id/bottom_nav_item_filters"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/ic_bottom_navigation_filters"/>
 
         <ImageView
             android:id="@+id/bottom_nav_item_sort"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:paddingTop="13dp"
+            android:paddingBottom="13dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:src="@drawable/ic_bottom_navigation_sort"/>
 

@@ -23,7 +23,6 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
     private ImageButton mImageButtonAddToFavorite;
     private TextView mTextViewName;
     private CarmenRatingView mRatingViewRating;
-    private TextView mTextViewPrice;
 
     public CompanyItemViewHolder(View itemView) {
         super(itemView);
@@ -35,7 +34,6 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
         mImageButtonAddToFavorite = (ImageButton) itemView.findViewById(R.id.image_button_company_favorite);
         mTextViewName = (TextView) itemView.findViewById(R.id.text_view_company_name);
         mRatingViewRating = (CarmenRatingView) itemView.findViewById(R.id.rating_view_company);
-        mTextViewPrice = (TextView) itemView.findViewById(R.id.text_view_company_price);
     }
 
     public View getViewSelectionIndicator() {
@@ -56,10 +54,6 @@ public class CompanyItemViewHolder extends RecyclerView.ViewHolder {
 
     public CarmenRatingView getRatingViewRating() {
         return mRatingViewRating;
-    }
-
-    public TextView getTextViewPrice() {
-        return mTextViewPrice;
     }
 
     public void setOnAddToFavoritesClickListener(final CompanyModel company, final net.ginteam.carmen.view.adapter.company.CompanyItemViewHolder.OnAddToFavoritesClickListener listener) {

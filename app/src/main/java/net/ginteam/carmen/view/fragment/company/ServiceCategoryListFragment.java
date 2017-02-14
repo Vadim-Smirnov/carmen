@@ -57,14 +57,16 @@ public class ServiceCategoryListFragment extends BaseFetchingFragment {
 
     private void showServiceCategories() {
         for (CategoryModel currentCategory : mCategories) {
-            LinearLayout rowLayout = new LinearLayout(getContext());
-            FragmentManager fragMan = getFragmentManager();
-            FragmentTransaction fragTransaction = fragMan.beginTransaction();
-            rowLayout.setId(View.generateViewId());
-            mLinearLayoutFragments.addView(rowLayout);
-            BaseFetchingFragment myFrag = ServiceListFragment.newInstance(currentCategory);
-            fragTransaction.add(rowLayout.getId(), myFrag, "fragment");
-            fragTransaction.commit();
+            if (!currentCategory.getServices().isEmpty()) {
+                LinearLayout rowLayout = new LinearLayout(getContext());
+                FragmentManager fragMan = getFragmentManager();
+                FragmentTransaction fragTransaction = fragMan.beginTransaction();
+                rowLayout.setId(View.generateViewId());
+                mLinearLayoutFragments.addView(rowLayout);
+                BaseFetchingFragment myFrag = ServiceListFragment.newInstance(currentCategory);
+                fragTransaction.add(rowLayout.getId(), myFrag, "fragment");
+                fragTransaction.commit();
+            }
         }
     }
 

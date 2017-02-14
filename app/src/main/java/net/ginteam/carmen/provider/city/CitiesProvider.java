@@ -46,7 +46,7 @@ public class CitiesProvider {
 
     public void fetchCityByPoint(Location location, final ModelCallback<CityModel> completion) {
         mCityService
-                .fetchCityByPoint(location.getLatitude(), location.getLongitude())
+                .fetchCityByPoint()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ModelSubscriber<CityModel>() {

@@ -19,7 +19,7 @@ import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 public class ServiceListFragment extends BaseFetchingFragment {
 
     private static final String CATEGORY_ARG = "category";
-    private final static int VISIBLE_SERVICES_COUNT = 5;
+    private final static int VISIBLE_SERVICES_COUNT = 3;
 
     private CategoryModel mCurrentCategory;
 
@@ -79,7 +79,7 @@ public class ServiceListFragment extends BaseFetchingFragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 mServiceListAdapter
-                        .setVisibleServiceCount(isChecked ? VISIBLE_SERVICES_COUNT :
+                        .setVisibleServiceCount(!isChecked ? VISIBLE_SERVICES_COUNT :
                                 mCurrentCategory.getServices().size());
                 mServiceListAdapter.notifyDataSetChanged();
             }

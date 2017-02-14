@@ -7,7 +7,6 @@ import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +44,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         View.OnClickListener, RatingView.OnRatingChangeListener {
 
     public static final String COMPANY_ARGUMENT = "company";
+    public static final String CATEGORY_ARGUMENT = "category";
 
     private int mCompanyId;
     private CompanyModel mCompanyModel;
@@ -66,7 +67,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     private Button mButtonCash;
     private Button mButtonCashLess;
     private ImageView mImageViewMap;
-    private FloatingActionButton mActionButtonCall;
+    private ImageButton mActionButtonCall;
     private RecyclerView mRecyclerViewGallery;
     private LinearLayout mLinearLayoutIndicator;
 
@@ -136,13 +137,22 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                 companyModel.isFavorite() ? R.drawable.ic_company_favorite_enable :
                         R.drawable.ic_company_favorite_disable));
         mTextViewCompanyName.setText(companyModel.getName());
-//        mTextViewCategory.setText(companyModel.getCategory().get(0).getName());
-        mTextViewAddress.setText(companyModel.getAddress());
-        if (!companyModel.getDetail().getWorkTime().isEmpty()) {
-            mTextViewWorkTime.append(companyModel.getDetail().getWorkTime().get(1));
-        } else {
-            mTextViewWorkTime.setText("");
+
+        String categories = "";
+        for (int i = 0; i < companyModel.getCategory().size(); i++) {
+            categories += companyModel.getCategory().get(i).getName();
+            if (i != companyModel.getCategory().size() - 1) {
+                categories += ", ";
+            }
         }
+        mTextViewCategory.setText(categories);
+
+        mTextViewAddress.setText(companyModel.getAddress());
+//        if (!companyModel.getDetail().getWorkTime().isEmpty()) {
+//            mTextViewWorkTime.append(companyModel.getDetail().getWorkTime().get(1));
+//        } else {
+            mTextViewWorkTime.setText("");
+//        }
         mTextViewDistance.setText(companyModel.getDistance() == 0 ? "" :
                 String.format("%.1f km", companyModel.getDistance() / 1000));
         mImageViewLocation.setVisibility(mTextViewDistance.getText().toString().isEmpty() ?
@@ -152,7 +162,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                         R.plurals.review_count_string,
                         companyModel.getRatings().size(),
                         companyModel.getRatings().size()));
-        mRatingViewCompanyRating.setRating(companyModel.getRating());
+        mRatingViewCompanyRating.setRating(3);
         mActionButtonCall.setVisibility(companyModel.getDetail().getPhones().isEmpty() ?
                 View.GONE : View.VISIBLE);
         showMapImage();
@@ -243,6 +253,8 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_back_button);
+
 
         mProgressBar = (LinearLayout) findViewById(R.id.progress_bar);
 
@@ -268,7 +280,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mTextViewDistance = (TextView) findViewById(R.id.text_view_distance);
         mTextViewWorkTime = (TextView) findViewById(R.id.text_view_work_time);
         mTextViewReviewCount = (TextView) findViewById(R.id.text_view_review_count);
-        mActionButtonCall = (FloatingActionButton) findViewById(R.id.action_button_call);
+        mActionButtonCall = (ImageButton) findViewById(R.id.action_button_call);
         mLinearLayoutIndicator = (LinearLayout) findViewById(R.id.gallery_indicator);
         mActionButtonCall.setOnClickListener(this);
     }
@@ -280,12 +292,12 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         int mapHeight = (int) getResources().getDimension(R.dimen.company_detail_image_map_height);
         String url =
                 String.format("http://maps.googleapis.com/maps/api/staticmap?center=%1$s," +
-                                "%2$s&markers=color:red|size:mid|%1$s,%2$s&zoom=14&scale=2&" +
+                                "%2$s&markers=color:red|size:mid|%1$s,%2$s&zoom=15&scale=2&" +
                                 "size=%3$sx%4$s&format=png&visual_refresh=true",
                         mCompanyModel.getPosition().latitude, mCompanyModel.getPosition().longitude,
-                        size.x, mapHeight);
+                        640, 480);
 
-        Picasso.with(getContext()).load(url).into(mImageViewMap);
+        Picasso.with(getContext()).load(url).placeholder( R.drawable.placeholder_animation).resize(size.x, mapHeight).into(mImageViewMap);
     }
 
     private View.OnTouchListener mOnChangeTemplatePreview = new View.OnTouchListener() {

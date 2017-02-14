@@ -29,30 +29,35 @@
         fontPath="@string/open_sans_light_font"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/company_detail_margin_side"
         android:layout_marginStart="@dimen/company_detail_margin_side"
         android:layout_marginTop="@dimen/company_detail_category_margin_top"
         android:textColor="@color/colorGray"
         android:textSize="@dimen/company_detail_text_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"
-        tools:text="Автомойка" />
+        tools:text="Автомойка"
+        app:layout_constraintRight_toLeftOf="@+id/rating_view_company_price"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="8dp"/>
 
     <net.ginteam.carmen.view.custom.rating.CarmenRatingView
         android:id="@+id/rating_view_company_price"
         android:layout_width="105dp"
         android:layout_height="15dp"
-        android:layout_marginEnd="@dimen/company_detail_margin_side"
-        android:layout_marginStart="@dimen/company_detail_margin_side"
+        android:layout_marginEnd="19dp"
         android:isIndicator="true"
         android:numStars="4"
         android:rating="2"
         app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating"
         app:crv_fillDrawable="@drawable/ic_medium_price_fill_rating"
-        app:crv_indicatorSpacing="5dp"
+        app:crv_indicatorSpacing="2.5dp"
         app:layout_constraintBottom_toBottomOf="@+id/text_view_category"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_view_category" />
+        app:layout_constraintTop_toTopOf="@+id/text_view_category"
+        android:layout_marginRight="19dp"
+        app:layout_constraintVertical_bias="0.32999998"/>
 
     <net.ginteam.carmen.view.custom.rating.CarmenRatingView
         android:id="@+id/rating_view_company"
@@ -61,7 +66,7 @@
         android:layout_marginStart="@dimen/company_detail_margin_side"
         android:layout_marginTop="14dp"
         android:isIndicator="true"
-        app:crv_indicatorSpacing="5dp"
+        app:crv_indicatorSpacing="2.5dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_view_category"
         app:rating="4" />
@@ -264,7 +269,7 @@
         android:id="@+id/reviews_fragment_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -308,6 +313,8 @@
         android:layout_marginTop="10dp"
         android:padding="2dp"
         app:crv_indicatorSpacing="10dp"
+        app:crv_fillDrawable="@drawable/ic_large_fill_new_rating"
+        app:crv_emptyDrawable="@drawable/ic_large_empty_new_rating"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"/>
