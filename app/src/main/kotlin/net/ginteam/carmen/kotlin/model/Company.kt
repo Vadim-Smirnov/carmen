@@ -37,7 +37,7 @@ open class CompanyModel : ClusterItem, Serializable {
     @SerializedName("short_desc") val shortDescription: String = ""
     @SerializedName("detail") val details: ResponseModel <List <DetailModel>>? = null
 
-    override fun getPosition(): LatLng = LatLng(point!!.latitude, point!!.longitude)
+    override fun getPosition(): LatLng = LatLng(point!!.latitude, point.longitude)
 
 }
 

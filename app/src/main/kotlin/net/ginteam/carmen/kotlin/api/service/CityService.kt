@@ -1,6 +1,7 @@
 package net.ginteam.carmen.kotlin.api.service
 
 import net.ginteam.carmen.kotlin.api.ApiSettings
+import net.ginteam.carmen.kotlin.manager.ApiManager
 import net.ginteam.carmen.kotlin.model.CityModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import retrofit2.http.GET
@@ -16,5 +17,9 @@ interface CityService {
 
     @GET(ApiSettings.Catalog.GET_CITY_BY_POINT)
     fun fetchCity(): Observable <ResponseModel <CityModel>>
+
+    companion object {
+        fun create(): CityService = ApiManager.retrofit.create(CityService::class.java)
+    }
 
 }

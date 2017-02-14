@@ -1,6 +1,7 @@
 package net.ginteam.carmen.kotlin.api.service
 
 import net.ginteam.carmen.kotlin.api.ApiSettings
+import net.ginteam.carmen.kotlin.manager.ApiManager
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.MapCompanyModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
@@ -59,5 +60,9 @@ interface CompanyService {
 
     @GET(ApiSettings.Auth.GET_USER_RECENTLY_WATCHED)
     fun fetchUserRecentlyWatched(): Observable <ResponseModel <List <CompanyModel>>>
+
+    companion object {
+        fun create(): CompanyService = ApiManager.retrofit.create(CompanyService::class.java)
+    }
 
 }

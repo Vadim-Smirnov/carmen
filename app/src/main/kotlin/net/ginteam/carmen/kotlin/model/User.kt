@@ -1,7 +1,5 @@
 package net.ginteam.carmen.kotlin.model
 
-import net.ginteam.carmen.model.auth.UserModel
-
 /**
  * Created by eugene_shcherbinock on 2/9/17.
  */
