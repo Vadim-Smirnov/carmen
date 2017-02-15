@@ -39,8 +39,7 @@ public class MainActivity extends NavigationViewActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        onNavigationItemSelected(mNavigationView.getMenu()
-                .getItem(AuthProvider.getInstance().getCurrentCachedUser() != null ? 0 : 1));
+        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
     }
 
     @Override

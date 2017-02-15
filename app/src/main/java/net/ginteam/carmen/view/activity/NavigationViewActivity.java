@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.manager.ApiManager;
 import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.auth.UserModel;
 import net.ginteam.carmen.provider.auth.AuthProvider;
@@ -55,6 +56,7 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Fragment selectedFragment = null;
         item.setChecked(true);
+        UserModel currentUser = AuthProvider.getInstance().getCurrentCachedUser();
 
         switch (item.getItemId()) {
             case R.id.main_item:
@@ -66,22 +68,30 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
                 break;
 
             case R.id.favorite_item:
+                if (currentUser == null) {
+                    ActivityUtils.showActivity(SignInActivity.class, null, false);
+                    break;
+                }
                 selectedFragment = CompanyListFragment
                         .newInstance(CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                                 CompanyListFragment.FETCH_COMPANY_TYPE.FAVORITE, null);
                 break;
 
             case R.id.recent_item:
+                if (currentUser == null) {
+                    ActivityUtils.showActivity(SignInActivity.class, null, false);
+                    break;
+                }
                 selectedFragment = CompanyListFragment
                         .newInstance(CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                                 CompanyListFragment.FETCH_COMPANY_TYPE.RECENTLY_WATCHED, null);
                 break;
 
             case R.id.profile_item:
-                return true;
-
-            case R.id.sign_in_item:
-                ActivityUtils.showActivity(SignInActivity.class, null, true);
+                if (currentUser == null) {
+                    ActivityUtils.showActivity(SignInActivity.class, null, false);
+                    break;
+                }
                 return true;
 
             case R.id.logout_item:
@@ -92,7 +102,9 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
-        prepareFragment(selectedFragment, false);
+        if (selectedFragment != null) {
+            prepareFragment(selectedFragment, false);
+        }
 
         return true;
     }
@@ -108,8 +120,7 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
     @Override
     public void showMainFragment() {
-        onNavigationItemSelected(mNavigationView.getMenu()
-                .getItem(AuthProvider.getInstance().getCurrentCachedUser() != null ? 0 : 1));
+        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
     }
 
     private void initializeNavigationView() {
@@ -122,6 +133,16 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
         mDrawerLayout.addDrawerListener(toggle);
         mNavigationView.setNavigationItemSelectedListener(this);
+
+        mNavigationView
+                .getHeaderView(0)
+                .findViewById(R.id.button_sign_in)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ActivityUtils.showActivity(SignInActivity.class, null, true);
+                    }
+                });
 
         disableNavigationViewScrollbars(mNavigationView);
     }
