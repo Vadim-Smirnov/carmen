@@ -8,8 +8,6 @@
     android:layout_height="match_parent"
     android:layout_gravity="start"
     android:fitsSystemWindows="false"
-    android:paddingEnd="25dp"
-    android:paddingStart="25dp"
     android:theme="@style/NavigationTheme"
 
     app:headerLayout="@layout/navigation_view_default_header"

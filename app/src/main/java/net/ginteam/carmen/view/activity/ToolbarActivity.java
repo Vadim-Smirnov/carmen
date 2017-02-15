@@ -38,10 +38,6 @@ public class ToolbarActivity extends AppCompatActivity {
         ((TextView) mToolbar.findViewById(R.id.text_view_toolbar_subtitle)).setText(subtitle);
     }
 
-    protected void setVisibleImage(boolean isVisible) {
-        mToolbar.findViewById(R.id.image_view_logo).setVisibility(isVisible ? View.VISIBLE : View.GONE);
-    }
-
     private void initializeToolbar() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);

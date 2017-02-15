@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.SortingContract;
+import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.manager.SortViewStateManager;
 import net.ginteam.carmen.model.SortingModel;
 import net.ginteam.carmen.presenter.SortingPresenter;
@@ -117,16 +118,21 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
                 );
         layoutParams.topMargin = sortItemMargin;
 
-        for (SortingModel currentFilter : sortingModels) {
+        for (SortingModel currentSorting : sortingModels) {
+            if ("distance".equals(currentSorting.getSortedField()) && PreferencesManager.getInstance().getUserLocation() == null) {
+                continue;
+            }
             RadioButton radioButton = new RadioButton(getContext());
-            radioButton.setText(currentFilter.getName());
+            radioButton.setText(currentSorting.getName());
             radioButton.setButtonDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.radiobutton_selector));
             radioButton.setLayoutParams(layoutParams);
             radioButton.setTypeface(Typeface.createFromAsset(getActivity().getAssets(), getString(R.string.open_sans_font)));
             radioButton.setPadding(sortTitlePadding, 0, 0, 0);
 
-            radioButton.setTag(SORT_FIELD, currentFilter.getSortedField());
-            radioButton.setTag(SORT_TYPE, currentFilter.getSortedType());
+            radioButton.setTag(SORT_FIELD, currentSorting.getSortedField());
+            radioButton.setTag(SORT_TYPE, currentSorting.getSortedType());
+
+
 
             mRadioButtonList.add(radioButton);
         }
@@ -143,6 +149,10 @@ public class SortingFragment extends BaseFetchingFragment implements SortingCont
             mSortedField = sortViewState.getSortField();
             mSortedType = sortViewState.getSortType();
             mRadioButtonList.get(sortViewState.getCheckedViewIndex()).setChecked(true);
+        } else {
+            mSortedField = "rating";
+            mSortedType = "desc";
+            mRadioButtonList.get(0).setChecked(true);
         }
     }
 

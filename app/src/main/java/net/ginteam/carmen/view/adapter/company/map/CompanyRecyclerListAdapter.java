@@ -9,13 +9,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.squareup.picasso.Picasso;
+
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
 import net.ginteam.carmen.utils.DisplayUtils;
 
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Eugene on 1/25/17.
@@ -77,11 +78,18 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<CompanyItem
         }
 
         holder.getTextViewName().setText(currentCompany.getName());
-        holder.getRatingViewRating().setRating(4);
+        holder.getRatingViewRating().setRating(currentCompany.getRating());
 
         holder.getImageViewPhoto().getLayoutParams().height = calculateImageSize();
         holder.getImageViewPhoto().requestLayout();
         holder.itemView.requestLayout();
+
+        holder.getImageViewPhoto().setImageResource(R.drawable.ic_default_photo);
+
+        if (!currentCompany.getImageUrl().isEmpty()) {
+            if (!currentCompany.getImageUrl().get(0).isEmpty())
+                Picasso.with(mContext).load(currentCompany.getImageUrl().get(0)).placeholder( R.drawable.placeholder_animation).into(holder.getImageViewPhoto());
+        }
 
         holder.getImageButtonAddToFavorite().setImageResource(currentCompany.isFavorite() ?
                 R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable);
@@ -111,7 +119,6 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<CompanyItem
     }
 
     private int calculateImageSize() {
-        Point screenSize = DisplayUtils.getScreenSize(mContext);
         return calculateItemWidth() * 64 / 100;
     }
 

@@ -3,16 +3,18 @@ package net.ginteam.carmen.view.fragment.company;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.ginteam.carmen.R;
@@ -77,6 +79,8 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     private OnSelectedItemsListener mSelectedItemsListener;
     private OnCompanySelectedListener mCompanySelectedListener;
 
+    private SearchView mSearchView;
+
     private int selectedCompanyPosition;
 
     public CompanyListFragment() {
@@ -123,6 +127,16 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.company_list_menu, menu);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem searchViewMenuItem = menu.findItem(R.id.action_search);
+        mSearchView = (SearchView) searchViewMenuItem.getActionView();
+        int searchImgId = android.support.v7.appcompat.R.id.search_button;
+        ImageView v = (ImageView) mSearchView.findViewById(searchImgId);
+        v.setImageResource(R.drawable.ic_search);
     }
 
     @Override
@@ -269,6 +283,9 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         mRecyclerViewCompanies.setLayoutManager(mLayoutManager);
 
         mIsLoading = false;
+
+        mSortField = "rating";
+        mSortType = "desc";
     }
 
     private void updateTitleDependencies() {
@@ -295,13 +312,13 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         } else {
             switch (mFetchType) {
                 case RECENTLY_WATCHED:
-                    setToolbarTitle(getString(R.string.recent_item_text), "", false);
+                    setToolbarTitle(getString(R.string.recent_item_text), "");
                     break;
                 case FAVORITE:
-                    setToolbarTitle(getString(R.string.favorite_item_text), "", false);
+                    setToolbarTitle(getString(R.string.favorite_item_text), "");
                     break;
                 case FOR_CATEGORY:
-                    setToolbarTitle(mSelectedCategory.getName(), mPresenter.getUserCityName(), false);
+                    setToolbarTitle(mSelectedCategory.getName(), mPresenter.getUserCityName());
                     break;
             }
         }

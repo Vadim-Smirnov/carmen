@@ -23,4 +23,9 @@
         <item name="android:src">@drawable/ic_logo</item>
     </style>
 
+    <style name="ImageView.Wrapped.Logo2" parent="ImageView.Wrapped">
+        <item tools:targetApi = "LOLLIPOP" name="android:transitionName">logo_transition</item>
+        <item name="android:src">@drawable/ic_logo_2</item>
+    </style>
+
 </resources>

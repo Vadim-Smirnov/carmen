@@ -39,8 +39,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
         mPresenter.onStart();
 
         if (isNotNestedFragment()) {
-//            setToolbarTitle(getString(R.string.main_item_text), "", true);
-            setToolbarTitle("", "", true);
+            setToolbarTitle(getString(R.string.main_item_text), "");
         }
     }
 

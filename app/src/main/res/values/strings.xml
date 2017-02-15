@@ -131,6 +131,11 @@
     <string name="sort_confirm_button_text">ПРИМЕНИТЬ</string>
     <string name="sorting_example">[
     {
+        "name" : "По&#160;рейтингу",
+        "sort_field" : "rating",
+        "sort_type" : "desc"
+    },
+    {
         "name" : "От&#160;дешевых&#160;к&#160;дорогим",
         "sort_field" : "price_rel",
         "sort_type" : "asc"
@@ -139,7 +144,13 @@
         "name" : "От&#160;дорогих&#160;к&#160;дешевым",
         "sort_field" : "price_rel",
         "sort_type" : "desc"
+    },
+    {
+        "name" : "Ближайшие",
+        "sort_field" : "distance",
+        "sort_type" : "asc"
     }
+
 ] </string>
 
     <!-- Company detail -->
