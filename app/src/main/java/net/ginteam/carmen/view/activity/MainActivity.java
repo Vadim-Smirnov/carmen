@@ -39,7 +39,6 @@ public class MainActivity extends NavigationViewActivity implements
     @Override
     protected void onStart() {
         super.onStart();
-        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
     }
 
     @Override
@@ -99,7 +98,7 @@ public class MainActivity extends NavigationViewActivity implements
                 CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                 CompanyListFragment.FETCH_COMPANY_TYPE.FOR_CATEGORY,
                 category),
-                false
+                true
         );
 
         mSelectedCategory = category;

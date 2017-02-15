@@ -103,7 +103,7 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
 
         mDrawerLayout.closeDrawer(GravityCompat.START);
         if (selectedFragment != null) {
-            prepareFragment(selectedFragment, false);
+            prepareFragment(selectedFragment, true);
         }
 
         return true;
@@ -116,11 +116,6 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
             return;
         }
         super.onBackPressed();
-    }
-
-    @Override
-    public void showMainFragment() {
-        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
     }
 
     private void initializeNavigationView() {
@@ -145,6 +140,8 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
                 });
 
         disableNavigationViewScrollbars(mNavigationView);
+        onNavigationItemSelected(mNavigationView.getMenu().getItem(0));
+
     }
 
     private void disableNavigationViewScrollbars(NavigationView navigationView) {

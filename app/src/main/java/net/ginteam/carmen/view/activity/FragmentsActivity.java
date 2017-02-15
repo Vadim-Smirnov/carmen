@@ -23,21 +23,6 @@ public abstract class FragmentsActivity extends ToolbarActivity implements BaseF
     }
 
     @Override
-    public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
-            getSupportFragmentManager().popBackStack(mCurrentFragment.getClass().getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            return;
-        }
-
-        if (!mCurrentFragment.getClass().getName().equals(MainFragment.class.getName())) {
-            showMainFragment();
-            return;
-        }
-
-        finish();
-    }
-
-    @Override
     public void setToolbarTitle(String title, String subtitle) {
         setTitle(title);
         setSubtitle(subtitle);
@@ -54,13 +39,5 @@ public abstract class FragmentsActivity extends ToolbarActivity implements BaseF
         fragmentTransaction.commit();
     }
 
-    protected void cleanBackStack() {
-        int fragmentsCount = getSupportFragmentManager().getBackStackEntryCount();
-        for (int i = 0; i < fragmentsCount; i++) {
-            getSupportFragmentManager().popBackStack();
-        }
-    }
-
-    public abstract void showMainFragment();
 
 }
