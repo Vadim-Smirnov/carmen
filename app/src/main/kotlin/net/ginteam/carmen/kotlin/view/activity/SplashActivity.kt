@@ -17,18 +17,20 @@ class SplashActivity : BaseLocationActivity<AuthContract.View, AuthContract.Pres
         mPresenter.fetchUserLocation()
     }
 
+    override fun getLayoutResId(): Int = 0
+
     override fun showCitiesDialog() {
         Toast.makeText(getContext(), "CITIES SHOW", Toast.LENGTH_SHORT).show()
-        showSignInActivity()
+        showMainActivity()
     }
 
     override fun showMainActivity() {
-        Toast.makeText(getContext(), "MAIN SHOW", Toast.LENGTH_SHORT).show()
+        val intent = Intent(getContext(), MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun showSignInActivity() {
-        Toast.makeText(getContext(), "SIGN IN SHOW", Toast.LENGTH_SHORT).show()
-
         val intent = Intent(getContext(), SignInActivity::class.java)
         startActivity(intent)
         finish()

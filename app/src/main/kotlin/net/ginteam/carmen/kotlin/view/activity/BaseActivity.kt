@@ -2,6 +2,7 @@ package net.ginteam.carmen.kotlin.view.activity
 
 import android.content.Context
 import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.TextView
@@ -21,17 +22,23 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (getLayoutResId() != 0) {
+            setContentView(getLayoutResId())
+
+            updateViewDependencies()
+            updateDependencies()
+        }
+
         mPresenter.attachView(this as V)
     }
+
+    @LayoutRes
+    protected abstract fun getLayoutResId(): Int
 
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.detachView()
-    }
-
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(layoutResID)
-        initializeToolbar()
     }
 
     override fun attachBaseContext(newBase: Context?)
@@ -81,12 +88,14 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
         (mToolbar?.findViewById(R.id.text_view_toolbar_subtitle) as TextView).text = subtitle
     }
 
-    private fun initializeToolbar() {
+    open protected fun updateViewDependencies() {
         mToolbar = findViewById(R.id.toolbar) as Toolbar?
         mToolbar?.let {
             setSupportActionBar(mToolbar)
             supportActionBar?.setDisplayShowTitleEnabled(false)
         }
     }
+
+    open protected fun updateDependencies() {}
 
 }

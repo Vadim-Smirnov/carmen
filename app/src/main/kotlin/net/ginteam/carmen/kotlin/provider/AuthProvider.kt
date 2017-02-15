@@ -13,6 +13,8 @@ import rx.Observable
 
 interface AuthProvider {
 
+    var currentCachedUser: UserModel?
+
     fun userLogin(email: String, password: String): Observable <ResponseModel <AuthModel>>
     fun userRegister(name: String, email: String, password: String): Observable <ResponseModel <AuthModel>>
     fun fetchCurrentUser(): Observable <ResponseModel <UserModel>>
@@ -22,8 +24,7 @@ interface AuthProvider {
 object AuthenticationProvider : AuthProvider {
     private val authService: AuthService = AuthService.create()
 
-    var currentCachedUser: UserModel? = null
-        private set
+    override var currentCachedUser: UserModel? = null
 
     override fun userLogin(email: String, password: String): Observable <ResponseModel <AuthModel>> {
         return authService

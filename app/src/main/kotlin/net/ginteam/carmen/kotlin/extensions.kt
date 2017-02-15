@@ -1,6 +1,8 @@
 package net.ginteam.carmen.kotlin
 
 import android.content.res.Resources
+import android.support.design.internal.NavigationMenuView
+import android.support.design.widget.NavigationView
 import com.google.gson.Gson
 import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
@@ -29,4 +31,9 @@ fun Resources.getFilters(): Array <FilterModel> {
     val json = CarmenApplication.getContext().getString(R.string.filters_example)
     val filterModels = Gson().fromJson(json, Array<FilterModel>::class.java)
     return filterModels
+}
+
+fun NavigationView.disableScrollbars() {
+    val navigationMenuView = getChildAt(0)
+    navigationMenuView.isVerticalScrollBarEnabled = false
 }
