@@ -38,10 +38,9 @@ public abstract class FragmentsActivity extends ToolbarActivity implements BaseF
     }
 
     @Override
-    public void setToolbarTitle(String title, String subtitle, boolean visibleImage) {
+    public void setToolbarTitle(String title, String subtitle) {
         setTitle(title);
         setSubtitle(subtitle);
-        setVisibleImage(visibleImage);
     }
 
     protected void prepareFragment(Fragment fragment, boolean isNeedBackStack) {

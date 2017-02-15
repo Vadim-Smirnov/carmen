@@ -23,7 +23,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_3"/>
+            app:srcCompat="@drawable/ic_default_photo"/>
 
         <TextView
             android:id="@+id/text_view_company_name"

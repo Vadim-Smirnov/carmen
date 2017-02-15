@@ -56,6 +56,26 @@ public class CategoryRecyclerListAdapter extends RecyclerView.Adapter <CategoryI
                                 currentCategory.getCompaniesCount()
                         ));
 
+        int imageId = 0;
+        switch (mCategories.get(position).getId()) {
+            case 1:
+                imageId = R.drawable.ic_sto;
+                break;
+            case 10:
+                imageId = R.drawable.ic_carwash;
+                break;
+            case 18:
+                imageId = R.drawable.ic_tire;
+                break;
+            case 32:
+                imageId = R.drawable.ic_refuelling;
+                break;
+            case 41:
+                imageId = R.drawable.ic_shop;
+                break;
+        }
+        holder.getImageViewIcon().setImageResource(imageId);
+
         if (mCategoryItemClickListener == null) {
             Log.e("CategoryRecyclerAdapter", "OnCategoryClickListener does not set!");
             return;

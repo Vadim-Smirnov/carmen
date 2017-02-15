@@ -21,7 +21,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_3"/>
+            app:srcCompat="@drawable/ic_default_photo"/>
 
         <ImageButton
             android:id="@+id/image_button_company_favorite"

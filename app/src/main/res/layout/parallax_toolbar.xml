@@ -15,7 +15,7 @@
                 android:id="@+id/recycler_view_gallery"
                 style="@style/RelativeLayout.Gallery"
                 tools:listitem = "@layout/list_item_gallery"
-                android:background="@drawable/img_3"/>
+                android:background="@drawable/ic_default_photo"/>
 
             <View
                 style="@style/GalleryDecorator.Bottom"
