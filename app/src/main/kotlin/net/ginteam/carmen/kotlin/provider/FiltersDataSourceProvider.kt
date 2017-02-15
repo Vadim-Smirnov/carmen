@@ -2,7 +2,7 @@ package net.ginteam.carmen.kotlin.provider
 
 import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.kotlin.api.service.FilterService
-import net.ginteam.carmen.kotlin.async
+import net.ginteam.carmen.kotlin.asyncWithCache
 import net.ginteam.carmen.kotlin.getFilters
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.FilterModel
@@ -32,5 +32,5 @@ class OnlineFiltersDataSourceProvider : FiltersDataSourceProvider {
 
     override fun fetchCompaniesCountWithParameters(categoryId: Int, filter: String, limit: Int)
             : Observable<ResponseModel<List<CompanyModel>>>
-            = filtersService.fetchCompaniesCountWithParameters(categoryId, filter, limit).async()
+            = filtersService.fetchCompaniesCountWithParameters(categoryId, filter, limit).asyncWithCache()
 }

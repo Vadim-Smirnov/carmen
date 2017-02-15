@@ -1,7 +1,7 @@
 package net.ginteam.carmen.kotlin.provider
 
 import net.ginteam.carmen.kotlin.api.service.CompanyService
-import net.ginteam.carmen.kotlin.async
+import net.ginteam.carmen.kotlin.asyncWithCache
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import rx.Observable
@@ -35,23 +35,23 @@ class OnlineCompaniesDataSourceProvider : CompaniesDataSourceProvider {
 
     override fun fetchCompanies(categoryId: Int, bounds: String, filter: String, sortField: String,
                                 sortType: String, paginationPage: Int): Observable<ResponseModel<List<CompanyModel>>>
-            = companiesService.fetchCompanies(categoryId, bounds, filter, sortField, sortType, paginationPage).async()
+            = companiesService.fetchCompanies(categoryId, bounds, filter, sortField, sortType, paginationPage).asyncWithCache()
 
     override fun fetchCompany(companyId: Int, relations: String): Observable<ResponseModel<CompanyModel>>
-            = companiesService.fetchCompany(companyId, relations).async()
+            = companiesService.fetchCompany(companyId, relations).asyncWithCache()
 
     override fun fetchPopularCompanies(cityId: Int): Observable<ResponseModel<List<CompanyModel>>>
-            = companiesService.fetchPopularCompanies(cityId).async()
+            = companiesService.fetchPopularCompanies(cityId).asyncWithCache()
 
     override fun fetchUserFavoriteCompanies(): Observable<ResponseModel<List<CompanyModel>>>
-            = companiesService.fetchUserFavoriteCompanies().async()
+            = companiesService.fetchUserFavoriteCompanies().asyncWithCache()
 
     override fun addUserFavoriteCompany(companyId: Int): Observable<ResponseModel<String>>
-            = companiesService.addUserFavoriteCompany(companyId).async()
+            = companiesService.addUserFavoriteCompany(companyId).asyncWithCache()
 
     override fun removeUserFavoriteCompany(companyId: Int): Observable <ResponseModel <String>>
-            = companiesService.removeUserFavoriteCompany(companyId).async()
+            = companiesService.removeUserFavoriteCompany(companyId).asyncWithCache()
 
     override fun fetchUserRecentlyWatched(): Observable<ResponseModel<List<CompanyModel>>>
-            = companiesService.fetchUserRecentlyWatched().async()
+            = companiesService.fetchUserRecentlyWatched().asyncWithCache()
 }

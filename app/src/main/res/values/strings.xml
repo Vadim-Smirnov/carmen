@@ -2,6 +2,11 @@
 
     <string name="google_api_key">AIzaSyAKzwJXWkDJpr0mYdSH1bwwI_Zj_7dlPwc</string>
 
+    <!-- Dialog messages -->
+    <string name="loading_progress_message">Loading…</string>
+    <string name="authorization_progress_message">Authorization…</string>
+    <string name="registration_progress_message">Registration…</string>
+
     <!-- Fonts -->
     <string name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
     <string name="open_sans_font">fonts/OpenSans-Regular.ttf</string>

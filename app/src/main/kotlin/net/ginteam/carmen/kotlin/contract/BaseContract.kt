@@ -18,7 +18,7 @@ object BaseContract {
         fun showMessage(message: String)
         fun showMessage(@StringRes messageResId: Int)
 
-        fun showLoading(show: Boolean)
+        fun showLoading(show: Boolean, messageResId: Int = 0)
     }
 
     interface Presenter<in V : View> {

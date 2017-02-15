@@ -1,7 +1,7 @@
 package net.ginteam.carmen.kotlin.provider
 
 import net.ginteam.carmen.kotlin.api.service.AuthService
-import net.ginteam.carmen.kotlin.async
+import net.ginteam.carmen.kotlin.asyncWithCache
 import net.ginteam.carmen.kotlin.model.AuthModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import net.ginteam.carmen.kotlin.model.UserModel
@@ -28,7 +28,7 @@ object AuthenticationProvider : AuthProvider {
     override fun userLogin(email: String, password: String): Observable <ResponseModel <AuthModel>> {
         return authService
                 .userLogin(email, password)
-                .async()
+                .asyncWithCache(false)
                 .doOnNext {
                     cacheUser(it.data.user)
                 }
@@ -37,7 +37,7 @@ object AuthenticationProvider : AuthProvider {
     override fun userRegister(name: String, email: String, password: String): Observable <ResponseModel <AuthModel>> {
         return authService
                 .userRegister(name, email, password)
-                .async()
+                .asyncWithCache(false)
                 .doOnNext {
                     cacheUser(it.data.user)
                 }
@@ -46,7 +46,7 @@ object AuthenticationProvider : AuthProvider {
     override fun fetchCurrentUser(): Observable <ResponseModel <UserModel>> {
         return authService
                 .getCurrentUser()
-                .async()
+                .asyncWithCache()
                 .doOnNext {
                     cacheUser(it.data)
                 }

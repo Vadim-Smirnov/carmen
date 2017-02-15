@@ -1,8 +1,5 @@
 package net.ginteam.carmen.kotlin.contract
 
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
-
 /**
  * Created by eugene_shcherbinock on 2/14/17.
  */
@@ -25,7 +22,7 @@ object AuthContract {
 
 }
 
-object SignInContract {
+object BaseSignContract {
 
     interface View : BaseContract.View {
 
@@ -33,9 +30,19 @@ object SignInContract {
 
     }
 
-    interface Presenter : BaseContract.Presenter <View> {
+    interface Presenter <in V : View> : BaseContract.Presenter <V>
+
+}
+
+object SignInContract {
+
+    interface View : BaseSignContract.View
+
+    interface Presenter : BaseSignContract.Presenter <View> {
 
         fun signIn(email: String, password: String)
+        fun facebookSignIn()
+        fun googleSignIn()
 
     }
 
@@ -45,7 +52,7 @@ object SignUpContract {
 
     interface View : SignInContract.View
 
-    interface Presenter : BaseContract.Presenter <View> {
+    interface Presenter : BaseSignContract.Presenter <View> {
 
         fun signUp(name: String, email: String, password: String)
 
