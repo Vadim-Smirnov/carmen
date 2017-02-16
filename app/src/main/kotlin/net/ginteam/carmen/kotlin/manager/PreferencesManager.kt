@@ -1,6 +1,7 @@
 package net.ginteam.carmen.kotlin.manager
 
 import android.content.Context
+import android.util.Log
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.Gson
 import net.ginteam.carmen.CarmenApplication
@@ -35,11 +36,13 @@ object SharedPreferencesManager : PreferencesManager {
     override var userCityModel: CityModel?
         get() {
             val cityJson = mPreferences.getString(Constants.Preferences.CITY, "")
+            Log.d("SharedPrefsManager", "Get json model: $cityJson")
             return Gson().fromJson(cityJson, CityModel::class.java)
         }
         set(value) {
             val cityJson = Gson().toJson(value)
-            mPreferences.edit().putString(Constants.Preferences.CITY, cityJson)
+            Log.d("SharedPrefsManager", "Set json model: $cityJson")
+            mPreferences.edit().putString(Constants.Preferences.CITY, cityJson).apply()
         }
 
     override var userLocation: LatLng?
@@ -56,7 +59,7 @@ object SharedPreferencesManager : PreferencesManager {
             return location
         }
         set(value) {
-            val locationString = String.format("%s %s", value!!.latitude, value.longitude)
-            mPreferences.edit().putString(Constants.Preferences.USER_LOCATION, locationString)
+            val locationString = String.format("%s %s", value?.latitude ?: "0", value?.longitude ?: "0")
+            mPreferences.edit().putString(Constants.Preferences.USER_LOCATION, locationString).apply()
         }
 }

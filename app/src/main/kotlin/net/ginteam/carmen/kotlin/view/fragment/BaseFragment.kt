@@ -54,7 +54,7 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
             mProgressDialog!!.titleText = message
             return
         }
-        mProgressDialog = SweetAlertDialog(context, SweetAlertDialog.ERROR_TYPE)
+        mProgressDialog = SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)
         mProgressDialog!!.titleText = ""
         mProgressDialog!!.contentText = message
         mProgressDialog!!.show()
@@ -72,7 +72,7 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
 
     override fun showLoading(show: Boolean, messageResId: Int) {
         if (show) {
-            mProgressDialog = SweetAlertDialog(context, SweetAlertDialog.PROGRESS_TYPE)
+            mProgressDialog = SweetAlertDialog(activity, SweetAlertDialog.PROGRESS_TYPE)
             if (messageResId != 0) {
                 mProgressDialog!!.titleText = getString(messageResId)
             }

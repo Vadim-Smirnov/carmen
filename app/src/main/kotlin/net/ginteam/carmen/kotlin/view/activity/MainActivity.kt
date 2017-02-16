@@ -10,13 +10,16 @@ import android.widget.TextView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.MainActivityContract
 import net.ginteam.carmen.kotlin.disableScrollbars
+import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.UserModel
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
+import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle
 
 class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContract.Presenter>(),
-        MainActivityContract.View, NavigationView.OnNavigationItemSelectedListener {
+        MainActivityContract.View, NavigationView.OnNavigationItemSelectedListener,
+        CategoriesFragment.OnCategorySelectedListener {
 
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
@@ -26,6 +29,11 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mPresenter.checkUserStatus()
+
+        supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.main_fragment_container, CategoriesFragment.newInstance(false))
+                .commit()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -72,6 +80,14 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         val intent = Intent(getContext(), SignInActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    /* -------------------------------------- */
+
+    /* Fragments listeners */
+
+    override fun onCategorySelected(category: CategoryModel, fromDialogSelection: Boolean) {
+        showError("Select from dialog: $fromDialogSelection")
     }
 
     /* -------------------------------------- */
