@@ -48,5 +48,6 @@ abstract class ModelSubscriber <T> : Subscriber <ResponseModel <T>>(), ModelCall
 abstract class MetaSubscriber <T> : ModelSubscriber <T>(), ModelCallback <T> {
 
     abstract override fun success(model: T, pagination: PaginationModel)
+    override fun success(model: T) {}
 
 }
