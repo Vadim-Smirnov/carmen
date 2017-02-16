@@ -6,6 +6,7 @@
     <string name="loading_progress_message">Loading…</string>
     <string name="authorization_progress_message">Authorization…</string>
     <string name="registration_progress_message">Registration…</string>
+    <string name="fetching_cities_progress_message">Fetching cities…</string>
 
     <!-- Fonts -->
     <string name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>

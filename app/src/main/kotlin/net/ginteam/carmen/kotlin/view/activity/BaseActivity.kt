@@ -18,7 +18,7 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
     protected abstract var mPresenter: T
     protected var mToolbar: Toolbar? = null
 
-    private var mProgressDialog: SweetAlertDialog? = null
+    protected var mProgressDialog: SweetAlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
