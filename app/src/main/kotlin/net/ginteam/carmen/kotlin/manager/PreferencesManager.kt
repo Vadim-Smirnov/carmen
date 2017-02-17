@@ -59,7 +59,10 @@ object SharedPreferencesManager : PreferencesManager {
             return location
         }
         set(value) {
-            val locationString = String.format("%s %s", value?.latitude ?: "0", value?.longitude ?: "0")
+            var locationString = ""
+            if (value != null) {
+                locationString = String.format("%s %s", value.latitude, value.longitude)
+            }
             mPreferences.edit().putString(Constants.Preferences.USER_LOCATION, locationString).apply()
         }
 }

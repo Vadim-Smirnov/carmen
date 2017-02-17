@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.BaseCompaniesContract
@@ -37,6 +38,7 @@ open abstract class BaseCompaniesFragment<E : BaseCompaniesAdapter, in V : BaseC
     }
 
     override fun invoke(company: CompanyModel, isFavorite: Boolean) {
+        Log.d("BaseCompaniesFragment", "Is company favorite? - $isFavorite")
         if (isFavorite) {
             mPresenter.addCompanyToFavorites(company)
         } else {

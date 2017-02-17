@@ -91,7 +91,6 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     /* Fragments listeners */
 
     override fun onCategorySelected(category: CategoryModel, fromDialogSelection: Boolean) {
-        showError("Select from dialog: $fromDialogSelection")
         supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, CompaniesFragment.newInstance(category))

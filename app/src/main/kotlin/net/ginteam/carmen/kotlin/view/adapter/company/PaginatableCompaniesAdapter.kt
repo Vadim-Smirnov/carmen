@@ -26,7 +26,7 @@ class PaginatableCompaniesAdapter(companies: MutableList <CompanyModel>,
     private var isShowLoadingIndicator: Boolean = false
 
     fun addCompanies(companies: List <CompanyModel>) {
-        val insertPosition = companies.size
+        val insertPosition = this.companies.size
         this.companies.addAll(companies)
         notifyItemRangeInserted(insertPosition, companies.size)
     }

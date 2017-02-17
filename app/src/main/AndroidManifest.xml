@@ -81,7 +81,10 @@
             android:name=".kotlin.view.activity.authentication.SignUpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AuthTheme" />
-        <activity android:name=".kotlin.view.activity.MainActivity"></activity>
+        <activity
+            android:name=".kotlin.view.activity.MainActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

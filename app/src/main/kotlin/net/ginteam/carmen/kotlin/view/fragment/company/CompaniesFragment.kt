@@ -2,8 +2,10 @@ package net.ginteam.carmen.kotlin.view.fragment.company
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
@@ -26,6 +28,7 @@ class CompaniesFragment
 
     override var mPresenter: CompaniesContract.Presenter = CompaniesPresenter()
 
+    private val mAdapterNotifyHandler: Handler = Handler()
     override lateinit var mCompaniesAdapter: PaginatableCompaniesAdapter
 
     private lateinit var mSelectedCategory: CategoryModel
@@ -65,14 +68,18 @@ class CompaniesFragment
 
     override fun showCompanies(companies: MutableList<CompanyModel>, pagination: PaginationModel?) {
         if (pagination != null) {
+            Log.d("CompaniesFragment", "Pagination pages: ${pagination.totalPages}")
             mCompaniesAdapter = PaginatableCompaniesAdapter(companies, this, this)
             mRecyclerViewCompanies.adapter = mCompaniesAdapter
             mRecyclerViewCompanies.setOnScrollListener(initializePaginationScrollListener(pagination))
             return
         }
+
         isLoadingNow = false
-        mCompaniesAdapter.hideLoading()
-        mCompaniesAdapter.addCompanies(companies)
+        mAdapterNotifyHandler.post {
+            mCompaniesAdapter.hideLoading()
+            mCompaniesAdapter.addCompanies(companies)
+        }
     }
 
     override fun fetchCompanies() {
@@ -112,7 +119,9 @@ class CompaniesFragment
             override fun loadMoreItems() {
                 mCurrentPaginationPage++
                 isLoadingNow = true
-                mCompaniesAdapter.showLoading()
+                mAdapterNotifyHandler.post {
+                    mCompaniesAdapter.showLoading()
+                }
 
                 fetchCompanies()
             }

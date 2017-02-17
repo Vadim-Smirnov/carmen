@@ -55,7 +55,7 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
             return
         }
         mProgressDialog = SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)
-        mProgressDialog!!.titleText = ""
+        mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
         mProgressDialog!!.contentText = message
         mProgressDialog!!.show()
     }
@@ -64,11 +64,16 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
         showError(getString(messageResId))
     }
 
-    override fun showMessage(message: String)
-            = Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+    override fun showMessage(message: String) {
+        mProgressDialog = SweetAlertDialog(activity, SweetAlertDialog.WARNING_TYPE)
+        mProgressDialog!!.titleText = getString(R.string.warning_dialog_title)
+        mProgressDialog!!.contentText = message
+        mProgressDialog!!.show()
+    }
 
-    override fun showMessage(messageResId: Int)
-            = Toast.makeText(context, messageResId, Toast.LENGTH_LONG).show()
+    override fun showMessage(messageResId: Int) {
+        showMessage(getString(messageResId))
+    }
 
     override fun showLoading(show: Boolean, messageResId: Int) {
         if (show) {
@@ -76,7 +81,9 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
             if (messageResId != 0) {
                 mProgressDialog!!.titleText = getString(messageResId)
             }
-            mProgressDialog!!.show()
+            if (!mProgressDialog!!.isShowing) {
+                mProgressDialog!!.show()
+            }
             return
         }
         mProgressDialog?.dismiss()

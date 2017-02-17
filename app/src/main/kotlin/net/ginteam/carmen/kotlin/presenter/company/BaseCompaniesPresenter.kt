@@ -21,7 +21,9 @@ open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : Bas
     protected var mCompaniesProvider: CompaniesDataSourceProvider = OnlineCompaniesDataSourceProvider()
 
     override fun addCompanyToFavorites(company: CompanyModel) {
-        checkUserStatus()
+        if (!checkUserStatus()) {
+            return
+        }
 
         mCompaniesProvider
                 .addUserFavoriteCompany(company.id)
@@ -37,7 +39,9 @@ open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : Bas
     }
 
     override fun removeCompanyFromFavorites(company: CompanyModel) {
-        checkUserStatus()
+        if (!checkUserStatus()) {
+            return
+        }
 
         mCompaniesProvider
                 .removeUserFavoriteCompany(company.id)
@@ -52,10 +56,12 @@ open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : Bas
                 })
     }
 
-    private fun checkUserStatus() {
+    private fun checkUserStatus(): Boolean {
         if (mAuthProvider.currentCachedUser == null) {
-            mView?.showError(R.string.message_sign_in)
+            mView?.showMessage(R.string.message_sign_in)
+            return false
         }
+        return true
     }
 
 }

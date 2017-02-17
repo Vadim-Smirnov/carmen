@@ -53,7 +53,7 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
             return
         }
         mProgressDialog = SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
-        mProgressDialog!!.titleText = ""
+        mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
         mProgressDialog!!.contentText = message
         mProgressDialog!!.show()
     }
@@ -62,11 +62,16 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
         showError(getString(messageResId))
     }
 
-    override fun showMessage(message: String)
-            = Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    override fun showMessage(message: String) {
+        mProgressDialog = SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+        mProgressDialog!!.titleText = getString(R.string.warning_dialog_title)
+        mProgressDialog!!.contentText = message
+        mProgressDialog!!.show()
+    }
 
-    override fun showMessage(messageResId: Int)
-            = Toast.makeText(this, messageResId, Toast.LENGTH_LONG).show()
+    override fun showMessage(messageResId: Int) {
+        showMessage(getString(messageResId))
+    }
 
     override fun showLoading(show: Boolean, messageResId: Int) {
         if (show) {

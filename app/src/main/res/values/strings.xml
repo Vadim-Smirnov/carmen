@@ -3,10 +3,14 @@
     <string name="google_api_key">AIzaSyAKzwJXWkDJpr0mYdSH1bwwI_Zj_7dlPwc</string>
 
     <!-- Dialog messages -->
+    <string name="error_dialog_title">Error</string>
+    <string name="warning_dialog_title">Information</string>
+
     <string name="loading_progress_message">Loading…</string>
     <string name="authorization_progress_message">Authorization…</string>
     <string name="registration_progress_message">Registration…</string>
     <string name="fetching_cities_progress_message">Fetching categories…</string>
+    <string name="message_sign_in">This operation does not supported for not authorized users!</string>
 
     <!-- Fonts -->
     <string name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
@@ -174,8 +178,5 @@
     <!-- Map Activity -->
     <string name="search_button_string">Повторить поиск</string>
     <string name="filter_button_string">Фильтры</string>
-
-    <!-- Error message -->
-    <string name="message_sign_in">Авторизуйтесь</string>
 
 </resources>

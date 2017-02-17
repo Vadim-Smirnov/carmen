@@ -22,10 +22,9 @@ class CompaniesPresenter : BaseCompaniesPresenter <CompaniesContract.View>(), Co
             mView?.showLoading(true)
         }
 
-        filterQuery.plus("cityId=${mPreferences.userCityModel!!.id}")
-
+        val filter = filterQuery.plus("cityId:${mPreferences.userCityModel!!.id}")
         mCompaniesProvider
-                .fetchCompanies(categoryId, filterQuery, sortField, sortType, pageNumber)
+                .fetchCompanies(categoryId, filter, sortField, sortType, pageNumber)
                 .subscribe(object : MetaSubscriber <MutableList <CompanyModel>>() {
                     override fun success(model: MutableList<CompanyModel>, pagination: PaginationModel) {
                         mView?.showLoading(false)

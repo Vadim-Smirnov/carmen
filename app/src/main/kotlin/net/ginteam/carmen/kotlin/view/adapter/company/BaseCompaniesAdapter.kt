@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import com.squareup.picasso.Picasso
+import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.view.custom.rating.CarmenRatingView
@@ -83,7 +85,20 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
                 } else {
                     R.drawable.ic_company_favorite_disable
                 })
+
                 mImageViewPhoto.setImageResource(R.drawable.ic_default_photo)
+                pictures?.let {
+                    if (!it.isEmpty()) {
+                        val imageUrl = it.first()
+                        if (!imageUrl.isEmpty()) {
+                            Picasso
+                                    .with(CarmenApplication.getContext())
+                                    .load(imageUrl)
+                                    .placeholder(R.drawable.placeholder_animation)
+                                    .into(mImageViewPhoto)
+                        }
+                    }
+                }
 
                 itemView.setOnClickListener {
                     onClick(this)
