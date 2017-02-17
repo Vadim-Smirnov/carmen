@@ -58,7 +58,7 @@ open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : Bas
 
     private fun checkUserStatus(): Boolean {
         if (mAuthProvider.currentCachedUser == null) {
-            mView?.showMessage(R.string.message_sign_in)
+            mView?.showMessage(R.string.access_denied_message)
             return false
         }
         return true

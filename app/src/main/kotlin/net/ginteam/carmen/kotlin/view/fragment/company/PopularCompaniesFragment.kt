@@ -26,6 +26,8 @@ class PopularCompaniesFragment
     override var mPresenter: PopularCompaniesContract.Presenter = PopularCompaniesPresenter()
 
     private var isHorizontal: Boolean = false
+
+    private var mTextViewTitle: TextView? = null
     override lateinit var mCompaniesAdapter: BaseCompaniesAdapter
 
     companion object {
@@ -53,6 +55,9 @@ class PopularCompaniesFragment
             VerticalCompaniesAdapter(companies, this, this)
         }
         mRecyclerViewCompanies.adapter = mCompaniesAdapter
+        mTextViewTitle?.let {
+            it.visibility = View.VISIBLE
+        }
     }
 
     override fun getLayoutResId(): Int = R.layout.fragment_company_list
@@ -81,9 +86,8 @@ class PopularCompaniesFragment
         super.updateViewDependencies()
 
         if (isHorizontal) {
-            val textViewTitle = mFragmentView.findViewById(R.id.text_view_company_list_title) as TextView
-            textViewTitle.text = String.format(getString(R.string.popular_title), mPresenter.getUserCityName())
-            textViewTitle.visibility = View.VISIBLE
+            mTextViewTitle = mFragmentView.findViewById(R.id.text_view_company_list_title) as TextView
+            mTextViewTitle!!.text = String.format(getString(R.string.popular_title), mPresenter.getUserCityName())
         }
     }
 }

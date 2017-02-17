@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.manager.ApiManager;
 import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.auth.UserModel;
 import net.ginteam.carmen.provider.auth.AuthProvider;
@@ -59,15 +58,15 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
         UserModel currentUser = AuthProvider.getInstance().getCurrentCachedUser();
 
         switch (item.getItemId()) {
-            case R.id.main_item:
+            case R.id.navigation_item_main:
                 selectedFragment = MainFragment.newInstance();
                 break;
 
-            case R.id.category_item:
+            case R.id.navigation_item_categories:
                 selectedFragment = CategoryListFragment.newInstance(false);
                 break;
 
-            case R.id.favorite_item:
+            case R.id.navigation_item_favorites:
                 if (currentUser == null) {
                     ActivityUtils.showActivity(SignInActivity.class, null, false);
                     break;
@@ -77,7 +76,7 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
                                 CompanyListFragment.FETCH_COMPANY_TYPE.FAVORITE, null);
                 break;
 
-            case R.id.recent_item:
+            case R.id.navigation_item_recently_watched:
                 if (currentUser == null) {
                     ActivityUtils.showActivity(SignInActivity.class, null, false);
                     break;
@@ -94,7 +93,7 @@ public class NavigationViewActivity extends FragmentsActivity implements Navigat
                 }
                 return true;
 
-            case R.id.logout_item:
+            case R.id.navigation_item_logout:
                 PreferencesManager.getInstance().setUserToken(null);
                 AuthProvider.getInstance().setCurrentCachedUser(null);
                 ActivityUtils.showActivity(SignInActivity.class, null, true);

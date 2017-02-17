@@ -20,7 +20,7 @@ object MainActivityContract {
 
     interface Presenter : BaseContract.Presenter <View> {
 
-        fun checkUserStatus()
+        fun prepareNavigationViewForUserStatus()
         fun isUserSignedIn(): Boolean
         fun localUserLogout()
 

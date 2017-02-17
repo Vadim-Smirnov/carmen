@@ -48,7 +48,7 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
     @LayoutRes
     protected abstract fun getLayoutResId(): Int
 
-    override fun showError(message: String?) {
+    override fun showError(message: String?, confirmAction: (() -> Unit)?) {
         if (mProgressDialog != null && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
             mProgressDialog!!.changeAlertType(SweetAlertDialog.ERROR_TYPE)
             mProgressDialog!!.titleText = message
@@ -60,7 +60,7 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
         mProgressDialog!!.show()
     }
 
-    override fun showError(messageResId: Int) {
+    override fun showError(messageResId: Int, confirmAction: (() -> Unit)?) {
         showError(getString(messageResId))
     }
 

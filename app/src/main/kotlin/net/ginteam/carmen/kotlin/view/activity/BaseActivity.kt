@@ -46,7 +46,7 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
 
     override fun getContext(): Context = this
 
-    override fun showError(message: String?) {
+    override fun showError(message: String?, confirmAction: (() -> Unit)?) {
         if (mProgressDialog != null && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
             mProgressDialog!!.changeAlertType(SweetAlertDialog.ERROR_TYPE)
             mProgressDialog!!.titleText = message
@@ -55,11 +55,17 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
         mProgressDialog = SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
         mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
         mProgressDialog!!.contentText = message
+
+        // if error message equals to auth error
+        if (getString(R.string.access_denied_message) === message) {
+            prepareAuthorizationErrorDialog(confirmAction)
+        }
+
         mProgressDialog!!.show()
     }
 
-    override fun showError(messageResId: Int) {
-        showError(getString(messageResId))
+    override fun showError(messageResId: Int, confirmAction: (() -> Unit)?) {
+        showError(getString(messageResId), confirmAction)
     }
 
     override fun showMessage(message: String) {
@@ -102,5 +108,17 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
     }
 
     open protected fun updateDependencies() {}
+
+    private fun prepareAuthorizationErrorDialog(withConfirmAction: (() -> Unit)?) {
+        mProgressDialog!!.cancelText = getString(R.string.sign_in_later_string)
+        mProgressDialog!!.confirmText = getString(R.string.sign_in_now_string)
+
+        withConfirmAction?.let {
+            mProgressDialog!!.setConfirmClickListener {
+                withConfirmAction.invoke()
+                it.dismissWithAnimation()
+            }
+        }
+    }
 
 }

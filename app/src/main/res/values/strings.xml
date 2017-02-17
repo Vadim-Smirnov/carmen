@@ -10,7 +10,11 @@
     <string name="authorization_progress_message">Authorization…</string>
     <string name="registration_progress_message">Registration…</string>
     <string name="fetching_cities_progress_message">Fetching categories…</string>
-    <string name="message_sign_in">This operation does not supported for not authorized users!</string>
+
+    <!-- Access error -->
+    <string name="sign_in_now_string">Sign in</string>
+    <string name="sign_in_later_string">Later</string>
+    <string name="access_denied_message">This operation does not supported for not authorized users!</string>
 
     <!-- Fonts -->
     <string name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>

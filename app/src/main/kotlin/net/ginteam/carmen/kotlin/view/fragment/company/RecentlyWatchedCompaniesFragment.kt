@@ -25,6 +25,8 @@ class RecentlyWatchedCompaniesFragment: BaseCompaniesFragment <BaseCompaniesAdap
     override var mPresenter: RecentlyWatchedCompaniesContract.Presenter = RecentlyWatchedCompaniesPresenter()
 
     private var isHorizontal: Boolean = false
+
+    private var mTextViewTitle: TextView? = null
     override lateinit var mCompaniesAdapter: BaseCompaniesAdapter
 
     companion object {
@@ -52,6 +54,9 @@ class RecentlyWatchedCompaniesFragment: BaseCompaniesFragment <BaseCompaniesAdap
             VerticalCompaniesAdapter(companies, this, this)
         }
         mRecyclerViewCompanies.adapter = mCompaniesAdapter
+        mTextViewTitle?.let {
+            it.visibility = View.VISIBLE
+        }
     }
 
     override fun getLayoutResId(): Int = R.layout.fragment_company_list
@@ -80,9 +85,8 @@ class RecentlyWatchedCompaniesFragment: BaseCompaniesFragment <BaseCompaniesAdap
         super.updateViewDependencies()
 
         if (isHorizontal) {
-            val textViewTitle = mFragmentView.findViewById(R.id.text_view_company_list_title) as TextView
-            textViewTitle.text = getString(R.string.recently_watched_title)
-            textViewTitle.visibility = View.VISIBLE
+            mTextViewTitle = mFragmentView.findViewById(R.id.text_view_company_list_title) as TextView
+            mTextViewTitle!!.text = getString(R.string.recently_watched_title)
         }
     }
 
