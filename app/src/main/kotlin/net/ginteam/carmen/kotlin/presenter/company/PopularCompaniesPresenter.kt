@@ -11,12 +11,13 @@ import net.ginteam.carmen.kotlin.model.CompanyModel
  */
 class PopularCompaniesPresenter : BaseCompaniesPresenter <PopularCompaniesContract.View>(), PopularCompaniesContract.Presenter {
 
+    private val mPreferences: PreferencesManager = SharedPreferencesManager
+
     override fun fetchPopularCompanies() {
         mView?.showLoading(true)
 
-        val preferences: PreferencesManager = SharedPreferencesManager
         mCompaniesProvider
-                .fetchPopularCompanies(preferences.userCityModel!!.id)
+                .fetchPopularCompanies(mPreferences.userCityModel!!.id)
                 .subscribe(object : ModelSubscriber <List <CompanyModel>>() {
                     override fun success(model: List<CompanyModel>) {
                         mView?.showLoading(false)
@@ -28,4 +29,6 @@ class PopularCompaniesPresenter : BaseCompaniesPresenter <PopularCompaniesContra
                     }
                 })
     }
+
+    override fun getUserCityName(): String = mPreferences.userCityModel!!.name
 }

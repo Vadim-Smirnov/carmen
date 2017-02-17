@@ -16,8 +16,10 @@ import net.ginteam.carmen.kotlin.model.UserModel
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
+import net.ginteam.carmen.kotlin.view.fragment.MainFragment
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
-import net.ginteam.carmen.kotlin.view.fragment.company.*
+import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
+import net.ginteam.carmen.kotlin.view.fragment.company.CompaniesFragment
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle
 
 class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContract.Presenter>(),
@@ -34,7 +36,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         super.onCreate(savedInstanceState)
         mPresenter.checkUserStatus()
 
-        prepareFragment(R.id.main_fragment_container, RecentlyWatchedCompaniesFragment.newInstance(false))
+        prepareFragment(R.id.main_fragment_container, MainFragment.newInstance())
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

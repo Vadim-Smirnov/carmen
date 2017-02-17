@@ -3,6 +3,8 @@ package net.ginteam.carmen.kotlin.view.fragment.company
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.TextView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.PopularCompaniesContract
 import net.ginteam.carmen.kotlin.model.CompanyModel
@@ -72,6 +74,16 @@ class PopularCompaniesFragment
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         } else {
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        }
+    }
+
+    override fun updateViewDependencies() {
+        super.updateViewDependencies()
+
+        if (isHorizontal) {
+            val textViewTitle = mFragmentView.findViewById(R.id.text_view_company_list_title) as TextView
+            textViewTitle.text = String.format(getString(R.string.popular_title), mPresenter.getUserCityName())
+            textViewTitle.visibility = View.VISIBLE
         }
     }
 }

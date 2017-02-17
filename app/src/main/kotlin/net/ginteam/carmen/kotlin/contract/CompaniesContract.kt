@@ -43,6 +43,7 @@ object PopularCompaniesContract {
     interface Presenter : BaseCompaniesContract.Presenter <View> {
 
         fun fetchPopularCompanies()
+        fun getUserCityName(): String
 
     }
 

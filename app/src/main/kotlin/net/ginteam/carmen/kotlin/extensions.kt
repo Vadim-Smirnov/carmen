@@ -27,6 +27,12 @@ fun AppCompatActivity.prepareFragment(@LayoutRes containerLayoutResId: Int, frag
     supportFragmentManager.beginTransaction().replace(containerLayoutResId, fragment).commit()
 }
 
+fun Fragment.prepareFragment(@LayoutRes containerLayoutResId: Int, fragment: Fragment) {
+    childFragmentManager.beginTransaction().replace(containerLayoutResId, fragment).commit()
+}
+
+fun Fragment.isNestedFragment(): Boolean = parentFragment != null
+
 fun <T> Observable <ResponseModel <T>>.asyncWithCache(cache: Boolean = true): Observable<ResponseModel<T>> {
     val originObservable = this
     val newObservable = originObservable
