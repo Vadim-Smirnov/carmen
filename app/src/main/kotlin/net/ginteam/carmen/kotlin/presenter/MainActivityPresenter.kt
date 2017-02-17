@@ -26,6 +26,10 @@ class MainActivityPresenter : BasePresenter <MainActivityContract.View>(), MainA
         mView?.inflateNavigationView(R.menu.navigation_menu_short, R.layout.navigation_view_default_header)
     }
 
+    override fun isUserSignedIn(): Boolean {
+        return mAuthProvider.currentCachedUser != null
+    }
+
     override fun localUserLogout() {
         mAuthProvider.currentCachedUser = null
         mPreferences.userAccessToken = ""

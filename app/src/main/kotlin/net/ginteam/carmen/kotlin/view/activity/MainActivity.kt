@@ -13,11 +13,11 @@ import net.ginteam.carmen.kotlin.disableScrollbars
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.UserModel
+import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
-import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
-import net.ginteam.carmen.kotlin.view.fragment.company.CompaniesFragment
+import net.ginteam.carmen.kotlin.view.fragment.company.*
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle
 
 class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContract.Presenter>(),
@@ -34,16 +34,14 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         super.onCreate(savedInstanceState)
         mPresenter.checkUserStatus()
 
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, CategoriesFragment.newInstance(false))
-                .commit()
+        prepareFragment(R.id.main_fragment_container, RecentlyWatchedCompaniesFragment.newInstance(false))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.logout_item -> mPresenter.localUserLogout()
         }
+        mDrawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
@@ -91,24 +89,22 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     /* Fragments listeners */
 
     override fun onCategorySelected(category: CategoryModel, fromDialogSelection: Boolean) {
-        supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.main_fragment_container, CompaniesFragment.newInstance(category))
-                .commit()
+        prepareFragment(R.id.main_fragment_container, CompaniesFragment.newInstance(category))
     }
 
     override fun onCompanySelected(company: CompanyModel) {
 
     }
 
-    override fun onShowMap(categoryId: Int) {
+    override fun onShowMap(category: CategoryModel) {
 
     }
 
     override fun onShowCategoriesDialog() {
+
     }
 
-    override fun onShowFiltersActivity(categoryId: Int) {
+    override fun onShowFiltersActivity(category: CategoryModel) {
 
     }
 

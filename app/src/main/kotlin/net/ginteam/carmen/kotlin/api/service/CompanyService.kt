@@ -45,7 +45,7 @@ interface CompanyService {
      */
 
     @GET(ApiSettings.Auth.GET_USER_FAVORITE_COMPANIES)
-    fun fetchUserFavoriteCompanies(): Observable <ResponseModel <List <CompanyModel>>>
+    fun fetchUserFavoriteCompanies(): Observable <ResponseModel <MutableList <CompanyModel>>>
 
     @POST(ApiSettings.Auth.GET_FAVORITE_COMPANY_BY_ID)
     fun addUserFavoriteCompany(

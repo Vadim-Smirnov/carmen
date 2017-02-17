@@ -2,14 +2,19 @@ package net.ginteam.carmen.kotlin
 
 import android.content.res.Resources
 import android.support.annotation.DrawableRes
+import android.support.annotation.LayoutRes
 import android.support.design.internal.NavigationMenuView
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import com.google.gson.Gson
 import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.FilterModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
+import net.ginteam.carmen.kotlin.view.activity.BaseActivity
+import net.ginteam.carmen.kotlin.view.fragment.BaseFragment
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -17,6 +22,10 @@ import rx.schedulers.Schedulers
 /**
  * Created by eugene_shcherbinock on 2/10/17.
  */
+
+fun AppCompatActivity.prepareFragment(@LayoutRes containerLayoutResId: Int, fragment: Fragment) {
+    supportFragmentManager.beginTransaction().replace(containerLayoutResId, fragment).commit()
+}
 
 fun <T> Observable <ResponseModel <T>>.asyncWithCache(cache: Boolean = true): Observable<ResponseModel<T>> {
     val originObservable = this

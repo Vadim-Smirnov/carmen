@@ -7,14 +7,13 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
-import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
+import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.presenter.company.CompaniesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.PaginatableCompaniesAdapter
-import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDecorator
 import net.ginteam.carmen.view.adapter.company.PaginationScrollListener
 
@@ -90,7 +89,7 @@ class CompaniesFragment
             = CompanyRecyclerListVerticalItemDecorator(context, R.dimen.company_item_spacing)
 
     override fun getRecyclerViewLayoutManager(): LinearLayoutManager
-            = LinearLayoutManager(CarmenApplication.getContext(), LinearLayoutManager.VERTICAL, false)
+            = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
     override fun updateViewDependencies() {
         super.updateViewDependencies()
@@ -101,7 +100,7 @@ class CompaniesFragment
             mMenuItemSelectedListener?.onShowCategoriesDialog()
         }
         mFragmentView.findViewById(R.id.bottom_nav_item_filters).setOnClickListener {
-            mMenuItemSelectedListener?.onShowFiltersActivity(mSelectedCategory.id)
+            mMenuItemSelectedListener?.onShowFiltersActivity(mSelectedCategory)
         }
         mFragmentView.findViewById(R.id.bottom_nav_item_sort).setOnClickListener {
             mMenuItemSelectedListener?.onShowSortDialog()
@@ -110,7 +109,7 @@ class CompaniesFragment
         val floatButton = mFragmentView.findViewById(R.id.float_button_show_map)
         floatButton.visibility = View.VISIBLE
         floatButton.setOnClickListener {
-            mMenuItemSelectedListener?.onShowMap(mSelectedCategory.id)
+            mMenuItemSelectedListener?.onShowMap(mSelectedCategory)
         }
     }
 
@@ -133,9 +132,9 @@ class CompaniesFragment
 
     interface OnBottomMenuItemSelectedListener {
 
-        fun onShowMap(categoryId: Int)
+        fun onShowMap(category: CategoryModel)
         fun onShowCategoriesDialog()
-        fun onShowFiltersActivity(categoryId: Int)
+        fun onShowFiltersActivity(category: CategoryModel)
         fun onShowSortDialog()
 
     }

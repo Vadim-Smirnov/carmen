@@ -23,7 +23,7 @@ interface CompaniesDataSourceProvider {
         User companies
      */
 
-    fun fetchUserFavoriteCompanies(): Observable <ResponseModel <List <CompanyModel>>>
+    fun fetchUserFavoriteCompanies(): Observable <ResponseModel <MutableList <CompanyModel>>>
     fun addUserFavoriteCompany(companyId: Int): Observable <ResponseModel <String>>
     fun removeUserFavoriteCompany(companyId: Int): Observable <ResponseModel <String>>
     fun fetchUserRecentlyWatched(): Observable <ResponseModel <List <CompanyModel>>>
@@ -43,7 +43,7 @@ class OnlineCompaniesDataSourceProvider : CompaniesDataSourceProvider {
     override fun fetchPopularCompanies(cityId: Int): Observable<ResponseModel<List<CompanyModel>>>
             = companiesService.fetchPopularCompanies(cityId).asyncWithCache()
 
-    override fun fetchUserFavoriteCompanies(): Observable<ResponseModel<List<CompanyModel>>>
+    override fun fetchUserFavoriteCompanies(): Observable<ResponseModel<MutableList<CompanyModel>>>
             = companiesService.fetchUserFavoriteCompanies().asyncWithCache()
 
     override fun addUserFavoriteCompany(companyId: Int): Observable<ResponseModel<String>>
