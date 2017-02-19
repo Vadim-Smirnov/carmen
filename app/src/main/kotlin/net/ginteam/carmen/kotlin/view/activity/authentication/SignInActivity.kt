@@ -1,5 +1,6 @@
 package net.ginteam.carmen.kotlin.view.activity.authentication
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import net.ginteam.carmen.R
@@ -10,6 +11,10 @@ class SignInActivity : BaseSignActivity <SignInContract.View, SignInContract.Pre
 
     override var mPresenter: SignInContract.Presenter = SignInPresenter()
 
+    companion object {
+        const val SIGN_IN_REQUEST_CODE = 100
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -18,6 +23,20 @@ class SignInActivity : BaseSignActivity <SignInContract.View, SignInContract.Pre
 
     override fun onValidationSucceeded() {
         mPresenter.signIn(mEditTextEmail.text.toString(), mEditTextPassword.text.toString())
+    }
+
+    override fun showMainActivity() {
+        // if activity was started for result from main
+        callingActivity?.let {
+            setResult(if (mPresenter.isUserSignedInSuccessfully()) {
+                Activity.RESULT_OK
+            } else {
+                Activity.RESULT_CANCELED
+            })
+            finish()
+            return
+        }
+        super.showMainActivity()
     }
 
     override fun updateViewDependencies() {

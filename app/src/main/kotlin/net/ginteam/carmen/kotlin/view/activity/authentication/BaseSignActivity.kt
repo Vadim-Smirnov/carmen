@@ -1,7 +1,7 @@
 package net.ginteam.carmen.kotlin.view.activity.authentication
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.annotation.LayoutRes
 import android.widget.EditText
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator
@@ -11,6 +11,7 @@ import com.mobsandgeeks.saripaar.annotation.Password
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.BaseSignContract
 import net.ginteam.carmen.kotlin.view.activity.BaseActivity
+import net.ginteam.carmen.kotlin.view.activity.MainActivity
 
 abstract class BaseSignActivity <in V : BaseSignContract.View, T : BaseSignContract.Presenter <V>>
     : BaseActivity<V, T>(), BaseSignContract.View, Validator.ValidationListener {
@@ -27,14 +28,12 @@ abstract class BaseSignActivity <in V : BaseSignContract.View, T : BaseSignContr
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getLayoutResId())
-
-        updateViewDependencies()
-        updateDependencies()
     }
 
     override fun showMainActivity() {
-        showMessage("SHOw MAIN")
+        val intent = Intent(getContext(), MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     override fun onValidationFailed(errors: MutableList<ValidationError>?) {
@@ -43,21 +42,22 @@ abstract class BaseSignActivity <in V : BaseSignContract.View, T : BaseSignContr
         firstError?.view?.requestFocus()
     }
 
-    @LayoutRes
-    protected abstract fun getLayoutResId(): Int
-
     override abstract fun onValidationSucceeded()
 
-    open protected fun updateViewDependencies() {
+    override fun updateViewDependencies() {
+        super.updateViewDependencies()
+
         mEditTextEmail = findViewById(R.id.edit_text_email) as EditText
         mEditTextPassword = findViewById(R.id.edit_text_password) as EditText
 
         findViewById(R.id.text_view_skip_auth).setOnClickListener {
-            finish()
+            showMainActivity()
         }
     }
 
-    open protected fun updateDependencies() {
+    override fun updateDependencies() {
+        super.updateDependencies()
+
         mFieldsValidator = Validator(this)
         mFieldsValidator.setValidationListener(this)
     }

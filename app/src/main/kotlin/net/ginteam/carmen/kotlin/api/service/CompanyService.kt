@@ -16,12 +16,11 @@ interface CompanyService {
     @GET(ApiSettings.Catalog.GET_COMPANIES)
     fun fetchCompanies(
             @Path(ApiSettings.Catalog.Params.ID) categoryId: Int,
-            @Query(ApiSettings.Catalog.Params.BOUNDS) bounds: String,
             @Query(ApiSettings.Catalog.Params.SEARCH) filter: String,
             @Query(ApiSettings.Catalog.Params.ORDER_BY) sortField: String,
             @Query(ApiSettings.Catalog.Params.SORTED_BY) sortType: String,
             @Query(ApiSettings.Catalog.Params.PAGE) paginationPage: Int
-    ): Observable <ResponseModel <List <CompanyModel>>>
+    ): Observable <ResponseModel <MutableList <CompanyModel>>>
 
     @GET(ApiSettings.Catalog.GET_COMPANIES)
     fun fetchCompaniesForMap(
@@ -46,7 +45,7 @@ interface CompanyService {
      */
 
     @GET(ApiSettings.Auth.GET_USER_FAVORITE_COMPANIES)
-    fun fetchUserFavoriteCompanies(): Observable <ResponseModel <List <CompanyModel>>>
+    fun fetchUserFavoriteCompanies(): Observable <ResponseModel <MutableList <CompanyModel>>>
 
     @POST(ApiSettings.Auth.GET_FAVORITE_COMPANY_BY_ID)
     fun addUserFavoriteCompany(

@@ -12,13 +12,13 @@ import rx.Observable
 
 interface CategoryDataSourceProvider {
 
-    fun fetchCategories(): Observable <ResponseModel <List <CategoryModel>>>
+    fun fetchCategories(cityId: Int): Observable <ResponseModel <List <CategoryModel>>>
 
 }
 
 class OnlineCategoryDataSourceProvider : CategoryDataSourceProvider {
     private val categoryService: CategoryService = CategoryService.create()
 
-    override fun fetchCategories(): Observable<ResponseModel<List<CategoryModel>>>
-            = categoryService.fetchCategories().asyncWithCache()
+    override fun fetchCategories(cityId: Int): Observable<ResponseModel<List<CategoryModel>>>
+            = categoryService.fetchCategories(cityId).asyncWithCache()
 }

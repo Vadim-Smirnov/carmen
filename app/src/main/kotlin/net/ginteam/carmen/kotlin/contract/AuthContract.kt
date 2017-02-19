@@ -44,6 +44,8 @@ object SignInContract {
         fun facebookSignIn()
         fun googleSignIn()
 
+        fun isUserSignedInSuccessfully(): Boolean
+
     }
 
 }

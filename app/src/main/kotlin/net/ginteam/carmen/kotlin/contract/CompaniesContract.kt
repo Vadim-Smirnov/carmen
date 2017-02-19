@@ -10,13 +10,12 @@ object BaseCompaniesContract {
 
     interface View : BaseContract.View {
 
-        fun showCompanies(companies: List <CompanyModel>, pagination: PaginationModel? = null)
+        fun showCompanies(companies: MutableList <CompanyModel>, pagination: PaginationModel? = null)
 
     }
 
     interface Presenter <in V : View> : BaseContract.Presenter <V> {
 
-        fun selectCompany(company: CompanyModel): (CompanyModel) -> Unit
         fun addCompanyToFavorites(company: CompanyModel)
         fun removeCompanyFromFavorites(company: CompanyModel)
 
@@ -44,6 +43,7 @@ object PopularCompaniesContract {
     interface Presenter : BaseCompaniesContract.Presenter <View> {
 
         fun fetchPopularCompanies()
+        fun getUserCityName(): String
 
     }
 

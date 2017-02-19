@@ -22,6 +22,7 @@ public class MainFragment extends BaseFragment implements MainContract.View {
     public static MainFragment newInstance() {
         return new MainFragment();
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

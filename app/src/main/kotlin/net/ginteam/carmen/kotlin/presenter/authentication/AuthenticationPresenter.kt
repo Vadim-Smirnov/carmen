@@ -57,6 +57,7 @@ class AuthenticationPresenter : BaseLocationPresenter <AuthContract.View>(), Aut
     override fun onLocationReceiveFailure() {
         if (mPreferences.userCityModel == null) {
             mView?.showCitiesDialog()
+            mPreferences.userLocation = null
             return
         }
         checkUserStatus()

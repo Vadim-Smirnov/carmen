@@ -104,7 +104,7 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
                             R.drawable.ic_company_favorite_disable));
             return;
         }
-        mView.showError(mView.getContext().getResources().getString(R.string.message_sign_in));
+        mView.showError(mView.getContext().getResources().getString(R.string.access_denied_message));
     }
 
     @Override

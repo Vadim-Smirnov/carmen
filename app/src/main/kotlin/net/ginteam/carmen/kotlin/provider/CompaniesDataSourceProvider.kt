@@ -12,9 +12,9 @@ import rx.Observable
 
 interface CompaniesDataSourceProvider {
 
-    fun fetchCompanies(categoryId: Int, bounds: String = "", filter: String = "",
+    fun fetchCompanies(categoryId: Int, filter: String = "",
                        sortField: String = "", sortType: String = "", paginationPage: Int = 1
-    ): Observable <ResponseModel <List <CompanyModel>>>
+    ): Observable <ResponseModel <MutableList <CompanyModel>>>
 
     fun fetchCompany(companyId: Int, relations: String = ""): Observable <ResponseModel <CompanyModel>>
     fun fetchPopularCompanies(cityId: Int): Observable <ResponseModel <List <CompanyModel>>>
@@ -23,7 +23,7 @@ interface CompaniesDataSourceProvider {
         User companies
      */
 
-    fun fetchUserFavoriteCompanies(): Observable <ResponseModel <List <CompanyModel>>>
+    fun fetchUserFavoriteCompanies(): Observable <ResponseModel <MutableList <CompanyModel>>>
     fun addUserFavoriteCompany(companyId: Int): Observable <ResponseModel <String>>
     fun removeUserFavoriteCompany(companyId: Int): Observable <ResponseModel <String>>
     fun fetchUserRecentlyWatched(): Observable <ResponseModel <List <CompanyModel>>>
@@ -33,9 +33,9 @@ interface CompaniesDataSourceProvider {
 class OnlineCompaniesDataSourceProvider : CompaniesDataSourceProvider {
     private val companiesService: CompanyService = CompanyService.create()
 
-    override fun fetchCompanies(categoryId: Int, bounds: String, filter: String, sortField: String,
-                                sortType: String, paginationPage: Int): Observable<ResponseModel<List<CompanyModel>>>
-            = companiesService.fetchCompanies(categoryId, bounds, filter, sortField, sortType, paginationPage).asyncWithCache()
+    override fun fetchCompanies(categoryId: Int, filter: String, sortField: String,
+                                sortType: String, paginationPage: Int): Observable<ResponseModel<MutableList<CompanyModel>>>
+            = companiesService.fetchCompanies(categoryId, filter, sortField, sortType, paginationPage).asyncWithCache()
 
     override fun fetchCompany(companyId: Int, relations: String): Observable<ResponseModel<CompanyModel>>
             = companiesService.fetchCompany(companyId, relations).asyncWithCache()
@@ -43,7 +43,7 @@ class OnlineCompaniesDataSourceProvider : CompaniesDataSourceProvider {
     override fun fetchPopularCompanies(cityId: Int): Observable<ResponseModel<List<CompanyModel>>>
             = companiesService.fetchPopularCompanies(cityId).asyncWithCache()
 
-    override fun fetchUserFavoriteCompanies(): Observable<ResponseModel<List<CompanyModel>>>
+    override fun fetchUserFavoriteCompanies(): Observable<ResponseModel<MutableList<CompanyModel>>>
             = companiesService.fetchUserFavoriteCompanies().asyncWithCache()
 
     override fun addUserFavoriteCompany(companyId: Int): Observable<ResponseModel<String>>

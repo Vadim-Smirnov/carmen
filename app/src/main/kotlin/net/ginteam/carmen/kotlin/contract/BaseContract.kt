@@ -12,8 +12,8 @@ object BaseContract {
     interface View {
         fun getContext(): Context
 
-        fun showError(message: String?)
-        fun showError(@StringRes messageResId: Int)
+        fun showError(message: String?, confirmAction: (() -> Unit)? = null)
+        fun showError(@StringRes messageResId: Int, confirmAction: (() -> Unit)? = null)
 
         fun showMessage(message: String)
         fun showMessage(@StringRes messageResId: Int)

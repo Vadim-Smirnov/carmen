@@ -147,7 +147,7 @@ public class CompaniesPresenter implements CompaniesContract.Presenter {
             removeFromFavorites(companyModel);
             return;
         }
-        mView.showError(mView.getContext().getResources().getString(R.string.message_sign_in));
+        mView.showError(mView.getContext().getResources().getString(R.string.access_denied_message));
     }
 
     @Override

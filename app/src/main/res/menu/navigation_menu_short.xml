@@ -5,23 +5,23 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/main_item"
+            android:id="@+id/navigation_item_main"
             android:checked="true"
             android:icon="@drawable/ic_home"
             android:title="@string/main_item_text"/>
 
         <item
-            android:id="@+id/category_item"
+            android:id="@+id/navigation_item_categories"
             android:icon="@drawable/ic_category"
             android:title="@string/category_item_text"/>
 
         <item
-            android:id="@+id/favorite_item"
+            android:id="@+id/navigation_item_favorites"
             android:icon="@drawable/ic_favorite"
             android:title="@string/favorite_item_text"/>
 
         <item
-            android:id="@+id/recent_item"
+            android:id="@+id/navigation_item_recently_watched"
             android:icon="@drawable/ic_recent"
             android:title="@string/recent_item_text"/>
 

@@ -5,6 +5,7 @@ import net.ginteam.carmen.kotlin.manager.ApiManager
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import retrofit2.http.GET
+import retrofit2.http.Query
 import rx.Observable
 
 /**
@@ -13,7 +14,8 @@ import rx.Observable
 interface CategoryService {
 
     @GET(ApiSettings.Catalog.GET_CATEGORIES)
-    fun fetchCategories(): Observable <ResponseModel <List <CategoryModel>>>
+    fun fetchCategories(@Query(ApiSettings.Catalog.Params.CITY_ID) cityId: Int)
+            : Observable <ResponseModel <List <CategoryModel>>>
 
     companion object {
         fun create(): CategoryService = ApiManager.retrofit.create(CategoryService::class.java)
