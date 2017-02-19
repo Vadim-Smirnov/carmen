@@ -35,8 +35,8 @@ class CompaniesPresenter : BaseCompaniesPresenter <CompaniesContract.View>(), Co
                         mView?.showCompanies(model)
                     }
 
-                    override fun error(message: String) {
-
+                    override fun error(message: String, isNetworkError: Boolean) {
+                        mView?.showError(message, isNetworkError)
                     }
                 })
     }

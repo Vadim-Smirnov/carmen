@@ -56,6 +56,10 @@ open class CategoriesFragment : BaseFragment <CategoriesContract.View, Categorie
 
     override fun getLayoutResId(): Int = R.layout.fragment_category_list
 
+    override fun getNetworkErrorAction(): (() -> Unit)? = {
+        mPresenter.fetchCategories()
+    }
+
     override fun showCategories(categories: List<CategoryModel>) {
         mCategoriesAdapter = CategoriesAdapter(R.layout.list_item_category, categories, this)
         mRecyclerViewCategories.adapter = mCategoriesAdapter

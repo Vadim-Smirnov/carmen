@@ -11,6 +11,10 @@
     <string name="registration_progress_message">Registration…</string>
     <string name="fetching_cities_progress_message">Fetching categories…</string>
 
+    <!-- Network error -->
+    <string name="no_network_connection_message">No Internet connection</string>
+    <string name="try_again_string">Try again</string>
+
     <!-- Access error -->
     <string name="sign_in_now_string">Sign in</string>
     <string name="sign_in_later_string">Later</string>
@@ -75,11 +79,11 @@
     <!-- Navigation view -->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
-    <string name="main_item_text">Главная</string>
-    <string name="category_item_text">Рубрики услуг</string>
-    <string name="favorite_item_text">Избранные</string>
-    <string name="recent_item_text">Недавно просмотренные</string>
-    <string name="profile_item_text">Профиль</string>
+    <string name="main_item_title">Главная</string>
+    <string name="category_item_title">Рубрики услуг</string>
+    <string name="favorite_item_title">Избранные</string>
+    <string name="recent_item_title">Недавно просмотренные</string>
+    <string name="profile_item_title">Профиль</string>
     <string name="logout_item_text">Выйти</string>
     <string name="sign_in_item_text">Войти</string>
     <string name="privacy_item_text">Политика конфиденциальности</string>

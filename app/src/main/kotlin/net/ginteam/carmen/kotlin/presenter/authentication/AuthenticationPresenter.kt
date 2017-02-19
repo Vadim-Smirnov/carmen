@@ -1,6 +1,7 @@
 package net.ginteam.carmen.kotlin.presenter.authentication
 
 import android.location.Location
+import android.util.Log
 import com.google.android.gms.maps.model.LatLng
 import net.ginteam.carmen.kotlin.api.response.ModelSubscriber
 import net.ginteam.carmen.kotlin.contract.AuthContract
@@ -30,7 +31,7 @@ class AuthenticationPresenter : BaseLocationPresenter <AuthContract.View>(), Aut
                         mView?.showMainActivity()
                     }
 
-                    override fun error(message: String) {
+                    override fun error(message: String, isNetworkError: Boolean) {
                         mView?.showSignInActivity()
                     }
                 })
@@ -47,7 +48,7 @@ class AuthenticationPresenter : BaseLocationPresenter <AuthContract.View>(), Aut
                     checkUserStatus()
                 }
 
-                override fun error(message: String) {
+                override fun error(message: String, isNetworkError: Boolean) {
                     mView?.showCitiesDialog()
                 }
             })

@@ -312,10 +312,10 @@ public class CompanyListFragment extends BaseFetchingFragment implements Compani
         } else {
             switch (mFetchType) {
                 case RECENTLY_WATCHED:
-                    setToolbarTitle(getString(R.string.recent_item_text), "");
+                    setToolbarTitle(getString(R.string.recent_item_title), "");
                     break;
                 case FAVORITE:
-                    setToolbarTitle(getString(R.string.favorite_item_text), "");
+                    setToolbarTitle(getString(R.string.favorite_item_title), "");
                     break;
                 case FOR_CATEGORY:
                     setToolbarTitle(mSelectedCategory.getName(), mPresenter.getUserCityName());

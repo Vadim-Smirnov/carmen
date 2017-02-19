@@ -33,7 +33,7 @@ open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : Bas
                         mView?.showFavoriteConfirmationMessage(company, R.string.company_added_to_favorites_message)
                     }
 
-                    override fun error(message: String) {
+                    override fun error(message: String, isNetworkError: Boolean) {
                         mView?.showFavoriteErrorMessage(R.string.company_not_added_to_favorites_message)
                     }
                 })
@@ -52,7 +52,7 @@ open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : Bas
                         mView?.showFavoriteConfirmationMessage(company, R.string.company_removed_from_favorites_message)
                     }
 
-                    override fun error(message: String) {
+                    override fun error(message: String, isNetworkError: Boolean) {
                         mView?.showFavoriteErrorMessage(R.string.company_not_removed_from_favorites_message)
                     }
                 })

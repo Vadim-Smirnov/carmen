@@ -26,7 +26,7 @@ class SignUpPresenter : BasePresenter <SignUpContract.View>(), SignUpContract.Pr
                         mView?.showMainActivity()
                     }
 
-                    override fun error(message: String) {
+                    override fun error(message: String, isNetworkError: Boolean) {
                         mView?.showError(message)
                     }
                 })

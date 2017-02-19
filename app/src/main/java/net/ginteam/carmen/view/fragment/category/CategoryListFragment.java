@@ -62,7 +62,7 @@ public class CategoryListFragment extends BaseFetchingFragment implements Catego
     public void onStart() {
         super.onStart();
         if (isNotNestedFragment() && !mIsDialog) {
-            setToolbarTitle(getString(R.string.category_item_text), "");
+            setToolbarTitle(getString(R.string.category_item_title), "");
         }
     }
 

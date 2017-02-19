@@ -36,6 +36,8 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
     @LayoutRes
     protected abstract fun getLayoutResId(): Int
 
+    open protected fun getNetworkErrorAction(): (() -> Unit)? = null
+
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.detachView()
@@ -46,26 +48,31 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
 
     override fun getContext(): Context = this
 
-    override fun showError(message: String?, confirmAction: (() -> Unit)?) {
+    override fun showError(message: String?, isNetworkError: Boolean, confirmAction: (() -> Unit)?) {
         if (mProgressDialog != null && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
             mProgressDialog!!.changeAlertType(SweetAlertDialog.ERROR_TYPE)
-            mProgressDialog!!.titleText = message
+            mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
+            mProgressDialog!!.setCancelable(false)
+
+            if (isNetworkError) {
+                prepareNetworkErrorDialog(getNetworkErrorAction())
+            }
             return
         }
         mProgressDialog = SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE)
         mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
         mProgressDialog!!.contentText = message
+        mProgressDialog!!.setCancelable(false)
 
-        // if error message equals to auth error
-        if (getString(R.string.access_denied_message) === message) {
+        if (getString(R.string.access_denied_message) == message) {
             prepareAuthorizationErrorDialog(confirmAction)
         }
 
         mProgressDialog!!.show()
     }
 
-    override fun showError(messageResId: Int, confirmAction: (() -> Unit)?) {
-        showError(getString(messageResId), confirmAction)
+    override fun showError(messageResId: Int, isNetworkError: Boolean, confirmAction: (() -> Unit)?) {
+        showError(getString(messageResId), isNetworkError, confirmAction)
     }
 
     override fun showMessage(message: String) {
@@ -91,11 +98,11 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
         mProgressDialog?.dismiss()
     }
 
-    protected fun setTitle(title: String) {
+    protected fun setToolbarTitle(title: String) {
         (mToolbar?.findViewById(R.id.text_view_toolbar_title) as TextView).text = title
     }
 
-    protected fun setSubtitle(subtitle: String) {
+    protected fun setToolbarSubtitle(subtitle: String) {
         (mToolbar?.findViewById(R.id.text_view_toolbar_subtitle) as TextView).text = subtitle
     }
 
@@ -116,6 +123,18 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
         withConfirmAction?.let {
             mProgressDialog!!.setConfirmClickListener {
                 withConfirmAction.invoke()
+                it.dismissWithAnimation()
+            }
+        }
+    }
+
+    private fun prepareNetworkErrorDialog(withNetworkErrorAction: (() -> Unit)?) {
+        mProgressDialog!!.contentText = getString(R.string.no_network_connection_message)
+        mProgressDialog!!.confirmText = getString(R.string.try_again_string)
+
+        withNetworkErrorAction?.let {
+            mProgressDialog!!.setConfirmClickListener {
+                withNetworkErrorAction.invoke()
                 it.dismissWithAnimation()
             }
         }

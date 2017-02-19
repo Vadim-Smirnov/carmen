@@ -14,7 +14,7 @@ import net.ginteam.carmen.kotlin.contract.BaseContract
 /**
  * Created by eugene_shcherbinock on 2/16/17.
  */
-abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presenter <V>> : DialogFragment(),
+abstract class BaseFragment<in V : BaseContract.View, T : BaseContract.Presenter <V>> : DialogFragment(),
         BaseContract.View {
 
     protected abstract var mPresenter: T
@@ -48,20 +48,28 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
     @LayoutRes
     protected abstract fun getLayoutResId(): Int
 
-    override fun showError(message: String?, confirmAction: (() -> Unit)?) {
+    open protected fun getNetworkErrorAction(): (() -> Unit)? = null
+
+    override fun showError(message: String?, isNetworkError: Boolean, confirmAction: (() -> Unit)?) {
         if (mProgressDialog != null && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
             mProgressDialog!!.changeAlertType(SweetAlertDialog.ERROR_TYPE)
-            mProgressDialog!!.titleText = message
+            mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
+            mProgressDialog!!.setCancelable(false)
+
+            if (isNetworkError) {
+                prepareNetworkErrorDialog(getNetworkErrorAction())
+            }
             return
         }
         mProgressDialog = SweetAlertDialog(activity, SweetAlertDialog.ERROR_TYPE)
         mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
         mProgressDialog!!.contentText = message
+        mProgressDialog!!.setCancelable(false)
         mProgressDialog!!.show()
     }
 
-    override fun showError(messageResId: Int, confirmAction: (() -> Unit)?) {
-        showError(getString(messageResId))
+    override fun showError(messageResId: Int, isNetworkError: Boolean, confirmAction: (() -> Unit)?) {
+        showError(getString(messageResId), isNetworkError, confirmAction)
     }
 
     override fun showMessage(message: String) {
@@ -78,12 +86,8 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
     override fun showLoading(show: Boolean, messageResId: Int) {
         if (show) {
             mProgressDialog = SweetAlertDialog(activity, SweetAlertDialog.PROGRESS_TYPE)
-            if (messageResId != 0) {
-                mProgressDialog!!.titleText = getString(messageResId)
-            }
-            if (!mProgressDialog!!.isShowing) {
-                mProgressDialog!!.show()
-            }
+            mProgressDialog!!.titleText = getString(messageResId)
+            mProgressDialog!!.show()
             return
         }
         mProgressDialog?.dismiss()
@@ -97,6 +101,18 @@ abstract class BaseFragment <in V : BaseContract.View, T : BaseContract.Presente
         val dialogHeight = resources.getDimension(R.dimen.dialog_fragment_height).toInt()
         dialog.window!!.setLayout(dialogWidth, dialogHeight)
         dialog.setCancelable(true)
+    }
+
+    private fun prepareNetworkErrorDialog(withNetworkErrorAction: (() -> Unit)?) {
+        mProgressDialog!!.contentText = getString(R.string.no_network_connection_message)
+        mProgressDialog!!.confirmText = getString(R.string.try_again_string)
+
+        withNetworkErrorAction?.let {
+            mProgressDialog!!.setConfirmClickListener {
+                withNetworkErrorAction.invoke()
+                it.dismissWithAnimation()
+            }
+        }
     }
 
 }

@@ -20,8 +20,8 @@ class RecentlyWatchedCompaniesPresenter : BaseCompaniesPresenter <RecentlyWatche
                         mView?.showCompanies(model.toMutableList())
                     }
 
-                    override fun error(message: String) {
-                        mView?.showError(message)
+                    override fun error(message: String, isNetworkError: Boolean) {
+                        mView?.showError(message, isNetworkError)
                     }
                 })
     }

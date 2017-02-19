@@ -21,6 +21,10 @@ class SignInActivity : BaseSignActivity <SignInContract.View, SignInContract.Pre
 
     override fun getLayoutResId(): Int = R.layout.activity_sign_in
 
+    override fun getNetworkErrorAction(): (() -> Unit)? = {
+        onValidationSucceeded()
+    }
+
     override fun onValidationSucceeded() {
         mPresenter.signIn(mEditTextEmail.text.toString(), mEditTextPassword.text.toString())
     }

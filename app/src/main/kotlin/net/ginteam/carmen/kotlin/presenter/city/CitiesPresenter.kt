@@ -28,8 +28,8 @@ class CitiesPresenter : BasePresenter <CitiesContract.View>(), CitiesContract.Pr
                         mView?.showCities(model)
                     }
 
-                    override fun error(message: String) {
-                        mView?.showError(message)
+                    override fun error(message: String, isNetworkError: Boolean) {
+                        mView?.showError(message, isNetworkError)
                     }
                 })
     }

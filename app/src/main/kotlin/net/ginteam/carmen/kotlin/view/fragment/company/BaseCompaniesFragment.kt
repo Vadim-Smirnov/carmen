@@ -38,6 +38,10 @@ open abstract class BaseCompaniesFragment<E : BaseCompaniesAdapter, in V : BaseC
         fetchCompanies()
     }
 
+    override fun getNetworkErrorAction(): (() -> Unit)? = {
+        fetchCompanies()
+    }
+
     /**
      * onCompanyItemClick implementation for {@link BaseCompaniesAdapter}
      */

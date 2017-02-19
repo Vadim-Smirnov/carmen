@@ -46,6 +46,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
         mCurrentFragment = MainFragment.newInstance()
         prepareFragment(R.id.main_fragment_container, mCurrentFragment!!)
+        setToolbarTitle(getString(R.string.main_item_title))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -86,6 +87,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
            if (it.javaClass != mCurrentFragment?.javaClass) {
                mCurrentFragment = it
                prepareFragment(R.id.main_fragment_container, mCurrentFragment!!)
+               setToolbarTitle(item.title.toString())
            }
         }
 

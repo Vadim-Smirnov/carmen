@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
  */
 object ApiManager {
 
-    private const val CONNECTION_TIMEOUT: Long = 15
+    private const val CONNECTION_TIMEOUT: Long = 5
 
     val retrofit: Retrofit
 

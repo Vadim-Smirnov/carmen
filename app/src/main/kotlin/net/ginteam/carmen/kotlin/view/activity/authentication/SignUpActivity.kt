@@ -27,6 +27,10 @@ class SignUpActivity : BaseSignActivity <SignUpContract.View, SignUpContract.Pre
 
     override fun getLayoutResId(): Int = R.layout.activity_sign_up
 
+    override fun getNetworkErrorAction(): (() -> Unit)? = {
+        onValidationSucceeded()
+    }
+
     override fun onValidationSucceeded() {
         mPresenter.signUp(
                 mEditTextName.text.toString(),

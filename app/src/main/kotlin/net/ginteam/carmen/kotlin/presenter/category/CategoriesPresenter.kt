@@ -29,8 +29,8 @@ class CategoriesPresenter : BasePresenter <CategoriesContract.View>(), Categorie
                         mView?.showCategories(model)
                     }
 
-                    override fun error(message: String) {
-                        mView?.showError(message)
+                    override fun error(message: String, isNetworkError: Boolean) {
+                        mView?.showError(message, isNetworkError)
                     }
                 })
     }
