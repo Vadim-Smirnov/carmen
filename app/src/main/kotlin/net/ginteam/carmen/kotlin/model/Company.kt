@@ -33,7 +33,7 @@ open class CompanyModel : ClusterItem, Serializable {
     @SerializedName("picture") val pictures: List <String>? = null
     @SerializedName("city_id") val cityId: Int = 0
     @SerializedName("price_rel") val price: Int = 0
-    @SerializedName("is_favorite") val isFavorite: Boolean = false
+    @SerializedName("is_favorite") var isFavorite: Boolean = false
     @SerializedName("short_desc") val shortDescription: String = ""
     @SerializedName("detail") val details: ResponseModel <List <DetailModel>>? = null
 
@@ -43,6 +43,6 @@ open class CompanyModel : ClusterItem, Serializable {
 
 open class MapCompanyModel : CompanyModel() {
 
-    val isSelected: Boolean = false
+    var isSelected: Boolean = false
 
 }

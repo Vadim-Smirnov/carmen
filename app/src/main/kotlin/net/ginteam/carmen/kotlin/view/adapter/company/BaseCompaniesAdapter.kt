@@ -23,6 +23,10 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
                                          val onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : RecyclerView.Adapter <RecyclerView.ViewHolder>() {
 
+    fun invalidateCompany(company: CompanyModel) {
+        notifyItemChanged(companies.indexOf(company))
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         val companyViewHolder: ViewHolder? = holder as ViewHolder?
         with(companyViewHolder?.mImageViewPhoto!!.layoutParams) {

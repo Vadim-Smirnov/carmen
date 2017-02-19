@@ -15,7 +15,8 @@ class CategoriesDialogFragment : CategoriesFragment() {
      * onCategoryItemClick implementation for {@link CategoriesAdapter}
      */
     override fun invoke(category: CategoryModel) {
-        mCategorySelectedListener?.onCategorySelected(category, true)
+        super.invoke(category)
+        dialog.dismiss()
     }
 
     override fun updateViewDependencies() {

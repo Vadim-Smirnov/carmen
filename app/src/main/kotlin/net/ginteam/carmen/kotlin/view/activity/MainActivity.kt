@@ -52,35 +52,34 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         var selectedFragment: Fragment? = null
 
         when (item.itemId) {
+
+            // common menu items
+
             R.id.navigation_item_main -> {
                 selectedFragment = MainFragment.newInstance()
             }
             R.id.navigation_item_categories -> {
                 selectedFragment = CategoriesFragment.newInstance(false)
             }
+
+            // items for only signed in users
+
             R.id.navigation_item_favorites -> {
-                if (mPresenter.isUserSignedIn())  {
+                if (userHaveAccessForMenuItem(item)) {
                     selectedFragment = FavoritesFragment.newInstance()
                 } else {
-                    showError(R.string.access_denied_message) {
-                        startSignInActivityForResult()
-                    }
-                    mLastAccessibleItem = item
                     return false
                 }
             }
             R.id.navigation_item_recently_watched -> {
-                if (mPresenter.isUserSignedIn())  {
+                if (userHaveAccessForMenuItem(item)) {
                     selectedFragment = RecentlyWatchedCompaniesFragment.newInstance(false)
                 } else {
-                    showError(R.string.access_denied_message) {
-                        startSignInActivityForResult()
-                    }
-                    mLastAccessibleItem = item
                     return false
                 }
             }
             R.id.navigation_item_logout -> mPresenter.localUserLogout()
+
         }
 
         selectedFragment?.let {
@@ -97,6 +96,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == SignInActivity.SIGN_IN_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            // invalidate navigation view
             mPresenter.prepareNavigationViewForUserStatus()
         }
     }
@@ -122,7 +122,10 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
         mLastAccessibleItem?.let {
             onNavigationItemSelected(it)
+            // TODO check not work
+            it.isChecked = true
         }
+        mLastAccessibleItem = null
 
         // if user does not signed in
         if (headerLayoutResId == R.layout.navigation_view_default_header) {
@@ -162,7 +165,8 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     }
 
     override fun onShowCategoriesDialog() {
-
+        val categoriesDialog = CategoriesFragment.newInstance(true)
+        categoriesDialog.show(supportFragmentManager, "CategoriesFragment")
     }
 
     override fun onShowFiltersActivity(category: CategoryModel) {
@@ -188,12 +192,32 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     private fun updateNavigationViewDependencies() {
         val toggle = ToolbarDrawerToggle(this, mDrawerLayout, mToolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         toggle.syncState()
         mDrawerLayout.addDrawerListener(toggle)
 
         mNavigationView.disableScrollbars()
         mNavigationView.setNavigationItemSelectedListener(this)
+    }
+
+    /**
+     * Check user access for menu item
+     *
+     * If user have not access then show error dialog with confirm action
+     * and save item for user redirection after successfully sign in
+     */
+    private fun userHaveAccessForMenuItem(item: MenuItem): Boolean {
+        return if (mPresenter.isUserSignedIn())  {
+            true
+        } else {
+            showError(R.string.access_denied_message) {
+                // confirm dialog action
+                startSignInActivityForResult()
+            }
+            // save item for user redirection
+            mLastAccessibleItem = item
+            false
+        }
     }
 
     private fun startSignInActivityForResult() {

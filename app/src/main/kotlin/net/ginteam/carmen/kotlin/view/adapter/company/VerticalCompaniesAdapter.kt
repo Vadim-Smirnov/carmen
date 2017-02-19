@@ -10,7 +10,7 @@ import net.ginteam.carmen.utils.DisplayUtils
  * Created by eugene_shcherbinock on 2/16/17.
  */
 
-class VerticalCompaniesAdapter(companies: MutableList <CompanyModel>,
+open class VerticalCompaniesAdapter(companies: MutableList <CompanyModel>,
                                onCompanyItemClick: (CompanyModel) -> Unit,
                                onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : BaseCompaniesAdapter(companies, onCompanyItemClick, onFavoriteClick) {

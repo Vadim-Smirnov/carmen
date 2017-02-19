@@ -16,6 +16,13 @@
     <string name="sign_in_later_string">Later</string>
     <string name="access_denied_message">This operation does not supported for not authorized users!</string>
 
+    <!-- Favorite company confirmation messages -->
+    <string name="company_added_to_favorites_message">Company successfully added to favorites</string>
+    <string name="company_not_added_to_favorites_message">Company not added to favorites</string>
+    <string name="company_removed_from_favorites_message">Company successfully removed from favorites</string>
+    <string name="company_not_removed_from_favorites_message">Company not removed from favorites</string>
+    <string name="undo_company_removed_message">UNDO</string>
+
     <!-- Fonts -->
     <string name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
     <string name="open_sans_font">fonts/OpenSans-Regular.ttf</string>

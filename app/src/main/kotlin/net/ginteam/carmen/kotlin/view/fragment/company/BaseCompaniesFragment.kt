@@ -2,6 +2,7 @@ package net.ginteam.carmen.kotlin.view.fragment.company
 
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -37,6 +38,16 @@ open abstract class BaseCompaniesFragment<E : BaseCompaniesAdapter, in V : BaseC
         fetchCompanies()
     }
 
+    /**
+     * onCompanyItemClick implementation for {@link BaseCompaniesAdapter}
+     */
+    override fun invoke(company: CompanyModel) {
+        mCompanySelectedListener?.onCompanySelected(company)
+    }
+
+    /**
+     * onAddToFavoriteClick implementation for {@link BaseCompaniesAdapter}
+     */
     override fun invoke(company: CompanyModel, isFavorite: Boolean) {
         Log.d("BaseCompaniesFragment", "Is company favorite? - $isFavorite")
         if (isFavorite) {
@@ -46,8 +57,16 @@ open abstract class BaseCompaniesFragment<E : BaseCompaniesAdapter, in V : BaseC
         }
     }
 
-    override fun invoke(company: CompanyModel) {
-        mCompanySelectedListener?.onCompanySelected(company)
+    override fun showFavoriteConfirmationMessage(company: CompanyModel, messageResId: Int) {
+        mCompaniesAdapter.invalidateCompany(company)
+
+        Snackbar.make(activity.findViewById(R.id.main_fragment_container),
+                getString(messageResId), Snackbar.LENGTH_LONG).show()
+    }
+
+    override fun showFavoriteErrorMessage(messageResId: Int) {
+        Snackbar.make(activity.findViewById(R.id.main_fragment_container),
+                getString(messageResId), Snackbar.LENGTH_LONG).show()
     }
 
     protected abstract fun fetchCompanies()

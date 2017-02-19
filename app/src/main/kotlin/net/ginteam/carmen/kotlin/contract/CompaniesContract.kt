@@ -1,5 +1,6 @@
 package net.ginteam.carmen.kotlin.contract
 
+import android.support.annotation.StringRes
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
 
@@ -11,6 +12,8 @@ object BaseCompaniesContract {
     interface View : BaseContract.View {
 
         fun showCompanies(companies: MutableList <CompanyModel>, pagination: PaginationModel? = null)
+        fun showFavoriteConfirmationMessage(company: CompanyModel, @StringRes messageResId: Int)
+        fun showFavoriteErrorMessage(@StringRes messageResId: Int)
 
     }
 

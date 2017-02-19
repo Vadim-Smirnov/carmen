@@ -29,11 +29,12 @@ open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : Bas
                 .addUserFavoriteCompany(company.id)
                 .subscribe(object : ModelSubscriber<String>() {
                     override fun success(model: String) {
-                        mView?.showMessage("Company added successful")
+                        company.isFavorite = true
+                        mView?.showFavoriteConfirmationMessage(company, R.string.company_added_to_favorites_message)
                     }
 
                     override fun error(message: String) {
-                        mView?.showError("Company not added")
+                        mView?.showFavoriteErrorMessage(R.string.company_not_added_to_favorites_message)
                     }
                 })
     }
@@ -47,11 +48,12 @@ open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : Bas
                 .removeUserFavoriteCompany(company.id)
                 .subscribe(object : ModelSubscriber<String>() {
                     override fun success(model: String) {
-                        mView?.showMessage("Company removed successful")
+                        company.isFavorite = false
+                        mView?.showFavoriteConfirmationMessage(company, R.string.company_removed_from_favorites_message)
                     }
 
                     override fun error(message: String) {
-                        mView?.showError("Company not removed")
+                        mView?.showFavoriteErrorMessage(R.string.company_not_removed_from_favorites_message)
                     }
                 })
     }
