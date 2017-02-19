@@ -1,178 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.constraint.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <include layout="@layout/toolbar"/>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="net.ginteam.carmen.view.activity.VoteObjectActivity"
-        tools:ignore="MissingPrefix">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView5"
-            fontPath="@string/open_sans_semibold_font"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:text="Ваша оценка"
-            android:textColor="@color/colorTextHeader"
-            android:textSize="15sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
-            android:id="@+id/textView6"
-            fontPath="@string/open_sans_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:text="Ай молодець!"
-            android:textColor="@color/colorGreen"
-            android:textSize="15sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"/>
-
-        <net.ginteam.carmen.view.custom.rating.RatingView
-            android:id="@+id/rating_view_company"
-            android:layout_width="270dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="14dp"
-            android:padding="1dp"
-            app:viewsSpacing="5dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            app:rating="4"/>
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_marginTop="30dp"
-            android:background="@color/colorSeparate"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rating_view_company"/>
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:text="Стоимость"
-            android:textColor="@color/colorTextHeader"
-            android:textSize="15sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3"/>
-
-        <TextView
-            android:id="@+id/textView12"
-            fontPath="@string/open_sans_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="1dp"
-            android:text="Дорого"
-            android:textColor="@color/colorTextHeader"
-            android:textSize="12sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"/>
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12"/>
-
-        <TextView
-            android:id="@+id/textView13"
-            fontPath="@string/open_sans_semibold_font"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:text="Оставьте ваш отзыв"
-            android:textColor="@color/colorTextHeader"
-            android:textSize="15sp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerView"/>
-
-        <net.ginteam.carmen.view.custom.FilterEditText
-            android:id="@+id/CustomEditText"
+        <android.support.constraint.ConstraintLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:filterHint="ИМЯ"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="43dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"/>
+            android:layout_height="match_parent"
+            tools:context="net.ginteam.carmen.view.activity.VoteObjectActivity"
+            tools:ignore="MissingPrefix">
 
-        <net.ginteam.carmen.view.custom.FilterEditText
-            android:id="@+id/CustomEditText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="43dp"
-            app:filterHint="ЗАГОЛОВОК"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomEditText"/>
+            <TextView
+                android:id="@+id/textView5"
+                fontPath="@string/open_sans_semibold_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Ваша оценка"
+                android:textColor="@color/colorTextHeader"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
 
-        <net.ginteam.carmen.view.custom.FilterEditText
-            android:id="@+id/CustomEditText3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:filterHint="ОТЗЫВ"
-            android:layout_marginTop="43dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomEditText2"/>
+            <TextView
+                android:id="@+id/textView6"
+                fontPath="@string/open_sans_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="Ай молодець!"
+                android:textColor="@color/colorGreen"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"/>
 
-        <Button
-            fontPath="@string/open_sans_font"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/colorCheckBox"
-            android:text="Отправить"
-            android:textColor="@color/colorWhite"
-            android:textSize="20sp"
-            android:layout_marginTop="45dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomEditText3"/>
+            <net.ginteam.carmen.view.custom.rating.CarmenRatingView
+                android:id="@+id/rating_view_company"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
 
-    </android.support.constraint.ConstraintLayout>
+                android:padding="2dp"
+                app:crv_emptyDrawable="@drawable/ic_large_empty_new_rating"
+                app:crv_fillDrawable="@drawable/ic_large_fill_new_rating"
+                app:crv_indicatorSpacing="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6"/>
 
-</ScrollView>
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/colorSeparate"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rating_view_company"/>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:text="Стоимость"
+                android:textColor="@color/colorTextHeader"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view3"/>
+
+            <TextView
+                android:id="@+id/textView12"
+                fontPath="@string/open_sans_font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="1dp"
+                android:text="Дорого"
+                android:textColor="@color/colorTextHeader"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11"/>
+
+            <net.ginteam.carmen.view.custom.rating.CarmenRatingView
+                android:id="@+id/rating_view_company_price"
+                android:layout_width="105dp"
+                android:layout_height="37dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="25dp"
+                android:numStars="4"
+                app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating"
+                app:crv_fillDrawable="@drawable/ic_medium_price_fill_rating"
+                app:crv_indicatorSpacing="10dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view3"/>
+
+            <View
+                android:id="@+id/view4"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/colorSeparate"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view4"/>
+
+            <TextView
+                android:id="@+id/textView13"
+                fontPath="@string/open_sans_semibold_font"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:text="Оставьте ваш отзыв"
+                android:textColor="@color/colorTextHeader"
+                android:textSize="15sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerView"/>
+
+            <net.ginteam.carmen.view.custom.FilterEditText
+                android:id="@+id/CustomEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="43dp"
+                app:filterHint="ИМЯ"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13"/>
+
+            <net.ginteam.carmen.view.custom.FilterEditText
+                android:id="@+id/CustomEditText2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="43dp"
+                app:filterHint="ЗАГОЛОВОК"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CustomEditText"/>
+
+            <net.ginteam.carmen.view.custom.FilterEditText
+                android:id="@+id/CustomEditText3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="43dp"
+                app:filterHint="ОТЗЫВ"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CustomEditText2"/>
+
+            <Button
+                fontPath="@string/open_sans_font"
+                android:layout_width="0dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="45dp"
+                android:background="@color/colorCheckBox"
+                android:text="Отправить"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/CustomEditText3"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+
+

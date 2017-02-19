@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,10 +42,10 @@ import net.ginteam.carmen.view.custom.rating.RatingView;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 public class CompanyDetailActivity extends ToolbarActivity implements CompanyDetailContract.View,
-        View.OnClickListener, RatingView.OnRatingChangeListener {
+        View.OnClickListener, RatingBar.OnRatingBarChangeListener {
 
     public static final String COMPANY_ARGUMENT = "company";
-    public static final String CATEGORY_ARGUMENT = "category";
+    public static final String RATING_ARGUMENT = "rating";
 
     private int mCompanyId;
     private CompanyModel mCompanyModel;
@@ -234,11 +235,6 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mPresenter.onClick(v);
     }
 
-    @Override
-    public void onRatingChanged(RatingView ratingView, int rating) {
-        ActivityUtils.showActivity(VoteObjectActivity.class, null, false);
-    }
-
     private void receiveArguments() {
         Bundle arguments = getIntent().getExtras();
         if (arguments != null) {
@@ -265,7 +261,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         findViewById(R.id.button_show_on_map).setOnClickListener(this);
 
         mRatingViewVoteObject = (CarmenRatingView) findViewById(R.id.rating_view_vote_object);
-//        mRatingViewVoteObject.setOnClickListener(this);
+        mRatingViewVoteObject.setOnRatingBarChangeListener(this);
 
         mRecyclerViewGallery = (RecyclerView) findViewById(R.id.recycler_view_gallery);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -292,7 +288,8 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         int mapHeight = (int) getResources().getDimension(R.dimen.company_detail_image_map_height);
         String url =
                 String.format("http://maps.googleapis.com/maps/api/staticmap?center=%1$s," +
-                                "%2$s&markers=color:red|size:mid|%1$s,%2$s&zoom=15&scale=2&" +
+                                "%2$s&markers=icon:http://carmen.b4u.com.ua/assets/icons/11-mdpi.png|" +
+                                "%1$s,%2$s&zoom=15&scale=1&" +
                                 "size=%3$sx%4$s&format=png&visual_refresh=true",
                         mCompanyModel.getPosition().latitude, mCompanyModel.getPosition().longitude,
                         640, 480);
@@ -365,5 +362,12 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
             mIndicator[position].setImageDrawable(ContextCompat.getDrawable(getContext(),
                     R.drawable.selecteditem_dot));
         }
+    }
+
+    @Override
+    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+        Bundle bundle = new Bundle();
+        bundle.putFloat(RATING_ARGUMENT, rating);
+        ActivityUtils.showActivity(VoteObjectActivity.class, bundle, false);
     }
 }

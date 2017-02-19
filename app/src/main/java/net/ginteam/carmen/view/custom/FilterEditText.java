@@ -33,6 +33,7 @@ import java.util.List;
 public class FilterEditText extends LinearLayout {
 
     private static final int IMAGE_FILLED_TEXT = R.drawable.ic_checkbox_enable;
+    private static final int IMAGE_EMPTY_TEXT = R.drawable.ic_checkbox_disable;
     private static final int IMAGE_CLEAR_TEXT = R.drawable.ic_clear;
 
     private Context mContext;
@@ -91,13 +92,15 @@ public class FilterEditText extends LinearLayout {
                             .isEmpty() ? INVISIBLE : VISIBLE);
 
             mImageViewFilledEditText
-                    .setVisibility(mEditTextFilter
+                    .setImageResource(mEditTextFilter
                             .getText()
                             .toString()
-                            .isEmpty() ? INVISIBLE : VISIBLE);
+                            .isEmpty() ? IMAGE_EMPTY_TEXT : IMAGE_FILLED_TEXT);
 
-            if (mFilterModel.getFilterOptions() == null) {
-                mFilterQuery = "";
+            if (mFilterModel != null) {
+                if (mFilterModel.getFilterOptions() == null) {
+                    mFilterQuery = "";
+                }
             }
 
             callListener();
@@ -192,7 +195,7 @@ public class FilterEditText extends LinearLayout {
         try {
             mFilterText = attributes.getString(R.styleable.FilterEditText_filterText);
             mFilterHint = attributes.getString(R.styleable.FilterEditText_filterHint);
-            mImageFilledText = attributes.getResourceId(R.styleable.FilterEditText_imageFilledText, IMAGE_FILLED_TEXT);
+            mImageFilledText = attributes.getResourceId(R.styleable.FilterEditText_imageFilledText, IMAGE_EMPTY_TEXT);
             mImageClearText = attributes.getResourceId(R.styleable.FilterEditText_imageClearText, IMAGE_CLEAR_TEXT);
         } finally {
             attributes.recycle();
@@ -217,6 +220,7 @@ public class FilterEditText extends LinearLayout {
         mEditTextFilter.setText(mFilterText);
 
         mImageViewClearEditText.setOnClickListener(mButtonClearClickListener);
+        mEditTextFilter.addTextChangedListener(mEditTextChangeListener);
     }
 
     private void updateDependenciesWithFilter(FilterModel filter) {
@@ -229,7 +233,6 @@ public class FilterEditText extends LinearLayout {
             disableEditingForEditText(mEditTextFilter);
         }
 
-        mEditTextFilter.addTextChangedListener(mEditTextChangeListener);
     }
 
     private void createFilterDialog(List<FilterOptionModel> options) {
@@ -240,7 +243,7 @@ public class FilterEditText extends LinearLayout {
         initializeDialogListView(dialogOptionsView, options);
 
         mFilterDialog = new AlertDialog.Builder(mContext)
-                .setCancelable(false)
+                .setCancelable(true)
                 .setView(dialogOptionsView)
                 .create();
     }

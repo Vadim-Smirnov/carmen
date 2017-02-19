@@ -45,7 +45,8 @@
         android:src="@drawable/ic_float_button_map"
         android:layout_marginBottom="@dimen/float_button_margin_bottom"
         android:visibility="gone"
-        android:layout_marginEnd="1dp"/>
+        android:layout_marginEnd="1dp"
+        app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
 
     <LinearLayout
         android:id="@+id/bottom_navigation_layout"

@@ -27,7 +27,7 @@
         android:layout_weight="0.75"
         android:background="#3EC7C2"
         android:drawablePadding="36dp"
-        android:drawableStart="@drawable/ic_profile"
+        android:drawableStart="@drawable/ic_user"
         android:gravity="center|start"
         android:paddingStart="25dp"
         android:text="@string/sign_in_item_text"

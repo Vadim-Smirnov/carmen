@@ -131,10 +131,13 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
         companyViewHolder.getImageViewPhoto().requestLayout();
 
         companyViewHolder.getImageViewPhoto().setImageResource(R.drawable.ic_default_photo);
-
         if (!currentCompany.getImageUrl().isEmpty()) {
             if (!currentCompany.getImageUrl().get(0).isEmpty())
-            Picasso.with(mContext).load(currentCompany.getImageUrl().get(0)).placeholder( R.drawable.placeholder_animation).into(companyViewHolder.getImageViewPhoto());
+                Picasso
+                        .with(mContext)
+                        .load(currentCompany.getImageUrl().get(0))
+                        .placeholder(R.drawable.placeholder_animation)
+                        .into(companyViewHolder.getImageViewPhoto());
         }
 
         companyViewHolder.getImageViewLocation().setVisibility(

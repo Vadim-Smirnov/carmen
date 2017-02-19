@@ -20,7 +20,7 @@
     </style>
 
     <style name="EditText.Name" parent="EditText.WrappedHeight.Transparent">
-        <item name="android:drawableStart">@drawable/ic_profile</item>
+        <item name="android:drawableStart">@drawable/ic_user</item>
         <item name="android:inputType">text</item>
     </style>
 

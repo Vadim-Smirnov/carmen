@@ -85,6 +85,7 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
                 break;
             case R.id.action_button_call:
                 mView.call();
+                break;
         }
     }
 

@@ -7,25 +7,26 @@ import android.support.v13.view.ViewCompat;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
+import android.widget.ImageButton;
 
 /**
  * Created by Eugene on 1/16/17.
  */
 
-public class FloatingButtonBehavior extends FloatingActionButton.Behavior {
+public class FloatingButtonBehavior extends CoordinatorLayout.Behavior<ImageButton> {
 
     public FloatingButtonBehavior(Context context, AttributeSet attributeSet) {
         super();
     }
 
     @Override
-    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child,
+    public boolean onStartNestedScroll(CoordinatorLayout coordinatorLayout, ImageButton child,
                                        View directTargetChild, View target, int nestedScrollAxes) {
         return nestedScrollAxes == ViewCompat.SCROLL_AXIS_VERTICAL;
     }
 
     @Override
-    public void onNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child,
+    public void onNestedScroll(CoordinatorLayout coordinatorLayout, ImageButton child,
                                View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed, dyUnconsumed);
 
