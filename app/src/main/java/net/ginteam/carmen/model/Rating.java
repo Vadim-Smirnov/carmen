@@ -23,10 +23,10 @@ public class Rating implements Serializable {
     private String mText;
 
     @SerializedName("total_rating")
-    private int mTotalRating;
+    private float mTotalRating;
 
     @SerializedName("price_rel")
-    private int mPriceRel;
+    private float mPriceRel;
 
     @SerializedName("answer_name")
     private String mAnswerName;
@@ -39,6 +39,17 @@ public class Rating implements Serializable {
 
     @SerializedName("created_at")
     private String mCreatedAt;
+
+    @SerializedName("user_id")
+    private String mUserId;
+
+    public String getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(String userId) {
+        mUserId = userId;
+    }
 
     public int getId() {
         return mId;
@@ -56,11 +67,11 @@ public class Rating implements Serializable {
         return mText;
     }
 
-    public int getTotalRating() {
+    public float getTotalRating() {
         return mTotalRating;
     }
 
-    public int getPriceRel() {
+    public float getPriceRel() {
         return mPriceRel;
     }
 
@@ -78,5 +89,25 @@ public class Rating implements Serializable {
 
     public String getCreatedAt() {
         return mCreatedAt;
+    }
+
+    public void setDisplayName(String displayName) {
+        mDisplayName = displayName;
+    }
+
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
+    public void setText(String text) {
+        mText = text;
+    }
+
+    public void setTotalRating(float totalRating) {
+        mTotalRating = totalRating;
+    }
+
+    public void setPriceRel(float priceRel) {
+        mPriceRel = priceRel;
     }
 }

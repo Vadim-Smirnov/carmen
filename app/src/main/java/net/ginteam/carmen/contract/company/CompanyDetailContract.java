@@ -4,6 +4,7 @@ import android.support.annotation.IdRes;
 import android.view.Menu;
 
 import net.ginteam.carmen.contract.FetchContract;
+import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
@@ -25,6 +26,8 @@ public interface CompanyDetailContract {
 
         void call();
 
+        void showVoteObjectScreen(Rating rating);
+
     }
 
     interface Presenter extends FetchContract.Presenter<View> {
@@ -38,6 +41,8 @@ public interface CompanyDetailContract {
         void addToFavorite(CompanyModel companyModel);
 
         void removeFromFavorite(CompanyModel companyModel);
+
+        void createRating(float rating, int companyId);
 
     }
 

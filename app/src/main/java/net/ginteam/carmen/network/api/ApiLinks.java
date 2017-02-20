@@ -58,6 +58,10 @@ public class ApiLinks {
 
         public static final String RATINGS = "ratings";
 
+        public static final String SET_RATING = CATALOG + "companies/" + RATINGS;
+
+        public static final String UPDATE_RATING = SET_RATING + "/{" + ID + "}";
+
     }
 
     public class AUTH {

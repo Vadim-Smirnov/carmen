@@ -30,6 +30,7 @@ import com.squareup.picasso.Picasso;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
+import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompanyDetailPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
@@ -38,13 +39,14 @@ import net.ginteam.carmen.view.activity.VoteObjectActivity;
 import net.ginteam.carmen.view.activity.map.MapActivity;
 import net.ginteam.carmen.view.adapter.company.GalleryRecyclerAdapter;
 import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
-import net.ginteam.carmen.view.custom.rating.RatingView;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
+import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
 
 public class CompanyDetailActivity extends ToolbarActivity implements CompanyDetailContract.View,
-        View.OnClickListener, RatingBar.OnRatingBarChangeListener {
+        View.OnClickListener, RatingBar.OnRatingBarChangeListener, CompanyListFragment.OnCompanySelectedListener {
 
-    public static final String COMPANY_ARGUMENT = "company";
+    public static final String COMPANY_ID_ARGUMENT = "company_id";
+    public static final String COMPANY_NAME_ARGUMENT = "company_name";
     public static final String RATING_ARGUMENT = "rating";
 
     private int mCompanyId;
@@ -87,6 +89,11 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
 
         mPresenter = new CompanyDetailPresenter();
         mPresenter.attachView(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         mPresenter.fetchCompanyDetail(mCompanyId);
     }
 
@@ -149,11 +156,8 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mTextViewCategory.setText(categories);
 
         mTextViewAddress.setText(companyModel.getAddress());
-//        if (!companyModel.getDetail().getWorkTime().isEmpty()) {
-//            mTextViewWorkTime.append(companyModel.getDetail().getWorkTime().get(1));
-//        } else {
-            mTextViewWorkTime.setText("");
-//        }
+        mTextViewWorkTime.setText(String.format("%s %s",
+                getResources().getString(R.string.work_time_text), companyModel.getDetail().getClossingTime()));
         mTextViewDistance.setText(companyModel.getDistance() == 0 ? "" :
                 String.format("%.1f km", companyModel.getDistance() / 1000));
         mImageViewLocation.setVisibility(mTextViewDistance.getText().toString().isEmpty() ?
@@ -163,7 +167,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                         R.plurals.review_count_string,
                         companyModel.getRatings().size(),
                         companyModel.getRatings().size()));
-        mRatingViewCompanyRating.setRating(3);
+        mRatingViewCompanyRating.setRating(companyModel.getRating());
         mActionButtonCall.setVisibility(companyModel.getDetail().getPhones().isEmpty() ?
                 View.GONE : View.VISIBLE);
         showMapImage();
@@ -231,14 +235,39 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     }
 
     @Override
+    public void showVoteObjectScreen(Rating rating) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(RATING_ARGUMENT, rating);
+        bundle.putString(COMPANY_NAME_ARGUMENT, mCompanyModel.getName());
+        ActivityUtils.showActivity(VoteObjectActivity.class, bundle, false);
+    }
+
+    @Override
     public void onClick(View v) {
         mPresenter.onClick(v);
+    }
+
+    @Override
+    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+        if(rating < 1) {
+            mRatingViewVoteObject.setRating(1);
+            return;
+        }
+        mPresenter.createRating(rating, mCompanyId);
+    }
+
+    @Override
+    public void onCompanySelected(CompanyModel company) {
+        Bundle arguments = new Bundle();
+        arguments.putInt(CompanyDetailActivity.COMPANY_ID_ARGUMENT, company.getId());
+        ActivityUtils.showActivity(CompanyDetailActivity.class, arguments, false);
+        finish();
     }
 
     private void receiveArguments() {
         Bundle arguments = getIntent().getExtras();
         if (arguments != null) {
-            mCompanyId = arguments.getInt(COMPANY_ARGUMENT, 0);
+            mCompanyId = arguments.getInt(COMPANY_ID_ARGUMENT, 0);
             Toast.makeText(this, "Receive ID: " + mCompanyId, Toast.LENGTH_LONG).show();
         }
     }
@@ -364,10 +393,4 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         }
     }
 
-    @Override
-    public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-        Bundle bundle = new Bundle();
-        bundle.putFloat(RATING_ARGUMENT, rating);
-        ActivityUtils.showActivity(VoteObjectActivity.class, bundle, false);
-    }
 }

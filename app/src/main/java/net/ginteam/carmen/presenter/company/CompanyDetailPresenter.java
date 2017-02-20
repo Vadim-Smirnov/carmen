@@ -8,12 +8,15 @@ import android.view.View;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
 import net.ginteam.carmen.model.Rating;
+import net.ginteam.carmen.model.auth.UserModel;
 import net.ginteam.carmen.model.company.Comfort;
 import net.ginteam.carmen.model.company.CompanyModel;
+import net.ginteam.carmen.model.filter.CreateRating;
 import net.ginteam.carmen.provider.ModelCallback;
 import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.provider.company.CompaniesProvider;
 import net.ginteam.carmen.provider.company.FavoritesProvider;
+import net.ginteam.carmen.provider.company.RatingProvider;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 import net.ginteam.carmen.view.fragment.company.AdditionalServicesFragment;
 import net.ginteam.carmen.view.fragment.company.CompanyListFragment;
@@ -139,6 +142,34 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
                         Log.e("DETAIL_PRESENTER", "Remove from favorite error: " + message);
                     }
                 });
+    }
+
+    @Override
+    public void createRating(float rating, int companyId) {
+        mView.showLoading(true);
+        UserModel currentUser = AuthProvider.getInstance().getCurrentCachedUser();
+        if (currentUser == null) {
+            mView.showError(mView.getContext().getResources().getString(R.string.access_denied_message));
+            return;
+        }
+        CreateRating createRating = new CreateRating();
+        createRating.setUserId(currentUser.getId());
+        createRating.setCompanyId(companyId);
+        createRating.setRating(rating);
+        RatingProvider.getInstance().sendRating(createRating, new ModelCallback<Rating>() {
+            @Override
+            public void onSuccess(Rating resultModel) {
+                mView.showLoading(false);
+                mView.showVoteObjectScreen(resultModel);
+            }
+
+            @Override
+            public void onFailure(String message) {
+                mView.showLoading(false);
+                mView.showError(message);
+            }
+        });
+
     }
 
     @Override

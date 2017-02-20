@@ -33,7 +33,9 @@ import net.ginteam.carmen.contract.MapContract;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
 import net.ginteam.carmen.presenter.MapPresenter;
+import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
+import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
 import net.ginteam.carmen.view.activity.filter.FilterActivity;
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListHorizontalItemDecorator;
 import net.ginteam.carmen.view.adapter.company.map.CompanyItemViewHolder;
@@ -113,7 +115,10 @@ public class MapActivity extends ToolbarActivity implements MapContract.View, On
 
     @Override
     public void onCompanyItemClick(CompanyModel company) {
-        Toast.makeText(getContext(), company.getName(), Toast.LENGTH_SHORT).show();
+        Bundle arguments = new Bundle();
+        arguments.putInt(CompanyDetailActivity.COMPANY_ID_ARGUMENT, company.getId());
+        ActivityUtils.showActivity(CompanyDetailActivity.class, arguments, false);
+        finish();
     }
 
     @Override

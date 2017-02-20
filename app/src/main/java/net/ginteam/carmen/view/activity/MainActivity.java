@@ -10,7 +10,6 @@ import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
-import net.ginteam.carmen.provider.auth.AuthProvider;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
 import net.ginteam.carmen.view.activity.filter.FilterActivity;
@@ -114,7 +113,7 @@ public class MainActivity extends NavigationViewActivity implements
         Toast.makeText(this, company.getName(), Toast.LENGTH_SHORT).show();
 
         Bundle arguments = new Bundle();
-        arguments.putInt(CompanyDetailActivity.COMPANY_ARGUMENT, company.getId());
+        arguments.putInt(CompanyDetailActivity.COMPANY_ID_ARGUMENT, company.getId());
         ActivityUtils.showActivity(CompanyDetailActivity.class, arguments, false);
     }
 

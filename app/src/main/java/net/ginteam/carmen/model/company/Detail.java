@@ -23,6 +23,9 @@ public class Detail implements Serializable {
 //    @SerializedName("work_time")
 //    private List<String> mWorkTime;
 
+    @SerializedName("closing_time")
+    private String mClossingTime;
+
     @SerializedName("desc")
     private String mDesc;
 
@@ -44,5 +47,9 @@ public class Detail implements Serializable {
 
     public String getDesc() {
         return mDesc;
+    }
+
+    public String getClossingTime() {
+        return mClossingTime;
     }
 }

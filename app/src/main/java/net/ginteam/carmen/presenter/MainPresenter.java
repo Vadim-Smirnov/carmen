@@ -43,7 +43,7 @@ public class MainPresenter implements MainContract.Presenter {
         );
 
         mView.showFragment(R.id.categories_fragment_container, mCategoriesFragment);
-//        mView.showFragment(R.id.popular_companies_fragment_container, mPopularCompaniesFragment);
+        mView.showFragment(R.id.popular_companies_fragment_container, mPopularCompaniesFragment);
     }
 
     @Override

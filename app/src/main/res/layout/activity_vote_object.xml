@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -17,12 +15,12 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:context="net.ginteam.carmen.view.activity.VoteObjectActivity"
             tools:ignore="MissingPrefix">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/text_view_rating_title"
                 fontPath="@string/open_sans_semibold_font"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -39,7 +37,7 @@
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/text_view_rating"
                 fontPath="@string/open_sans_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,21 +51,20 @@
                 android:textSize="15sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView5"/>
+                app:layout_constraintTop_toBottomOf="@+id/text_view_rating_title"/>
 
             <net.ginteam.carmen.view.custom.rating.CarmenRatingView
                 android:id="@+id/rating_view_company"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-
                 android:padding="2dp"
                 app:crv_emptyDrawable="@drawable/ic_large_empty_new_rating"
                 app:crv_fillDrawable="@drawable/ic_large_fill_new_rating"
                 app:crv_indicatorSpacing="10dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"/>
+                app:layout_constraintTop_toBottomOf="@+id/text_view_rating"/>
 
             <View
                 android:id="@+id/view3"
@@ -80,7 +77,8 @@
                 app:layout_constraintTop_toBottomOf="@+id/rating_view_company"/>
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/text_view_price_rating_title"
+                fontPath="@string/open_sans_semibold_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -92,18 +90,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/view3"/>
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/text_view_price_rating"
                 fontPath="@string/open_sans_font"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="1dp"
-                android:text="Дорого"
                 android:textColor="@color/colorTextHeader"
                 android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11"/>
+                app:layout_constraintTop_toBottomOf="@+id/text_view_price_rating_title"/>
 
             <net.ginteam.carmen.view.custom.rating.CarmenRatingView
                 android:id="@+id/rating_view_company_price"
@@ -126,7 +123,7 @@
                 android:background="@color/colorSeparate"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView12"/>
+                app:layout_constraintTop_toBottomOf="@+id/text_view_price_rating"/>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
@@ -155,7 +152,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView"/>
 
             <net.ginteam.carmen.view.custom.FilterEditText
-                android:id="@+id/CustomEditText"
+                android:id="@+id/filter_edit_text_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
@@ -167,7 +164,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView13"/>
 
             <net.ginteam.carmen.view.custom.FilterEditText
-                android:id="@+id/CustomEditText2"
+                android:id="@+id/filter_edit_text_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
@@ -176,10 +173,10 @@
                 app:filterHint="ЗАГОЛОВОК"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CustomEditText"/>
+                app:layout_constraintTop_toBottomOf="@+id/filter_edit_text_name"/>
 
             <net.ginteam.carmen.view.custom.FilterEditText
-                android:id="@+id/CustomEditText3"
+                android:id="@+id/filter_edit_text_review"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
@@ -188,9 +185,10 @@
                 app:filterHint="ОТЗЫВ"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CustomEditText2"/>
+                app:layout_constraintTop_toBottomOf="@+id/filter_edit_text_title"/>
 
             <Button
+                android:id="@+id/button_send"
                 fontPath="@string/open_sans_font"
                 android:layout_width="0dp"
                 android:layout_height="60dp"
@@ -202,7 +200,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/CustomEditText3"/>
+                app:layout_constraintTop_toBottomOf="@+id/filter_edit_text_review"/>
 
         </android.support.constraint.ConstraintLayout>
 
