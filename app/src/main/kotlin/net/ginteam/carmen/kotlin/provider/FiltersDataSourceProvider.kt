@@ -15,18 +15,18 @@ import rx.Observable
 
 interface FiltersDataSourceProvider {
 
-    fun fetchFiltersForCategory(categoryId: Int): Observable <Array<FilterModel>>
+    fun fetchFiltersForCategory(categoryId: Int): Observable <List<FilterModel>>
     fun fetchCompaniesCountWithParameters(categoryId: Int, filter: String = "", limit: Int = 1)
             : Observable <ResponseModel <List <CompanyModel>>>
 
 }
 
-class OnlineFiltersDataSourceProvider : FiltersDataSourceProvider {
+class OfflineFiltersDataSourceProvider : FiltersDataSourceProvider {
     private val filtersService: FilterService = FilterService.create()
 
-    override fun fetchFiltersForCategory(categoryId: Int): Observable <Array<FilterModel>> {
+    override fun fetchFiltersForCategory(categoryId: Int): Observable <List<FilterModel>> {
         val resources = CarmenApplication.getContext().resources
-        val filters: Array <FilterModel> = resources.getFilters()
+        val filters: List <FilterModel> = resources.getFilters()
         return Observable.just(filters)
     }
 

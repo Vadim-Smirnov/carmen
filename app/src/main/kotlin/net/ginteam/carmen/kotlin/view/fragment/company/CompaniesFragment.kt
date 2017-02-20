@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
+import net.ginteam.carmen.kotlin.interfaces.Filterable
+import net.ginteam.carmen.kotlin.interfaces.Sortable
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
@@ -23,21 +24,22 @@ import net.ginteam.carmen.view.adapter.company.PaginationScrollListener
 
 class CompaniesFragment
     : BaseCompaniesFragment<PaginatableCompaniesAdapter, CompaniesContract.View, CompaniesContract.Presenter>(),
-        CompaniesContract.View {
+        CompaniesContract.View, Filterable, Sortable {
 
     override var mPresenter: CompaniesContract.Presenter = CompaniesPresenter()
 
     private val mAdapterNotifyHandler: Handler = Handler()
     override lateinit var mCompaniesAdapter: PaginatableCompaniesAdapter
 
-    private lateinit var mSelectedCategory: CategoryModel
-    private var mSearchFilter: String = ""
-    private var mSortField: String = ""
-    private var mSortType: String = ""
+    private var mFilterQuery: String = ""
 
+    // set default sort options
+    private var mSortField: String = "rating"
+    private var mSortType: String = "desc"
+
+    private lateinit var mSelectedCategory: CategoryModel
     private var isLoadingNow: Boolean = false
     private var mCurrentPaginationPage: Int = 1
-
     private var mMenuItemSelectedListener: OnBottomMenuItemSelectedListener? = null
 
     companion object {
@@ -63,11 +65,27 @@ class CompaniesFragment
         mSelectedCategory = arguments.getSerializable(CATEGORY_ARGUMENT) as CategoryModel
     }
 
+    // Filterable & Sortable implementation
+
+    override fun setFilterQuery(filter: String) {
+        mFilterQuery = filter
+        mCurrentPaginationPage = 1
+        fetchCompanies()
+    }
+
+    override fun setSortQuery(field: String, sort: String) {
+        mSortField = field
+        mSortType = sort
+        mCurrentPaginationPage = 1
+        fetchCompanies()
+    }
+
+    // ------------------------------------
+
     override fun getLayoutResId(): Int = R.layout.fragment_company_list
 
     override fun showCompanies(companies: MutableList<CompanyModel>, pagination: PaginationModel?) {
         if (pagination != null) {
-            Log.d("CompaniesFragment", "Pagination pages: ${pagination.totalPages}")
             mCompaniesAdapter = PaginatableCompaniesAdapter(companies, this, this)
             mRecyclerViewCompanies.adapter = mCompaniesAdapter
             mRecyclerViewCompanies.setOnScrollListener(initializePaginationScrollListener(pagination))
@@ -82,7 +100,7 @@ class CompaniesFragment
     }
 
     override fun fetchCompanies() {
-        mPresenter.fetchCompanies(mSelectedCategory.id, mSearchFilter, mSortField, mSortType, mCurrentPaginationPage)
+        mPresenter.fetchCompanies(mSelectedCategory.id, mFilterQuery, mSortField, mSortType, mCurrentPaginationPage)
     }
 
     override fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration
@@ -103,7 +121,7 @@ class CompaniesFragment
             mMenuItemSelectedListener?.onShowFiltersActivity(mSelectedCategory)
         }
         mFragmentView.findViewById(R.id.bottom_nav_item_sort).setOnClickListener {
-            mMenuItemSelectedListener?.onShowSortDialog()
+            mMenuItemSelectedListener?.onShowSortDialog(mSelectedCategory)
         }
 
         val floatButton = mFragmentView.findViewById(R.id.float_button_show_map)
@@ -121,7 +139,6 @@ class CompaniesFragment
                 mAdapterNotifyHandler.post {
                     mCompaniesAdapter.showLoading()
                 }
-
                 fetchCompanies()
             }
 
@@ -132,10 +149,10 @@ class CompaniesFragment
 
     interface OnBottomMenuItemSelectedListener {
 
-        fun onShowMap(category: CategoryModel)
         fun onShowCategoriesDialog()
+        fun onShowMap(category: CategoryModel)
         fun onShowFiltersActivity(category: CategoryModel)
-        fun onShowSortDialog()
+        fun onShowSortDialog(category: CategoryModel)
 
     }
 

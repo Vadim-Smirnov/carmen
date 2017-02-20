@@ -22,6 +22,7 @@ object MainActivityContract {
 
         fun prepareNavigationViewForUserStatus()
         fun isUserSignedIn(): Boolean
+        fun getUserCityName(): String
         fun localUserLogout()
 
     }

@@ -2,7 +2,6 @@ package net.ginteam.carmen.kotlin.api.response
 
 import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
-import retrofit2.adapter.rxjava.HttpException
 import rx.Subscriber
 import java.net.SocketException
 import java.net.SocketTimeoutException

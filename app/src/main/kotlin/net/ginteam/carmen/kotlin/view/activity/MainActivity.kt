@@ -12,6 +12,7 @@ import android.widget.TextView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.MainActivityContract
 import net.ginteam.carmen.kotlin.disableScrollbars
+import net.ginteam.carmen.kotlin.interfaces.Sortable
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.UserModel
@@ -24,12 +25,13 @@ import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.CompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.RecentlyWatchedCompaniesFragment
+import net.ginteam.carmen.kotlin.view.fragment.sort.SortOptionsDialogFragment
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle
 
 class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContract.Presenter>(),
         MainActivityContract.View, NavigationView.OnNavigationItemSelectedListener,
         CategoriesFragment.OnCategorySelectedListener, BaseCompaniesFragment.OnCompanySelectedListener,
-        CompaniesFragment.OnBottomMenuItemSelectedListener {
+        CompaniesFragment.OnBottomMenuItemSelectedListener, SortOptionsDialogFragment.OnSortOptionSelectedListener {
 
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
@@ -156,6 +158,9 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     override fun onCategorySelected(category: CategoryModel, fromDialogSelection: Boolean) {
         mCurrentFragment = CompaniesFragment.newInstance(category)
         prepareFragment(R.id.main_fragment_container, mCurrentFragment!!)
+
+        setToolbarTitle(category.name)
+        setToolbarSubtitle(mPresenter.getUserCityName())
     }
 
     override fun onCompanySelected(company: CompanyModel) {
@@ -175,8 +180,13 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     }
 
-    override fun onShowSortDialog() {
+    override fun onShowSortDialog(category: CategoryModel) {
+        val sortDialog = SortOptionsDialogFragment.newInstance(category)
+        sortDialog.show(supportFragmentManager, "SortOptionsDialogFragment")
+    }
 
+    override fun onSortOptionSelected(field: String, type: String) {
+        (mCurrentFragment as? Sortable)?.setSortQuery(field, type)
     }
 
     /* -------------------------------------- */

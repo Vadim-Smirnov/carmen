@@ -3,7 +3,6 @@ package net.ginteam.carmen.kotlin
 import android.content.res.Resources
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
-import android.support.design.internal.NavigationMenuView
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
@@ -13,8 +12,7 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.FilterModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
-import net.ginteam.carmen.kotlin.view.activity.BaseActivity
-import net.ginteam.carmen.kotlin.view.fragment.BaseFragment
+import net.ginteam.carmen.kotlin.model.SortModel
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -44,10 +42,16 @@ fun <T> Observable <ResponseModel <T>>.asyncWithCache(cache: Boolean = true): Ob
     return newObservable
 }
 
-fun Resources.getFilters(): Array <FilterModel> {
+fun Resources.getFilters(): List <FilterModel> {
     val json = CarmenApplication.getContext().getString(R.string.filters_example)
-    val filterModels = Gson().fromJson(json, Array<FilterModel>::class.java)
-    return filterModels
+    val filters = Gson().fromJson(json, Array<FilterModel>::class.java)
+    return filters.toList()
+}
+
+fun Resources.getSortOptions(): List <SortModel> {
+    val json = CarmenApplication.getContext().getString(R.string.sorting_example)
+    val sortOptions = Gson().fromJson(json, Array<SortModel>::class.java)
+    return sortOptions.toList()
 }
 
 fun NavigationView.disableScrollbars() {

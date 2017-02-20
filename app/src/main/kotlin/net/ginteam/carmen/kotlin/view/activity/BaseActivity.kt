@@ -6,7 +6,6 @@ import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.widget.TextView
-import android.widget.Toast
 import cn.pedant.SweetAlert.SweetAlertDialog
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.BaseContract
@@ -100,6 +99,7 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
 
     protected fun setToolbarTitle(title: String) {
         (mToolbar?.findViewById(R.id.text_view_toolbar_title) as TextView).text = title
+        setToolbarSubtitle("")
     }
 
     protected fun setToolbarSubtitle(subtitle: String) {

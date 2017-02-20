@@ -6,7 +6,6 @@ import android.support.v4.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import cn.pedant.SweetAlert.SweetAlertDialog
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.BaseContract
@@ -21,6 +20,11 @@ abstract class BaseFragment<in V : BaseContract.View, T : BaseContract.Presenter
 
     protected lateinit var mFragmentView: View
     protected var mProgressDialog: SweetAlertDialog? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogStyle)
+    }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mFragmentView = inflater!!.inflate(getLayoutResId(), container, false)

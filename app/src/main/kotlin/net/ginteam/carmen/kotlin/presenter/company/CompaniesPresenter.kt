@@ -2,10 +2,12 @@ package net.ginteam.carmen.kotlin.presenter.company
 
 import net.ginteam.carmen.kotlin.api.response.MetaSubscriber
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
+import net.ginteam.carmen.kotlin.contract.SortContract
 import net.ginteam.carmen.kotlin.manager.PreferencesManager
 import net.ginteam.carmen.kotlin.manager.SharedPreferencesManager
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
+import net.ginteam.carmen.kotlin.view.fragment.sort.SortOptionDialogFragmentViewState
 
 /**
  * Created by eugene_shcherbinock on 2/16/17.
@@ -39,6 +41,14 @@ class CompaniesPresenter : BaseCompaniesPresenter <CompaniesContract.View>(), Co
                         mView?.showError(message, isNetworkError)
                     }
                 })
+    }
+
+    override fun attachView(view: CompaniesContract.View) {
+        super.attachView(view)
+
+        // reset view states when fragment reattached
+        val sortViewState: SortContract.SortViewState = SortOptionDialogFragmentViewState
+        sortViewState.resetViewState()
     }
 
 }

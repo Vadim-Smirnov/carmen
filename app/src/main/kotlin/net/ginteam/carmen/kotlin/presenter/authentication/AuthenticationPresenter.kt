@@ -1,7 +1,6 @@
 package net.ginteam.carmen.kotlin.presenter.authentication
 
 import android.location.Location
-import android.util.Log
 import com.google.android.gms.maps.model.LatLng
 import net.ginteam.carmen.kotlin.api.response.ModelSubscriber
 import net.ginteam.carmen.kotlin.contract.AuthContract

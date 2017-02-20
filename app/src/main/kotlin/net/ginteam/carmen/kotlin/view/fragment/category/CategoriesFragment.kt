@@ -2,7 +2,6 @@ package net.ginteam.carmen.kotlin.view.fragment.category
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
@@ -43,11 +42,6 @@ open class CategoriesFragment : BaseFragment <CategoriesContract.View, Categorie
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         mCategorySelectedListener = context as OnCategorySelectedListener?
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogStyle)
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {

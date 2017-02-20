@@ -30,6 +30,8 @@ class MainActivityPresenter : BasePresenter <MainActivityContract.View>(), MainA
         return mAuthProvider.currentCachedUser != null
     }
 
+    override fun getUserCityName(): String = mPreferences.userCityModel!!.name
+
     override fun localUserLogout() {
         mAuthProvider.currentCachedUser = null
         mPreferences.userAccessToken = ""
