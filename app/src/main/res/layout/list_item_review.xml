@@ -12,11 +12,10 @@
         android:id="@+id/image_button_expand"
         android:layout_width="@dimen/image_button_expand_width"
         android:layout_height="@dimen/image_button_expand_height"
-        android:layout_marginEnd="@dimen/image_button_expand_margin_end"
         android:background="@android:color/transparent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_right" />
+        app:srcCompat="@drawable/ic_arrow_right"/>
 
     <View
         android:id="@+id/view4"

@@ -189,6 +189,27 @@
     <string name="button_open_navigator_text">Открыть в навигаторе</string>
     <string name="additional_services_title_text">Дополнительные услуги</string>
     <string name="reviews_title_text">Отзывы</string>
+    <string name="vote_object_text">Нажмите, чтобы оставить оценку</string>
+    <string name="vote_object_title_text">Оцените объект</string>
+
+    <string-array name="rating_price_array">
+        <item>Дешево</item>
+        <item>Средняя цена</item>
+        <item>Дорого</item>
+        <item>Очень дорого</item>
+    </string-array>
+
+    <string-array name="rating_array">
+        <item>Ужасно</item>
+        <item>Плохо</item>
+        <item>Неплохо</item>
+        <item>Хорошо</item>
+        <item>Отлично</item>
+    </string-array>
+
+    <!-- Vote Object Activity Menu -->
+    <string name="send_string">Отправить</string>
+
 
     <!-- Map Activity -->
     <string name="search_button_string">Повторить поиск</string>

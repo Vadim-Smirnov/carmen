@@ -46,6 +46,7 @@ public class FilterEditText extends LinearLayout {
     private String mFilterHint;
     private int mImageFilledText;
     private int mImageClearText;
+    private int mMaxLine;
 
     private String mFilterType;
     private String mFilterQuery;
@@ -197,6 +198,7 @@ public class FilterEditText extends LinearLayout {
             mFilterHint = attributes.getString(R.styleable.FilterEditText_filterHint);
             mImageFilledText = attributes.getResourceId(R.styleable.FilterEditText_imageFilledText, IMAGE_EMPTY_TEXT);
             mImageClearText = attributes.getResourceId(R.styleable.FilterEditText_imageClearText, IMAGE_CLEAR_TEXT);
+            mMaxLine = attributes.getResourceId(R.styleable.FilterEditText_maxLine, 0);
         } finally {
             attributes.recycle();
         }
@@ -218,6 +220,10 @@ public class FilterEditText extends LinearLayout {
         mImageViewClearEditText.setImageResource(mImageClearText);
         mTextInputLayoutFilter.setHint(mFilterHint);
         mEditTextFilter.setText(mFilterText);
+
+        if (mMaxLine != 0) {
+            mEditTextFilter.setMaxLines(mMaxLine);
+        }
 
         mImageViewClearEditText.setOnClickListener(mButtonClearClickListener);
         mEditTextFilter.addTextChangedListener(mEditTextChangeListener);

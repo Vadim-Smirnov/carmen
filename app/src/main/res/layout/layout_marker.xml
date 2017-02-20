@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/text_view_marker_price"
-    fontPath="@string/open_sans_semibold_font"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/ic_marker"
-    android:paddingTop="5dp"
-    android:gravity="center_horizontal|top"
-    android:textColor="#000"
-    android:textSize="15sp"
-    tools:text="0"
-    tools:ignore="MissingPrefix"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:background="@drawable/ic_marker">
+
+    <net.ginteam.carmen.view.custom.rating.CarmenRatingView
+        android:id="@+id/rating_view_company_price"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:isIndicator="true"
+        android:numStars="4"
+        android:rating="1"
+        android:layout_marginBottom="3dp"
+        android:layout_gravity="center"
+        app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating"
+        app:crv_fillDrawable="@drawable/ic_medium_price_fill_rating"
+        app:crv_indicatorSpacing="2.5dp"/>
+
+</LinearLayout>

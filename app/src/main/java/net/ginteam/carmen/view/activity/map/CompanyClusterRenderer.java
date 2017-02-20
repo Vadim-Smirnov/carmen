@@ -58,8 +58,6 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<MapCompanyMod
         }
 
         mIconGenerator.setContentView(markerView);
-        textViewPrice = (TextView) markerView.findViewById(R.id.text_view_marker_price);
-        textViewPrice.setText(String.valueOf(item.getPrice()));
 
         Bitmap bitmap = mIconGenerator.makeIcon();
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bitmap));

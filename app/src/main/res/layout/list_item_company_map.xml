@@ -24,6 +24,7 @@
             android:id="@+id/image_view_company_photo"
             android:layout_width="0dp"
             android:layout_height="150dp"
+            android:scaleType="fitXY"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_selection_indicator"
@@ -69,22 +70,8 @@
             app:crv_indicatorSpacing="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"/>
-
-        <net.ginteam.carmen.view.custom.rating.CarmenRatingView
-            android:id="@+id/rating_view_company_price"
-            android:layout_width="wrap_content"
-            android:layout_height="10dp"
-            android:layout_marginEnd="@dimen/map_company_item_padding"
-            android:isIndicator="true"
-            android:numStars="4"
-            android:rating="2"
-            app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating"
-            app:crv_fillDrawable="@drawable/ic_medium_price_fill_rating"
-            app:crv_indicatorSpacing="5dp"
-            app:layout_constraintBottom_toBottomOf="@+id/rating_view_company"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/rating_view_company"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_view_company_name"/>
 
     </android.support.constraint.ConstraintLayout>
 
