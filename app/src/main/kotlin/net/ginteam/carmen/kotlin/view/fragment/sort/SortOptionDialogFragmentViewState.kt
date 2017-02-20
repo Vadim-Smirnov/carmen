@@ -7,7 +7,7 @@ import net.ginteam.carmen.kotlin.contract.SortContract
 /**
  * Created by eugene_shcherbinock on 2/20/17.
  */
-object SortOptionDialogFragmentViewState : SortContract.SortViewState {
+object SortOptionDialogFragmentViewState : SortContract.ViewState {
 
     private const val NAME = "sort_view_state"
     private const val CATEGORY_ID = "category_id"

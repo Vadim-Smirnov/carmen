@@ -84,6 +84,14 @@
         <activity
             android:name=".kotlin.view.activity.MainActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlin.view.activity.filter.FiltersActivity"
+            android:parentActivityName=".kotlin.view.activity.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".kotlin.view.activity.MainActivity" />
+        </activity>
 
     </application>
 

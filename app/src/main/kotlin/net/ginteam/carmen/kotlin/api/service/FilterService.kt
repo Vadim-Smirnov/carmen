@@ -18,7 +18,8 @@ interface FilterService {
     fun fetchCompaniesCountWithParameters(
             @Path(ApiSettings.Catalog.Params.ID) categoryId: Int,
             @Query(ApiSettings.Catalog.Params.SEARCH) filter: String = "",
-            @Query(ApiSettings.Catalog.Params.LIMIT) limit: Int = 0
+            @Query(ApiSettings.Catalog.Params.LIMIT) limit: Int = 1,
+            @Query(ApiSettings.Catalog.Params.SEARCH_FIELD_TYPE) searchField: String = "name:ilike"
     ): Observable <ResponseModel <List <CompanyModel>>>
 
     companion object {

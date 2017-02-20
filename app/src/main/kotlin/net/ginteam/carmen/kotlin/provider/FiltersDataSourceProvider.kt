@@ -32,5 +32,5 @@ class OfflineFiltersDataSourceProvider : FiltersDataSourceProvider {
 
     override fun fetchCompaniesCountWithParameters(categoryId: Int, filter: String, limit: Int)
             : Observable<ResponseModel<List<CompanyModel>>>
-            = filtersService.fetchCompaniesCountWithParameters(categoryId, filter, limit).asyncWithCache()
+            = filtersService.fetchCompaniesCountWithParameters(categoryId, filter).asyncWithCache()
 }

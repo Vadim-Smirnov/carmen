@@ -32,18 +32,20 @@ class SortPresenter : BasePresenter <SortContract.View>(), SortContract.Presente
 
     override fun saveCurrentViewState() {
         mView?.let {
-            val currentViewState: SortContract.SortViewState = it.getCurrentViewState()
-            val viewStateSaver: SortContract.SortViewState = SortOptionDialogFragmentViewState
+            val currentViewState: SortContract.ViewState = it.getCurrentViewState()
+            val viewStateSaver: SortContract.ViewState = SortOptionDialogFragmentViewState
 
-            viewStateSaver.categoryId = currentViewState.categoryId
-            viewStateSaver.checkedOptionIndex = currentViewState.checkedOptionIndex
-            viewStateSaver.sortFieldName = currentViewState.sortFieldName
-            viewStateSaver.sortType = currentViewState.sortType
+            with(currentViewState) {
+                viewStateSaver.categoryId = categoryId
+                viewStateSaver.checkedOptionIndex = checkedOptionIndex
+                viewStateSaver.sortFieldName = sortFieldName
+                viewStateSaver.sortType = sortType
+            }
         }
     }
 
-    override fun tryToRestoreViewState(category: CategoryModel): SortContract.SortViewState? {
-        val sortViewState: SortContract.SortViewState = SortOptionDialogFragmentViewState
+    override fun tryToRestoreViewState(category: CategoryModel): SortContract.ViewState? {
+        val sortViewState: SortContract.ViewState = SortOptionDialogFragmentViewState
         if (category.id == sortViewState.categoryId) {
             return sortViewState
         }

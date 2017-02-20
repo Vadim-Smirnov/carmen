@@ -12,6 +12,7 @@ import android.widget.TextView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.MainActivityContract
 import net.ginteam.carmen.kotlin.disableScrollbars
+import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.interfaces.Sortable
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
@@ -19,6 +20,7 @@ import net.ginteam.carmen.kotlin.model.UserModel
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
+import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.fragment.MainFragment
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
@@ -99,9 +101,19 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == SignInActivity.SIGN_IN_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // invalidate navigation view
-            mPresenter.prepareNavigationViewForUserStatus()
+
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                SignInActivity.SIGN_IN_REQUEST_CODE -> {
+                    // invalidate navigation view
+                    mPresenter.prepareNavigationViewForUserStatus()
+                }
+                FiltersActivity.FILTER_CONFIRM_REQUEST_CODE -> {
+                    (mCurrentFragment as? Filterable)?.setFilterQuery(
+                            data!!.getStringExtra(FiltersActivity.RESULT_FILTER_ARGUMENT)
+                    )
+                }
+            }
         }
     }
 
@@ -177,7 +189,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     }
 
     override fun onShowFiltersActivity(category: CategoryModel) {
-
+        startFiltersActivityForResult(category)
     }
 
     override fun onShowSortDialog(category: CategoryModel) {
@@ -235,6 +247,12 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     private fun startSignInActivityForResult() {
         val intent = Intent(getContext(), SignInActivity::class.java)
         startActivityForResult(intent, SignInActivity.SIGN_IN_REQUEST_CODE)
+    }
+
+    private fun startFiltersActivityForResult(category: CategoryModel) {
+        val intent = Intent(getContext(), FiltersActivity::class.java)
+        intent.putExtra(FiltersActivity.CATEGORY_ARGUMENT, category)
+        startActivityForResult(intent, FiltersActivity.FILTER_CONFIRM_REQUEST_CODE)
     }
 
     /* -------------------------------------- */

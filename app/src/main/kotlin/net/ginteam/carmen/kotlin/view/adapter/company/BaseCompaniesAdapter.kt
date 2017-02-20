@@ -98,7 +98,7 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
                             Picasso
                                     .with(CarmenApplication.getContext())
                                     .load(imageUrl)
-                                    .placeholder(R.drawable.placeholder_animation)
+                                    .placeholder(R.drawable.ic_default_photo)
                                     .into(mImageViewPhoto)
                         }
                     }

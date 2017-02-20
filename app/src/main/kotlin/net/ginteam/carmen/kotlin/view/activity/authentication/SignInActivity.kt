@@ -2,7 +2,6 @@ package net.ginteam.carmen.kotlin.view.activity.authentication
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.SignInContract
 import net.ginteam.carmen.kotlin.presenter.authentication.SignInPresenter
@@ -13,10 +12,6 @@ class SignInActivity : BaseSignActivity <SignInContract.View, SignInContract.Pre
 
     companion object {
         const val SIGN_IN_REQUEST_CODE = 100
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun getLayoutResId(): Int = R.layout.activity_sign_in

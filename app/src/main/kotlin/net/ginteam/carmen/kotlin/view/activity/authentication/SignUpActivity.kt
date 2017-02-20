@@ -1,6 +1,5 @@
 package net.ginteam.carmen.kotlin.view.activity.authentication
 
-import android.os.Bundle
 import android.widget.EditText
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword
 import com.mobsandgeeks.saripaar.annotation.Order
@@ -20,10 +19,6 @@ class SignUpActivity : BaseSignActivity <SignUpContract.View, SignUpContract.Pre
     @Order(4)
     @ConfirmPassword(messageResId = R.string.wrong_password_confirmation_string)
     private lateinit var mEditTextConfirmPassword: EditText
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun getLayoutResId(): Int = R.layout.activity_sign_up
 

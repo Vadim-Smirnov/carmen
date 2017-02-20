@@ -66,8 +66,8 @@ class SortOptionsDialogFragment : BaseFragment <SortContract.View, SortContract.
         mPresenter.fetchSortOptions(mSelectedCategory)
     }
 
-    override fun getCurrentViewState(): SortContract.SortViewState {
-        return object : SortContract.SortViewState {
+    override fun getCurrentViewState(): SortContract.ViewState {
+        return object : SortContract.ViewState {
             override var categoryId: Int = mSelectedCategory.id
             override var checkedOptionIndex: Int = mCheckedOptionIndex
             override var sortFieldName: String = mSortFieldName
@@ -122,7 +122,7 @@ class SortOptionsDialogFragment : BaseFragment <SortContract.View, SortContract.
     }
 
     private fun updateSortOptionsDependencies() {
-        val restoredViewState: SortContract.SortViewState? = mPresenter.tryToRestoreViewState(mSelectedCategory)
+        val restoredViewState: SortContract.ViewState? = mPresenter.tryToRestoreViewState(mSelectedCategory)
         if (restoredViewState == null) {
             mRadioGroupItems[0].isChecked = true
             return

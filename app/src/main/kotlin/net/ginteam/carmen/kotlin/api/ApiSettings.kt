@@ -14,6 +14,7 @@ object ApiSettings {
             const val SEARCH = "search"
             const val ORDER_BY = "orderBy"
             const val SORTED_BY = "sortedBy"
+            const val SEARCH_FIELD_TYPE = "searchFields"
             const val PAGE = "page"
             const val LIMIT = "limit"
             const val CITY_ID = "cityId"

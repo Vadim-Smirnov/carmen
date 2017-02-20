@@ -2,11 +2,13 @@ package net.ginteam.carmen.kotlin.presenter.company
 
 import net.ginteam.carmen.kotlin.api.response.MetaSubscriber
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
+import net.ginteam.carmen.kotlin.contract.FiltersContract
 import net.ginteam.carmen.kotlin.contract.SortContract
 import net.ginteam.carmen.kotlin.manager.PreferencesManager
 import net.ginteam.carmen.kotlin.manager.SharedPreferencesManager
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
+import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivityViewState
 import net.ginteam.carmen.kotlin.view.fragment.sort.SortOptionDialogFragmentViewState
 
 /**
@@ -47,8 +49,11 @@ class CompaniesPresenter : BaseCompaniesPresenter <CompaniesContract.View>(), Co
         super.attachView(view)
 
         // reset view states when fragment reattached
-        val sortViewState: SortContract.SortViewState = SortOptionDialogFragmentViewState
+        val sortViewState: SortContract.ViewState = SortOptionDialogFragmentViewState
         sortViewState.resetViewState()
+
+        val filtersViewState: FiltersContract.ViewState = FiltersActivityViewState
+        filtersViewState.resetViewState()
     }
 
 }

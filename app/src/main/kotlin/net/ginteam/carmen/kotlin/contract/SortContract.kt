@@ -8,7 +8,7 @@ import net.ginteam.carmen.kotlin.model.SortModel
  */
 object SortContract {
 
-    interface SortViewState : ViewStateContract.ViewState {
+    interface ViewState : ViewStateContract.ViewState {
 
         var checkedOptionIndex: Int
         var sortFieldName: String
@@ -16,13 +16,13 @@ object SortContract {
 
     }
 
-    interface View : ViewStateContract.View <SortViewState> {
+    interface View : ViewStateContract.View <ViewState> {
 
         fun showSortOptions(options: List <SortModel>)
 
     }
 
-    interface Presenter : ViewStateContract.Presenter <SortViewState, View> {
+    interface Presenter : ViewStateContract.Presenter <ViewState, View> {
 
         fun fetchSortOptions(category: CategoryModel)
 

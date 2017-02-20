@@ -19,7 +19,8 @@ interface CompanyService {
             @Query(ApiSettings.Catalog.Params.SEARCH) filter: String,
             @Query(ApiSettings.Catalog.Params.ORDER_BY) sortField: String,
             @Query(ApiSettings.Catalog.Params.SORTED_BY) sortType: String,
-            @Query(ApiSettings.Catalog.Params.PAGE) paginationPage: Int
+            @Query(ApiSettings.Catalog.Params.PAGE) paginationPage: Int,
+            @Query(ApiSettings.Catalog.Params.SEARCH_FIELD_TYPE) searchField: String = "name:ilike"
     ): Observable <ResponseModel <MutableList <CompanyModel>>>
 
     @GET(ApiSettings.Catalog.GET_COMPANIES)
