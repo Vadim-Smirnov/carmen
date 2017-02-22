@@ -16,6 +16,10 @@ interface CompaniesDataSourceProvider {
                        sortField: String = "", sortType: String = "", paginationPage: Int = 1
     ): Observable <ResponseModel <MutableList <CompanyModel>>>
 
+    fun fetchMapCompanies(categoryId: Int,
+                          bounds: String,
+                          filter: String): Observable <ResponseModel <MutableList <CompanyModel>>>
+
     fun fetchCompany(companyId: Int, relations: String = ""): Observable <ResponseModel <CompanyModel>>
     fun fetchPopularCompanies(cityId: Int): Observable <ResponseModel <List <CompanyModel>>>
 
@@ -36,6 +40,10 @@ class OnlineCompaniesDataSourceProvider : CompaniesDataSourceProvider {
     override fun fetchCompanies(categoryId: Int, filter: String, sortField: String,
                                 sortType: String, paginationPage: Int): Observable<ResponseModel<MutableList<CompanyModel>>>
             = companiesService.fetchCompanies(categoryId, filter, sortField, sortType, paginationPage).asyncWithCache()
+
+    override fun fetchMapCompanies(categoryId: Int, bounds: String, filter: String)
+            : Observable<ResponseModel<MutableList<CompanyModel>>>
+            = companiesService.fetchCompaniesForMap(categoryId, bounds, filter).asyncWithCache()
 
     override fun fetchCompany(companyId: Int, relations: String): Observable<ResponseModel<CompanyModel>>
             = companiesService.fetchCompany(companyId, relations).asyncWithCache()

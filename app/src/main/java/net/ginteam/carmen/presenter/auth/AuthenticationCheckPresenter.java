@@ -8,7 +8,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 
 import net.ginteam.carmen.contract.auth.AuthenticationCheckContract;
-import net.ginteam.carmen.manager.ApiGoogleManager;
+import net.ginteam.carmen.manager.GoogleLocationManager;
 import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.auth.UserModel;
 import net.ginteam.carmen.model.city.CityModel;
@@ -23,12 +23,12 @@ import net.ginteam.carmen.provider.city.CitiesProvider;
 public class AuthenticationCheckPresenter implements AuthenticationCheckContract.Presenter {
 
     private AuthenticationCheckContract.View mView;
-    private ApiGoogleManager mApiGoogleManager;
+    private GoogleLocationManager mGoogleLocationManager;
 
     @Override
     public void checkAuthentication() {
-        mApiGoogleManager
-                .getLastLocation(new ApiGoogleManager.OnReceiveLocationListener() {
+        mGoogleLocationManager
+                .getLastLocation(new GoogleLocationManager.OnReceiveLocationListener() {
                     @Override
                     public void onLocationReceived(Location location) {
                         PreferencesManager
@@ -69,18 +69,18 @@ public class AuthenticationCheckPresenter implements AuthenticationCheckContract
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mApiGoogleManager.onActivityResult(requestCode, resultCode);
+        mGoogleLocationManager.onActivityResult(requestCode, resultCode);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        mApiGoogleManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mGoogleLocationManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
     public void attachView(AuthenticationCheckContract.View view) {
         mView = view;
-        mApiGoogleManager = new ApiGoogleManager(mView.getActivity());
+        mGoogleLocationManager = new GoogleLocationManager(mView.getActivity());
     }
 
     @Override

@@ -6,6 +6,11 @@ import android.support.annotation.LayoutRes
 import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.gson.Gson
 import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
@@ -61,11 +66,23 @@ fun NavigationView.disableScrollbars() {
 
 @DrawableRes
 fun CategoryModel.imageResourceId(): Int {
-    when(id) {
+    when (id) {
         1 -> return R.drawable.ic_sto
         10 -> return R.drawable.ic_carwash
         18 -> return R.drawable.ic_tire
         32 -> return R.drawable.ic_refuelling
+        27 -> return R.drawable.ic_parking
         else -> return R.drawable.ic_shop
     }
 }
+
+fun GoogleMap.animateCameraToLocation(location: LatLng) {
+    animateCamera(CameraUpdateFactory.newCameraPosition(
+            CameraPosition.Builder()
+                    .target(location)
+                    .zoom(12.toFloat())
+                    .build())
+    )
+}
+
+fun GoogleMap.getBounds(): LatLngBounds = projection.visibleRegion.latLngBounds

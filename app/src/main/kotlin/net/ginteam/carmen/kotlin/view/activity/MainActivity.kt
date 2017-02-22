@@ -21,6 +21,7 @@ import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
+import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.fragment.MainFragment
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
@@ -180,7 +181,9 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     }
 
     override fun onShowMap(category: CategoryModel) {
-
+        val intent = Intent(getContext(), MapActivity::class.java)
+        intent.putExtra(MapActivity.CATEGORY_ARGUMENT, category)
+        startActivity(intent)
     }
 
     override fun onShowCategoriesDialog() {

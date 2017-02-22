@@ -30,6 +30,9 @@ open class CompanyModel : ClusterItem, Serializable {
     val ratings: ResponseModel <List <String>>? = null
     val distance: Double = 0.0
 
+    // for map view
+    var isSelected: Boolean = false
+
     @SerializedName("picture") val pictures: List <String>? = null
     @SerializedName("city_id") val cityId: Int = 0
     @SerializedName("price_rel") val price: Int = 0
@@ -38,11 +41,5 @@ open class CompanyModel : ClusterItem, Serializable {
     @SerializedName("detail") val details: ResponseModel <List <DetailModel>>? = null
 
     override fun getPosition(): LatLng = LatLng(point!!.latitude, point.longitude)
-
-}
-
-open class MapCompanyModel : CompanyModel() {
-
-    var isSelected: Boolean = false
 
 }

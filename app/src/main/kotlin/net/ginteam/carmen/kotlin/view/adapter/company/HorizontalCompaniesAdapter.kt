@@ -9,12 +9,12 @@ import net.ginteam.carmen.utils.DisplayUtils
  * Created by eugene_shcherbinock on 2/16/17.
  */
 
-class HorizontalCompaniesAdapter(companies: MutableList <CompanyModel>,
+open class HorizontalCompaniesAdapter(companies: MutableList <CompanyModel>,
                                  onCompanyItemClick: (CompanyModel) -> Unit,
                                  onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : BaseCompaniesAdapter(companies, onCompanyItemClick, onFavoriteClick) {
 
-    private val VISIBLE_ITEMS_COUNT = 3
+    open protected var VISIBLE_ITEMS_COUNT: Int = 3
 
     override fun getItemLayoutResId(): Int = R.layout.list_item_company_horizontal
 

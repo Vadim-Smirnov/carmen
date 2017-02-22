@@ -37,9 +37,8 @@ class CompaniesFragment
 
     private lateinit var mSearchView: SearchView
 
-    private var mFilterQuery: String = ""
-
     // set default sort options
+    private var mFilterQuery: String = ""
     private var mSortField: String = "rating"
     private var mSortType: String = "desc"
 
@@ -52,7 +51,7 @@ class CompaniesFragment
         private const val SEARCH_DELAY_MILLISECONDS: Long = 500
         private const val SEARCH_BUTTON_ID: Int = android.support.v7.appcompat.R.id.search_button
 
-        const val CATEGORY_ARGUMENT = "category"
+        private const val CATEGORY_ARGUMENT = "category"
 
         fun newInstance(category: CategoryModel): CompaniesFragment {
             val bundle = Bundle()
@@ -67,11 +66,6 @@ class CompaniesFragment
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         mMenuItemSelectedListener = context as OnBottomMenuItemSelectedListener?
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        mSelectedCategory = arguments.getSerializable(CATEGORY_ARGUMENT) as CategoryModel
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -136,21 +130,28 @@ class CompaniesFragment
 
         setHasOptionsMenu(true)
 
-        val bottomMenuLayout = mFragmentView.findViewById(R.id.bottom_navigation_layout)
-        bottomMenuLayout.visibility = View.VISIBLE
-        mFragmentView.findViewById(R.id.bottom_nav_item_categories).setOnClickListener {
+        val bottomMenu = mFragmentView.findViewById(R.id.bottom_navigation_layout)
+        bottomMenu.visibility = View.VISIBLE
+        bottomMenu.findViewById(R.id.bottom_nav_item_categories).setOnClickListener {
             mMenuItemSelectedListener?.onShowCategoriesDialog()
         }
-        mFragmentView.findViewById(R.id.bottom_nav_item_filters).setOnClickListener {
+        bottomMenu.findViewById(R.id.bottom_nav_item_filters).setOnClickListener {
             mMenuItemSelectedListener?.onShowFiltersActivity(mSelectedCategory)
         }
-        mFragmentView.findViewById(R.id.bottom_nav_item_sort).setOnClickListener {
+        bottomMenu.findViewById(R.id.bottom_nav_item_sort).setOnClickListener {
             mMenuItemSelectedListener?.onShowSortDialog(mSelectedCategory)
         }
 
-        val floatButton = mFragmentView.findViewById(R.id.float_button_show_map)
-        floatButton.visibility = View.VISIBLE
-        floatButton.setOnClickListener { mMenuItemSelectedListener?.onShowMap(mSelectedCategory) }
+        val showMapButton = mFragmentView.findViewById(R.id.float_button_show_map)
+        showMapButton.visibility = View.VISIBLE
+        showMapButton.setOnClickListener {
+            mMenuItemSelectedListener?.onShowMap(mSelectedCategory)
+        }
+    }
+
+    override fun updateDependencies() {
+        super.updateDependencies()
+        mSelectedCategory = arguments.getSerializable(CATEGORY_ARGUMENT) as CategoryModel
     }
 
     private fun initializePaginationScrollListener(paginationDetails: PaginationModel): PaginationScrollListener {

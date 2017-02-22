@@ -47,7 +47,7 @@
         <activity
             android:name=".view.activity.company.CompanyDetailActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.map.MapActivity" />
+        <!--<activity android:name=".view.activity.map.MapActivity" />-->
         <activity
             android:name=".view.activity.filter.FilterActivity"
             android:parentActivityName=".view.activity.MainActivity"
@@ -92,7 +92,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".kotlin.view.activity.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".kotlin.view.activity.map.MapActivity"
+            android:parentActivityName=".kotlin.view.activity.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".kotlin.view.activity.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

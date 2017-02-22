@@ -3,7 +3,6 @@ package net.ginteam.carmen.kotlin.api.service
 import net.ginteam.carmen.kotlin.api.ApiSettings
 import net.ginteam.carmen.kotlin.manager.ApiManager
 import net.ginteam.carmen.kotlin.model.CompanyModel
-import net.ginteam.carmen.kotlin.model.MapCompanyModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import retrofit2.http.*
 import rx.Observable
@@ -27,8 +26,9 @@ interface CompanyService {
     fun fetchCompaniesForMap(
             @Path(ApiSettings.Catalog.Params.ID) categoryId: Int,
             @Query(ApiSettings.Catalog.Params.BOUNDS) bounds: String,
-            @Query(ApiSettings.Catalog.Params.SEARCH) filter: String
-    ): Observable <ResponseModel <List <MapCompanyModel>>>
+            @Query(ApiSettings.Catalog.Params.SEARCH) filter: String,
+            @Query(ApiSettings.Catalog.Params.SEARCH_FIELD_TYPE) searchField: String = "name:ilike"
+    ): Observable <ResponseModel <MutableList <CompanyModel>>>
 
     @GET(ApiSettings.Catalog.GET_COMPANY_BY_ID)
     fun fetchCompany(

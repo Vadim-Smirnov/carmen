@@ -2,32 +2,32 @@ package net.ginteam.carmen.kotlin.presenter
 
 import android.content.Intent
 import net.ginteam.carmen.kotlin.contract.LocationContract
-import net.ginteam.carmen.manager.ApiGoogleManager
+import net.ginteam.carmen.manager.GoogleLocationManager
 
 /**
  * Created by eugene_shcherbinock on 2/14/17.
  */
 
 abstract class BaseLocationPresenter <V : LocationContract.View> : BasePresenter <V>(),
-        LocationContract.Presenter <V>, ApiGoogleManager.OnReceiveLocationListener {
+        LocationContract.Presenter <V>, GoogleLocationManager.OnReceiveLocationListener {
 
-    protected lateinit var mGoogleApiManager: ApiGoogleManager
+    protected lateinit var mGoogleLocationManager: GoogleLocationManager
 
     override fun fetchUserLocation() {
-        mGoogleApiManager.getLastLocation(this)
+        mGoogleLocationManager.getLastLocation(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        mGoogleApiManager.onActivityResult(requestCode, resultCode)
+        mGoogleLocationManager.onActivityResult(requestCode, resultCode)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        mGoogleApiManager.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        mGoogleLocationManager.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
     override fun attachView(view: V) {
         super.attachView(view)
-        mGoogleApiManager = ApiGoogleManager(mView?.getActivity())
+        mGoogleLocationManager = GoogleLocationManager(mView?.getActivity())
     }
 
 }

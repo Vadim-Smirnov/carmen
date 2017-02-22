@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -27,7 +28,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
  * Created by vadik on 27.12.16.
  */
 
-public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, LocationListener {
+public class GoogleLocationManager implements GoogleApiClient.ConnectionCallbacks, LocationListener, GoogleApiClient.OnConnectionFailedListener {
 
     private static final int REQUEST_LOCATION = 199;
 
@@ -41,12 +42,13 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
     private LocationRequest mLocationRequest;
     private PendingResult<LocationSettingsResult> mLocationSettingsResult;
 
-    public ApiGoogleManager(AppCompatActivity activity) {
+    public GoogleLocationManager(AppCompatActivity activity) {
         mActivity = activity;
 
         mGoogleApiClient = new GoogleApiClient.Builder(activity)
                 .addApi(LocationServices.API)
                 .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
                 .build();
     }
 
@@ -88,9 +90,14 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
     }
 
     @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        mLocationListener.onLocationReceiveFailure();
+    }
+
+    @Override
     public void onLocationChanged(Location location) {
         mLastLocation = location;
-        Log.d("ApiGoogleManager", "Location changed: " + location);
+        Log.d("GoogleLocationManager", "Location changed: " + location);
         LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
         mLocationListener.onLocationReceived(mLastLocation);
     }
@@ -109,12 +116,12 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
             for (int currentResult : grantResults) {
                 permissionsGranted = (currentResult == PackageManager.PERMISSION_GRANTED);
                 if (!permissionsGranted) {
-                    Log.d("ApiGoogleManager", "onRequestPermissionsResult - granted");
+                    Log.d("GoogleLocationManager", "onRequestPermissionsResult - granted");
                     mLocationListener.onLocationReceiveFailure();
                     return;
                 }
             }
-            Log.d("ApiGoogleManager", "onRequestPermissionsResult startLocationUpdate");
+            Log.d("GoogleLocationManager", "onRequestPermissionsResult startLocationUpdate");
             startLocationUpdate();
         }
     }
@@ -138,14 +145,14 @@ public class ApiGoogleManager implements GoogleApiClient.ConnectionCallbacks, Lo
     }
 
     private void startLocationUpdate() {
-        Log.d("ApiGoogleManager", "startLocationUpdate");
+        Log.d("GoogleLocationManager", "startLocationUpdate");
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setInterval(0)
                 .setFastestInterval(0);
 
         if (this.checkPermission()) {
-            Log.d("ApiGoogleManager", "startLocationUpdate - permission good");
+            Log.d("GoogleLocationManager", "startLocationUpdate - permission good");
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient,
                     mLocationRequest, this);
         }

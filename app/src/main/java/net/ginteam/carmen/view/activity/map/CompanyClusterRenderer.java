@@ -17,6 +17,7 @@ import com.google.maps.android.clustering.view.DefaultClusterRenderer;
 import com.google.maps.android.ui.IconGenerator;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.kotlin.model.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
 
 import java.util.ArrayList;
@@ -28,14 +29,14 @@ import java.util.Map;
  * Created by Eugene on 1/22/17.
  */
 
-public class CompanyClusterRenderer extends DefaultClusterRenderer<MapCompanyModel> {
+public class CompanyClusterRenderer extends DefaultClusterRenderer<CompanyModel> {
 
     private Context mContext;
     private IconGenerator mIconGenerator;
-    private ClusterManager<MapCompanyModel> mClusterManager;
-    private Map<MapCompanyModel, Marker> mClusterMap;
+    private ClusterManager<CompanyModel> mClusterManager;
+    private Map<CompanyModel, Marker> mClusterMap;
 
-    public CompanyClusterRenderer(Context context, GoogleMap map, ClusterManager<MapCompanyModel> clusterManager) {
+    public CompanyClusterRenderer(Context context, GoogleMap map, ClusterManager<CompanyModel> clusterManager) {
         super(context, map, clusterManager);
 
         mContext = context;
@@ -47,7 +48,7 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<MapCompanyMod
     }
 
     @Override
-    protected void onBeforeClusterItemRendered(MapCompanyModel item, MarkerOptions markerOptions) {
+    protected void onBeforeClusterItemRendered(CompanyModel item, MarkerOptions markerOptions) {
         View markerView;
         TextView textViewPrice;
 
@@ -64,7 +65,7 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<MapCompanyMod
     }
 
     @Override
-    protected void onClusterItemRendered(MapCompanyModel clusterItem, Marker marker) {
+    protected void onClusterItemRendered(CompanyModel clusterItem, Marker marker) {
         super.onClusterItemRendered(clusterItem, marker);
 
         mClusterMap.remove(clusterItem);
@@ -72,16 +73,16 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<MapCompanyMod
     }
 
     @Override
-    protected void onClusterRendered(Cluster<MapCompanyModel> cluster, Marker marker) {
+    protected void onClusterRendered(Cluster<CompanyModel> cluster, Marker marker) {
         super.onClusterRendered(cluster, marker);
 
-        for (MapCompanyModel clusterItem : cluster.getItems()) {
+        for (CompanyModel clusterItem : cluster.getItems()) {
             mClusterMap.put(clusterItem, marker);
         }
         cleanCache();
     }
 
-    public void updateClusterItem(MapCompanyModel clusterItem) {
+    public void updateClusterItem(CompanyModel clusterItem) {
         Marker marker = getMarker(clusterItem);
         boolean isCluster = false;
 
@@ -93,7 +94,7 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<MapCompanyMod
         if (marker != null) {
             MarkerOptions options = getMarkerOptionsFromMarker(marker);
             if (isCluster) {
-                Cluster <MapCompanyModel> cluster = getCluster(marker);
+                Cluster <CompanyModel> cluster = getCluster(marker);
                 onBeforeClusterRendered(cluster, options);
             } else {
                 onBeforeClusterItemRendered(clusterItem, options);
@@ -103,16 +104,16 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<MapCompanyMod
     }
 
     private void cleanCache() {
-        ArrayList<MapCompanyModel> deleteQueue = new ArrayList<>();
+        ArrayList<CompanyModel> deleteQueue = new ArrayList<>();
         Collection<Marker> clusterMarkers = mClusterManager.getClusterMarkerCollection().getMarkers();
 
-        for (MapCompanyModel clusterItem : mClusterMap.keySet()) {
+        for (CompanyModel clusterItem : mClusterMap.keySet()) {
             if (!clusterMarkers.contains(mClusterMap.get(clusterItem))) {
                 deleteQueue.add(clusterItem);
             }
         }
 
-        for (MapCompanyModel clusterItem : deleteQueue) {
+        for (CompanyModel clusterItem : deleteQueue) {
             mClusterMap.remove(clusterItem);
         }
 

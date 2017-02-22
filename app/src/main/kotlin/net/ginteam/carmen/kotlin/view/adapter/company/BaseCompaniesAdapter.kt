@@ -53,7 +53,7 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
     protected abstract fun calculateItemWidth(): Int
     protected abstract fun calculatePhotoSize(): Int
 
-    class ViewHolder(itemView: View,
+    open class ViewHolder(itemView: View,
                      val onClick: (CompanyModel) -> Unit,
                      val onFavoriteClick: (CompanyModel, Boolean) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
@@ -61,27 +61,27 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
                 itemView.findViewById(R.id.image_view_company_photo) as ImageView
         private val mTextViewName: TextView
                 = itemView.findViewById(R.id.text_view_company_name) as TextView
-        private val mTextViewAddress: TextView
-                = itemView.findViewById(R.id.text_view_company_address) as TextView
+        private val mTextViewAddress: TextView?
+                = itemView.findViewById(R.id.text_view_company_address) as TextView?
         private val mRatingViewRating: CarmenRatingView
                 = itemView.findViewById(R.id.rating_view_company) as CarmenRatingView
         private val mImageButtonAddToFavorite: ImageButton
                 = itemView.findViewById(R.id.image_button_company_favorite) as ImageButton
-        private val mTextViewDistance: TextView
-                = itemView.findViewById(R.id.text_view_company_distance) as TextView
-        private val mImageViewLocation: ImageView
-                = itemView.findViewById(R.id.image_view_company_location) as ImageView
+        private val mTextViewDistance: TextView?
+                = itemView.findViewById(R.id.text_view_company_distance) as TextView?
+        private val mImageViewLocation: ImageView?
+                = itemView.findViewById(R.id.image_view_company_location) as ImageView?
 
-        fun bindData(company: CompanyModel) {
+        open fun bindData(company: CompanyModel) {
             with(company) {
                 mTextViewName.text = name
-                mTextViewAddress.text = address
+                mTextViewAddress?.text = address
                 mRatingViewRating.rating = rating.toFloat()
-                mTextViewDistance.text = if (distance == 0.0) {
-                    mImageViewLocation.visibility = View.INVISIBLE
+                mTextViewDistance?.text = if (distance == 0.0) {
+                    mImageViewLocation?.visibility = View.INVISIBLE
                     ""
                 } else {
-                    mImageViewLocation.visibility = View.VISIBLE
+                    mImageViewLocation?.visibility = View.VISIBLE
                     String.format("%.1f km", distance / 1000)
                 }
                 mImageButtonAddToFavorite.setImageResource(if (isFavorite) {

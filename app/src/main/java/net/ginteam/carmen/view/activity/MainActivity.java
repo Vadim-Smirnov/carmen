@@ -7,13 +7,13 @@ import android.util.Log;
 import android.widget.Toast;
 
 import net.ginteam.carmen.R;
+import net.ginteam.carmen.kotlin.view.activity.map.MapActivity;
 import net.ginteam.carmen.model.category.CategoryModel;
 import net.ginteam.carmen.model.city.CityModel;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.company.CompanyDetailActivity;
 import net.ginteam.carmen.view.activity.filter.FilterActivity;
-import net.ginteam.carmen.view.activity.map.MapActivity;
 import net.ginteam.carmen.view.fragment.SortingFragment;
 import net.ginteam.carmen.view.fragment.category.CategoryListFragment;
 import net.ginteam.carmen.view.fragment.city.CityListFragment;
@@ -60,7 +60,7 @@ public class MainActivity extends NavigationViewActivity implements
     @Override
     public void onShowMap(int categoryId) {
         Intent intent = new Intent(this, MapActivity.class);
-        intent.putExtra(MapActivity.CATEGORY_ID_ARG, categoryId);
+        intent.putExtra(MapActivity.CATEGORY_ARGUMENT, categoryId);
         startActivity(intent);
     }
 

@@ -30,13 +30,13 @@ import com.squareup.picasso.Picasso;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
+import net.ginteam.carmen.kotlin.view.activity.map.MapActivity;
 import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.presenter.company.CompanyDetailPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
 import net.ginteam.carmen.view.activity.VoteObjectActivity;
-import net.ginteam.carmen.view.activity.map.MapActivity;
 import net.ginteam.carmen.view.adapter.company.GalleryRecyclerAdapter;
 import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;

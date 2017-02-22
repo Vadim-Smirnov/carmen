@@ -26,7 +26,9 @@ class CategoriesPresenter : BasePresenter <CategoriesContract.View>(), Categorie
                 .subscribe(object : ModelSubscriber <List <CategoryModel>>() {
                     override fun success(model: List<CategoryModel>) {
                         mView?.showLoading(false)
-                        mView?.showCategories(model)
+
+                        val activeCategories: List <CategoryModel> = model.filter(CategoryModel::active)
+                        mView?.showCategories(activeCategories)
                     }
 
                     override fun error(message: String, isNetworkError: Boolean) {

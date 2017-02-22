@@ -9,7 +9,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import net.ginteam.carmen.contract.MapContract;
-import net.ginteam.carmen.manager.ApiGoogleManager;
+import net.ginteam.carmen.manager.GoogleLocationManager;
 import net.ginteam.carmen.manager.FiltersViewStateManager;
 import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.Point;
@@ -27,7 +27,7 @@ import java.util.Locale;
 public class MapPresenter implements MapContract.Presenter {
 
     private MapContract.View mView;
-    private ApiGoogleManager mApiGoogleManager;
+    private GoogleLocationManager mGoogleLocationManager;
 
     private Location mLastUserLocation;
 
@@ -35,18 +35,18 @@ public class MapPresenter implements MapContract.Presenter {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        mApiGoogleManager.onActivityResult(requestCode, resultCode);
+        mGoogleLocationManager.onActivityResult(requestCode, resultCode);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        mApiGoogleManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        mGoogleLocationManager.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
     public void getLastUserLocation() {
-        mApiGoogleManager
-                .getLastLocation(new ApiGoogleManager.OnReceiveLocationListener() {
+        mGoogleLocationManager
+                .getLastLocation(new GoogleLocationManager.OnReceiveLocationListener() {
                     @Override
                     public void onLocationReceived(Location location) {
                         mLastUserLocation = location;
@@ -103,7 +103,7 @@ public class MapPresenter implements MapContract.Presenter {
     @Override
     public void attachView(MapContract.View view) {
         mView = view;
-        mApiGoogleManager = new ApiGoogleManager(mView.getActivity());
+        mGoogleLocationManager = new GoogleLocationManager(mView.getActivity());
 
         mView.showSearchControl(false);
         mView.showCompaniesControls(false);
