@@ -134,6 +134,10 @@ class MapCompaniesFragment
             mUserSelectedCompany!!.isSelected = true
             companyRenderer.updateClusterItem(mUserSelectedCompany)
         }
+
+        val selectedCompanyPosition: Int = mCompaniesAdapter.selectCompanyItem(mUserSelectedCompany!!)
+        mRecyclerViewCompanies.scrollToPosition(selectedCompanyPosition)
+
         return false
     }
 
