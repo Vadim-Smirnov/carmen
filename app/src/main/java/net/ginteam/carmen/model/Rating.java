@@ -41,13 +41,13 @@ public class Rating implements Serializable {
     private String mCreatedAt;
 
     @SerializedName("user_id")
-    private String mUserId;
+    private int mUserId;
 
-    public String getUserId() {
+    public int getUserId() {
         return mUserId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         mUserId = userId;
     }
 

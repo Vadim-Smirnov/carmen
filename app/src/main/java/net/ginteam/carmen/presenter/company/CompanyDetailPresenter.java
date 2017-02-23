@@ -7,6 +7,7 @@ import android.view.View;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
+import net.ginteam.carmen.kotlin.provider.AuthenticationProvider;
 import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.auth.UserModel;
 import net.ginteam.carmen.model.company.Comfort;
@@ -94,7 +95,8 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
 
     @Override
     public void addToFavoriteClick(CompanyModel companyModel, Menu menu) {
-        if (AuthProvider.getInstance().getCurrentCachedUser() != null) {
+        net.ginteam.carmen.kotlin.provider.AuthProvider authProvider = AuthenticationProvider.INSTANCE;
+        if (authProvider.getCurrentCachedUser() != null) {
             if (companyModel.isFavorite()) {
                 removeFromFavorite(companyModel);
                 companyModel.setFavorite(false);
@@ -147,20 +149,18 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
     @Override
     public void createRating(float rating, int companyId) {
         mView.showLoading(true);
-        UserModel currentUser = AuthProvider.getInstance().getCurrentCachedUser();
-        if (currentUser == null) {
+        net.ginteam.carmen.kotlin.provider.AuthProvider authProvider = AuthenticationProvider.INSTANCE;
+        if (authProvider.getCurrentCachedUser() == null) {
             mView.showLoading(false);
             mView.showError(mView.getContext().getResources().getString(R.string.access_denied_message));
             return;
         }
         CreateRating createRating = new CreateRating();
-        createRating.setUserId(currentUser.getId());
         createRating.setCompanyId(companyId);
         createRating.setRating(rating);
         RatingProvider.getInstance().sendRating(createRating, new ModelCallback<Rating>() {
             @Override
             public void onSuccess(Rating resultModel) {
-                mView.showLoading(false);
                 mView.showVoteObjectScreen(resultModel);
             }
 
