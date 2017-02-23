@@ -3,23 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/LinearLayout.Wrapped"
     app:cardCornerRadius="@dimen/company_item_corner_radius"
-
     app:cardElevation="1dp"
     tools:ignore="missingPrefix">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/ConstraintLayout.WrappedHeight">
 
         <ImageView
             android:id="@+id/image_view_company_photo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ImageView.Wrapped"
             android:scaleType="fitXY"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -27,9 +22,7 @@
 
         <TextView
             android:id="@+id/text_view_company_name"
-            fontPath="@string/open_sans_font"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/TextView.WrappedHeight.OpenSans"
             android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="@dimen/company_item_space"
@@ -38,7 +31,6 @@
             android:maxLines="1"
             android:textColor="#1D1D26"
             android:textSize="@dimen/company_title_text_size"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_view_company_photo"
@@ -57,18 +49,13 @@
 
         <ImageButton
             android:id="@+id/image_button_company_favorite"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_margin="@dimen/company_item_favorite_button_margin"
-            android:background="@drawable/round_button"
-            android:src="@drawable/ic_company_favorite_disable"
+            style="@style/ImageButton.Like"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/image_view_company_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ImageView.Wrapped"
             android:layout_marginBottom="@dimen/company_location_bottom_margin"
             android:layout_marginEnd="@dimen/company_location_left_margin"
             android:layout_marginLeft="10dp"
@@ -76,14 +63,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/text_view_company_distance"
             app:layout_constraintTop_toBottomOf="@+id/rating_view_company"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_location"/>
 
         <TextView
             android:id="@+id/text_view_company_distance"
-            fontPath="@string/open_sans_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Wrapped.OpenSans"
             android:layout_marginEnd="10dp"
             android:layout_marginLeft="6dp"
             android:layout_marginStart="6dp"
@@ -112,12 +96,9 @@
             app:layout_constraintTop_toTopOf="@+id/text_view_company_distance"
             app:layout_constraintVertical_bias="0.0"/>
 
-
         <TextView
             android:id="@+id/text_view_company_address"
-            fontPath="@string/open_sans_font"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/TextView.WrappedHeight.OpenSans"
             android:layout_marginStart="@dimen/company_item_photo_right_space"
             android:layout_marginTop="@dimen/company_item_title_bottom_space"
             android:textColor="#417505"

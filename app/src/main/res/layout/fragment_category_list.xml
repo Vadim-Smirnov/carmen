@@ -1,22 +1,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    style="@style/LinearLayout.WrappedHeight.Vertical"
     tools:context="net.ginteam.carmen.view.fragment.category.CategoryListFragment">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_categories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#dadada"
-        tools:listitem="@layout/list_item_category"/>
+        style="@style/RecyclerView.WrappedHeight"
+        android:background="@color/colorSeparate"/>
 
     <View
+        style="@style/LayoutDivider"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/category_dialog_item_separator_height"
-        android:background="#dadada"/>
+        android:layout_height="@dimen/category_dialog_item_separator_height"/>
 
     <include layout="@layout/progress_bar"/>
 

@@ -149,6 +149,7 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
         mView.showLoading(true);
         UserModel currentUser = AuthProvider.getInstance().getCurrentCachedUser();
         if (currentUser == null) {
+            mView.showLoading(false);
             mView.showError(mView.getContext().getResources().getString(R.string.access_denied_message));
             return;
         }

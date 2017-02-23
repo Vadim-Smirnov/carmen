@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    style="@style/LinearLayout.Wrapped.Vertical">
 
     <ImageView
         android:id="@+id/image_view_additional_service"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/ImageView.Wrapped"
         android:layout_marginEnd="5dp"
         android:src="@drawable/ic_wc"/>
 

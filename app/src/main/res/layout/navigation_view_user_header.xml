@@ -2,9 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    style="@style/LinearLayout.WrappedHeight.Vertical"
     android:paddingStart="25dp"
     android:paddingTop="17dp"
     tools:ignore="MissingPrefix">
@@ -16,8 +14,7 @@
         android:layout_marginTop="@dimen/menu_header_padding_top"
         android:id="@+id/text_view_nav_header_name"
         fontPath="@string/open_sans_light_font"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TextView.WrappedHeight"
         android:textColor="@color/colorPrimary"
         android:textScaleX="0.9"
         android:textSize="@dimen/menu_header_user_name_text_size"
@@ -26,8 +23,7 @@
     <TextView
         android:id="@+id/text_view_nav_header_email"
         fontPath="@string/avenir_book_font"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TextView.WrappedHeight"
         android:paddingLeft="@dimen/menu_header_email_padding_left"
         android:paddingStart="@dimen/menu_header_email_padding_left"
         android:textSize="@dimen/menu_header_email_text_size"

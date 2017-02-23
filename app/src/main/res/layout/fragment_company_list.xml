@@ -3,87 +3,56 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    style="@style/CoordinatorLayout.Base"
     android:background="@color/colorWhite"
     tools:ignore="MissingPrefix">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        style="@style/LinearLayout.Vertical">
 
         <TextView
             android:id="@+id/text_view_company_list_title"
-            fontPath="@string/open_sans_semibold_font"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Header"
             android:layout_marginBottom="@dimen/company_list_fragment_title_vertical_margin"
             android:layout_marginStart="@dimen/company_list_fragment_horizontal_margin"
             android:layout_marginTop="@dimen/company_list_fragment_title_vertical_margin"
-            android:textSize="@dimen/company_list_fragment_title_text_size"
             android:visibility="gone"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_companies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/list_item_company_horizontal">
-
-        </android.support.v7.widget.RecyclerView>
+            style="@style/RecyclerView.WrappedHeight"/>
 
     </LinearLayout>
 
     <ImageButton
         android:id="@+id/float_button_show_map"
-        android:layout_width="91dp"
-        android:layout_height="91dp"
-        android:layout_gravity="end|bottom"
-        android:background="@drawable/floating_button_design"
-        android:padding="10dp"
-        android:src="@drawable/ic_float_button_map"
+        style="@style/ImageButton.Map"
         android:layout_marginBottom="@dimen/float_button_margin_bottom"
         android:visibility="gone"
-        android:layout_marginEnd="1dp"
         app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
 
     <LinearLayout
         android:id="@+id/bottom_navigation_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/LinearLayout.WrappedHeight.Horizontal"
         android:layout_gravity="bottom"
         android:background="#000"
-        android:orientation="horizontal"
-        android:visibility="gone"
         android:gravity="center"
+        android:visibility="gone"
         app:layout_behavior="net.ginteam.carmen.view.adapter.company.BottomNavigationBehavior">
 
         <ImageView
             android:id="@+id/bottom_nav_item_categories"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="13dp"
-            android:paddingBottom="13dp"
-            android:layout_weight="1"
+            style="@style/ImageView.BottomNavigationItem"
             android:src="@drawable/ic_bottom_navigation_categories"/>
 
         <ImageView
             android:id="@+id/bottom_nav_item_filters"
-            android:layout_width="match_parent"
-            android:paddingTop="13dp"
-            android:paddingBottom="13dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/ImageView.BottomNavigationItem"
             android:src="@drawable/ic_bottom_navigation_filters"/>
 
         <ImageView
             android:id="@+id/bottom_nav_item_sort"
-            android:layout_width="match_parent"
-            android:paddingTop="13dp"
-            android:paddingBottom="13dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/ImageView.BottomNavigationItem"
             android:src="@drawable/ic_bottom_navigation_sort"/>
 
     </LinearLayout>

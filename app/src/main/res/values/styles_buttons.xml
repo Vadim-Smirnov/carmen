@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Button" />
+    <style name="Button"/>
 
     <style name="Button.Base" parent="Button">
         <item name="android:layout_width">match_parent</item>
@@ -46,6 +46,145 @@
     <style name="Button.SocialSignIn.Google" parent="Button.SocialSignIn">
         <item name="android:drawableStart">@drawable/ic_google</item>
         <item name="android:text">@string/sign_in_with_google_string</item>
+    </style>
+
+    <style name="Button.RepeatSearch">
+        <item name="android:layout_width">@dimen/search_button_width</item>
+        <item name="android:layout_height">@dimen/search_button_height</item>
+        <item name="android:background">@drawable/map_search_button</item>
+        <item name="android:paddingBottom">@dimen/search_button_vertical_padding</item>
+        <item name="android:paddingLeft">@dimen/search_button_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/search_button_horizontal_padding</item>
+        <item name="android:paddingTop">@dimen/search_button_vertical_padding</item>
+        <item name="android:text">@string/search_button_string</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">@dimen/search_button_text_size</item>
+    </style>
+
+    <style name="Button.Filters">
+        <item name="android:layout_width">@dimen/filter_button_width</item>
+        <item name="android:layout_height">@dimen/filter_button_height</item>
+        <item name="android:layout_marginBottom">@dimen/filter_button_bottom_space</item>
+        <item name="android:background">@drawable/map_filter_button</item>
+        <item name="android:drawableEnd">@drawable/ic_map_filter</item>
+        <item name="android:paddingBottom">@dimen/filter_button_vertical_padding</item>
+        <item name="android:paddingLeft">@dimen/filter_button_horizontal_padding</item>
+        <item name="android:paddingRight">@dimen/filter_button_horizontal_padding</item>
+        <item name="android:paddingTop">@dimen/filter_button_vertical_padding</item>
+        <item name="android:text">@string/filter_button_string</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">#000</item>
+        <item name="android:textSize">@dimen/filter_button_text_size</item>
+    </style>
+
+    <style name="Button.SendReview">
+        <item name="fontPath">@string/open_sans_font</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginTop">45dp</item>
+        <item name="android:background">@color/colorCheckBox</item>
+        <item name="android:text">Отправить</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="ImageButton"/>
+
+    <style name="ImageButton.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ImageButton.Wrapped">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ImageButton.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ImageButton.ActionButton">
+        <item name="android:layout_width">@dimen/action_button_size</item>
+        <item name="android:layout_height">@dimen/action_button_size</item>
+        <item name="android:layout_gravity">end|bottom</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginEnd">1dp</item>
+        <item name="android:background">@drawable/floating_button_design</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="ImageButton.Call" parent="ImageButton.ActionButton">
+        <item name="android:src">@drawable/ic_call</item>
+    </style>
+
+    <style name="ImageButton.Map" parent="ImageButton.ActionButton">
+        <item name="android:src">@drawable/ic_float_button_map</item>
+    </style>
+
+    <style name="ImageButton.Like">
+        <item name="android:layout_width">34dp</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:layout_margin">@dimen/company_item_favorite_button_margin</item>
+        <item name="android:background">@drawable/round_button</item>
+        <item name="android:src">@drawable/ic_company_favorite_disable</item>
+    </style>
+
+    <style name="Button.DetailActivityImageButton" parent="Button.WrappedHeight">
+        <item name="fontPath">@string/open_sans_font</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:drawablePadding">@dimen/company_detail_button_all_reviews_drawable_padding</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:textSize">@dimen/company_detail_text_size</item>
+        <item name="android:layout_marginEnd">@dimen/company_detail_margin_side</item>
+        <item name="android:layout_marginStart">@dimen/company_detail_margin_side</item>
+    </style>
+
+    <style name="Button.PaymentMethod" parent="Button.WrappedHeight">
+        <item name="fontPath">@string/open_sans_light_font</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorTextHeader</item>
+        <item name="android:textSize">@dimen/company_detail_text_size</item>
+    </style>
+
+    <style name="ToggleButton"/>
+
+    <style name="ToggleButton.Base" parent="ToggleButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ToggleButton.Wrapped" parent="ToggleButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ToggleButton.WrappedHeight" parent="ToggleButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ToggleButton.All" parent="ToggleButton.Wrapped">
+        <item name="fontPath">@string/open_sans_font</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:checked">false</item>
+        <item name="android:drawableEnd">@drawable/toggle_button_all_services_selector</item>
+        <item name="android:drawablePadding">@dimen/company_detail_button_all_services_padding</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">@dimen/company_detail_button_all_services_padding</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:textOff">@string/button_all_text_off</item>
+        <item name="android:textOn">@string/button_all_text_on</item>
+        <item name="android:textSize">@dimen/company_detail_text_size</item>
     </style>
 
 </resources>

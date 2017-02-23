@@ -3,25 +3,20 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="missingPrefix"
-    android:focusable="true"
+    style="@style/ConstraintLayout.Base.Focusable"
     android:clickable="true"
-    android:focusableInTouchMode="true">
+    tools:ignore="missingPrefix">
 
     <ImageView
         android:id="@+id/image_view_filled_edit_text"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        style="@style/ImageView.WrappedWidth"
         app:layout_constraintBottom_toBottomOf="@+id/text_input_layout_filter"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_input_layout_filter"/>
 
     <ImageView
         android:id="@+id/image_view_clear_edit_text"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        style="@style/ImageView.WrappedWidth"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/text_input_layout_filter"
         app:layout_constraintRight_toRightOf="parent"
@@ -30,8 +25,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/text_input_layout_filter"
         fontPath="@string/open_sans_font"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        style="@style/TextInputLayout.WrappedHeight"
         android:layout_marginEnd="@dimen/edit_text_filter_margin_end"
         android:layout_marginStart="@dimen/edit_text_filter_margin_start"
         app:layout_constraintLeft_toRightOf="@+id/image_view_filled_edit_text"
@@ -40,14 +34,7 @@
 
         <EditText
             android:id="@+id/edit_text_filter"
-            fontPath="@string/avenir_book_font"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:alpha="0.5"
-            android:textColor="#000"
-            android:textSize="@dimen/custom_edit_text_size"
-            android:inputType="textMultiLine"
-            android:scrollbars="vertical"/>
+            style="@style/EditText.Filter"/>
 
     </android.support.design.widget.TextInputLayout>
 

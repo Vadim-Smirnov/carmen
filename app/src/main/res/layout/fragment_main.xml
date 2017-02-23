@@ -1,33 +1,26 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              tools:context="net.ginteam.carmen.view.fragment.MainFragment">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LinearLayout.Vertical"
+    tools:context="net.ginteam.carmen.view.fragment.MainFragment">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/ScrollView.Base">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            style="@style/LinearLayout.WrappedHeight.Vertical">
 
             <FrameLayout
                 android:id="@+id/categories_fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/FrameLayout.WrappedHeight"/>
 
             <FrameLayout
                 android:id="@+id/recently_companies_fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/FrameLayout.WrappedHeight"/>
 
             <FrameLayout
                 android:id="@+id/popular_companies_fragment_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                style="@style/FrameLayout.WrappedHeight"/>
 
         </LinearLayout>
 

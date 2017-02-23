@@ -3,15 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/LinearLayout.WrappedHeight"
     app:cardCornerRadius="@dimen/company_item_corner_radius"
     app:cardElevation="1dp"
     tools:ignore="missingPrefix">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/ConstraintLayout.Base">
 
         <ImageView
             android:id="@+id/image_view_company_photo"
@@ -25,22 +23,14 @@
 
         <ImageButton
             android:id="@+id/image_button_company_favorite"
-            android:layout_width="34dp"
-            android:layout_height="34dp"
-            android:layout_margin="@dimen/company_item_favorite_button_margin"
-            android:background="@drawable/round_button"
-            android:src="@drawable/ic_company_favorite_disable"
+            style="@style/ImageButton.Like"
             app:layout_constraintRight_toRightOf="@+id/image_view_company_photo"
             app:layout_constraintTop_toTopOf="@+id/image_view_company_photo"/>
 
         <TextView
             android:id="@+id/text_view_company_name"
-            fontPath="@string/open_sans_font"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/TextView.WrappedHeight.OpenSans"
             android:layout_marginEnd="@dimen/company_item_photo_right_space"
-            android:layout_marginLeft="@dimen/company_item_photo_right_space"
-            android:layout_marginRight="@dimen/company_item_photo_right_space"
             android:layout_marginStart="@dimen/company_item_photo_right_space"
             android:layout_marginTop="@dimen/company_item_photo_right_space"
             android:ellipsize="end"
@@ -55,9 +45,7 @@
 
         <TextView
             android:id="@+id/text_view_company_address"
-            fontPath="@string/open_sans_font"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            style="@style/TextView.WrappedHeight.OpenSans"
             android:layout_marginEnd="@dimen/company_item_photo_right_space"
             android:layout_marginStart="@dimen/company_item_photo_right_space"
             android:layout_marginTop="@dimen/company_item_title_bottom_space"
@@ -82,8 +70,7 @@
 
         <ImageView
             android:id="@+id/image_view_company_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ImageView.Wrapped"
             android:layout_marginBottom="@dimen/company_item_rating_bottom_space"
             android:layout_marginEnd="5dp"
             android:layout_marginStart="@dimen/company_item_photo_right_space"
@@ -95,9 +82,7 @@
 
         <TextView
             android:id="@+id/text_view_company_distance"
-            fontPath="@string/open_sans_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Wrapped.OpenSans"
             android:layout_marginEnd="@dimen/company_item_photo_right_space"
             android:alpha="0.75"
             android:textColor="#040404"

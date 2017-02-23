@@ -3,24 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
+    style="@style/ConstraintLayout.Base.Focusable"
     tools:context="net.ginteam.carmen.view.activity.filter.FilterActivity">
 
     <include
         android:id="@+id/layout_toolbar"
+        style="@style/AppBarLayout.Toolbar.Base"
         layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/ScrollView.Base"
         app:layout_constraintBottom_toTopOf="@+id/layout_filter_results"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -28,24 +23,19 @@
 
         <LinearLayout
             android:id="@+id/layout_filters"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/LinearLayout.WrappedHeight.Vertical"
             android:padding="@dimen/filters_layout_padding"
-            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </LinearLayout>
+            app:layout_constraintTop_toTopOf="parent"/>
 
     </ScrollView>
 
     <include
         android:id="@+id/layout_filter_results"
         layout="@layout/filter_results_count_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/Include.WrappedHeight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

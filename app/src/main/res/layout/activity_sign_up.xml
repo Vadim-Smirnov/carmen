@@ -3,22 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/LinearLayout.Sign"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:baselineAligned="false"
     tools:ignore="MissingPrefix">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/RecyclerView.Base"
         android:layout_weight="0.75"
         android:paddingBottom="10dp"
         android:paddingTop="10dp">
 
         <ImageView
-            style="@style/ImageView.Wrapped.Logo"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            style="@style/ImageView.Wrapped.Logo" />
 
         <TextView
             android:id="@+id/text_view_skip_auth"
@@ -33,12 +28,9 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/LinearLayout.Vertical"
         android:layout_weight="0.5"
-        android:orientation="vertical"
         android:gravity="center_vertical">
-
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/input_layout_name"
@@ -98,48 +90,36 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.75"
-        android:orientation="vertical">
-
-       <LinearLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:layout_weight="1"
-           android:orientation="vertical"
-           android:gravity="center">
-
-           <Button
-               android:id="@+id/button_sign_up"
-               style="@style/Button.SignUp"/>
-
-       </LinearLayout>
+        style="@style/LinearLayout.Vertical"
+        android:layout_weight="0.75">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center"
+            style="@style/LinearLayout.Vertical"
             android:layout_weight="1"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/button_sign_up"
+                style="@style/Button.SignUp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LinearLayout.Horizontal"
+            android:layout_weight="1"
+            android:gravity="center"
             android:paddingBottom="1dp">
 
             <TextView
                 style="@style/TextView.SignMessage"
                 android:layout_weight="1"
-                android:gravity="end"
-                android:paddingRight="4dp"
-                android:textAlignment="viewEnd"
                 android:text="@string/have_account_string"/>
 
             <TextView
                 android:id="@+id/text_view_sign_in"
-                android:layout_weight="1"
-                android:gravity="start"
-                android:paddingLeft="4dp"
                 style="@style/TextView.SignAction"
-                android:text="@string/sign_in_label_string"
-                android:textAlignment="viewStart"/>
+                android:layout_weight="1"
+                android:text="@string/sign_in_label_string"/>
 
         </LinearLayout>
 

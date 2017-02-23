@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="LinearLayout" />
+    <style name="LinearLayout"/>
 
     <style name="LinearLayout.Base">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-    </style>
-
-    <style name="LinearLayout.Vertical" parent="LinearLayout.Base">
-        <item name="android:orientation">vertical</item>
-    </style>
-
-    <style name="LinearLayout.Wrapped.Horizontal" parent="LinearLayout.Wrapped">
-        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="LinearLayout.Wrapped">
@@ -26,7 +18,31 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="FragmentContainer" parent="LinearLayout.Base" />
+    <style name="LinearLayout.Vertical" parent="LinearLayout.Base">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="LinearLayout.Horizontal" parent="LinearLayout.Base">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="LinearLayout.Wrapped.Horizontal" parent="LinearLayout.Wrapped">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="LinearLayout.Wrapped.Vertical" parent="LinearLayout.Wrapped">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="LinearLayout.WrappedHeight.Vertical" parent="LinearLayout.WrappedHeight">
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="LinearLayout.WrappedHeight.Horizontal" parent="LinearLayout.WrappedHeight">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="FragmentContainer" parent="LinearLayout.Base"/>
 
     <style name="LinearLayout.Sign" parent="LinearLayout.Base">
         <item name="android:orientation">vertical</item>
@@ -47,9 +63,12 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="AppBarLayout.Toolbar">
+    <style name="AppBarLayout.Toolbar.Base">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
+    </style>
+
+    <style name="AppBarLayout.Toolbar" parent="AppBarLayout.Toolbar.Base">
         <item name="android:background">@color/colorPrimary</item>
         <item name="popupTheme">@style/AppTheme.PopupOverlay</item>
         <item name="layout_collapseMode">pin</item>
@@ -77,12 +96,23 @@
         <item name="contentScrim">@color/colorPrimary</item>
     </style>
 
-    <style name="RelativeLayout" />
+    <style name="RelativeLayout"/>
 
     <style name="RelativeLayout.Base">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
+
+    <style name="RelativeLayout.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="RelativeLayout.WrappedWidth">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
 
     <style name="RelativeLayout.Gallery" parent="RelativeLayout.Base">
         <item name="layout_collapseMode">parallax</item>
@@ -90,7 +120,8 @@
 
     <style name="GalleryDecorator">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/company_detail_parallax_toolbar_gradient_height</item>
+        <item name="android:layout_height">@dimen/company_detail_parallax_toolbar_gradient_height
+        </item>
         <item name="android:layout_centerHorizontal">true</item>
     </style>
 
@@ -100,6 +131,97 @@
 
     <style name="GalleryDecorator.Bottom" parent="GalleryDecorator">
         <item name="android:background">@drawable/gallery_gradient_bottom</item>
+    </style>
+
+    <style name="ConstraintLayout"/>
+
+    <style name="ConstraintLayout.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ConstraintLayout.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="ConstraintLayout.Base.Focusable" parent="ConstraintLayout.Base">
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+    </style>
+
+    <style name="NestedScrollView"/>
+
+    <style name="NestedScrollView.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="NestedScrollView.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="CoordinatorLayout"/>
+
+    <style name="CoordinatorLayout.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ScrollView"/>
+
+    <style name="ScrollView.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="ScrollView.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Include"/>
+
+    <style name="Include.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="Include.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="DrawerLayout"/>
+
+    <style name="DrawerLayout.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="LayoutDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorSeparate</item>
+    </style>
+
+
+    <style name="FrameLayout"/>
+
+    <style name="FrameLayout.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="FrameLayout.Wrapped">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="FrameLayout.WrappedHeight">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>

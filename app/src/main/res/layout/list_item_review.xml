@@ -1,103 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/ConstraintLayout.WrappedHeight"
     android:layout_marginBottom="@dimen/review_item_bottom_margin"
-    android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
-    <ImageButton
-        android:id="@+id/image_button_expand"
-        android:layout_width="@dimen/image_button_expand_width"
-        android:layout_height="@dimen/image_button_expand_height"
-        android:background="@android:color/transparent"
+    <RelativeLayout
+        android:id="@+id/RelativeLayout"
+        style="@style/RelativeLayout.WrappedWidth"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/image_button_expand"
+            android:layout_width="@dimen/image_button_expand_width"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_arrow_right"/>
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="1dp"
+            android:background="@color/colorSeparate"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/ConstraintLayout"
+        style="@style/ConstraintLayout.WrappedHeight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/RelativeLayout"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_arrow_right"/>
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <View
-        android:id="@+id/view4"
-        android:layout_width="1dp"
-        android:layout_height="@dimen/image_button_expand_height"
-        android:background="@color/colorSeparate"
-        app:layout_constraintLeft_toLeftOf="@+id/image_button_expand"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/text_view_review_title"
+            style="@style/TextView.Header"
+            android:layout_marginEnd="@dimen/review_title_margin_end"
+            android:layout_marginStart="@dimen/review_title_margin_start"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Безумно быстрое СТО с купальниками розового цвета"/>
 
-    <TextView
-        android:id="@+id/text_view_review_title"
-        fontPath="@string/open_sans_semibold_font"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/review_title_margin_end"
-        android:layout_marginStart="@dimen/review_title_margin_start"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:textColor="@color/colorTextHeader"
-        android:textSize="@dimen/company_detail_text_size"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/image_button_expand"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Безумно быстрое СТО с купальниками розового цвета" />
+        <net.ginteam.carmen.view.custom.rating.CarmenRatingView
+            android:id="@+id/rating_view_company"
+            android:layout_width="@dimen/review_rating_width"
+            android:layout_height="@dimen/review_rating_height"
+            android:layout_marginStart="@dimen/review_title_margin_start"
+            android:isIndicator="true"
+            app:crv_indicatorSpacing="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_date"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_view_date"/>
 
-    <net.ginteam.carmen.view.custom.rating.CarmenRatingView
-        android:id="@+id/rating_view_company"
-        android:layout_width="@dimen/review_rating_width"
-        android:layout_height="@dimen/review_rating_height"
-        android:layout_marginStart="@dimen/review_title_margin_start"
-        android:isIndicator="true"
-        app:crv_indicatorSpacing="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_view_date"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_view_date" />
+        <TextView
+            android:id="@+id/text_view_date"
+            style="@style/TextView.Header"
+            fontPath="@string/open_sans_light_font"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/text_view_date_margin_start"
+            android:layout_marginTop="@dimen/text_view_date_margin_top"
+            app:layout_constraintLeft_toRightOf="@+id/rating_view_company"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_review_title"
+            tools:text="05.12.2016"/>
 
-    <TextView
-        android:id="@+id/text_view_date"
-        fontPath="@string/open_sans_light_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/text_view_date_margin_start"
-        android:layout_marginStart="@dimen/text_view_date_margin_start"
-        android:layout_marginTop="@dimen/text_view_date_margin_top"
-        android:textColor="@color/colorTextHeader"
-        android:textSize="@dimen/company_detail_text_size"
-        app:layout_constraintLeft_toRightOf="@+id/rating_view_company"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_review_title"
-        tools:text="05.12.2016" />
+        <TextView
+            android:id="@+id/text_view_user_name"
+            style="@style/TextView.Header"
+            fontPath="@string/open_sans_font"
+            android:layout_marginEnd="@dimen/text_view_user_name_margin_start"
+            android:layout_marginStart="@dimen/text_view_user_name_margin_end"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_date"
+            app:layout_constraintLeft_toRightOf="@+id/text_view_date"
+            app:layout_constraintRight_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_view_date"
+            tools:text="Марк Твен"/>
 
-    <TextView
-        android:id="@+id/text_view_user_name"
-        fontPath="@string/open_sans_font"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/text_view_user_name_margin_start"
-        android:layout_marginStart="@dimen/text_view_user_name_margin_end"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/colorTextHeader"
-        android:textSize="@dimen/company_detail_text_size"
-        app:layout_constraintBottom_toBottomOf="@+id/text_view_date"
-        app:layout_constraintLeft_toRightOf="@+id/text_view_date"
-        app:layout_constraintRight_toLeftOf="@+id/image_button_expand"
-        app:layout_constraintTop_toTopOf="@+id/text_view_date"
-        tools:text="Марк Твен" />
+        <TextView
+            android:id="@+id/text_view_review_text"
+            style="@style/TextView.Header"
+            fontPath="@string/open_sans_light_font"
+            android:layout_marginEnd="@dimen/review_text_margin_end"
+            android:layout_marginStart="@dimen/review_text_margin_start"
+            android:layout_marginTop="@dimen/review_text_margin_top"
+            android:ellipsize="end"
+            android:maxLines="3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_date"
+            tools:text="Я был восхищен скоростью работы данного СТО, оно было заебись как работало и тд. и тд."/>
 
-    <TextView
-        android:id="@+id/text_view_review_text"
-        fontPath="@string/open_sans_light_font"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/review_text_margin_end"
-        android:layout_marginStart="@dimen/review_text_margin_start"
-        android:layout_marginTop="@dimen/review_text_margin_top"
-        android:ellipsize="end"
-        android:maxLines="3"
-        android:textColor="@color/colorTextHeader"
-        android:textSize="@dimen/company_detail_text_size"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/image_button_expand"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_date"
-        tools:text="Я был восхищен скоростью работы данного СТО, оно было заебись как работало и тд. и тд." />
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

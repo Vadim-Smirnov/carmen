@@ -112,6 +112,7 @@
     <dimen name="company_list_fragment_title_text_size">15sp</dimen>
     <dimen name="company_list_fragment_title_vertical_margin">20dp</dimen>
     <dimen name="company_list_fragment_horizontal_margin">10dp</dimen>
+    <dimen name="action_button_size">91dp</dimen>
 
     <!-- City Item -->
     <dimen name="city_item_vertical_margin">30dp</dimen>

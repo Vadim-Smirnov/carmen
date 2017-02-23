@@ -1,59 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="MissingPrefix"
-    android:orientation="vertical">
+    style="@style/ConstraintLayout.Base"
+    tools:ignore="MissingPrefix">
 
     <TextView
         android:id="@+id/text_view_service_category_name"
-        fontPath="@string/open_sans_semibold_font"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/company_detail_margin_side"
-        android:layout_marginStart="@dimen/company_detail_margin_side"
+        style="@style/TextView.DetailHeader"
         android:layout_marginTop="@dimen/company_detail_service_margin_top"
-        tools:text="Ремонт ходовой части"
-        android:textColor="@color/colorTextHeader"
-        android:textSize="@dimen/company_detail_text_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ремонт ходовой части"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_services"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        style="@style/RecyclerView.WrappedHeight"
         android:layout_marginEnd="@dimen/company_detail_margin_side"
         android:layout_marginStart="@dimen/company_detail_margin_side"
         android:layout_marginTop="@dimen/company_detail_recycler_view_services_margin_top"
-        tools:listitem="@layout/list_item_service"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_service_category_name"/>
+        app:layout_constraintTop_toBottomOf="@+id/text_view_service_category_name"
+        tools:listitem="@layout/list_item_service"/>
 
     <ToggleButton
         android:id="@+id/button_all_services"
-        fontPath="@string/open_sans_font"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
         android:layout_marginStart="@dimen/company_detail_button_all_services_margin_start"
-        android:background="@android:color/transparent"
-        android:drawableEnd="@drawable/toggle_button_all_services_selector"
-        android:textOn="Меньше"
-        android:textOff="Еще"
-        android:textAllCaps="false"
-        android:checked="false"
-        android:textColor="@color/colorBlue"
-        android:textSize="@dimen/company_detail_text_size"
-        android:drawablePadding="@dimen/company_detail_button_all_services_padding"
-        android:paddingStart="@dimen/company_detail_button_all_services_padding"
-        android:gravity="start|center"
+        style="@style/ToggleButton.All"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycler_view_services"/>
 

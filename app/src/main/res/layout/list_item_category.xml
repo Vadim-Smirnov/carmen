@@ -3,25 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    style="@style/LinearLayout.Vertical"
     android:layout_height="167dp"
     android:background="#fff"
     android:gravity="center"
-    android:orientation="vertical"
     tools:ignore="MissingPrefix">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/LinearLayout.Vertical"
         android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:gravity="center">
 
         <TextView
             android:id="@+id/text_view_category_name"
             fontPath="@string/open_sans_light_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Wrapped"
             android:textColor="#1D1D26"
             android:textSize="@dimen/category_title_text_size"
             tools:text="Автомобиль"/>
@@ -29,8 +25,7 @@
         <TextView
             android:id="@+id/text_view_category_items_count"
             fontPath="@string/avenir_book_font"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextView.Wrapped"
             android:layout_marginTop="@dimen/category_title_bottom_space"
             android:textSize="10sp"
             android:alpha="0.5"
@@ -55,8 +50,7 @@
 
         <ImageView
             android:id="@+id/image_view_category_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ImageView.Wrapped"
             android:layout_gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

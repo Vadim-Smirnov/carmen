@@ -4,9 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_map"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    style="@style/ConstraintLayout.Base"
     android:animateLayoutChanges="true"
     tools:ignore="MissingPrefix">
 
@@ -18,15 +16,12 @@
         app:layout_constraintBottom_toTopOf="@+id/recycler_view_companies"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <include
         android:id="@+id/layout_toolbar"
         layout="@layout/transparent_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        style="@style/Include.WrappedHeight"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -34,19 +29,7 @@
     <Button
         android:id="@+id/button_repeat_search"
         fontPath="@string/open_sans_font"
-        android:layout_width="@dimen/search_button_width"
-        android:layout_height="@dimen/search_button_height"
-        android:background="@drawable/map_search_button"
-        android:gravity="center"
-        android:alpha="0"
-        android:paddingBottom="@dimen/search_button_vertical_padding"
-        android:paddingLeft="@dimen/search_button_horizontal_padding"
-        android:paddingRight="@dimen/search_button_horizontal_padding"
-        android:paddingTop="@dimen/search_button_vertical_padding"
-        android:text="@string/search_button_string"
-        android:textAllCaps="false"
-        android:textColor="#fff"
-        android:textSize="@dimen/search_button_text_size"
+        style="@style/Button.RepeatSearch"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_toolbar"/>
@@ -54,30 +37,14 @@
     <Button
         android:id="@+id/button_filters"
         fontPath="@string/open_sans_font"
-        android:layout_width="@dimen/filter_button_width"
-        android:layout_height="@dimen/filter_button_height"
-        android:background="@drawable/map_filter_button"
-        android:drawableRight="@drawable/ic_map_filter"
-        android:gravity="center"
-        android:alpha="0"
-        android:paddingBottom="@dimen/filter_button_vertical_padding"
-        android:paddingLeft="@dimen/filter_button_horizontal_padding"
-        android:paddingRight="@dimen/filter_button_horizontal_padding"
-        android:paddingTop="@dimen/filter_button_vertical_padding"
-        android:text="@string/filter_button_string"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        android:textSize="@dimen/filter_button_text_size"
-        android:layout_marginBottom="@dimen/filter_button_bottom_space"
+        style="@style/Button.Filters"
         app:layout_constraintBottom_toTopOf="@+id/recycler_view_companies"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_companies"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:translationY="0dp"
+        style="@style/RecyclerView.WrappedHeight"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
