@@ -20,6 +20,8 @@ import java.util.List;
 
 public class ReviewsAdapter extends RecyclerView.Adapter <ReviewItemViewHolder> {
 
+    private static final int REVIEW_VISIBLE_COUNT = 2;
+
     private Context mContext;
 
     private List<Rating> mReviews;
@@ -42,8 +44,14 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewItemViewHolder> 
         Rating currentReview = mReviews.get(position);
 
         holder.getRatingView().setRating(currentReview.getTotalRating());
-        holder.getTextViewReviewTitle().setText(currentReview.getTitle());
-        holder.getTextViewReviewText().setText(currentReview.getText());
+        if (!currentReview.getTitle().isEmpty()) {
+            holder.getTextViewReviewTitle().setVisibility(View.VISIBLE);
+            holder.getTextViewReviewTitle().setText(currentReview.getTitle());
+        }
+        if (!currentReview.getText().isEmpty()) {
+            holder.getTextViewReviewText().setVisibility(View.VISIBLE);
+            holder.getTextViewReviewText().setText(currentReview.getText());
+        }
         holder.getTextViewUserName().setText(currentReview.getDisplayName());
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss");
@@ -59,6 +67,6 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewItemViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mReviews.size();
+        return mReviews.size() > REVIEW_VISIBLE_COUNT ? REVIEW_VISIBLE_COUNT : mReviews.size() ;
     }
 }

@@ -29,6 +29,13 @@ public class CategoryModel implements Serializable {
     @SerializedName("companies_count")
     private int mCompaniesCount;
 
+    @SerializedName("parent_id")
+    private int mParentId;
+
+    public int getParentId() {
+        return mParentId;
+    }
+
     public int getCompaniesCount() {
         return mCompaniesCount;
     }

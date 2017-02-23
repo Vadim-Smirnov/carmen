@@ -146,11 +146,14 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                         R.drawable.ic_company_favorite_disable));
         mTextViewCompanyName.setText(companyModel.getName());
 
+        // TODO: 23.02.17 удалить последнюю запятую
         String categories = "";
         for (int i = 0; i < companyModel.getCategory().size(); i++) {
-            categories += companyModel.getCategory().get(i).getName();
-            if (i != companyModel.getCategory().size() - 1) {
-                categories += ", ";
+            if (companyModel.getCategory().get(i).getParentId() == 0) {
+                categories += companyModel.getCategory().get(i).getName();
+                if (i != companyModel.getCategory().size() - 1) {
+                    categories += ", ";
+                }
             }
         }
         mTextViewCategory.setText(categories);
