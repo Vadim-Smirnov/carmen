@@ -41,19 +41,14 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
     private var mLastAccessibleItem: MenuItem? = null
-    private var mCurrentFragment: Fragment? = null
+    private lateinit var mCurrentFragment: Fragment
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mNavigationView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         mPresenter.prepareNavigationViewForUserStatus()
-
-        mCurrentFragment = MainFragment.newInstance()
-        prepareFragment(R.id.main_fragment_container, mCurrentFragment!!)
-        setToolbarTitle(getString(R.string.main_item_title))
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -91,9 +86,9 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         }
 
         selectedFragment?.let {
-           if (it.javaClass != mCurrentFragment?.javaClass) {
+           if (it.javaClass != mCurrentFragment.javaClass) {
                mCurrentFragment = it
-               prepareFragment(R.id.main_fragment_container, mCurrentFragment!!)
+               prepareFragment(R.id.main_fragment_container, mCurrentFragment)
                setToolbarTitle(item.title.toString())
            }
         }
@@ -172,7 +167,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override fun onCategorySelected(category: CategoryModel, fromDialogSelection: Boolean) {
         mCurrentFragment = CompaniesFragment.newInstance(category)
-        prepareFragment(R.id.main_fragment_container, mCurrentFragment!!)
+        prepareFragment(R.id.main_fragment_container, mCurrentFragment)
 
         setToolbarTitle(category.name)
         setToolbarSubtitle(mPresenter.getUserCityName())
@@ -214,6 +209,10 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override fun updateViewDependencies() {
         super.updateViewDependencies()
+
+        mCurrentFragment = MainFragment.newInstance()
+        prepareFragment(R.id.main_fragment_container, mCurrentFragment)
+        setToolbarTitle(getString(R.string.main_item_title))
 
         mDrawerLayout = findViewById(R.id.drawer_layout) as DrawerLayout
         mNavigationView = findViewById(R.id.navigation_view) as NavigationView

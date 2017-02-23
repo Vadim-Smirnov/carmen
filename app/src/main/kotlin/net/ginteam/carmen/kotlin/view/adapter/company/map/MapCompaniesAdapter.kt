@@ -24,6 +24,11 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
 
     override var VISIBLE_ITEMS_COUNT: Int = 2
 
+    fun selectCompanyItem(company: CompanyModel): Int {
+        notifyDataSetChanged()
+        return companies.indexOf(company)
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         val companyViewHolder: ViewHolder? = holder as ViewHolder?
         companyViewHolder?.mImageViewPhoto!!.layoutParams.height = calculatePhotoSize()
