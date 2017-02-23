@@ -19,6 +19,7 @@ import com.google.maps.android.ui.IconGenerator;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.kotlin.model.CompanyModel;
 import net.ginteam.carmen.model.company.MapCompanyModel;
+import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,11 +51,16 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<CompanyModel>
     @Override
     protected void onBeforeClusterItemRendered(CompanyModel item, MarkerOptions markerOptions) {
         View markerView;
+        CarmenRatingView companyRatingView;
+
         if (item.isSelected()) {
             markerView = LayoutInflater.from(mContext).inflate(R.layout.layout_selected_marker, null);
         } else {
             markerView = LayoutInflater.from(mContext).inflate(R.layout.layout_marker, null);
         }
+        companyRatingView = (CarmenRatingView) markerView.findViewById(R.id.rating_view_company_price);
+        companyRatingView.setRating(item.getRating());
+
         mIconGenerator.setContentView(markerView);
         Bitmap bitmap = mIconGenerator.makeIcon();
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bitmap));

@@ -26,7 +26,7 @@ class MapActivityPresenter : BaseLocationPresenter <MapActivityContract.View>(),
 
         // show fragment with user position
         val userLocation: LatLng = LatLng(location!!.latitude, location.longitude)
-        mView?.showMapFragment(userLocation)
+        mView?.showCompaniesMapFragment(userLocation)
     }
 
     override fun onLocationReceiveFailure() {
@@ -37,7 +37,7 @@ class MapActivityPresenter : BaseLocationPresenter <MapActivityContract.View>(),
         val userCityPoints: PointModel = preferences.userCityModel!!.point
 
         val userCityLocation: LatLng = LatLng(userCityPoints.latitude, userCityPoints.longitude)
-        mView?.showMapFragment(userCityLocation)
+        mView?.showCompaniesMapFragment(userCityLocation)
     }
 
     override fun attachView(view: MapActivityContract.View) {

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_map"
+    style="@style/ConstraintLayout.Base"
+    android:animateLayoutChanges="true"
+    tools:ignore="MissingPrefix">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/google_map"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:apiKey="@string/google_api_key"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/layout_toolbar"
+        style="@style/Include.WrappedHeight"
+        layout="@layout/transparent_toolbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

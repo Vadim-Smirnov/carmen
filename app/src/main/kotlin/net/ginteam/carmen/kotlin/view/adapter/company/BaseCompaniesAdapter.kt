@@ -65,6 +65,8 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
                 = itemView.findViewById(R.id.text_view_company_address) as TextView?
         private val mRatingViewRating: CarmenRatingView
                 = itemView.findViewById(R.id.rating_view_company) as CarmenRatingView
+        private var mRatingViewPrice: CarmenRatingView?
+                = itemView.findViewById(R.id.rating_view_company_price) as CarmenRatingView?
         private val mImageButtonAddToFavorite: ImageButton
                 = itemView.findViewById(R.id.image_button_company_favorite) as ImageButton
         private val mTextViewDistance: TextView?
@@ -77,6 +79,7 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
                 mTextViewName.text = name
                 mTextViewAddress?.text = address
                 mRatingViewRating.rating = rating.toFloat()
+                mRatingViewPrice?.rating = price.toFloat()
                 mTextViewDistance?.text = if (distance == 0.0) {
                     mImageViewLocation?.visibility = View.INVISIBLE
                     ""

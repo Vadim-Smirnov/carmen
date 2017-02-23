@@ -3,6 +3,7 @@ package net.ginteam.carmen.kotlin.model
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.annotations.SerializedName
 import com.google.maps.android.clustering.ClusterItem
+import net.ginteam.carmen.model.company.CompanyModel
 import java.io.Serializable
 
 /**
@@ -23,10 +24,10 @@ open class CompanyModel : ClusterItem, Serializable {
     val id: Int = 0
     val name: String = ""
     val address: String = ""
-    val rating: Int = 0
+    var rating: Int = 0
     val comforts: ResponseModel <List <ComfortModel>>? = null
     val categories: ResponseModel <List <CategoryModel>>? = null
-    internal val point: PointModel? = null
+    var point: PointModel? = null
     val ratings: ResponseModel <List <String>>? = null
     val distance: Double = 0.0
 
@@ -40,6 +41,14 @@ open class CompanyModel : ClusterItem, Serializable {
     @SerializedName("short_desc") val shortDescription: String = ""
     @SerializedName("detail") val details: ResponseModel <List <DetailModel>>? = null
 
-    override fun getPosition(): LatLng = LatLng(point!!.latitude, point.longitude)
+    override fun getPosition(): LatLng = LatLng(point!!.latitude, point!!.longitude)
+
+    // TODO: Remove it when CompanyDetailActivity will be refactored
+    constructor(javaCompanyModel: CompanyModel? = null) {
+        javaCompanyModel?.let {
+            rating = it.rating
+            point = PointModel(it.position.latitude, it.position.longitude)
+        }
+    }
 
 }

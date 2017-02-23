@@ -18,14 +18,14 @@ import com.google.maps.android.clustering.ClusterManager
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.animateCameraToLocation
 import net.ginteam.carmen.kotlin.checkPermission
-import net.ginteam.carmen.kotlin.contract.MapFragmentContract
+import net.ginteam.carmen.kotlin.contract.MapCompaniesFragmentContract
 import net.ginteam.carmen.kotlin.getBounds
 import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.listener.PageAdapterListener
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
-import net.ginteam.carmen.kotlin.presenter.company.map.MapFragmentPresenter
+import net.ginteam.carmen.kotlin.presenter.company.map.MapCompaniesFragmentPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.map.MapCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.view.activity.map.CompanyClusterRenderer
@@ -36,12 +36,12 @@ import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListHorizontalItem
  */
 
 class MapCompaniesFragment
-    : BaseCompaniesFragment <MapCompaniesAdapter, MapFragmentContract.View, MapFragmentContract.Presenter>(),
-        MapFragmentContract.View, OnMapReadyCallback, ClusterManager.OnClusterClickListener<CompanyModel>,
+    : BaseCompaniesFragment <MapCompaniesAdapter, MapCompaniesFragmentContract.View, MapCompaniesFragmentContract.Presenter>(),
+        MapCompaniesFragmentContract.View, OnMapReadyCallback, ClusterManager.OnClusterClickListener<CompanyModel>,
         ClusterManager.OnClusterItemClickListener<CompanyModel>, GoogleMap.OnCameraMoveStartedListener,
         GoogleMap.OnCameraIdleListener, Filterable {
 
-    override var mPresenter: MapFragmentContract.Presenter = MapFragmentPresenter()
+    override var mPresenter: MapCompaniesFragmentContract.Presenter = MapCompaniesFragmentPresenter()
 
     private val mUiThreadHandler: Handler = Handler()
     override lateinit var mCompaniesAdapter: MapCompaniesAdapter
@@ -83,7 +83,6 @@ class MapCompaniesFragment
     }
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
         mGoogleMapView.onCreate(savedInstanceState)
         mGoogleMapView.getMapAsync(this)
     }
@@ -160,6 +159,8 @@ class MapCompaniesFragment
 
         mCompaniesAdapter = MapCompaniesAdapter(companies, this, this)
         mRecyclerViewCompanies.adapter = mCompaniesAdapter
+
+        onClusterItemClick(companies.first())
     }
 
     override fun showSearchView(show: Boolean) {
@@ -182,7 +183,7 @@ class MapCompaniesFragment
         fetchCompanies()
     }
 
-    override fun getLayoutResId(): Int = R.layout.fragment_map
+    override fun getLayoutResId(): Int = R.layout.fragment_companies_map
 
     override fun fetchCompanies() {
         mPresenter.fetchCompanies(mSelectedCategory, mFilterQuery, mGoogleMapInstance.getBounds())

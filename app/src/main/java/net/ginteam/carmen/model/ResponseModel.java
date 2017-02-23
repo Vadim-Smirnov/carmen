@@ -2,11 +2,13 @@ package net.ginteam.carmen.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * Created by Eugene on 12/23/16.
  */
 
-public class ResponseModel <T> {
+public class ResponseModel <T> implements Serializable {
 
     @SerializedName("success")
     private boolean mIsSuccess;

@@ -12,7 +12,7 @@ object MapActivityContract {
 
     interface View : LocationContract.View {
 
-        fun showMapFragment(startLocation: LatLng)
+        fun showCompaniesMapFragment(startLocation: LatLng)
 
     }
 
@@ -20,7 +20,7 @@ object MapActivityContract {
 
 }
 
-object MapFragmentContract {
+object MapCompaniesFragmentContract {
 
     interface View : BaseCompaniesContract.View {
 
@@ -34,5 +34,13 @@ object MapFragmentContract {
         fun fetchCompanies(category: CategoryModel, filterQuery: String, mapBounds: LatLngBounds)
 
     }
+
+}
+
+object MapCompanyFragmentContract {
+
+    interface View : BaseContract.View
+
+    interface Presenter : BaseContract.Presenter <View>
 
 }

@@ -3,7 +3,7 @@ package net.ginteam.carmen.kotlin.view.activity.map
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.support.v4.app.Fragment
 import android.view.MenuItem
 import com.google.android.gms.maps.model.LatLng
 import net.ginteam.carmen.R
@@ -17,6 +17,7 @@ import net.ginteam.carmen.kotlin.view.activity.BaseLocationActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment
+import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompanyFragment
 import net.ginteam.carmen.utils.ActivityUtils
 import net.ginteam.carmen.view.activity.company.CompanyDetailActivity
 
@@ -26,20 +27,37 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
 
     override var mPresenter: MapActivityContract.Presenter = MapActivityPresenter()
 
-    private lateinit var mSelectedCategory: CategoryModel
-    private lateinit var mMapFragment: MapCompaniesFragment
+    private var mSelectedCategory: CategoryModel? = null
+    private var mSelectedCompany: CompanyModel? = null
+
+    private lateinit var mCurrentFragment: Fragment
 
     companion object {
         const val CATEGORY_ARGUMENT = "category"
+        const val COMPANY_ARGUMENT = "company"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mPresenter.fetchUserLocation()
+
+        // if we receive category
+        mSelectedCategory?.let {
+            // then we need to fetch location
+            // and show MapCompaniesFragment
+            mPresenter.fetchUserLocation()
+        }
+
+        // if we receive company
+        mSelectedCompany?.let {
+            // then we need to show MapCompanyFragment
+            // with only one company
+            mCurrentFragment = MapCompanyFragment.newInstance(it)
+            prepareFragment(R.id.main_fragment_container, mCurrentFragment)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        super.onBackPressed()
+        finish()
         return true
     }
 
@@ -48,7 +66,7 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
             FiltersActivity.FILTER_CONFIRM_REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK) {
                     // set filters for map fragment
-                    (mMapFragment as? Filterable)?.setFilterQuery(
+                    (mCurrentFragment as? Filterable)?.setFilterQuery(
                             data!!.getStringExtra(FiltersActivity.RESULT_FILTER_ARGUMENT)
                     )
                 }
@@ -73,9 +91,9 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
 
     override fun getLayoutResId(): Int = R.layout.activity_map_new
 
-    override fun showMapFragment(startLocation: LatLng) {
-        mMapFragment = MapCompaniesFragment.newInstance(mSelectedCategory, startLocation)
-        prepareFragment(R.id.main_fragment_container, mMapFragment)
+    override fun showCompaniesMapFragment(startLocation: LatLng) {
+        mCurrentFragment = MapCompaniesFragment.newInstance(mSelectedCategory!!, startLocation)
+        prepareFragment(R.id.main_fragment_container, mCurrentFragment)
     }
 
     override fun updateViewDependencies() {
@@ -87,6 +105,8 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
 
     override fun updateDependencies() {
         super.updateDependencies()
-        mSelectedCategory = intent.getSerializableExtra(CATEGORY_ARGUMENT) as CategoryModel
+
+        mSelectedCategory = intent.getSerializableExtra(CATEGORY_ARGUMENT) as CategoryModel?
+        mSelectedCompany = intent.getSerializableExtra(COMPANY_ARGUMENT) as? CompanyModel?
     }
 }

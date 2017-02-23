@@ -12,6 +12,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,6 +31,7 @@ import com.squareup.picasso.Picasso;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
+import net.ginteam.carmen.kotlin.view.activity.BaseActivity;
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity;
 import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.company.CompanyModel;
@@ -200,7 +202,11 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
 
     @Override
     public void showMap() {
-        ActivityUtils.showActivity(MapActivity.class, null, false);
+//        ActivityUtils.showActivity(MapActivity.class, null, false);
+        Intent intent = new Intent(getContext(), MapActivity.class);
+        // TODO: 2/23/17 Remove it cast
+        intent.putExtra(MapActivity.COMPANY_ARGUMENT, new net.ginteam.carmen.kotlin.model.CompanyModel(mCompanyModel));
+        startActivity(intent);
     }
 
     @Override
