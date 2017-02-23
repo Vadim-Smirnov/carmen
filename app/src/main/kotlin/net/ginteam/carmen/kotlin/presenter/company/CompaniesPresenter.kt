@@ -45,6 +45,11 @@ class CompaniesPresenter : BaseCompaniesPresenter <CompaniesContract.View>(), Co
                 })
     }
 
+    override fun resetFilters() {
+        val filtersViewState: FiltersContract.ViewState = FiltersActivityViewState
+        filtersViewState.resetViewState()
+    }
+
     override fun attachView(view: CompaniesContract.View) {
         super.attachView(view)
 
@@ -52,8 +57,7 @@ class CompaniesPresenter : BaseCompaniesPresenter <CompaniesContract.View>(), Co
         val sortViewState: SortContract.ViewState = SortOptionDialogFragmentViewState
         sortViewState.resetViewState()
 
-        val filtersViewState: FiltersContract.ViewState = FiltersActivityViewState
-        filtersViewState.resetViewState()
+        resetFilters()
     }
 
 }

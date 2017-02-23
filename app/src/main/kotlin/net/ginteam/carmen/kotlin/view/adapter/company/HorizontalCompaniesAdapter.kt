@@ -14,6 +14,7 @@ open class HorizontalCompaniesAdapter(companies: MutableList <CompanyModel>,
                                  onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : BaseCompaniesAdapter(companies, onCompanyItemClick, onFavoriteClick) {
 
+    open protected var FULL_VISIBLE_ITEMS_COUNT: Int = 2
     open protected var VISIBLE_ITEMS_COUNT: Int = 3
 
     override fun getItemLayoutResId(): Int = R.layout.list_item_company_horizontal
@@ -21,12 +22,10 @@ open class HorizontalCompaniesAdapter(companies: MutableList <CompanyModel>,
     override fun calculateItemWidth(): Int {
         val screenSize = DisplayUtils.getScreenSize(CarmenApplication.getContext())
         val itemSpacing = CarmenApplication.getContext().resources.getDimension(R.dimen.company_item_spacing).toInt()
-        return screenSize.x / 2 - VISIBLE_ITEMS_COUNT * itemSpacing
+        return (screenSize.x / FULL_VISIBLE_ITEMS_COUNT) - (VISIBLE_ITEMS_COUNT * itemSpacing)
     }
 
     override fun calculatePhotoSize(): Int {
-        val screenSize = DisplayUtils.getScreenSize(CarmenApplication.getContext())
-        val itemSpacing = CarmenApplication.getContext().resources.getDimension(R.dimen.company_item_spacing).toInt()
-        return screenSize.x / 2 - VISIBLE_ITEMS_COUNT * itemSpacing
+        return calculateItemWidth()
     }
 }

@@ -50,16 +50,12 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<CompanyModel>
     @Override
     protected void onBeforeClusterItemRendered(CompanyModel item, MarkerOptions markerOptions) {
         View markerView;
-        TextView textViewPrice;
-
         if (item.isSelected()) {
             markerView = LayoutInflater.from(mContext).inflate(R.layout.layout_selected_marker, null);
         } else {
             markerView = LayoutInflater.from(mContext).inflate(R.layout.layout_marker, null);
         }
-
         mIconGenerator.setContentView(markerView);
-
         Bitmap bitmap = mIconGenerator.makeIcon();
         markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
     }

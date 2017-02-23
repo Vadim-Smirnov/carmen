@@ -35,6 +35,8 @@ object CompaniesContract {
         fun fetchCompanies(categoryId: Int, filterQuery: String = "",
                            sortField: String = "", sortType: String = "", pageNumber: Int = 1)
 
+        fun resetFilters()
+
     }
 
 }

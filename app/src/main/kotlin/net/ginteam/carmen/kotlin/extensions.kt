@@ -1,9 +1,12 @@
 package net.ginteam.carmen.kotlin
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.content.res.Resources
 import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 import android.support.design.widget.NavigationView
+import android.support.v13.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -18,6 +21,7 @@ import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.FilterModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import net.ginteam.carmen.kotlin.model.SortModel
+import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -34,7 +38,12 @@ fun Fragment.prepareFragment(@LayoutRes containerLayoutResId: Int, fragment: Fra
     childFragmentManager.beginTransaction().replace(containerLayoutResId, fragment).commit()
 }
 
-fun Fragment.isNestedFragment(): Boolean = parentFragment != null
+fun MapCompaniesFragment.checkPermission(): Boolean {
+    return !(ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION)
+            != PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED)
+}
 
 fun <T> Observable <ResponseModel <T>>.asyncWithCache(cache: Boolean = true): Observable<ResponseModel<T>> {
     val originObservable = this

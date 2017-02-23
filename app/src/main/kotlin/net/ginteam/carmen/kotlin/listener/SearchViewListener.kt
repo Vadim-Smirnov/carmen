@@ -8,9 +8,7 @@ import android.support.v7.widget.SearchView
 
 abstract class SearchViewListener : SearchView.OnQueryTextListener {
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        return true
-    }
+    override fun onQueryTextChange(newText: String?): Boolean = true
+    override abstract fun onQueryTextSubmit(query: String?): Boolean
 
-    override abstract fun onQueryTextChange(newText: String?): Boolean
 }

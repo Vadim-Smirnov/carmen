@@ -14,6 +14,7 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
 import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.interfaces.Sortable
+import net.ginteam.carmen.kotlin.listener.SearchViewListener
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
@@ -21,6 +22,9 @@ import net.ginteam.carmen.kotlin.presenter.company.CompaniesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.PaginatableCompaniesAdapter
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDecorator
 import net.ginteam.carmen.view.adapter.company.PaginationScrollListener
+import rx.Observable
+import rx.android.schedulers.AndroidSchedulers
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by eugene_shcherbinock on 2/16/17.
@@ -32,7 +36,7 @@ class CompaniesFragment
 
     override var mPresenter: CompaniesContract.Presenter = CompaniesPresenter()
 
-    private val mAdapterNotifyHandler: Handler = Handler()
+    private val mUiThreadHandler: Handler = Handler()
     override lateinit var mCompaniesAdapter: PaginatableCompaniesAdapter
 
     private lateinit var mSearchView: SearchView
@@ -48,7 +52,7 @@ class CompaniesFragment
     private var mMenuItemSelectedListener: OnBottomMenuItemSelectedListener? = null
 
     companion object {
-        private const val SEARCH_DELAY_MILLISECONDS: Long = 500
+        private const val SEARCH_DELAY_SECONDS: Long = 1
         private const val SEARCH_BUTTON_ID: Int = android.support.v7.appcompat.R.id.search_button
 
         private const val CATEGORY_ARGUMENT = "category"
@@ -84,6 +88,9 @@ class CompaniesFragment
     // Filterable & Sortable implementation
 
     override fun setFilterQuery(filter: String) {
+        mSearchView.setQuery("", false)
+        mSearchView.isIconified = true
+
         mFilterQuery = filter
         mCurrentPaginationPage = 1
         fetchCompanies()
@@ -109,7 +116,7 @@ class CompaniesFragment
         }
 
         isLoadingNow = false
-        mAdapterNotifyHandler.post {
+        mUiThreadHandler.post {
             mCompaniesAdapter.hideLoading()
             mCompaniesAdapter.addCompanies(companies)
         }
@@ -159,7 +166,7 @@ class CompaniesFragment
             override fun loadMoreItems() {
                 mCurrentPaginationPage++
                 isLoadingNow = true
-                mAdapterNotifyHandler.post {
+                mUiThreadHandler.post {
                     mCompaniesAdapter.showLoading()
                 }
                 fetchCompanies()
@@ -176,20 +183,21 @@ class CompaniesFragment
         // set search icon
         (mSearchView.findViewById(SEARCH_BUTTON_ID) as ImageView).setImageResource(R.drawable.ic_search)
 
-        // create observer for search
-//        Observable.create(Observable.OnSubscribe <String> { subscriber ->
-//            mSearchView.setOnQueryTextListener(object : SearchViewListener() {
-//                override fun onQueryTextChange(newText: String?): Boolean {
-//                    subscriber.onNext(newText)
-//                    return true
-//                }
-//            })
-//        })
-//        .debounce(SEARCH_DELAY_MILLISECONDS, TimeUnit.MILLISECONDS)
-//        .observeOn(AndroidSchedulers.mainThread())
-//        .subscribe({
-//
-//        })
+        mSearchView.setOnQueryTextListener(object : SearchViewListener() {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // reset filters
+                mPresenter.resetFilters()
+                mFilterQuery = "name:${query!!};"
+                mCurrentPaginationPage = 1
+
+                fetchCompanies()
+
+                mUiThreadHandler.post {
+                    mSearchView.clearFocus()
+                }
+                return true
+            }
+        })
     }
 
     interface OnBottomMenuItemSelectedListener {

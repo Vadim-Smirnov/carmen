@@ -3,6 +3,7 @@ package net.ginteam.carmen.kotlin.view.activity.map
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import com.google.android.gms.maps.model.LatLng
 import net.ginteam.carmen.R
@@ -16,6 +17,8 @@ import net.ginteam.carmen.kotlin.view.activity.BaseLocationActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment
+import net.ginteam.carmen.utils.ActivityUtils
+import net.ginteam.carmen.view.activity.company.CompanyDetailActivity
 
 class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityContract.Presenter>(),
         MapActivityContract.View, BaseCompaniesFragment.OnCompanySelectedListener,
@@ -57,7 +60,9 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
     }
 
     override fun onCompanySelected(company: CompanyModel) {
-
+        val bundle = Bundle()
+        bundle.putInt(CompanyDetailActivity.COMPANY_ID_ARGUMENT, company.id)
+        ActivityUtils.showActivity(CompanyDetailActivity::class.java, bundle, false)
     }
 
     override fun onShowFiltersActivity(category: CategoryModel) {

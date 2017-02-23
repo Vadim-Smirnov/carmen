@@ -1,13 +1,14 @@
 package net.ginteam.carmen.kotlin.view.fragment.company.map
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.animation.LinearInterpolator
+import android.widget.AbsListView
+import android.widget.Toast
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -16,9 +17,11 @@ import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.animateCameraToLocation
+import net.ginteam.carmen.kotlin.checkPermission
 import net.ginteam.carmen.kotlin.contract.MapFragmentContract
 import net.ginteam.carmen.kotlin.getBounds
 import net.ginteam.carmen.kotlin.interfaces.Filterable
+import net.ginteam.carmen.kotlin.listener.PageAdapterListener
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
@@ -45,6 +48,7 @@ class MapCompaniesFragment
 
     private var isNeedFetchCompanies: Boolean = false
     private var mFilterQuery: String = ""
+    private var mUserSelectedCompany: CompanyModel? = null
 
     private lateinit var mSelectedCategory: CategoryModel
     private lateinit var mStartGoogleMapPosition: LatLng
@@ -97,6 +101,10 @@ class MapCompaniesFragment
                 isNeedFetchCompanies = true
                 mGoogleMapInstance.animateCameraToLocation(mStartGoogleMapPosition)
             }
+
+            if (checkPermission()) {
+                mGoogleMapInstance.isMyLocationEnabled = true
+            }
         }
     }
 
@@ -115,7 +123,18 @@ class MapCompaniesFragment
     }
 
     override fun onClusterItemClick(company: CompanyModel?): Boolean {
-        return true
+        val companyRenderer: CompanyClusterRenderer = mGoogleMapClusterManager.renderer as CompanyClusterRenderer
+        mUserSelectedCompany?.let {
+            it.isSelected = false
+            companyRenderer.updateClusterItem(it)
+        }
+
+        if (company?.isSelected == false) {
+            mUserSelectedCompany = company
+            mUserSelectedCompany!!.isSelected = true
+            companyRenderer.updateClusterItem(mUserSelectedCompany)
+        }
+        return false
     }
 
     override fun onClusterClick(companyCluster: Cluster<CompanyModel>?): Boolean {
@@ -125,9 +144,7 @@ class MapCompaniesFragment
     // -------------------
 
     override fun setFilterQuery(filter: String) {
-        mGoogleMapClusterManager.clearItems()
         mGoogleMapInstance.clear()
-
         mFilterQuery = filter
         fetchCompanies()
     }
@@ -142,35 +159,19 @@ class MapCompaniesFragment
     }
 
     override fun showSearchView(show: Boolean) {
-        if (show) {
-            mSearchView.animate().alpha(1f).start()
-            return
-        }
-        mSearchView.animate().alpha(0f).start()
+        mSearchView.animate().alpha(if (show) 1f else 0f).start()
     }
 
     override fun showCompaniesView(show: Boolean) {
-        if (show) {
-            mRecyclerViewCompanies.visibility = View.VISIBLE
-            mRecyclerViewCompanies
-                    .animate()
-                    .translationY(0f)
-                    .setInterpolator(LinearInterpolator())
-                    .withEndAction {
-                        mFiltersView.animate().alpha(1f).start()
-                    }
-                    .start()
-            return
-        }
         mRecyclerViewCompanies
                 .animate()
-                .translationY(mRecyclerViewCompanies.height.toFloat())
+                .translationY(if (show) 0f else mRecyclerViewCompanies.height.toFloat())
                 .setInterpolator(LinearInterpolator())
                 .withEndAction {
-                    mFiltersView.animate().alpha(0f).start()
+                    mFiltersView.animate().alpha(if (show) 1f else 0f).start()
                 }
                 .start()
-        mRecyclerViewCompanies.visibility = View.GONE
+        mRecyclerViewCompanies.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     override fun getNetworkErrorAction(): (() -> Unit)? = {
