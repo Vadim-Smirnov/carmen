@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
 import net.ginteam.carmen.kotlin.interfaces.Filterable
