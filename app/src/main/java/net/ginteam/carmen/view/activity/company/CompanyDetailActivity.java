@@ -153,13 +153,10 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         String categories = "";
         for (int i = 0; i < companyModel.getCategory().size(); i++) {
             if (companyModel.getCategory().get(i).getParentId() == 0) {
-                categories += companyModel.getCategory().get(i).getName();
-                if (i != companyModel.getCategory().size() - 1) {
-                    categories += ", ";
-                }
+                categories += companyModel.getCategory().get(i).getName() + ", ";
             }
         }
-        mTextViewCategory.setText(categories);
+        mTextViewCategory.setText(categories.substring(0, categories.length() - 2));
 
         mTextViewAddress.setText(companyModel.getAddress());
         mTextViewWorkTime.setText(String.format("%s %s",

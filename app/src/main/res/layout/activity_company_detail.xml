@@ -27,6 +27,7 @@
         <ImageButton
             android:id="@+id/action_button_call"
             style="@style/ImageButton.Call"
+            android:visibility="gone"
             app:layout_behavior="net.ginteam.carmen.view.adapter.company.FloatingButtonBehavior"/>
 
     </android.support.design.widget.CoordinatorLayout>
