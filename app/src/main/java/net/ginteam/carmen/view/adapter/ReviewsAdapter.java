@@ -24,18 +24,24 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewItemViewHolder> 
 
     private Context mContext;
 
+    private int mReviewVisibleCount;
+    private boolean mIsAllReviews;
+
     private List<Rating> mReviews;
 
-    public ReviewsAdapter(Context context, List<Rating> reviews) {
+    public ReviewsAdapter(Context context, List<Rating> reviews, boolean isAllReviews) {
         mContext = context;
         mReviews = reviews;
+        mIsAllReviews = isAllReviews;
+        mReviewVisibleCount = isAllReviews ? reviews.size() : REVIEW_VISIBLE_COUNT;
     }
 
     @Override
     public ReviewItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View reviewItemView = LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.list_item_review, parent, false);
+                .inflate(mIsAllReviews ? R.layout.list_item_all_review
+                        : R.layout.list_item_review, parent, false);
         return new ReviewItemViewHolder(reviewItemView);
     }
 
@@ -67,6 +73,6 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewItemViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mReviews.size() > REVIEW_VISIBLE_COUNT ? REVIEW_VISIBLE_COUNT : mReviews.size() ;
+        return mReviews.size() > mReviewVisibleCount ? mReviewVisibleCount : mReviews.size();
     }
 }

@@ -5,15 +5,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SnapHelper
-import android.util.Log
-import android.view.Gravity
 import android.view.View
 import android.view.animation.LinearInterpolator
-import android.widget.AbsListView
-import android.widget.Toast
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
@@ -27,7 +22,6 @@ import net.ginteam.carmen.kotlin.checkPermission
 import net.ginteam.carmen.kotlin.contract.MapCompaniesFragmentContract
 import net.ginteam.carmen.kotlin.getBounds
 import net.ginteam.carmen.kotlin.interfaces.Filterable
-import net.ginteam.carmen.kotlin.listener.PageAdapterListener
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LinearLayout.Vertical"
+    tools:context="net.ginteam.carmen.view.activity.AllReviewsActivity">
+
+
+    <include layout="@layout/toolbar"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view_reviews"
+        style="@style/RecyclerView.WrappedHeight"
+        android:layout_marginTop="@dimen/company_detail_recycler_reviews_margin_top"/>
+
+</LinearLayout>

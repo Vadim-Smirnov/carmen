@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ConstraintLayout.WrappedHeight"
+    android:layout_marginBottom="@dimen/review_item_bottom_margin"
+    tools:ignore="MissingPrefix">
+
+        <TextView
+            android:id="@+id/text_view_review_title"
+            style="@style/TextView.Header"
+            android:layout_marginEnd="@dimen/review_title_margin_end"
+            android:layout_marginStart="@dimen/review_title_margin_start"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingBottom="@dimen/text_view_date_margin_top"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Безумно быстрое СТО с купальниками розового цвета"/>
+
+        <net.ginteam.carmen.view.custom.rating.CarmenRatingView
+            android:id="@+id/rating_view_company"
+            android:layout_width="@dimen/review_rating_width"
+            android:layout_height="@dimen/review_rating_height"
+            android:layout_marginStart="@dimen/review_title_margin_start"
+            android:isIndicator="true"
+            app:crv_indicatorSpacing="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_date"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_view_date"/>
+
+        <TextView
+            android:id="@+id/text_view_date"
+            style="@style/TextView.Header"
+            fontPath="@string/open_sans_light_font"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="@dimen/text_view_date_margin_start"
+            app:layout_constraintLeft_toRightOf="@+id/rating_view_company"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_review_title"
+            tools:text="05.12.2016"/>
+
+        <TextView
+            android:id="@+id/text_view_user_name"
+            style="@style/TextView.Header"
+            fontPath="@string/open_sans_font"
+            android:layout_marginEnd="@dimen/text_view_user_name_margin_start"
+            android:layout_marginStart="@dimen/text_view_user_name_margin_end"
+            android:ellipsize="end"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_date"
+            app:layout_constraintLeft_toRightOf="@+id/text_view_date"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_view_date"
+            tools:text="Марк Твен"/>
+
+        <TextView
+            android:id="@+id/text_view_review_text"
+            style="@style/TextView.Header"
+            fontPath="@string/open_sans_light_font"
+            android:layout_marginEnd="@dimen/review_text_margin_end"
+            android:layout_marginStart="@dimen/review_text_margin_start"
+            android:layout_marginTop="@dimen/review_text_margin_top"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_date"
+            tools:text="Я был восхищен скоростью работы данного СТО, оно было заебись как работало и тд. и тд."/>
+
+        <View
+            android:id="@+id/view2"
+            style="@style/LayoutDivider"
+            android:layout_marginTop="@dimen/review_text_margin_top"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_review_text"/>
+
+</android.support.constraint.ConstraintLayout>

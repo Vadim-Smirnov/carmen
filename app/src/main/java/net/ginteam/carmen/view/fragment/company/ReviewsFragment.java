@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.model.Rating;
+import net.ginteam.carmen.utils.ActivityUtils;
+import net.ginteam.carmen.view.activity.AllReviewsActivity;
 import net.ginteam.carmen.view.adapter.ReviewsAdapter;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
@@ -17,7 +19,8 @@ import java.util.List;
 
 public class ReviewsFragment extends BaseFetchingFragment {
 
-    private static final String RATING_ARG = "rating";
+    public static final String RATING_ARG = "rating";
+
 
     private List<Rating> mRatingList;
 
@@ -50,7 +53,7 @@ public class ReviewsFragment extends BaseFetchingFragment {
 
         updateDependencies();
         if (mRatingList != null) {
-            mReviewsAdapter = new ReviewsAdapter(getContext(), mRatingList);
+            mReviewsAdapter = new ReviewsAdapter(getContext(), mRatingList, false);
             mRecyclerViewReviews.setAdapter(mReviewsAdapter);
         }
 
@@ -61,5 +64,17 @@ public class ReviewsFragment extends BaseFetchingFragment {
         mRecyclerViewReviews = (RecyclerView) mRootView.findViewById(R.id.recycler_view_reviews);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mRecyclerViewReviews.setLayoutManager(layoutManager);
+        mRootView.findViewById(R.id.button_all_reviews).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAllReviews();
+            }
+        });
+    }
+
+    private void showAllReviews() {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(RATING_ARG, new ArrayList<>(mRatingList));
+        ActivityUtils.showActivity(AllReviewsActivity.class, bundle, false);
     }
 }

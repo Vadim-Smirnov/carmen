@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.FetchContract;
@@ -35,7 +34,6 @@ public abstract class BaseFetchingFragment extends BaseFragment implements Fetch
     @Override
     public void showError(String message) {
         mProgressBar.setVisibility(View.GONE);
-        Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 
 }

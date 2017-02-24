@@ -30,6 +30,7 @@ import com.squareup.picasso.Picasso;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
+import net.ginteam.carmen.kotlin.provider.AuthenticationProvider;
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity;
 import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.company.CompanyModel;
@@ -127,7 +128,6 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
 
     @Override
     public void showError(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -271,10 +271,18 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
             Toast.makeText(getContext(), getResources().getString(R.string.error_vote_object), Toast.LENGTH_SHORT).show();
             return;
         }
+
+        net.ginteam.carmen.kotlin.provider.AuthProvider authProvider = AuthenticationProvider.INSTANCE;
+        if (authProvider.getCurrentCachedUser() == null) {
+            Toast.makeText(getContext(), getResources().getString(R.string.access_denied_message), Toast.LENGTH_SHORT).show();
+            mRatingViewVoteObject.setRating(0);
+            return;
+        }
         if (rating < 1) {
             mRatingViewVoteObject.setRating(1);
             return;
         }
+
         mPresenter.createRating(rating, mCompanyId);
     }
 
@@ -290,7 +298,6 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         Bundle arguments = getIntent().getExtras();
         if (arguments != null) {
             mCompanyId = arguments.getInt(COMPANY_ID_ARGUMENT, 0);
-            Toast.makeText(this, "Receive ID: " + mCompanyId, Toast.LENGTH_LONG).show();
         }
     }
 

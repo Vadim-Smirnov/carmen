@@ -148,13 +148,6 @@ public class CompanyRecyclerListAdapter extends RecyclerView.Adapter<RecyclerVie
                 R.drawable.ic_company_favorite_enable : R.drawable.ic_company_favorite_disable);
 
 
-        companyViewHolder.getImageButtonAddToFavorite().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(mContext, "Like", Toast.LENGTH_SHORT).show();
-            }
-        });
-
         if (mCompanyItemClickListener == null) {
             Log.e("CompanyListAdapter", "OnCompanyItemClickListener does not set!");
             return;

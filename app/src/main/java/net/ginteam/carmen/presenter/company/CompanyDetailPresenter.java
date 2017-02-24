@@ -149,12 +149,7 @@ public class CompanyDetailPresenter implements CompanyDetailContract.Presenter {
     @Override
     public void createRating(float rating, int companyId) {
         mView.showLoading(true);
-        net.ginteam.carmen.kotlin.provider.AuthProvider authProvider = AuthenticationProvider.INSTANCE;
-        if (authProvider.getCurrentCachedUser() == null) {
-            mView.showLoading(false);
-            mView.showError(mView.getContext().getResources().getString(R.string.access_denied_message));
-            return;
-        }
+
         CreateRating createRating = new CreateRating();
         createRating.setCompanyId(companyId);
         createRating.setRating(rating);

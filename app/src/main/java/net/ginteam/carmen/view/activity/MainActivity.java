@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
-import android.widget.Toast;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity;
@@ -30,9 +29,6 @@ public class MainActivity extends NavigationViewActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_main);
-
-        Toast.makeText(this, R.string.test, Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
@@ -91,8 +87,6 @@ public class MainActivity extends NavigationViewActivity implements
 
     @Override
     public void onCategorySelected(CategoryModel category, boolean isDialog) {
-        Toast.makeText(this, category.getName(), Toast.LENGTH_SHORT).show();
-
         prepareFragment(CompanyListFragment.newInstance(
                 CompanyListFragment.COMPANY_LIST_TYPE.VERTICAL,
                 CompanyListFragment.FETCH_COMPANY_TYPE.FOR_CATEGORY,
@@ -105,13 +99,10 @@ public class MainActivity extends NavigationViewActivity implements
 
     @Override
     public void onCitySelected(CityModel city) {
-        Toast.makeText(this, city.getName(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onCompanySelected(CompanyModel company) {
-        Toast.makeText(this, company.getName(), Toast.LENGTH_SHORT).show();
-
         Bundle arguments = new Bundle();
         arguments.putInt(CompanyDetailActivity.COMPANY_ID_ARGUMENT, company.getId());
         ActivityUtils.showActivity(CompanyDetailActivity.class, arguments, false);
