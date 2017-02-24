@@ -95,13 +95,15 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     @Override
     protected void onStart() {
         super.onStart();
+
+        invalidateOptionsMenu();
         mPresenter.fetchCompanyDetail(mCompanyId);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.company_detail_menu, menu);
         mMenu = menu;
+        getMenuInflater().inflate(R.menu.company_detail_menu, mMenu);
         return true;
     }
 
