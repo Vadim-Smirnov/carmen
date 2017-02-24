@@ -65,14 +65,12 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
                 = itemView.findViewById(R.id.text_view_company_address) as TextView?
         private val mRatingViewRating: CarmenRatingView
                 = itemView.findViewById(R.id.rating_view_company) as CarmenRatingView
-        private var mRatingViewPrice: CarmenRatingView?
+        private val mRatingViewPrice: CarmenRatingView?
                 = itemView.findViewById(R.id.rating_view_company_price) as CarmenRatingView?
         private val mImageButtonAddToFavorite: ImageButton
                 = itemView.findViewById(R.id.image_button_company_favorite) as ImageButton
         private val mTextViewDistance: TextView?
                 = itemView.findViewById(R.id.text_view_company_distance) as TextView?
-        private val mImageViewLocation: ImageView?
-                = itemView.findViewById(R.id.image_view_company_location) as ImageView?
 
         open fun bindData(company: CompanyModel) {
             with(company) {
@@ -80,12 +78,12 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
                 mTextViewAddress?.text = address
                 mRatingViewRating.rating = rating.toFloat()
                 mRatingViewPrice?.rating = price.toFloat()
+
+                val locationMeasure = CarmenApplication.getContext().getString(R.string.location_measure)
                 mTextViewDistance?.text = if (distance == 0.0) {
-                    mImageViewLocation?.visibility = View.INVISIBLE
-                    ""
+                    "??? $locationMeasure"
                 } else {
-                    mImageViewLocation?.visibility = View.VISIBLE
-                    String.format("%.1f km", distance / 1000)
+                    String.format("%.1f $locationMeasure", distance / 1000)
                 }
                 mImageButtonAddToFavorite.setImageResource(if (isFavorite) {
                     R.drawable.ic_company_favorite_enable

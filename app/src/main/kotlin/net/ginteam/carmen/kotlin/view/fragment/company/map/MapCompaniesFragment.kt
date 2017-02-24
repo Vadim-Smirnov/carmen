@@ -216,34 +216,43 @@ class MapCompaniesFragment
 
     private fun selectCompany(company: CompanyModel?, withScroll: Boolean = false) {
         val companyRenderer: CompanyClusterRenderer = mGoogleMapClusterManager.renderer as CompanyClusterRenderer
+
+        // if we already have selected company
         mUserSelectedCompany?.let {
+            // set selection to false
             it.isSelected = false
+
+            // invalidate marker and adapter item
             companyRenderer.updateClusterItem(it)
             mCompaniesAdapter.updateCompanyItem(it)
         }
 
+        // if we select company
         if (company?.isSelected == false) {
+
+            // save it
             mUserSelectedCompany = company
             mUserSelectedCompany!!.isSelected = true
 
+            // invalidate marker and adapter item
             companyRenderer.updateClusterItem(mUserSelectedCompany)
-            mCompaniesAdapter.updateCompanyItem(mUserSelectedCompany!!)
+            val updatedPosition = mCompaniesAdapter.updateCompanyItem(mUserSelectedCompany!!)
 
+            if (withScroll) {
+                mRecyclerViewCompanies.scrollToPosition(updatedPosition)
+            }
+
+            // animate camera to marker position
             mGoogleMapInstance
                     .animateCameraToLocation(
                             mUserSelectedCompany!!.position,
-                            mGoogleMapInstance.cameraPosition.zoom
-                    )
-
-            val position: Int = mCompaniesAdapter.updateCompanyItem(mUserSelectedCompany!!)
-            if (withScroll) {
-                mRecyclerViewCompanies.scrollToPosition(position)
-            }
+                            mGoogleMapInstance.cameraPosition.zoom)
         }
     }
 
     override fun updateDependencies() {
         super.updateDependencies()
+
         mSelectedCategory = arguments.getSerializable(CATEGORY_ARGUMENT) as CategoryModel
         mStartGoogleMapPosition = arguments.getParcelable(INIT_MAP_POSITION_ARGUMENT)
     }
