@@ -57,11 +57,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.activity.MainActivity"/>
         </activity>
-        <activity android:name=".view.activity.VoteObjectActivity"/>
+        <activity
+            android:name=".view.activity.VoteObjectActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_api_key"/>
+
+        <activity
+            android:name=".view.activity.AllReviewsActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- Kotlin -->
         <activity
@@ -100,8 +106,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".kotlin.view.activity.MainActivity"/>
-        </activity>
-        <activity android:name=".view.activity.AllReviewsActivity">
         </activity>
     </application>
 
