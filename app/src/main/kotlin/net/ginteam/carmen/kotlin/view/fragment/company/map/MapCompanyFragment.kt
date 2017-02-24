@@ -76,7 +76,9 @@ class MapCompanyFragment : BaseFragment <MapCompanyFragmentContract.View, MapCom
 
     override fun updateDependencies() {
         super.updateDependencies()
+
         mSelectedCompany = arguments.getSerializable(COMPANY_ARGUMENT) as CompanyModel
+        mSelectedCompany.isSelected = true
     }
 
     private fun updateGoogleMapDependencies() {
