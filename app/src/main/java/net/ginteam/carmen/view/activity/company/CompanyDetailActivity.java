@@ -143,7 +143,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mRecyclerViewGallery.setAdapter(mGalleryRecyclerAdapter);
         mRecyclerViewGallery.setOnTouchListener(mOnChangeTemplatePreview);
         showIndicator();
-
+//
         mMenu.getItem(0).setIcon(ContextCompat.getDrawable(getContext(),
                 companyModel.isFavorite() ? R.drawable.ic_company_favorite_enable :
                         R.drawable.ic_company_favorite_disable));
@@ -177,8 +177,10 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         if (companyModel.getPrice() != 0) {
             mRatingViewPrice.setRating(companyModel.getPrice());
         }
-        mActionButtonCall.setVisibility(companyModel.getDetail().getPhones().isEmpty() ?
-                View.GONE : View.VISIBLE);
+        if (companyModel.getDetail().getPhones() != null) {
+            mActionButtonCall.setVisibility(companyModel.getDetail().getPhones().isEmpty() ?
+                    View.GONE : View.VISIBLE);
+        }
         showMapImage();
         if (!companyModel.getRatingByUser().isEmpty()) {
             mRatingViewVoteObject.setRating(companyModel.getRatingByUser().get(0).getTotalRating());

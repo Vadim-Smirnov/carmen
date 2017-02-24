@@ -10,7 +10,6 @@
     <View
         android:id="@+id/view_payment_methods_bottom_separate"
         style="@style/LayoutDivider"
-        android:layout_marginTop="@dimen/company_detail_payment_methods_bottom_separate_margin_top"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
