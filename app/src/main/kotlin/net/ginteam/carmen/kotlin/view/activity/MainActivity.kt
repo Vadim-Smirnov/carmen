@@ -14,6 +14,7 @@ import net.ginteam.carmen.kotlin.contract.MainActivityContract
 import net.ginteam.carmen.kotlin.disableScrollbars
 import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.interfaces.Sortable
+import net.ginteam.carmen.kotlin.isMenuItemFragment
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.UserModel
@@ -41,6 +42,8 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
     private var mLastAccessibleItem: MenuItem? = null
+    private var mPreviousTitle: Pair <String, String>? = null
+    private var mPreviousFragment: Fragment? = null
     private lateinit var mCurrentFragment: Fragment
 
     private lateinit var mDrawerLayout: DrawerLayout
@@ -82,14 +85,15 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
                 }
             }
             R.id.navigation_item_logout -> mPresenter.localUserLogout()
-
         }
 
         selectedFragment?.let {
            if (it.javaClass != mCurrentFragment.javaClass) {
                mCurrentFragment = it
                prepareFragment(R.id.main_fragment_container, mCurrentFragment)
+
                setToolbarTitle(item.title.toString())
+               mPreviousTitle = Pair(getToolbarTitle(), "")
            }
         }
 
@@ -120,7 +124,31 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             mDrawerLayout.closeDrawer(GravityCompat.START)
             return
         }
-        super.onBackPressed()
+
+        if (MainFragment::class.java == mCurrentFragment.javaClass) {
+            super.onBackPressed()
+            return
+        }
+
+        if (mCurrentFragment.isMenuItemFragment()) {
+            mCurrentFragment = MainFragment.newInstance()
+            prepareFragment(R.id.main_fragment_container, mCurrentFragment)
+            setToolbarTitle(getString(R.string.main_item_title))
+            return
+        }
+
+        if (mPreviousFragment != null) {
+            mCurrentFragment = mPreviousFragment!!
+            prepareFragment(R.id.main_fragment_container, mCurrentFragment)
+
+            setToolbarTitle(mPreviousTitle!!.first)
+            setToolbarSubtitle(mPreviousTitle!!.second)
+
+            mPreviousFragment = null
+            mPreviousTitle = null
+
+            return
+        }
     }
 
     override fun getLayoutResId(): Int = R.layout.activity_main
@@ -166,6 +194,11 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     /* Fragments listeners */
 
     override fun onCategorySelected(category: CategoryModel, fromDialogSelection: Boolean) {
+        if (!fromDialogSelection) {
+            mPreviousFragment = mCurrentFragment
+            mPreviousTitle = Pair(getToolbarTitle(), getToolbarSubtitle())
+        }
+
         mCurrentFragment = CompaniesFragment.newInstance(category)
         prepareFragment(R.id.main_fragment_container, mCurrentFragment)
 

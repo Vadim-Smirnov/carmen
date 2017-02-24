@@ -102,9 +102,15 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
         setToolbarSubtitle("")
     }
 
+    protected fun getToolbarTitle(): String
+            = (mToolbar?.findViewById(R.id.text_view_toolbar_title) as TextView).text.toString()
+
     protected fun setToolbarSubtitle(subtitle: String) {
         (mToolbar?.findViewById(R.id.text_view_toolbar_subtitle) as TextView).text = subtitle
     }
+
+    protected fun getToolbarSubtitle(): String
+            = (mToolbar?.findViewById(R.id.text_view_toolbar_subtitle) as TextView).text.toString()
 
     open protected fun updateViewDependencies() {
         mToolbar = findViewById(R.id.toolbar) as Toolbar?

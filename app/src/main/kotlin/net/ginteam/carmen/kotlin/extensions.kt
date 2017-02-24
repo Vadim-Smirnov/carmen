@@ -21,6 +21,9 @@ import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.FilterModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import net.ginteam.carmen.kotlin.model.SortModel
+import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
+import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
+import net.ginteam.carmen.kotlin.view.fragment.company.RecentlyWatchedCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -31,11 +34,22 @@ import rx.schedulers.Schedulers
  */
 
 fun AppCompatActivity.prepareFragment(@LayoutRes containerLayoutResId: Int, fragment: Fragment) {
-    supportFragmentManager.beginTransaction().replace(containerLayoutResId, fragment).commit()
+    supportFragmentManager
+            .beginTransaction()
+            .replace(containerLayoutResId, fragment)
+            .commit()
 }
 
 fun Fragment.prepareFragment(@LayoutRes containerLayoutResId: Int, fragment: Fragment) {
     childFragmentManager.beginTransaction().replace(containerLayoutResId, fragment).commit()
+}
+
+fun Fragment.isMenuItemFragment(): Boolean {
+    when (javaClass) {
+        CategoriesFragment::class.java, FavoritesFragment::class.java,
+        RecentlyWatchedCompaniesFragment::class.java -> return true
+        else -> return false
+    }
 }
 
 fun MapCompaniesFragment.checkPermission(): Boolean {
