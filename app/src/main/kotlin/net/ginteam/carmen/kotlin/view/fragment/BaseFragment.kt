@@ -58,6 +58,7 @@ abstract class BaseFragment<in V : BaseContract.View, T : BaseContract.Presenter
         if (mProgressDialog != null && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
             mProgressDialog!!.changeAlertType(SweetAlertDialog.ERROR_TYPE)
             mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
+            mProgressDialog!!.contentText = message
             mProgressDialog!!.setCancelable(false)
 
             if (isNetworkError) {

@@ -32,8 +32,8 @@ class MapCompaniesFragmentPresenter : BaseCompaniesPresenter <MapCompaniesFragme
                     override fun success(model: MutableList<CompanyModel>, pagination: PaginationModel) {
                         Log.d("MapPresenter", "Receive companies: " + model.size)
                         if (!model.isEmpty()) {
-                            mView?.showCompanies(model)
                             mView?.showCompaniesView(true)
+                            mView?.showCompanies(model)
                             return
                         }
                         mView?.showSearchView(true)

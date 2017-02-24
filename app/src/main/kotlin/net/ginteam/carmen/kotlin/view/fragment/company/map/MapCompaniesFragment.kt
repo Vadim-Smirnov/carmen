@@ -3,12 +3,18 @@ package net.ginteam.carmen.kotlin.view.fragment.company.map
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
+import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.LinearSnapHelper
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.SnapHelper
+import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.view.animation.LinearInterpolator
 import android.widget.AbsListView
 import android.widget.Toast
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -44,9 +50,12 @@ class MapCompaniesFragment
     override var mPresenter: MapCompaniesFragmentContract.Presenter = MapCompaniesFragmentPresenter()
 
     private val mUiThreadHandler: Handler = Handler()
+
+    private lateinit var mSnapAdapterHelper: SnapHelper
     override lateinit var mCompaniesAdapter: MapCompaniesAdapter
 
     private var isNeedFetchCompanies: Boolean = false
+
     private var mFilterQuery: String = ""
     private var mUserSelectedCompany: CompanyModel? = null
 
@@ -63,6 +72,7 @@ class MapCompaniesFragment
     private var mShowFiltersActivityListener: OnShowFiltersActivityListener? = null
 
     companion object {
+        private const val SELECTION_DELAY: Long = 500
         private const val CATEGORY_ARGUMENT = "category"
         private const val INIT_MAP_POSITION_ARGUMENT = "init_map_position"
 
@@ -122,21 +132,7 @@ class MapCompaniesFragment
     }
 
     override fun onClusterItemClick(company: CompanyModel?): Boolean {
-        val companyRenderer: CompanyClusterRenderer = mGoogleMapClusterManager.renderer as CompanyClusterRenderer
-        mUserSelectedCompany?.let {
-            it.isSelected = false
-            companyRenderer.updateClusterItem(it)
-        }
-
-        if (company?.isSelected == false) {
-            mUserSelectedCompany = company
-            mUserSelectedCompany!!.isSelected = true
-            companyRenderer.updateClusterItem(mUserSelectedCompany)
-        }
-
-        val selectedCompanyPosition: Int = mCompaniesAdapter.selectCompanyItem(mUserSelectedCompany!!)
-        mRecyclerViewCompanies.scrollToPosition(selectedCompanyPosition)
-
+        selectCompany(company, withScroll = true)
         return false
     }
 
@@ -160,7 +156,9 @@ class MapCompaniesFragment
         mCompaniesAdapter = MapCompaniesAdapter(companies, this, this)
         mRecyclerViewCompanies.adapter = mCompaniesAdapter
 
-        onClusterItemClick(companies.first())
+        mUiThreadHandler.postDelayed({
+            selectCompany(mCompaniesAdapter.getCompany(0))
+        }, SELECTION_DELAY)
     }
 
     override fun showSearchView(show: Boolean) {
@@ -202,12 +200,45 @@ class MapCompaniesFragment
         mSearchView = mFragmentView.findViewById(R.id.button_repeat_search)
         mFiltersView = mFragmentView.findViewById(R.id.button_filters)
 
+        mSnapAdapterHelper = GravitySnapHelper(GravityCompat.START, false) { position ->
+            selectCompany(mCompaniesAdapter.getCompany(position))
+        }
+        mSnapAdapterHelper.attachToRecyclerView(mRecyclerViewCompanies)
+
         mSearchView.setOnClickListener {
             mGoogleMapInstance.clear()
             fetchCompanies()
         }
         mFiltersView.setOnClickListener {
             mShowFiltersActivityListener?.onShowFiltersActivity(mSelectedCategory)
+        }
+    }
+
+    private fun selectCompany(company: CompanyModel?, withScroll: Boolean = false) {
+        val companyRenderer: CompanyClusterRenderer = mGoogleMapClusterManager.renderer as CompanyClusterRenderer
+        mUserSelectedCompany?.let {
+            it.isSelected = false
+            companyRenderer.updateClusterItem(it)
+            mCompaniesAdapter.updateCompanyItem(it)
+        }
+
+        if (company?.isSelected == false) {
+            mUserSelectedCompany = company
+            mUserSelectedCompany!!.isSelected = true
+
+            companyRenderer.updateClusterItem(mUserSelectedCompany)
+            mCompaniesAdapter.updateCompanyItem(mUserSelectedCompany!!)
+
+            mGoogleMapInstance
+                    .animateCameraToLocation(
+                            mUserSelectedCompany!!.position,
+                            mGoogleMapInstance.cameraPosition.zoom
+                    )
+
+            val position: Int = mCompaniesAdapter.updateCompanyItem(mUserSelectedCompany!!)
+            if (withScroll) {
+                mRecyclerViewCompanies.scrollToPosition(position)
+            }
         }
     }
 

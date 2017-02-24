@@ -30,6 +30,7 @@
         android:id="@+id/button_repeat_search"
         fontPath="@string/open_sans_font"
         style="@style/Button.RepeatSearch"
+        android:alpha="0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_toolbar"/>
@@ -38,6 +39,7 @@
         android:id="@+id/button_filters"
         fontPath="@string/open_sans_font"
         style="@style/Button.Filters"
+        android:alpha="0"
         app:layout_constraintBottom_toTopOf="@+id/recycler_view_companies"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>

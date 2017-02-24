@@ -85,11 +85,11 @@ fun CategoryModel.imageResourceId(): Int {
     }
 }
 
-fun GoogleMap.animateCameraToLocation(location: LatLng) {
+fun GoogleMap.animateCameraToLocation(location: LatLng, zoomLevel: Float = 12f) {
     animateCamera(CameraUpdateFactory.newCameraPosition(
             CameraPosition.Builder()
                     .target(location)
-                    .zoom(12.toFloat())
+                    .zoom(zoomLevel)
                     .build())
     )
 }

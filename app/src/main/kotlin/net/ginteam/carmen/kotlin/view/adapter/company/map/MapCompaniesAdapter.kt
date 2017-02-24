@@ -24,9 +24,12 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
 
     override var VISIBLE_ITEMS_COUNT: Int = 2
 
-    fun selectCompanyItem(company: CompanyModel): Int {
-        notifyDataSetChanged()
-        return companies.indexOf(company)
+    fun getCompany(position: Int) = companies[position]
+
+    fun updateCompanyItem(company: CompanyModel): Int {
+        val changedPosition: Int = companies.indexOf(company)
+        notifyItemChanged(changedPosition)
+        return changedPosition
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -70,7 +73,7 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
             mViewSelectionIndicator.setBackgroundColor(if (company.isSelected) {
                 Color.BLACK
             } else {
-                Color.WHITE
+                Color.TRANSPARENT
             })
         }
     }
