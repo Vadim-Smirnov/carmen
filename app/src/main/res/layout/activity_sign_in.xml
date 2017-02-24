@@ -84,16 +84,19 @@
                 android:layout_marginBottom="@dimen/or_bottom_space"
                 android:layout_marginTop="@dimen/sign_in_bottom_space"
                 android:text="@string/or_string"
-                android:textSize="@dimen/or_text_size"/>
+                android:textSize="@dimen/or_text_size"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/button_sign_in_facebook"
                 style="@style/Button.SocialSignIn.Facebook"
-                android:layout_marginBottom="@dimen/sign_in_facebook_bottom_space"/>
+                android:layout_marginBottom="@dimen/sign_in_facebook_bottom_space"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/button_sign_in_google"
-                style="@style/Button.SocialSignIn.Google"/>
+                style="@style/Button.SocialSignIn.Google"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

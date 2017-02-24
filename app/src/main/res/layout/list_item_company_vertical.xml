@@ -72,7 +72,7 @@
             android:id="@+id/image_view_company_location"
             style="@style/ImageView.Wrapped"
             android:layout_marginBottom="@dimen/company_item_rating_bottom_space"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="2.5dp"
             android:layout_marginStart="@dimen/company_item_photo_right_space"
             android:layout_marginTop="@dimen/company_item_rating_bottom_space"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -89,8 +89,7 @@
             android:textSize="@dimen/company_location_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/image_view_company_location"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/image_view_company_location"
-            tools:text="300 m"/>
+            app:layout_constraintTop_toTopOf="@+id/image_view_company_location"/>
 
         <net.ginteam.carmen.view.custom.rating.CarmenRatingView
             android:id="@+id/rating_view_company_price"
@@ -108,6 +107,5 @@
             app:layout_constraintTop_toTopOf="@+id/text_view_company_distance"/>
 
     </android.support.constraint.ConstraintLayout>
-
 
 </android.support.v7.widget.CardView>

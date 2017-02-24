@@ -6,12 +6,13 @@
         android:id="@+id/action_favorite"
         android:icon="@drawable/ic_company_favorite_disable"
         android:title="like"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/action_share"
         android:title="share"
         android:icon="@drawable/ic_share"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom"
+        android:visible="false"/>
 
 </menu>

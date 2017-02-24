@@ -28,17 +28,20 @@
         <item
             android:id="@+id/profile_item"
             android:icon="@drawable/ic_profile"
-            android:title="@string/profile_item_title"/>
+            android:title="@string/profile_item_title"
+            android:visible="false"/>
 
     </group>
 
     <group android:checkableBehavior="single">
 
         <item
-            android:title="@string/privacy_item_text"/>
+            android:title="@string/privacy_item_text"
+            android:visible="false"/>
 
         <item
-            android:title="@string/terms_item_text"/>
+            android:title="@string/terms_item_text"
+            android:visible="false"/>
 
     </group>
 

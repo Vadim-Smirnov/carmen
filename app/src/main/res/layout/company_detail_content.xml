@@ -41,6 +41,7 @@
         android:isIndicator="true"
         android:numStars="4"
         android:rating="2"
+        android:stepSize="1"
         app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating"
         app:crv_fillDrawable="@drawable/ic_medium_price_fill_rating"
         app:crv_indicatorSpacing="2.5dp"
@@ -54,6 +55,7 @@
         android:layout_height="15dp"
         android:layout_marginStart="@dimen/company_detail_margin_side"
         android:layout_marginTop="14dp"
+        android:stepSize="1"
         android:isIndicator="true"
         app:crv_indicatorSpacing="2.5dp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -251,6 +253,7 @@
         app:crv_emptyDrawable="@drawable/ic_large_empty_new_rating"
         app:crv_fillDrawable="@drawable/ic_large_fill_new_rating"
         app:crv_indicatorSpacing="10dp"
+        android:stepSize="1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15"/>

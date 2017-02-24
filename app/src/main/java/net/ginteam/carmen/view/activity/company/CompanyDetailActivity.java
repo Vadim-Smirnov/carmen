@@ -12,8 +12,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,12 +26,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
-import net.ginteam.carmen.kotlin.view.activity.BaseActivity;
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity;
 import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.company.CompanyModel;
@@ -166,10 +162,10 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mTextViewAddress.setText(companyModel.getAddress());
         mTextViewWorkTime.setText(String.format("%s %s",
                 getResources().getString(R.string.work_time_text), companyModel.getDetail().getClossingTime()));
-        mTextViewDistance.setText(companyModel.getDistance() == 0 ? "" :
-                String.format("%.1f km", companyModel.getDistance() / 1000));
-        mImageViewLocation.setVisibility(mTextViewDistance.getText().toString().isEmpty() ?
-                View.INVISIBLE : View.VISIBLE);
+        mTextViewDistance.setText(companyModel.getDistance() == 0 ?
+                String.format("%s %s", "???", getResources().getString(R.string.location_measure)) :
+                String.format("%.1f %s", companyModel.getDistance() / 1000, getResources().getString(R.string.location_measure)));
+
         mTextViewReviewCount
                 .setText(getResources().getQuantityString(
                         R.plurals.review_count_string,

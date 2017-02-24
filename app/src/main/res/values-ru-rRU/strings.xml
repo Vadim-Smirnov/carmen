@@ -67,6 +67,7 @@
     <string name="company_price">%d грн</string>
     <string name="recently_watched_title">Недавно просмотренные</string>
     <string name="popular_title">Популярные в городе %s</string>
+    <string name="location_measure">км</string>
 
     <!-- Navigation view -->
     <string name="navigation_drawer_open">Open</string>
