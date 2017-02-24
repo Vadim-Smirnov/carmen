@@ -1,5 +1,7 @@
 package net.ginteam.carmen.provider.company;
 
+import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import net.ginteam.carmen.manager.ApiManager;
@@ -80,8 +82,9 @@ public class CompaniesProvider {
     }
 
     public void fetchCompanyDetail(int companyId, final ModelCallback<CompanyModel> completion) {
-        String relations = String.format("%s,%s,%s,%s", ApiLinks.CATALOG.COMFORTS,
-                ApiLinks.CATALOG.DETAIL, ApiLinks.CATALOG.CATEGORIES, ApiLinks.CATALOG.RATINGS);
+        String relations = String.format("%s,%s,%s,%s,%s", ApiLinks.CATALOG.COMFORTS,
+                ApiLinks.CATALOG.DETAIL, ApiLinks.CATALOG.CATEGORIES, ApiLinks.CATALOG.RATINGS,
+                ApiLinks.CATALOG.RATING_BY_USER);
 
         mCompanyService
                 .fetchCompanyDetail(companyId, relations)

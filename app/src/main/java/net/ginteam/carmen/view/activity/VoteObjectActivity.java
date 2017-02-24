@@ -151,7 +151,9 @@ public class VoteObjectActivity extends ToolbarActivity implements VoteObjectCon
     private void sendReview() {
         mRating.setTotalRating(mRatingView.getRating());
         mRating.setPriceRel(mRatingViewPrice.getRating());
-        mRating.setDisplayName(mEditTextName.getText());
+        if (!mEditTextName.getText().isEmpty()) {
+            mRating.setDisplayName(mEditTextName.getText());
+        }
         mRating.setTitle(mEditTextTitle.getText());
         mRating.setText(mEditTextReview.getText());
         mPresenter.sendReview(mRating);

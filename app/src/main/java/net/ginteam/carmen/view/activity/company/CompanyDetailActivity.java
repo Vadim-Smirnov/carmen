@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import net.ginteam.carmen.R;
@@ -75,6 +77,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     private ImageButton mActionButtonCall;
     private RecyclerView mRecyclerViewGallery;
     private LinearLayout mLinearLayoutIndicator;
+    private CarmenRatingView mRatingViewPrice;
 
     private float mCoordinateX;
     private int mCurrentPreviewPosition;
@@ -173,9 +176,16 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                         companyModel.getRatings().size(),
                         companyModel.getRatings().size()));
         mRatingViewCompanyRating.setRating(companyModel.getRating());
+        if (companyModel.getPrice() != 0) {
+            mRatingViewPrice.setRating(companyModel.getPrice());
+        }
         mActionButtonCall.setVisibility(companyModel.getDetail().getPhones().isEmpty() ?
                 View.GONE : View.VISIBLE);
         showMapImage();
+        if (!companyModel.getRatingByUser().isEmpty()) {
+            mRatingViewVoteObject.setRating(companyModel.getRatingByUser().get(0).getTotalRating());
+        }
+        mRatingViewVoteObject.setOnRatingBarChangeListener(this);
     }
 
     @Override
@@ -258,7 +268,12 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
 
     @Override
     public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-        if(rating < 1) {
+        if (!mCompanyModel.getRatingByUser().isEmpty()) {
+            mRatingViewVoteObject.setRating(mCompanyModel.getRatingByUser().get(0).getTotalRating());
+            Toast.makeText(getContext(), getResources().getString(R.string.error_vote_object), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (rating < 1) {
             mRatingViewVoteObject.setRating(1);
             return;
         }
@@ -299,7 +314,6 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         findViewById(R.id.button_show_on_map).setOnClickListener(this);
 
         mRatingViewVoteObject = (CarmenRatingView) findViewById(R.id.rating_view_vote_object);
-        mRatingViewVoteObject.setOnRatingBarChangeListener(this);
 
         mRecyclerViewGallery = (RecyclerView) findViewById(R.id.recycler_view_gallery);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -308,6 +322,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mImageViewMap = (ImageView) findViewById(R.id.image_view_map);
         mImageViewLocation = (ImageView) findViewById(R.id.image_view_location);
         mRatingViewCompanyRating = (CarmenRatingView) findViewById(R.id.rating_view_company);
+        mRatingViewPrice = (CarmenRatingView) findViewById(R.id.rating_view_company_price);
         mTextViewAddress = (TextView) findViewById(R.id.text_view_address);
         mTextViewCategory = (TextView) findViewById(R.id.text_view_category);
         mTextViewCompanyName = (TextView) findViewById(R.id.text_view_company_name);
@@ -332,7 +347,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
                         mCompanyModel.getPosition().latitude, mCompanyModel.getPosition().longitude,
                         640, 480);
 
-        Picasso.with(getContext()).load(url).placeholder( R.drawable.placeholder_animation).resize(size.x, mapHeight).into(mImageViewMap);
+        Picasso.with(getContext()).load(url).placeholder(R.drawable.placeholder_animation).resize(size.x, mapHeight).into(mImageViewMap);
     }
 
     private View.OnTouchListener mOnChangeTemplatePreview = new View.OnTouchListener() {

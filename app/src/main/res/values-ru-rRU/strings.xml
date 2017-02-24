@@ -186,6 +186,7 @@
     <string name="button_all_reviews_text">Все отзывы автовладельцев</string>
     <string name="button_all_text_on">Меньше</string>
     <string name="button_all_text_off">Еще</string>
+    <string name="error_vote_object">Вы уже оценили эту компанию!</string>
 
 
     <string-array name="rating_price_array">
