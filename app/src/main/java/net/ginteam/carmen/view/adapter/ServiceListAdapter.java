@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.Service;
+import net.ginteam.carmen.kotlin.model.ServiceModel;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceItemViewHold
 
     private int mVisibleServiceCount;
 
-    private List<Service> mServices;
+    private List<ServiceModel> mServices;
 
-    public ServiceListAdapter(Context context, int visibleServiceCount, List<Service> services) {
+    public ServiceListAdapter(Context context, int visibleServiceCount, List<ServiceModel> services) {
         mContext = context;
         mVisibleServiceCount = visibleServiceCount;
         mServices = services;
@@ -39,7 +39,7 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceItemViewHold
 
     @Override
     public void onBindViewHolder(ServiceItemViewHolder holder, int position) {
-        Service currentService = mServices.get(position);
+        ServiceModel currentService = mServices.get(position);
         holder.getTextViewServiceName().setText(currentService.getName());
     }
 

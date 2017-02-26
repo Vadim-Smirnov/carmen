@@ -30,8 +30,6 @@ import net.ginteam.carmen.kotlin.view.fragment.company.CompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.RecentlyWatchedCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.sort.SortOptionsDialogFragment
-import net.ginteam.carmen.utils.ActivityUtils
-import net.ginteam.carmen.view.activity.company.CompanyDetailActivity
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle
 
 class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContract.Presenter>(),
@@ -207,9 +205,9 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     }
 
     override fun onCompanySelected(company: CompanyModel) {
-        val bundle = Bundle()
-        bundle.putInt(CompanyDetailActivity.COMPANY_ID_ARGUMENT, company.id)
-        ActivityUtils.showActivity(CompanyDetailActivity::class.java, bundle, false)
+        val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
+        intent.putExtra(CompanyDetailsActivity.COMPANY_ARGUMENT, company)
+        startActivity(intent)
     }
 
     override fun onShowMap(category: CategoryModel) {

@@ -107,6 +107,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".kotlin.view.activity.MainActivity"/>
         </activity>
+        <activity
+            android:name=".kotlin.view.activity.CompanyDetailsActivity"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

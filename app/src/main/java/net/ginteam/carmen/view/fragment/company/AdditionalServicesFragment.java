@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.company.Comfort;
+import net.ginteam.carmen.kotlin.model.ComfortModel;
 import net.ginteam.carmen.view.adapter.AdditionalServiceListAdapter;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
@@ -20,7 +20,7 @@ public class AdditionalServicesFragment extends BaseFetchingFragment {
 
     private static final String COMFORTS_KEY = "comforts";
 
-    private List<Comfort> mComforts;
+    private List<ComfortModel> mComforts;
 
     private RecyclerView mRecyclerViewAdditionalServices;
     private AdditionalServiceListAdapter mAdditionalServiceListAdapter;
@@ -28,7 +28,7 @@ public class AdditionalServicesFragment extends BaseFetchingFragment {
     public AdditionalServicesFragment() {
     }
 
-    public static AdditionalServicesFragment newInstance(List<Comfort> comforts) {
+    public static AdditionalServicesFragment newInstance(List<ComfortModel> comforts) {
         AdditionalServicesFragment fragment = new AdditionalServicesFragment();
         Bundle args = new Bundle();
         args.putSerializable(COMFORTS_KEY, new ArrayList<>(comforts));
@@ -41,7 +41,7 @@ public class AdditionalServicesFragment extends BaseFetchingFragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mComforts = (ArrayList<Comfort>) getArguments().getSerializable(COMFORTS_KEY);
+            mComforts = (ArrayList<ComfortModel>) getArguments().getSerializable(COMFORTS_KEY);
         }
     }
 

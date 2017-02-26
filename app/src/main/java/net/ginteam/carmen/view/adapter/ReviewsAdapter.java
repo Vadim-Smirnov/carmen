@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.Rating;
+import net.ginteam.carmen.kotlin.model.RatingModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,9 +27,9 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewItemViewHolder> 
     private int mReviewVisibleCount;
     private boolean mIsAllReviews;
 
-    private List<Rating> mReviews;
+    private List<RatingModel> mReviews;
 
-    public ReviewsAdapter(Context context, List<Rating> reviews, boolean isAllReviews) {
+    public ReviewsAdapter(Context context, List<RatingModel> reviews, boolean isAllReviews) {
         mContext = context;
         mReviews = reviews;
         mIsAllReviews = isAllReviews;
@@ -47,7 +47,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewItemViewHolder> 
 
     @Override
     public void onBindViewHolder(ReviewItemViewHolder holder, int position) {
-        Rating currentReview = mReviews.get(position);
+        RatingModel currentReview = mReviews.get(position);
 
         holder.getRatingView().setRating(currentReview.getTotalRating());
         if (currentReview.getTitle() != null) {

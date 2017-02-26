@@ -9,5 +9,6 @@ import java.io.Serializable
 data class CategoryModel(val id: Int,
                          val name: String,
                          val active: Boolean,
+                         @SerializedName("parent_id") val parentId: Int,
                          @SerializedName("companies_count") val companiesCount: Int,
                          @SerializedName("service") val services: List <ServiceModel>) : Serializable

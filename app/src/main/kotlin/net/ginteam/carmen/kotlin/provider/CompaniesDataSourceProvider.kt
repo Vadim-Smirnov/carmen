@@ -20,7 +20,7 @@ interface CompaniesDataSourceProvider {
                           bounds: String,
                           filter: String): Observable <ResponseModel <MutableList <CompanyModel>>>
 
-    fun fetchCompany(companyId: Int, relations: String = ""): Observable <ResponseModel <CompanyModel>>
+    fun fetchCompanyDetails(companyId: Int, relations: String = ""): Observable <ResponseModel <CompanyModel>>
     fun fetchPopularCompanies(cityId: Int): Observable <ResponseModel <List <CompanyModel>>>
 
     /*
@@ -45,7 +45,7 @@ class OnlineCompaniesDataSourceProvider : CompaniesDataSourceProvider {
             : Observable<ResponseModel<MutableList<CompanyModel>>>
             = companiesService.fetchCompaniesForMap(categoryId, bounds, filter).asyncWithCache()
 
-    override fun fetchCompany(companyId: Int, relations: String): Observable<ResponseModel<CompanyModel>>
+    override fun fetchCompanyDetails(companyId: Int, relations: String): Observable<ResponseModel<CompanyModel>>
             = companiesService.fetchCompany(companyId, relations).asyncWithCache()
 
     override fun fetchPopularCompanies(cityId: Int): Observable<ResponseModel<List<CompanyModel>>>

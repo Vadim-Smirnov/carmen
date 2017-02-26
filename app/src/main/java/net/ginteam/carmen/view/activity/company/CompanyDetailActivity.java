@@ -31,10 +31,8 @@ import com.squareup.picasso.Picasso;
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.contract.company.CompanyDetailContract;
 import net.ginteam.carmen.kotlin.provider.AuthenticationProvider;
-import net.ginteam.carmen.kotlin.view.activity.map.MapActivity;
 import net.ginteam.carmen.model.Rating;
 import net.ginteam.carmen.model.company.CompanyModel;
-import net.ginteam.carmen.presenter.company.CompanyDetailPresenter;
 import net.ginteam.carmen.utils.ActivityUtils;
 import net.ginteam.carmen.view.activity.ToolbarActivity;
 import net.ginteam.carmen.view.activity.VoteObjectActivity;
@@ -89,7 +87,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         receiveArguments();
         updateDependencies();
 
-        mPresenter = new CompanyDetailPresenter();
+//        mPresenter = new CompanyDetailPresenter();
         mPresenter.attachView(this);
     }
 
@@ -210,10 +208,6 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
     @Override
     public void showMap() {
 //        ActivityUtils.showActivity(MapActivity.class, null, false);
-        Intent intent = new Intent(getContext(), MapActivity.class);
-        // TODO: 2/23/17 Remove it cast
-        intent.putExtra(MapActivity.COMPANY_ARGUMENT, new net.ginteam.carmen.kotlin.model.CompanyModel(mCompanyModel));
-        startActivity(intent);
     }
 
     @Override
@@ -273,7 +267,7 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
 
         net.ginteam.carmen.kotlin.provider.AuthProvider authProvider = AuthenticationProvider.INSTANCE;
         if (authProvider.getCurrentCachedUser() == null) {
-            Toast.makeText(getContext(), getResources().getString(R.string.access_denied_message), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.access_denied_message), Toast.LENGTH_SHORT).show();
             mRatingViewVoteObject.setRating(0);
             return;
         }
@@ -327,11 +321,11 @@ public class CompanyDetailActivity extends ToolbarActivity implements CompanyDet
         mImageViewLocation = (ImageView) findViewById(R.id.image_view_location);
         mRatingViewCompanyRating = (CarmenRatingView) findViewById(R.id.rating_view_company);
         mRatingViewPrice = (CarmenRatingView) findViewById(R.id.rating_view_company_price);
-        mTextViewAddress = (TextView) findViewById(R.id.text_view_address);
+        mTextViewAddress = (TextView) findViewById(R.id.text_view_company_address);
         mTextViewCategory = (TextView) findViewById(R.id.text_view_category);
         mTextViewCompanyName = (TextView) findViewById(R.id.text_view_company_name);
-        mTextViewDistance = (TextView) findViewById(R.id.text_view_distance);
-        mTextViewWorkTime = (TextView) findViewById(R.id.text_view_work_time);
+        mTextViewDistance = (TextView) findViewById(R.id.text_view_company_distance);
+        mTextViewWorkTime = (TextView) findViewById(R.id.text_view_company_work_time);
         mTextViewReviewCount = (TextView) findViewById(R.id.text_view_review_count);
         mActionButtonCall = (ImageButton) findViewById(R.id.action_button_call);
         mLinearLayoutIndicator = (LinearLayout) findViewById(R.id.gallery_indicator);

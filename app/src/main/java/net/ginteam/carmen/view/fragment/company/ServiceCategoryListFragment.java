@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.category.CategoryModel;
+import net.ginteam.carmen.kotlin.model.CategoryModel;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 import java.util.ArrayList;

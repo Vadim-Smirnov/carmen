@@ -14,12 +14,11 @@ import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.company.map.MapActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.BaseLocationActivity
+import net.ginteam.carmen.kotlin.view.activity.CompanyDetailsActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompanyFragment
-import net.ginteam.carmen.utils.ActivityUtils
-import net.ginteam.carmen.view.activity.company.CompanyDetailActivity
 
 class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityContract.Presenter>(),
         MapActivityContract.View, BaseCompaniesFragment.OnCompanySelectedListener,
@@ -78,9 +77,9 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
     }
 
     override fun onCompanySelected(company: CompanyModel) {
-        val bundle = Bundle()
-        bundle.putInt(CompanyDetailActivity.COMPANY_ID_ARGUMENT, company.id)
-        ActivityUtils.showActivity(CompanyDetailActivity::class.java, bundle, false)
+        val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
+        intent.putExtra(CompanyDetailsActivity.COMPANY_ARGUMENT, company)
+        startActivity(intent)
     }
 
     override fun onShowFiltersActivity(category: CategoryModel) {

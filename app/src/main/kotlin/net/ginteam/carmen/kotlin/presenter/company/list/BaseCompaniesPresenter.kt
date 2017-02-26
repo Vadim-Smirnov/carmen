@@ -1,4 +1,4 @@
-package net.ginteam.carmen.kotlin.presenter.company
+package net.ginteam.carmen.kotlin.presenter.company.list
 
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.api.response.ModelSubscriber
@@ -14,8 +14,8 @@ import net.ginteam.carmen.kotlin.provider.OnlineCompaniesDataSourceProvider
  * Created by eugene_shcherbinock on 2/16/17.
  */
 
-open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : BasePresenter <V>(),
-        BaseCompaniesContract.Presenter <V> {
+open abstract class BaseCompaniesPresenter<V : BaseCompaniesContract.View> : BasePresenter<V>(),
+        BaseCompaniesContract.Presenter<V> {
 
     protected var mAuthProvider: AuthProvider = AuthenticationProvider
     protected var mCompaniesProvider: CompaniesDataSourceProvider = OnlineCompaniesDataSourceProvider()

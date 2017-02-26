@@ -64,12 +64,12 @@ open abstract class BaseCompaniesFragment<E : BaseCompaniesAdapter, in V : BaseC
     override fun showFavoriteConfirmationMessage(company: CompanyModel, messageResId: Int) {
         mCompaniesAdapter.invalidateCompany(company)
 
-        Snackbar.make(activity.findViewById(R.id.main_fragment_container),
+        Snackbar.make(activity.findViewById(R.id.main_fragment_container) ?: mFragmentView,
                 getString(messageResId), Snackbar.LENGTH_LONG).show()
     }
 
     override fun showFavoriteErrorMessage(messageResId: Int) {
-        Snackbar.make(activity.findViewById(R.id.main_fragment_container),
+        Snackbar.make(activity.findViewById(R.id.main_fragment_container) ?: mFragmentView,
                 getString(messageResId), Snackbar.LENGTH_LONG).show()
     }
 

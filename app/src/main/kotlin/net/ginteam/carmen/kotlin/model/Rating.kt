@@ -16,4 +16,8 @@ data class RatingModel(val id: Int,
                        @SerializedName("answer_name") val answerName: String,
                        @SerializedName("answer_text") val answerText: String,
                        @SerializedName("answer_date") val answerDate: String,
-                       @SerializedName("created_at") val createdAt: String) : Serializable
+                       @SerializedName("created_at") val createdAt: String,
+                       @SerializedName("user_id") val userId: Int) : Serializable
+
+data class InitialRating(@SerializedName("company_id") val companyId: Int,
+                         @SerializedName("total_rating") val totalRating: Float) : Serializable

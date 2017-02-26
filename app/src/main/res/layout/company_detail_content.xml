@@ -77,13 +77,13 @@
         style="@style/ImageView.Wrapped"
         android:layout_marginEnd="@dimen/company_detail_image_location_margin_end"
         android:layout_marginTop="@dimen/company_detail_image_location_margin_top"
-        app:layout_constraintBottom_toBottomOf="@+id/text_view_distance"
-        app:layout_constraintRight_toLeftOf="@+id/text_view_distance"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_company_distance"
+        app:layout_constraintRight_toLeftOf="@+id/text_view_company_distance"
         app:layout_constraintTop_toBottomOf="@+id/text_view_category"
         app:srcCompat="@drawable/ic_location"/>
 
     <TextView
-        android:id="@+id/text_view_distance"
+        android:id="@+id/text_view_company_distance"
         style="@style/TextView.Wrapped.OpenSans"
         android:layout_marginEnd="@dimen/company_detail_margin_side"
         android:layout_marginTop="@dimen/company_detail_image_location_margin_top"
@@ -143,7 +143,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView3"/>
 
     <TextView
-        android:id="@+id/text_view_work_time"
+        android:id="@+id/text_view_company_work_time"
         style="@style/TextView.WrappedHeight.OpenSansSemibold"
         android:layout_marginEnd="@dimen/company_detail_work_time_margin_end"
         android:layout_marginStart="@dimen/company_detail_margin_side"
@@ -156,7 +156,7 @@
         app:layout_constraintTop_toTopOf="@+id/view3"/>
 
     <TextView
-        android:id="@+id/text_view_address"
+        android:id="@+id/text_view_company_address"
         style="@style/TextView.WrappedHeight.OpenSans"
         android:layout_marginEnd="@dimen/company_detail_work_time_margin_end"
         android:layout_marginStart="@dimen/company_detail_margin_side"
@@ -165,7 +165,7 @@
         android:textSize="@dimen/company_detail_address_text_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/view_map_image_gradient"
-        app:layout_constraintTop_toBottomOf="@+id/text_view_work_time"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_company_work_time"
         tools:text="ул. Великолепия Великого 222/28"/>
 
     <FrameLayout

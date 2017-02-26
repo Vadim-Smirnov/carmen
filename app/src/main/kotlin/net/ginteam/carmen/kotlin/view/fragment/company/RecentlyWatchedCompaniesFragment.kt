@@ -9,7 +9,7 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.RecentlyWatchedCompaniesContract
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
-import net.ginteam.carmen.kotlin.presenter.company.RecentlyWatchedCompaniesPresenter
+import net.ginteam.carmen.kotlin.presenter.company.list.RecentlyWatchedCompaniesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.BaseCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.adapter.company.HorizontalCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.adapter.company.VerticalCompaniesAdapter

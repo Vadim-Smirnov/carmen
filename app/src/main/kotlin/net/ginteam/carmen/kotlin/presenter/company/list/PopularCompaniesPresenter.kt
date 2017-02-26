@@ -1,4 +1,4 @@
-package net.ginteam.carmen.kotlin.presenter.company
+package net.ginteam.carmen.kotlin.presenter.company.list
 
 import net.ginteam.carmen.kotlin.api.response.ModelSubscriber
 import net.ginteam.carmen.kotlin.contract.PopularCompaniesContract
@@ -9,7 +9,7 @@ import net.ginteam.carmen.kotlin.model.CompanyModel
 /**
  * Created by eugene_shcherbinock on 2/17/17.
  */
-class PopularCompaniesPresenter : BaseCompaniesPresenter <PopularCompaniesContract.View>(), PopularCompaniesContract.Presenter {
+class PopularCompaniesPresenter : BaseCompaniesPresenter<PopularCompaniesContract.View>(), PopularCompaniesContract.Presenter {
 
     private val mPreferences: PreferencesManager = SharedPreferencesManager
 
@@ -18,7 +18,7 @@ class PopularCompaniesPresenter : BaseCompaniesPresenter <PopularCompaniesContra
 
         mCompaniesProvider
                 .fetchPopularCompanies(mPreferences.userCityModel!!.id)
-                .subscribe(object : ModelSubscriber <List <CompanyModel>>() {
+                .subscribe(object : ModelSubscriber<List <CompanyModel>>() {
                     override fun success(model: List<CompanyModel>) {
                         mView?.showLoading(false)
                         mView?.showCompanies(model.toMutableList())

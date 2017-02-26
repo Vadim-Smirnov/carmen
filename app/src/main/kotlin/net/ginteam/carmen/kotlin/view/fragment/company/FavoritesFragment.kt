@@ -8,7 +8,7 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.FavoriteCompaniesContract
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
-import net.ginteam.carmen.kotlin.presenter.company.FavoritesPresenter
+import net.ginteam.carmen.kotlin.presenter.company.list.FavoritesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.FavoriteCompaniesAdapter
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDecorator
 

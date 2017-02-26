@@ -3,7 +3,6 @@ package net.ginteam.carmen.kotlin.model
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.annotations.SerializedName
 import com.google.maps.android.clustering.ClusterItem
-import net.ginteam.carmen.model.company.CompanyModel
 import java.io.Serializable
 
 /**
@@ -14,11 +13,11 @@ data class ComfortModel(val id: Int,
                         val name: String,
                         val image: String) : Serializable
 
-data class DetailModel(val phones: List <String>,
+data class DetailModel(val phones: List <String>?,
                        @SerializedName("desc") val description: String,
                        @SerializedName("email") val emails: List <String>,
                        @SerializedName("website") val websites: List <String>,
-                       @SerializedName("work_time") val workTimes: List <String>) : Serializable
+                       @SerializedName("closing_time") val closedTime: String) : Serializable
 
 open class CompanyModel : ClusterItem, Serializable {
     val id: Int = 0
@@ -28,7 +27,7 @@ open class CompanyModel : ClusterItem, Serializable {
     val comforts: ResponseModel <List <ComfortModel>>? = null
     val categories: ResponseModel <List <CategoryModel>>? = null
     var point: PointModel? = null
-    val ratings: ResponseModel <List <String>>? = null
+    val ratings: ResponseModel <List <RatingModel>>? = null
     val distance: Double = 0.0
 
     // for map view
@@ -39,16 +38,9 @@ open class CompanyModel : ClusterItem, Serializable {
     @SerializedName("price_rel") val price: Int = 0
     @SerializedName("is_favorite") var isFavorite: Boolean = false
     @SerializedName("short_desc") val shortDescription: String = ""
-    @SerializedName("detail") val details: ResponseModel <List <DetailModel>>? = null
+    @SerializedName("detail") val details: ResponseModel <DetailModel>? = null
+    @SerializedName("ratingByUser") val userRatings: ResponseModel<List<RatingModel>>? = null
 
     override fun getPosition(): LatLng = LatLng(point!!.latitude, point!!.longitude)
-
-    // TODO: Remove it when CompanyDetailActivity will be refactored
-    constructor(javaCompanyModel: CompanyModel? = null) {
-        javaCompanyModel?.let {
-            rating = it.rating
-            point = PointModel(it.position.latitude, it.position.longitude)
-        }
-    }
 
 }

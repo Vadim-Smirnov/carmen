@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.category.CategoryModel;
+import net.ginteam.carmen.kotlin.model.CategoryModel;
 import net.ginteam.carmen.view.adapter.ServiceListAdapter;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 

@@ -25,8 +25,8 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
         if (getLayoutResId() != 0) {
             setContentView(getLayoutResId())
 
-            updateViewDependencies()
             updateDependencies()
+            updateViewDependencies()
         }
 
         mPresenter.attachView(this as V)
@@ -51,6 +51,7 @@ abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presente
         if (mProgressDialog != null && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
             mProgressDialog!!.changeAlertType(SweetAlertDialog.ERROR_TYPE)
             mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
+            mProgressDialog!!.contentText = message
             mProgressDialog!!.setCancelable(false)
 
             if (isNetworkError) {

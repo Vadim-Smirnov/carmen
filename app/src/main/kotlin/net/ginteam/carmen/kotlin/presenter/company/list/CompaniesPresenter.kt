@@ -1,4 +1,4 @@
-package net.ginteam.carmen.kotlin.presenter.company
+package net.ginteam.carmen.kotlin.presenter.company.list
 
 import net.ginteam.carmen.kotlin.api.response.MetaSubscriber
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
@@ -14,7 +14,7 @@ import net.ginteam.carmen.kotlin.view.fragment.sort.SortOptionDialogFragmentView
 /**
  * Created by eugene_shcherbinock on 2/16/17.
  */
-class CompaniesPresenter : BaseCompaniesPresenter <CompaniesContract.View>(), CompaniesContract.Presenter {
+class CompaniesPresenter : BaseCompaniesPresenter<CompaniesContract.View>(), CompaniesContract.Presenter {
 
     private var isFirsLoading: Boolean = true
 
@@ -29,7 +29,7 @@ class CompaniesPresenter : BaseCompaniesPresenter <CompaniesContract.View>(), Co
         val filter = filterQuery.plus("cityId:${mPreferences.userCityModel!!.id}")
         mCompaniesProvider
                 .fetchCompanies(categoryId, filter, sortField, sortType, pageNumber)
-                .subscribe(object : MetaSubscriber <MutableList <CompanyModel>>() {
+                .subscribe(object : MetaSubscriber<MutableList <CompanyModel>>() {
                     override fun success(model: MutableList<CompanyModel>, pagination: PaginationModel) {
                         mView?.showLoading(false)
                         if (isFirsLoading) {

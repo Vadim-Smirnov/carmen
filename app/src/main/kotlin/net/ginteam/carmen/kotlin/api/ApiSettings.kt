@@ -26,8 +26,10 @@ object ApiSettings {
         object Relations {
             const val WITH = "with"
             const val COMFORTS = "comforts"
+            const val CATEGORIES = "categories"
             const val DETAILS = "detail"
             const val RATINGS = "ratings"
+            const val USER_RATING = "ratingByUser"
         }
 
         const val GET_CATEGORIES = "$CATALOG/categories"
@@ -39,6 +41,9 @@ object ApiSettings {
 
         const val GET_CITIES = "$CATALOG/cities"
         const val GET_CITY_BY_POINT = "$GET_CITIES/findByPoint"
+
+        const val CREATE_RATING = "$CATALOG/companies/ratings"
+        const val UPDATE_RATING = "$CREATE_RATING/{${Params.ID}}"
     }
 
     object Auth {

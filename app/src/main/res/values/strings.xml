@@ -181,8 +181,9 @@
         <item quantity="other">%1$d отзывов</item>
     </plurals>
 
+    <string name="choose_company_phone">Choose phone number:</string>
     <string name="button_show_on_map_text">Отобразить на карте</string>
-    <string name="work_time_text">Открыто до </string>
+    <string name="work_time_text">Открыто до %s</string>
     <string name="payment_methods_text">Способы оплаты</string>
     <string name="button_cash_text">Наличными</string>
     <string name="button_cashless_text">Безналичными</string>

@@ -18,7 +18,7 @@ import net.ginteam.carmen.kotlin.listener.SearchViewListener
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
-import net.ginteam.carmen.kotlin.presenter.company.CompaniesPresenter
+import net.ginteam.carmen.kotlin.presenter.company.list.CompaniesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.PaginatableCompaniesAdapter
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDecorator
 import net.ginteam.carmen.view.adapter.company.PaginationScrollListener

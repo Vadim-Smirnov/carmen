@@ -8,21 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.Rating;
-import net.ginteam.carmen.utils.ActivityUtils;
-import net.ginteam.carmen.view.activity.AllReviewsActivity;
+import net.ginteam.carmen.kotlin.model.RatingModel;
 import net.ginteam.carmen.view.adapter.ReviewsAdapter;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//import net.ginteam.carmen.view.activity.AllReviewsActivity;
+
 public class ReviewsFragment extends BaseFetchingFragment {
 
     public static final String RATING_ARG = "rating";
 
 
-    private List<Rating> mRatingList;
+    private List<RatingModel> mRatingList;
 
     private RecyclerView mRecyclerViewReviews;
     private ReviewsAdapter mReviewsAdapter;
@@ -30,7 +30,7 @@ public class ReviewsFragment extends BaseFetchingFragment {
     public ReviewsFragment() {
     }
 
-    public static ReviewsFragment newInstance(List<Rating> ratingList) {
+    public static ReviewsFragment newInstance(List<RatingModel> ratingList) {
         ReviewsFragment fragment = new ReviewsFragment();
         Bundle args = new Bundle();
         args.putSerializable(RATING_ARG, new ArrayList<>(ratingList));
@@ -42,7 +42,7 @@ public class ReviewsFragment extends BaseFetchingFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mRatingList = (ArrayList<Rating>) getArguments().getSerializable(RATING_ARG);
+            mRatingList = (ArrayList<RatingModel>) getArguments().getSerializable(RATING_ARG);
         }
     }
 
@@ -75,6 +75,6 @@ public class ReviewsFragment extends BaseFetchingFragment {
     private void showAllReviews() {
         Bundle bundle = new Bundle();
         bundle.putSerializable(RATING_ARG, new ArrayList<>(mRatingList));
-        ActivityUtils.showActivity(AllReviewsActivity.class, bundle, false);
+//        ActivityUtils.showActivity(AllReviewsActivity.class, bundle, false);
     }
 }

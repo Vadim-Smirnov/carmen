@@ -9,7 +9,7 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.PopularCompaniesContract
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
-import net.ginteam.carmen.kotlin.presenter.company.PopularCompaniesPresenter
+import net.ginteam.carmen.kotlin.presenter.company.list.PopularCompaniesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.BaseCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.adapter.company.HorizontalCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.adapter.company.VerticalCompaniesAdapter

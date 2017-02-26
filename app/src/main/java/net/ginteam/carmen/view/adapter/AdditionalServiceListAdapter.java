@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.model.company.Comfort;
+import net.ginteam.carmen.kotlin.model.ComfortModel;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ import java.util.List;
 public class AdditionalServiceListAdapter extends RecyclerView.Adapter <AdditionalServiceItemViewHolder> {
 
     private Context mContext;
-    private List<Comfort> mComforts;
+    private List<ComfortModel> mComforts;
 
-    public AdditionalServiceListAdapter(Context context, List<Comfort> comforts) {
+    public AdditionalServiceListAdapter(Context context, List<ComfortModel> comforts) {
         mContext = context;
         mComforts = comforts;
     }
