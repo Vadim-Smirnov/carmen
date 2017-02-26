@@ -10,7 +10,6 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.widget.ImageView
-import android.widget.Toast
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
 import net.ginteam.carmen.kotlin.interfaces.Filterable
@@ -23,9 +22,6 @@ import net.ginteam.carmen.kotlin.presenter.company.CompaniesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.PaginatableCompaniesAdapter
 import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDecorator
 import net.ginteam.carmen.view.adapter.company.PaginationScrollListener
-import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by eugene_shcherbinock on 2/16/17.

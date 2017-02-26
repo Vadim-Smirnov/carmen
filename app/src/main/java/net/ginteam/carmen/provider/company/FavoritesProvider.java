@@ -1,9 +1,6 @@
 package net.ginteam.carmen.provider.company;
 
-import com.google.android.gms.maps.model.LatLng;
-
 import net.ginteam.carmen.manager.ApiManager;
-import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.company.CompanyModel;
 import net.ginteam.carmen.network.api.service.CompanyService;
 import net.ginteam.carmen.network.api.subscriber.ModelSubscriber;

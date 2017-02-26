@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
-import net.ginteam.carmen.view.custom.rating.RatingView;
 
 /**
  * Created by vadik on 25.01.17.

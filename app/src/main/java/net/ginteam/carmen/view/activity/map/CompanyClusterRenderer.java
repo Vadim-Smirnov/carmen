@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -18,7 +17,6 @@ import com.google.maps.android.ui.IconGenerator;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.kotlin.model.CompanyModel;
-import net.ginteam.carmen.model.company.MapCompanyModel;
 import net.ginteam.carmen.view.custom.rating.CarmenRatingView;
 
 import java.util.ArrayList;

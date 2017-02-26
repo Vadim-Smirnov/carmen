@@ -6,8 +6,6 @@ import android.graphics.Point;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import net.ginteam.carmen.CarmenApplication;
-
 /**
  * Created by eugene_shcherbinock on 2/1/17.
  */

@@ -9,8 +9,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 
 import net.ginteam.carmen.contract.MapContract;
-import net.ginteam.carmen.manager.GoogleLocationManager;
 import net.ginteam.carmen.manager.FiltersViewStateManager;
+import net.ginteam.carmen.manager.GoogleLocationManager;
 import net.ginteam.carmen.manager.PreferencesManager;
 import net.ginteam.carmen.model.Point;
 import net.ginteam.carmen.model.company.MapCompanyModel;

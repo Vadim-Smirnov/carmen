@@ -1,7 +1,5 @@
 package net.ginteam.carmen.provider.company;
 
-import android.util.Log;
-
 import com.google.android.gms.maps.model.LatLng;
 
 import net.ginteam.carmen.manager.ApiManager;

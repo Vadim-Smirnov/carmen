@@ -2,12 +2,10 @@ package net.ginteam.carmen.view.activity;
 
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.view.fragment.BaseFragment;
-import net.ginteam.carmen.view.fragment.MainFragment;
 
 /**
  * Created by Eugene on 1/27/17.

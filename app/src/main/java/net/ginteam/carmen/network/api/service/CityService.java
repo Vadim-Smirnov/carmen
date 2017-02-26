@@ -7,7 +7,6 @@ import net.ginteam.carmen.network.api.ApiLinks;
 import java.util.List;
 
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 import rx.Observable;
 
 /**
