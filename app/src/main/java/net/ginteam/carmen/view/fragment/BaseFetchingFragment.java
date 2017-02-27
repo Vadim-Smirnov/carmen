@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import net.ginteam.carmen.R;
-import net.ginteam.carmen.contract.FetchContract;
 
-public abstract class BaseFetchingFragment extends BaseFragment implements FetchContract.View {
+public abstract class BaseFetchingFragment extends BaseFragment {
 
     protected View mRootView;
 
@@ -26,12 +25,10 @@ public abstract class BaseFetchingFragment extends BaseFragment implements Fetch
         return mRootView;
     }
 
-    @Override
     public void showLoading(boolean isLoading) {
         mProgressBar.setVisibility(isLoading ? View.VISIBLE : View.GONE);
     }
 
-    @Override
     public void showError(String message) {
         mProgressBar.setVisibility(View.GONE);
     }

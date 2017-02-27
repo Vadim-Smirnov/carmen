@@ -183,9 +183,8 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
             val recyclerViewGallery: RecyclerView = findViewById(R.id.recycler_view_gallery) as RecyclerView
             val galleryAdapter: GalleryRecyclerAdapter = GalleryRecyclerAdapter(getContext(), imagesUrls)
             val layoutManager: LinearLayoutManager = LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)
-            val gallerySnapHelper: GravitySnapHelper = GravitySnapHelper(Gravity.START, false) {
-                position ->
-                setIndicator(position)
+            val gallerySnapHelper: GravitySnapHelper = GravitySnapHelper(Gravity.START, true) {
+                position -> setIndicator(position)
             }
 
             recyclerViewGallery.layoutManager = layoutManager

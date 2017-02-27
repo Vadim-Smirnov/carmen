@@ -26,7 +26,6 @@ public class GalleryRecyclerAdapter extends RecyclerView.Adapter<GalleryItemView
         mImages = imageUrls;
     }
 
-
     @Override
     public GalleryItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View galleryItemView = LayoutInflater

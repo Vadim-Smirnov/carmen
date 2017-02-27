@@ -2,6 +2,7 @@ package net.ginteam.carmen.kotlin.view.activity.company
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.MenuItem
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CompanyRatingsContract
 import net.ginteam.carmen.kotlin.model.RatingModel
@@ -22,6 +23,11 @@ class CompanyRatingsActivity : BaseActivity <CompanyRatingsContract.View, Compan
 
     companion object {
         const val COMPANY_RATINGS_ARGUMENT = "ratings"
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        onBackPressed()
+        return super.onOptionsItemSelected(item)
     }
 
     override fun getLayoutResId(): Int = R.layout.activity_all_reviews
