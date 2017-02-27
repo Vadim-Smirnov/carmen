@@ -43,6 +43,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     private var mLastAccessibleItem: MenuItem? = null
     private var mPreviousTitle: Pair <String, String>? = null
     private var mPreviousFragment: Fragment? = null
+
     private lateinit var mCurrentFragment: Fragment
 
     private lateinit var mDrawerLayout: DrawerLayout
@@ -58,7 +59,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
         when (item.itemId) {
 
-        // common menu items
+            // common menu items
 
             R.id.navigation_item_main -> {
                 selectedFragment = MainFragment.newInstance()
@@ -67,7 +68,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
                 selectedFragment = CategoriesFragment.newInstance(false)
             }
 
-        // items for only signed in users
+            // items for only signed in users
 
             R.id.navigation_item_favorites -> {
                 if (userHaveAccessForMenuItem(item)) {

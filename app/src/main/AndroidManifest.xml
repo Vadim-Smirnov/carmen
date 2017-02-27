@@ -112,22 +112,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".kotlin.view.activity.company.CompanyRatingsActivity"
-            android:parentActivityName=".kotlin.view.activity.company.CompanyDetailsActivity"
-            android:screenOrientation="portrait">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".kotlin.view.activity.company.CompanyDetailsActivity" />
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".kotlin.view.activity.company.CompanyRatingUpdateActivity"
-            android:screenOrientation="portrait">
-            <!--android:parentActivityName=".kotlin.view.activity.company.CompanyDetailsActivity"-->
-            <!--<meta-data-->
-                <!--android:name="android.support.PARENT_ACTIVITY"-->
-                <!--android:value=".kotlin.view.activity.company.CompanyDetailsActivity" />-->
-
-        </activity>
+            android:screenOrientation="portrait" />
 
     </application>
 

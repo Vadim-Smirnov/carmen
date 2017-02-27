@@ -39,7 +39,7 @@ class OnlineCompaniesDataSourceProvider : CompaniesDataSourceProvider {
 
     override fun fetchCompanies(categoryId: Int, filter: String, sortField: String,
                                 sortType: String, paginationPage: Int): Observable<ResponseModel<MutableList<CompanyModel>>>
-            = companiesService.fetchCompanies(categoryId, filter, sortField, sortType, paginationPage).asyncWithCache()
+            = companiesService.fetchCompanies(categoryId, paginationPage, sortField, sortType, filter).asyncWithCache()
 
     override fun fetchMapCompanies(categoryId: Int, bounds: String, filter: String)
             : Observable<ResponseModel<MutableList<CompanyModel>>>

@@ -50,11 +50,11 @@ public class ReviewsAdapter extends RecyclerView.Adapter <ReviewItemViewHolder> 
         RatingModel currentReview = mReviews.get(position);
 
         holder.getRatingView().setRating(currentReview.getTotalRating());
-        if (currentReview.getTitle() != null) {
+        if (currentReview.getTitle() != null && !currentReview.getTitle().isEmpty()) {
             holder.getTextViewReviewTitle().setVisibility(View.VISIBLE);
             holder.getTextViewReviewTitle().setText(currentReview.getTitle());
         }
-        if (currentReview.getText() != null) {
+        if (currentReview.getText() != null && !currentReview.getText().isEmpty()) {
             holder.getTextViewReviewText().setVisibility(View.VISIBLE);
             holder.getTextViewReviewText().setText(currentReview.getText());
         }

@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="RatingView">
-
-        <attr name="circlesColor" format="color" />
-        <attr name="viewsCount" format="integer" />
-        <attr name="viewsSpacing" format="dimension" />
-        <attr name="rating" format="integer" />
-
-    </declare-styleable>
-
     <declare-styleable name="CarmenRatingView">
         <attr name="crv_indicatorSpacing" format="dimension" />
         <attr name="crv_indicatorColor" format="color" />

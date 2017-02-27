@@ -56,7 +56,9 @@ class PopularCompaniesFragment
         }
         mRecyclerViewCompanies.adapter = mCompaniesAdapter
         mTextViewTitle?.let {
-            it.visibility = View.VISIBLE
+            if (companies.isNotEmpty()) {
+                it.visibility = View.VISIBLE
+            }
         }
     }
 

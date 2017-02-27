@@ -2,6 +2,7 @@ package net.ginteam.carmen.kotlin.provider
 
 import net.ginteam.carmen.kotlin.api.service.AuthService
 import net.ginteam.carmen.kotlin.asyncWithCache
+import net.ginteam.carmen.kotlin.manager.SharedPreferencesManager
 import net.ginteam.carmen.kotlin.model.AuthModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import net.ginteam.carmen.kotlin.model.UserModel
@@ -32,6 +33,7 @@ object AuthenticationProvider : AuthProvider {
                 .asyncWithCache(false)
                 .doOnNext {
                     cacheUser(it.data.user)
+                    saveUserAccessToken(it.data.token)
                 }
     }
 
@@ -41,6 +43,7 @@ object AuthenticationProvider : AuthProvider {
                 .asyncWithCache(false)
                 .doOnNext {
                     cacheUser(it.data.user)
+                    saveUserAccessToken(it.data.token)
                 }
     }
 
@@ -55,5 +58,9 @@ object AuthenticationProvider : AuthProvider {
 
     private fun cacheUser(user: UserModel) {
         currentCachedUser = user
+    }
+
+    private fun saveUserAccessToken(token: String) {
+        SharedPreferencesManager.userAccessToken = token
     }
 }

@@ -23,8 +23,6 @@ class SignInPresenter : BasePresenter <SignInContract.View>(), SignInContract.Pr
                 .userLogin(email, password)
                 .subscribe(object : ModelSubscriber <AuthModel>() {
                     override fun success(model: AuthModel) {
-                        saveUserAccessToken(model.token)
-
                         mView?.showLoading(false)
                         mView?.showMainActivity()
                     }
@@ -36,7 +34,7 @@ class SignInPresenter : BasePresenter <SignInContract.View>(), SignInContract.Pr
     }
 
     override fun isUserSignedInSuccessfully(): Boolean
-            = !SharedPreferencesManager.userAccessToken.isEmpty()
+            = SharedPreferencesManager.userAccessToken.isNotEmpty()
 
     override fun facebookSignIn() {
         throw UnsupportedOperationException("not implemented")
@@ -44,10 +42,6 @@ class SignInPresenter : BasePresenter <SignInContract.View>(), SignInContract.Pr
 
     override fun googleSignIn() {
         throw UnsupportedOperationException("not implemented")
-    }
-
-    private fun saveUserAccessToken(token: String) {
-        SharedPreferencesManager.userAccessToken = token
     }
 
 }
