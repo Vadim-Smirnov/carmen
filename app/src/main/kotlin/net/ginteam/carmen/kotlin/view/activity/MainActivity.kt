@@ -21,6 +21,7 @@ import net.ginteam.carmen.kotlin.model.UserModel
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
+import net.ginteam.carmen.kotlin.view.activity.company.CompanyDetailsActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.fragment.MainFragment
@@ -57,7 +58,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
         when (item.itemId) {
 
-            // common menu items
+        // common menu items
 
             R.id.navigation_item_main -> {
                 selectedFragment = MainFragment.newInstance()
@@ -66,7 +67,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
                 selectedFragment = CategoriesFragment.newInstance(false)
             }
 
-            // items for only signed in users
+        // items for only signed in users
 
             R.id.navigation_item_favorites -> {
                 if (userHaveAccessForMenuItem(item)) {
@@ -86,13 +87,13 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         }
 
         selectedFragment?.let {
-           if (it.javaClass != mCurrentFragment.javaClass) {
-               mCurrentFragment = it
-               prepareFragment(R.id.main_fragment_container, mCurrentFragment)
+            if (it.javaClass != mCurrentFragment.javaClass) {
+                mCurrentFragment = it
+                prepareFragment(R.id.main_fragment_container, mCurrentFragment)
 
-               setToolbarTitle(item.title.toString())
-               mPreviousTitle = Pair(getToolbarTitle(), "")
-           }
+                setToolbarTitle(item.title.toString())
+                mPreviousTitle = Pair(getToolbarTitle(), "")
+            }
         }
 
         mDrawerLayout.closeDrawer(GravityCompat.START)
@@ -268,7 +269,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
      * and save item for user redirection after successfully sign in
      */
     private fun userHaveAccessForMenuItem(item: MenuItem): Boolean {
-        return if (mPresenter.isUserSignedIn())  {
+        return if (mPresenter.isUserSignedIn()) {
             true
         } else {
             showError(R.string.access_denied_message) {

@@ -15,7 +15,7 @@ object CompanyDetailsContract {
 
         fun showCompanyDetails(company: CompanyModel)
         fun invalidateFavoriteIndicator(isFavorite: Boolean)
-        fun showRatingActivity(rating: RatingModel)
+        fun showUpdateRatingActivity(rating: RatingModel)
 
         fun showPopularCompanies()
         fun showComforts(comforts: List <ComfortModel>)
@@ -31,6 +31,30 @@ object CompanyDetailsContract {
         fun isUserSignedIn(): Boolean
         fun addCompanyToFavorites(company: CompanyModel)
         fun removeCompanyFromFavorites(company: CompanyModel)
+
+    }
+
+}
+
+object CompanyRatingsContract {
+
+    interface View : BaseContract.View
+
+    interface Presenter : BaseContract.Presenter <View>
+
+}
+
+object CompanyRatingUpdateContract {
+
+    interface View : BaseContract.View {
+
+        fun dismiss()
+
+    }
+
+    interface Presenter : BaseContract.Presenter <View> {
+
+        fun sendCompanyRating(rating: RatingModel)
 
     }
 

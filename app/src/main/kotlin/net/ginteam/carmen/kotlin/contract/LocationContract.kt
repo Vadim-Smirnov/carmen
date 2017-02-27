@@ -15,7 +15,7 @@ object LocationContract {
 
     }
 
-    interface Presenter <in V : View> : BaseContract.Presenter <V> {
+    interface Presenter<in V : View> : BaseContract.Presenter <V> {
 
         fun fetchUserLocation()
 

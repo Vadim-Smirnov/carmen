@@ -14,7 +14,7 @@ import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.company.map.MapActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.BaseLocationActivity
-import net.ginteam.carmen.kotlin.view.activity.CompanyDetailsActivity
+import net.ginteam.carmen.kotlin.view.activity.company.CompanyDetailsActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment

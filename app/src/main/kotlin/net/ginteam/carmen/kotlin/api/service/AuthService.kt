@@ -27,10 +27,10 @@ interface AuthService {
             @Query(ApiSettings.Auth.Params.NAME) name: String,
             @Query(ApiSettings.Auth.Params.EMAIL) email: String,
             @Query(ApiSettings.Auth.Params.PASSWORD) password: String
-    ) : Observable <ResponseModel <AuthModel>>
+    ): Observable <ResponseModel <AuthModel>>
 
     @GET(ApiSettings.Auth.GET_CURRENT_USER)
-    fun getCurrentUser() : Observable <ResponseModel <UserModel>>
+    fun getCurrentUser(): Observable <ResponseModel <UserModel>>
 
     companion object {
         fun create(): AuthService = ApiManager.retrofit.create(AuthService::class.java)

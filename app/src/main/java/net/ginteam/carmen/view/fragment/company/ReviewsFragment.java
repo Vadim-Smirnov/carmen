@@ -1,5 +1,6 @@
 package net.ginteam.carmen.view.fragment.company;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,18 +10,17 @@ import android.view.ViewGroup;
 
 import net.ginteam.carmen.R;
 import net.ginteam.carmen.kotlin.model.RatingModel;
+import net.ginteam.carmen.kotlin.view.activity.company.CompanyRatingsActivity;
 import net.ginteam.carmen.view.adapter.ReviewsAdapter;
 import net.ginteam.carmen.view.fragment.BaseFetchingFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-//import net.ginteam.carmen.view.activity.AllReviewsActivity;
 
 public class ReviewsFragment extends BaseFetchingFragment {
 
     public static final String RATING_ARG = "rating";
-
 
     private List<RatingModel> mRatingList;
 
@@ -52,6 +52,7 @@ public class ReviewsFragment extends BaseFetchingFragment {
         mRootView = inflateBaseFragment(R.layout.fragment_reviews, inflater, container, savedInstanceState);
 
         updateDependencies();
+
         if (mRatingList != null) {
             mReviewsAdapter = new ReviewsAdapter(getContext(), mRatingList, false);
             mRecyclerViewReviews.setAdapter(mReviewsAdapter);
@@ -73,8 +74,8 @@ public class ReviewsFragment extends BaseFetchingFragment {
     }
 
     private void showAllReviews() {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(RATING_ARG, new ArrayList<>(mRatingList));
-//        ActivityUtils.showActivity(AllReviewsActivity.class, bundle, false);
+        Intent intent = new Intent(getContext(), CompanyRatingsActivity.class);
+        intent.putExtra(CompanyRatingsActivity.COMPANY_RATINGS_ARGUMENT, (Serializable) mRatingList);
+        startActivity(intent);
     }
 }

@@ -19,7 +19,7 @@ import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDe
 /**
  * Created by eugene_shcherbinock on 2/17/17.
  */
-class RecentlyWatchedCompaniesFragment: BaseCompaniesFragment <BaseCompaniesAdapter, RecentlyWatchedCompaniesContract.View, RecentlyWatchedCompaniesContract.Presenter>(),
+class RecentlyWatchedCompaniesFragment : BaseCompaniesFragment <BaseCompaniesAdapter, RecentlyWatchedCompaniesContract.View, RecentlyWatchedCompaniesContract.Presenter>(),
         RecentlyWatchedCompaniesContract.View {
 
     override var mPresenter: RecentlyWatchedCompaniesContract.Presenter = RecentlyWatchedCompaniesPresenter()

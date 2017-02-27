@@ -8,7 +8,7 @@ import android.view.View
  * Created by eugene_shcherbinock on 2/22/17.
  */
 
-abstract class PageAdapterListener <out T : RecyclerView.Adapter <RecyclerView.ViewHolder>> (val adapter: T)
+abstract class PageAdapterListener<out T : RecyclerView.Adapter <RecyclerView.ViewHolder>>(val adapter: T)
     : View.OnTouchListener {
 
     private var mTouchPosition: Float = 0f

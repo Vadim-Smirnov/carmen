@@ -18,13 +18,13 @@ object ViewStateContract {
 
     }
 
-    interface View <out T : ViewState> : BaseContract.View {
+    interface View<out T : ViewState> : BaseContract.View {
 
         fun getCurrentViewState(): T
 
     }
 
-    interface Presenter <out T : ViewState, in V : View <T>> : BaseContract.Presenter <V> {
+    interface Presenter<out T : ViewState, in V : View <T>> : BaseContract.Presenter <V> {
 
         fun saveCurrentViewState()
         fun tryToRestoreViewState(category: CategoryModel): T?

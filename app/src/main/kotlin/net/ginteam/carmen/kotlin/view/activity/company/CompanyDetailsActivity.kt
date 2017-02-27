@@ -1,8 +1,8 @@
-package net.ginteam.carmen.kotlin.view.activity
+package net.ginteam.carmen.kotlin.view.activity.company
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
-import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
@@ -19,7 +19,8 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CompanyDetailsContract
 import net.ginteam.carmen.kotlin.model.*
 import net.ginteam.carmen.kotlin.prepareFragment
-import net.ginteam.carmen.kotlin.presenter.company.CompanyDetailsPresenter
+import net.ginteam.carmen.kotlin.presenter.company.detail.CompanyDetailsPresenter
+import net.ginteam.carmen.kotlin.view.activity.BaseActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.PopularCompaniesFragment
@@ -33,7 +34,7 @@ import net.ginteam.carmen.view.fragment.company.ServiceCategoryListFragment
  * Created by eugene_shcherbinock on 2/26/17.
  */
 
-class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, CompanyDetailsContract.Presenter>(),
+class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, CompanyDetailsContract.Presenter>(),
         CompanyDetailsContract.View, BaseCompaniesFragment.OnCompanySelectedListener {
 
     override var mPresenter: CompanyDetailsContract.Presenter = CompanyDetailsPresenter()
@@ -41,6 +42,7 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
     private lateinit var mSelectedCompany: CompanyModel
 
     private var mUserRating: Float = 0f
+    private var isRecyclerViewAttached: Boolean = false
 
     private var mOptionsMenu: Menu? = null
     private lateinit var mRatingViewUser: CarmenRatingView
@@ -52,8 +54,8 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
         const val COMPANY_ARGUMENT = "company"
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         mPresenter.fetchCompanyDetail(mSelectedCompany)
     }
 
@@ -81,7 +83,7 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
 
     override fun onCompanySelected(company: CompanyModel) {
         val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
-        intent.putExtra(CompanyDetailsActivity.COMPANY_ARGUMENT, company)
+        intent.putExtra(COMPANY_ARGUMENT, company)
         startActivity(intent)
         finish()
     }
@@ -95,10 +97,11 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
         mSelectedCompany = company
         invalidateFavoriteIndicator(company.isFavorite)
 
-        showCompanyPhotos(company.pictures)
+        if (!isRecyclerViewAttached) {
+            showCompanyPhotos(company.pictures)
+        }
         loadStaticGoogleMapImage(company.position)
         setUserRatingIfExists(company.userRatings)
-
         showMainCompanyInformation(company)
     }
 
@@ -111,7 +114,11 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
         mOptionsMenu?.getItem(0)?.icon = ContextCompat.getDrawable(getContext(), drawableId)
     }
 
-    override fun showRatingActivity(rating: RatingModel) {
+    override fun showUpdateRatingActivity(rating: RatingModel) {
+        val intent = Intent(getContext(), CompanyRatingUpdateActivity::class.java)
+        intent.putExtra(CompanyRatingUpdateActivity.COMPANY_ARGUMENT, mSelectedCompany)
+        intent.putExtra(CompanyRatingUpdateActivity.RATING_ARGUMENT, rating)
+        startActivity(intent)
     }
 
     override fun showPopularCompanies() {
@@ -144,9 +151,7 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
 
         mRatingViewUser = findViewById(R.id.rating_view_vote_object) as CarmenRatingView
         mRatingViewUser.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-            if (!fromUser) {
-                return@setOnRatingBarChangeListener
-            }
+            if (!fromUser) return@setOnRatingBarChangeListener
 
             if (mUserRating != 0f) {
                 ratingBar.rating = mUserRating
@@ -160,7 +165,6 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
             }
 
             mPresenter.createRating(mSelectedCompany, rating)
-            mUserRating = rating
         }
 
         findViewById(R.id.button_show_on_map).setOnClickListener { showCompanyOnMap() }
@@ -189,6 +193,7 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
             gallerySnapHelper.attachToRecyclerView(recyclerViewGallery)
 
             setupGalleryIndicator(galleryAdapter)
+            isRecyclerViewAttached = true
         }
     }
 
@@ -269,7 +274,7 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
     }
 
     private fun showPhonesSelectionDialog(companyPhones: List <String>, phoneSelectionListener: (String) -> Unit) {
-        val phonesAdapter: ArrayAdapter <String> = ArrayAdapter(getContext(), android.R.layout.select_dialog_item)
+        val phonesAdapter: ArrayAdapter<String> = ArrayAdapter(getContext(), android.R.layout.select_dialog_item)
         phonesAdapter.addAll(companyPhones)
 
         AlertDialog.Builder(this)
@@ -292,10 +297,10 @@ class CompanyDetailsActivity : BaseActivity <CompanyDetailsContract.View, Compan
 
         try {
             startActivity(googleMapApplicationIntent)
-        } catch (e: android.content.ActivityNotFoundException) {
+        } catch (e: ActivityNotFoundException) {
             try {
                 startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + googlePackageName)))
-            } catch (e: android.content.ActivityNotFoundException) {
+            } catch (e: ActivityNotFoundException) {
                 startActivity(Intent(Intent.ACTION_VIEW,
                         Uri.parse("https://play.google.com/store/apps/details?id=" + googlePackageName)))
             }

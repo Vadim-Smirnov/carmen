@@ -11,7 +11,7 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.BaseContract
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
-abstract class BaseActivity <in V : BaseContract.View, T : BaseContract.Presenter <V>>
+abstract class BaseActivity<in V : BaseContract.View, T : BaseContract.Presenter <V>>
     : AppCompatActivity(), BaseContract.View {
 
     protected abstract var mPresenter: T

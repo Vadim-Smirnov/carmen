@@ -8,11 +8,11 @@ import java.io.Serializable
  */
 
 data class RatingModel(val id: Int,
-                       @SerializedName("display_name") val displayName: String,
-                       val title: String,
-                       val text: String,
-                       @SerializedName("total_rating") val totalRating: Int,
-                       @SerializedName("price_rel") val price: Int,
+                       @SerializedName("display_name") var displayName: String,
+                       var title: String,
+                       var text: String,
+                       @SerializedName("total_rating") var totalRating: Float,
+                       @SerializedName("price_rel") var price: Int,
                        @SerializedName("answer_name") val answerName: String,
                        @SerializedName("answer_text") val answerText: String,
                        @SerializedName("answer_date") val answerDate: String,

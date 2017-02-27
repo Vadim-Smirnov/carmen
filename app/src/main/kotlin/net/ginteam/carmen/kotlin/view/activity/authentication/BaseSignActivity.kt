@@ -13,7 +13,7 @@ import net.ginteam.carmen.kotlin.contract.BaseSignContract
 import net.ginteam.carmen.kotlin.view.activity.BaseActivity
 import net.ginteam.carmen.kotlin.view.activity.MainActivity
 
-abstract class BaseSignActivity <in V : BaseSignContract.View, T : BaseSignContract.Presenter <V>>
+abstract class BaseSignActivity<in V : BaseSignContract.View, T : BaseSignContract.Presenter <V>>
     : BaseActivity<V, T>(), BaseSignContract.View, Validator.ValidationListener {
 
     @Order(2)

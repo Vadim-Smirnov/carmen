@@ -10,8 +10,8 @@ import net.ginteam.carmen.utils.DisplayUtils
  */
 
 open class HorizontalCompaniesAdapter(companies: MutableList <CompanyModel>,
-                                 onCompanyItemClick: (CompanyModel) -> Unit,
-                                 onFavoriteClick: (CompanyModel, Boolean) -> Unit)
+                                      onCompanyItemClick: (CompanyModel) -> Unit,
+                                      onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : BaseCompaniesAdapter(companies, onCompanyItemClick, onFavoriteClick) {
 
     open protected var FULL_VISIBLE_ITEMS_COUNT: Int = 2

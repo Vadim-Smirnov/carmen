@@ -4,7 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import net.ginteam.carmen.kotlin.contract.LocationContract
 
-abstract class BaseLocationActivity <in V : LocationContract.View, T : LocationContract.Presenter <V>>
+abstract class BaseLocationActivity<in V : LocationContract.View, T : LocationContract.Presenter <V>>
     : BaseActivity <V, T>(), LocationContract.View {
 
     override fun getActivity(): AppCompatActivity = this

@@ -26,7 +26,7 @@ abstract class ModelSubscriber<T> : Subscriber <ResponseModel <T>>(), ModelCallb
     }
 
     override fun onError(e: Throwable) {
-        error(e.message?: "", isNetworkException(e))
+        error(e.message ?: "", isNetworkException(e))
     }
 
     override fun onNext(t: ResponseModel<T>) {

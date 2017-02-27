@@ -8,4 +8,4 @@ import java.io.Serializable
  */
 data class ServiceModel(val id: Int,
                         val name: String,
-                        @SerializedName("category_id") val categoryId : Int) : Serializable
+                        @SerializedName("category_id") val categoryId: Int) : Serializable

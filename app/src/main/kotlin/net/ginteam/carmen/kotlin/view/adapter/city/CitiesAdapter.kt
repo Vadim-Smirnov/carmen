@@ -12,7 +12,7 @@ import net.ginteam.carmen.kotlin.model.CityModel
  * Created by eugene_shcherbinock on 2/16/17.
  */
 class CitiesAdapter(private val cities: List <CityModel>,
-                    val onCityItemClick: (CityModel) -> Unit) : RecyclerView.Adapter <CitiesAdapter.ViewHolder>()  {
+                    val onCityItemClick: (CityModel) -> Unit) : RecyclerView.Adapter <CitiesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): ViewHolder {
         return LayoutInflater.from(parent?.context)

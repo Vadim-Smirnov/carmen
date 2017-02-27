@@ -17,7 +17,7 @@ interface CitiesDataSourceProvider {
 
 }
 
-class OnlineCitiesDataSourceProvider: CitiesDataSourceProvider {
+class OnlineCitiesDataSourceProvider : CitiesDataSourceProvider {
     private val citiesService: CityService = CityService.create()
 
     override fun fetchCities(): Observable<ResponseModel<List<CityModel>>>

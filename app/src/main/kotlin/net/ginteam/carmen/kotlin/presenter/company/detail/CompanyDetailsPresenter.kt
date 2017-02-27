@@ -1,4 +1,4 @@
-package net.ginteam.carmen.kotlin.presenter.company
+package net.ginteam.carmen.kotlin.presenter.company.detail
 
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.api.ApiSettings
@@ -15,7 +15,7 @@ import java.io.Serializable
 /**
  * Created by eugene_shcherbinock on 2/26/17.
  */
-class CompanyDetailsPresenter : BasePresenter <CompanyDetailsContract.View>(), CompanyDetailsContract.Presenter {
+class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), CompanyDetailsContract.Presenter {
 
     private val mAuthProvider: AuthProvider = AuthenticationProvider
     private val mCompaniesDataSourceProvider: CompaniesDataSourceProvider = OnlineCompaniesDataSourceProvider()
@@ -31,7 +31,7 @@ class CompanyDetailsPresenter : BasePresenter <CompanyDetailsContract.View>(), C
 
         mCompaniesDataSourceProvider
                 .fetchCompanyDetails(company.id, relations)
-                .subscribe(object : ModelSubscriber <CompanyModel>() {
+                .subscribe(object : ModelSubscriber<CompanyModel>() {
                     override fun success(model: CompanyModel) {
                         mView?.showCompanyDetails(model)
 
@@ -62,10 +62,10 @@ class CompanyDetailsPresenter : BasePresenter <CompanyDetailsContract.View>(), C
         val initialRating: InitialRating = InitialRating(company.id, ratingValue)
         ratingDataSourceProvider
                 .createRating(initialRating)
-                .subscribe(object : ModelSubscriber <RatingModel>() {
+                .subscribe(object : ModelSubscriber<RatingModel>() {
                     override fun success(model: RatingModel) {
                         mView?.showLoading(false)
-                        mView?.showRatingActivity(model)
+                        mView?.showUpdateRatingActivity(model)
                     }
 
                     override fun error(message: String, isNetworkError: Boolean) {
@@ -118,7 +118,7 @@ class CompanyDetailsPresenter : BasePresenter <CompanyDetailsContract.View>(), C
                 })
     }
 
-    private fun <E : Serializable> notNullAndNotEmpty(responseModel: ResponseModel <List <E>>?): Boolean {
+    private fun <E : Serializable> notNullAndNotEmpty(responseModel: ResponseModel<List <E>>?): Boolean {
         responseModel?.let {
             return it.data.isNotEmpty()
         }

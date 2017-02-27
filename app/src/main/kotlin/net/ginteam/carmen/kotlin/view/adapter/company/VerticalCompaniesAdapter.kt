@@ -11,8 +11,8 @@ import net.ginteam.carmen.utils.DisplayUtils
  */
 
 open class VerticalCompaniesAdapter(companies: MutableList <CompanyModel>,
-                               onCompanyItemClick: (CompanyModel) -> Unit,
-                               onFavoriteClick: (CompanyModel, Boolean) -> Unit)
+                                    onCompanyItemClick: (CompanyModel) -> Unit,
+                                    onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : BaseCompaniesAdapter(companies, onCompanyItemClick, onFavoriteClick) {
 
     override fun getItemLayoutResId(): Int = R.layout.list_item_company_vertical

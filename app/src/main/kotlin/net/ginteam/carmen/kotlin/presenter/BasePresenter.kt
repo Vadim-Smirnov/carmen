@@ -6,7 +6,7 @@ import net.ginteam.carmen.kotlin.contract.BaseContract
  * Created by eugene_shcherbinock on 2/13/17.
  */
 
-open class BasePresenter <V : BaseContract.View> : BaseContract.Presenter <V> {
+open class BasePresenter<V : BaseContract.View> : BaseContract.Presenter <V> {
 
     protected var mView: V? = null
 

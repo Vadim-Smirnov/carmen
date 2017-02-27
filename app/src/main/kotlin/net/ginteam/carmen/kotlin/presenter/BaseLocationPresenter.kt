@@ -8,7 +8,7 @@ import net.ginteam.carmen.manager.GoogleLocationManager
  * Created by eugene_shcherbinock on 2/14/17.
  */
 
-abstract class BaseLocationPresenter <V : LocationContract.View> : BasePresenter <V>(),
+abstract class BaseLocationPresenter<V : LocationContract.View> : BasePresenter <V>(),
         LocationContract.Presenter <V>, GoogleLocationManager.OnReceiveLocationListener {
 
     protected lateinit var mGoogleLocationManager: GoogleLocationManager

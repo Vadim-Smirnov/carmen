@@ -24,7 +24,10 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
     : RecyclerView.Adapter <RecyclerView.ViewHolder>() {
 
     fun invalidateCompany(company: CompanyModel) {
-        notifyItemChanged(companies.indexOf(company))
+        // we can try invalidate company that out of memory
+        // and search it by id
+        val invalidatingCompany: CompanyModel = companies.find { company.id == it.id }!!
+        notifyItemChanged(companies.indexOf(invalidatingCompany))
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
@@ -54,8 +57,8 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
     protected abstract fun calculatePhotoSize(): Int
 
     open class ViewHolder(itemView: View,
-                     val onClick: (CompanyModel) -> Unit,
-                     val onFavoriteClick: (CompanyModel, Boolean) -> Unit) : RecyclerView.ViewHolder(itemView) {
+                          val onClick: (CompanyModel) -> Unit,
+                          val onFavoriteClick: (CompanyModel, Boolean) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
         val mImageViewPhoto: ImageView =
                 itemView.findViewById(R.id.image_view_company_photo) as ImageView
