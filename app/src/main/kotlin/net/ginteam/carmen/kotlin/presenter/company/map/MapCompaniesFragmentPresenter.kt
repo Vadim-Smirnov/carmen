@@ -36,7 +36,6 @@ class MapCompaniesFragmentPresenter : BaseCompaniesPresenter<MapCompaniesFragmen
                             mView?.showCompanies(model)
                             return
                         }
-                        mView?.showSearchView(true)
                         mView?.showCompaniesView(false)
                     }
 
