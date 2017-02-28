@@ -36,7 +36,7 @@ class FiltersPresenter : BasePresenter <FiltersContract.View>(), FiltersContract
     override fun updateResultsCount(category: CategoryModel, filterQuery: String) {
         mView?.showCounterLoading(true)
 
-        val filter = filterQuery.plus("cityId:${mPreferences.userCityModel!!.id}")
+        val filter = filterQuery.plus("city_id:${mPreferences.userCityModel!!.id}")
         mFiltersDataSourceProvider
                 .fetchCompaniesCountWithParameters(category.id, filter)
                 .subscribe(object : MetaSubscriber <List <CompanyModel>>() {

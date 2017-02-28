@@ -6,6 +6,7 @@ import android.os.Handler
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
+import android.text.TextUtils
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
@@ -14,7 +15,6 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
 import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.interfaces.Sortable
-import net.ginteam.carmen.kotlin.listener.SearchViewListener
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
@@ -36,6 +36,7 @@ class CompaniesFragment
     private val mUiThreadHandler: Handler = Handler()
     override lateinit var mCompaniesAdapter: PaginatableCompaniesAdapter
 
+    private var isNeedProccedSearchChanges: Boolean = false
     private lateinit var mSearchView: SearchView
 
     // set default sort options
@@ -76,15 +77,13 @@ class CompaniesFragment
 
     override fun onPrepareOptionsMenu(menu: Menu?) {
         super.onPrepareOptionsMenu(menu)
-
-        menu?.let {
-            prepareSearchView(it)
-        }
+        menu?.let { prepareSearchView(it) }
     }
 
     // Filterable & Sortable implementation
 
     override fun setFilterQuery(filter: String) {
+        isNeedProccedSearchChanges = false
         mSearchView.setQuery("", false)
         mSearchView.isIconified = true
 
@@ -180,7 +179,15 @@ class CompaniesFragment
         // set search icon
         (mSearchView.findViewById(SEARCH_BUTTON_ID) as ImageView).setImageResource(R.drawable.ic_search)
 
-        mSearchView.setOnQueryTextListener(object : SearchViewListener() {
+        mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (isNeedProccedSearchChanges && TextUtils.isEmpty(newText)) {
+                    onQueryTextSubmit(newText)
+                }
+                isNeedProccedSearchChanges = true
+                return true
+            }
+
             override fun onQueryTextSubmit(query: String?): Boolean {
                 // reset filters
                 mPresenter.resetFilters()
@@ -188,10 +195,8 @@ class CompaniesFragment
                 mCurrentPaginationPage = 1
 
                 fetchCompanies()
+                mUiThreadHandler.post { mSearchView.clearFocus() }
 
-                mUiThreadHandler.post {
-                    mSearchView.clearFocus()
-                }
                 return true
             }
         })

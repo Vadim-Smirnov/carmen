@@ -26,7 +26,7 @@ class CompaniesPresenter : BaseCompaniesPresenter<CompaniesContract.View>(), Com
             mView?.showLoading(true)
         }
 
-        val filter = filterQuery.plus("cityId:${mPreferences.userCityModel!!.id}")
+        val filter = filterQuery.plus("city_id:${mPreferences.userCityModel!!.id}")
         mCompaniesProvider
                 .fetchCompanies(categoryId, filter, sortField, sortType, pageNumber)
                 .subscribe(object : MetaSubscriber<MutableList <CompanyModel>>() {

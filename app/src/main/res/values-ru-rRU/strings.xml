@@ -47,8 +47,8 @@
     <string name="sign_in_label_string">Войти</string>
 
     <!-- Validation Errors -->
-    <string name="wrong_name_string">Пожалуйста, введите коректное имя</string>
-    <string name="wrong_email_string">Пожалуйста, введите коректный email</string>
+    <string name="wrong_name_string">Пожалуйста, введите корректное имя</string>
+    <string name="wrong_email_string">Пожалуйста, введите корректный email</string>
     <string name="wrong_password_string">Пароль не должен быть короче 6 символов</string>
     <string name="wrong_password_confirmation_string">Пароль не совпадает</string>
 
@@ -192,7 +192,6 @@
     <string name="all_review_title">Все отзывы</string>
     <string name="all_review_subtitle">всего</string>
 
-
     <string-array name="rating_price_array">
         <item>Дешево</item>
         <item>Средняя цена</item>
@@ -210,7 +209,6 @@
 
     <!-- Vote Object Activity Menu -->
     <string name="send_string">Отправить</string>
-
 
     <!-- Map Activity -->
     <string name="search_button_string">Повторить поиск</string>

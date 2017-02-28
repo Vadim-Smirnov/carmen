@@ -21,7 +21,15 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
                           onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : HorizontalCompaniesAdapter(companies, onCompanyItemClick, onFavoriteClick) {
 
+    enum class ITEM_TYPE {
+        COMPANY, EMPTY
+    }
+
     override var VISIBLE_ITEMS_COUNT: Int = 2
+
+    init {
+        companies.add(CompanyModel())
+    }
 
     fun getCompany(position: Int) = companies[position]
 
@@ -32,6 +40,10 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
+        if (getItemViewType(position) != ITEM_TYPE.COMPANY.ordinal) {
+            return
+        }
+
         val companyViewHolder: ViewHolder? = holder as ViewHolder?
         companyViewHolder?.mImageViewPhoto!!.layoutParams.height = calculatePhotoSize()
         companyViewHolder?.mImageViewPhoto.requestLayout()
@@ -39,10 +51,26 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
-        return LayoutInflater.from(parent?.context)
-                .inflate(getItemLayoutResId(), parent, false).let {
-            it.layoutParams = RecyclerView.LayoutParams(calculateItemWidth(), RecyclerView.LayoutParams.WRAP_CONTENT)
-            ViewHolder(it, onCompanyItemClick, onFavoriteClick)
+        return if (viewType == ITEM_TYPE.COMPANY.ordinal) {
+            LayoutInflater.from(parent?.context)
+                    .inflate(getItemLayoutResId(), parent, false).let {
+                it.layoutParams = RecyclerView.LayoutParams(calculateItemWidth(), RecyclerView.LayoutParams.WRAP_CONTENT)
+                ViewHolder(it, onCompanyItemClick, onFavoriteClick)
+            }
+        } else {
+            LayoutInflater.from(parent?.context)
+                    .inflate(R.layout.list_item_company_map_empty, parent, false).let {
+                it.layoutParams = RecyclerView.LayoutParams(calculateItemWidth(), RecyclerView.LayoutParams.WRAP_CONTENT)
+                EmptyViewHolder(it)
+            }
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (position == companies.size - 1) {
+            ITEM_TYPE.EMPTY.ordinal
+        } else {
+            ITEM_TYPE.COMPANY.ordinal
         }
     }
 
@@ -74,6 +102,12 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
             } else {
                 Color.TRANSPARENT
             })
+        }
+    }
+
+    class EmptyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        init {
+            itemView.visibility = View.GONE
         }
     }
 

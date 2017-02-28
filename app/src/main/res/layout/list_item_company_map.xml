@@ -10,29 +10,29 @@
     <android.support.constraint.ConstraintLayout
         style="@style/ConstraintLayout.WrappedHeight">
 
-        <View
-            android:id="@+id/view_selection_indicator"
-            android:layout_width="0dp"
-            android:layout_height="10dp"
-            android:background="@android:color/transparent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
-
         <ImageView
             android:id="@+id/image_view_company_photo"
             style="@style/ImageView.WrappedHeight"
             android:scaleType="fitXY"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_selection_indicator"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_default_photo"/>
+
+        <View
+            android:id="@+id/view_selection_indicator"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/company_item_favorite_button_margin"
+            android:background="@android:color/transparent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/image_view_company_photo"/>
 
         <ImageButton
             android:id="@+id/image_button_company_favorite"
             style="@style/ImageButton.Like"
             app:layout_constraintRight_toRightOf="@+id/image_view_company_photo"
-            app:layout_constraintTop_toTopOf="@+id/image_view_company_photo"/>
+            app:layout_constraintTop_toBottomOf="@id/view_selection_indicator"/>
 
         <TextView
             android:id="@+id/text_view_company_name"

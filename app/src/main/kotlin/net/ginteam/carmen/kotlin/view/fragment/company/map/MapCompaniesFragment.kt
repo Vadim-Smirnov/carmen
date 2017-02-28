@@ -143,6 +143,7 @@ class MapCompaniesFragment
     }
 
     override fun showCompanies(companies: MutableList<CompanyModel>, pagination: PaginationModel?) {
+        mUserSelectedCompany = null
         mGoogleMapClusterManager.clearItems()
         mGoogleMapClusterManager.addItems(companies)
         mGoogleMapClusterManager.cluster()

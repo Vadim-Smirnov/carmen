@@ -196,7 +196,6 @@
     <string name="button_all_text_on">Меньше</string>
     <string name="button_all_text_off">Еще</string>
 
-
     <string-array name="rating_price_array">
         <item>Дешево</item>
         <item>Средняя цена</item>
@@ -214,7 +213,6 @@
 
     <!-- Vote Object Activity Menu -->
     <string name="send_string">Отправить</string>
-
 
     <!-- Map Activity -->
     <string name="search_button_string">Повторить поиск</string>
