@@ -2,9 +2,6 @@
 <resources>
 
     <!-- Activity -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-
     <string name="test">XHDPI</string>
 
     <dimen name="divider_height">1dp</dimen>
@@ -16,16 +13,10 @@
 
     <!-- SignIn Activity -->
     <dimen name="skip_text_size">13sp</dimen>
-    <dimen name="skip_margin">25dp</dimen>
-    <dimen name="skip_bottom_space">39dp</dimen>
-    <dimen name="logo_bottom_space">67.5dp</dimen>
     <dimen name="field_drawable_padding">26.5dp</dimen>
     <dimen name="field_horizontal_space">25dp</dimen>
     <dimen name="field_text_size">14sp</dimen>
-    <dimen name="field_border_width">1dp</dimen>
     <dimen name="field_bottom_padding">10dp</dimen>
-    <dimen name="email_field_bottom_space">20dp</dimen>
-    <dimen name="password_field_bottom_space">40dp</dimen>
     <dimen name="button_horizontal_margin">30dp</dimen>
     <dimen name="button_border_width">1dp</dimen>
     <dimen name="sign_in_text_size">14sp</dimen>
@@ -34,33 +25,20 @@
     <dimen name="or_bottom_space">13.5dp</dimen>
     <dimen name="sign_in_facebook_bottom_space">10dp</dimen>
     <dimen name="sign_in_drawable_padding">14.5dp</dimen>
-    <dimen name="sign_in_google_bottom_space">30dp</dimen>
     <dimen name="sign_up_text_size">10sp</dimen>
-    <dimen name="sign_up_bottom_space">35dp</dimen>
-    <dimen name="sign_up_left_space">7.5dp</dimen>
 
     <!-- Category Item -->
     <dimen name="category_item_spacing">1dp</dimen>
-    <dimen name="category_item_top_padding">17dp</dimen>
-    <dimen name="category_item_bottom_padding">39dp</dimen>
-    <dimen name="category_item_height">167dp</dimen>
     <dimen name="category_title_text_size">20sp</dimen>
     <dimen name="category_title_bottom_space">7dp</dimen>
-    <dimen name="category_subtitle_text_size">10sp</dimen>
-    <dimen name="category_subtitle_bottom_space">18dp</dimen>
     <dimen name="category_separator_width">22dp</dimen>
     <dimen name="category_separator_height">3dp</dimen>
-    <dimen name="category_separator_bottom_space">22dp</dimen>
-    <dimen name="category_image_width">60dp</dimen>
-    <dimen name="category_image_height">23dp</dimen>
 
     <!-- Category Dialog Item -->
     <dimen name="category_dialog_item_top_padding">16dp</dimen>
     <dimen name="category_dialog_item_bottom_padding">17dp</dimen>
-    <dimen name="category_dialog_item_height">125dp</dimen>
     <dimen name="category_dialog_item_title_text_size">15sp</dimen>
     <dimen name="category_dialog_item_title_bottom_space">3dp</dimen>
-    <dimen name="category_dialog_item_subtitle_text_size">9sp</dimen>
     <dimen name="category_dialog_item_subtitle_bottom_space">13.5dp</dimen>
     <dimen name="category_dialog_item_separator_width">15dp</dimen>
     <dimen name="category_dialog_item_separator_height">1dp</dimen>
@@ -71,22 +49,13 @@
     <!-- Company Item Vertical -->
     <dimen name="company_item_corner_radius">1dp</dimen>
     <dimen name="company_item_spacing">10dp</dimen>
-    <dimen name="company_item_width">160dp</dimen>
-    <dimen name="company_item_height">288dp</dimen>
-    <dimen name="company_item_favorite_button_size">34dp</dimen>
     <dimen name="company_item_favorite_button_margin">5dp</dimen>
     <dimen name="company_item_space">12dp</dimen>
-    <dimen name="company_image_size">162dp</dimen>
     <dimen name="company_title_text_size">16sp</dimen>
-    <dimen name="company_rating_width">80dp</dimen>
-    <dimen name="company_rating_height">10dp</dimen>
     <dimen name="company_location_top_margin">21dp</dimen>
     <dimen name="company_location_left_margin">10dp</dimen>
     <dimen name="company_location_bottom_margin">20dp</dimen>
-    <dimen name="company_location_space">5dp</dimen>
     <dimen name="company_location_text_size">12sp</dimen>
-    <dimen name="company_price_right_margin">10dp</dimen>
-    <dimen name="company_price_text_size">14sp</dimen>
 
     <!-- Company Item Horizontal -->
     <dimen name="company_item_photo_right_space">15dp</dimen>
@@ -94,29 +63,20 @@
     <dimen name="company_item_address_bottom_space">15dp</dimen>
     <dimen name="company_item_rating_left_space">15dp</dimen>
     <dimen name="company_item_rating_bottom_space">21dp</dimen>
-    <dimen name="company_price_margin">20dp</dimen>
 
     <!-- Company Item Map -->
-    <dimen name="map_company_item_selection_indicator_height">10dp</dimen>
-    <dimen name="map_company_item_width">162.5dp</dimen>
-    <dimen name="map_company_item_height">161dp</dimen>
-    <dimen name="map_company_item_photo_height">110dp</dimen>
     <dimen name="map_company_item_photo_bottom_space">5dp</dimen>
     <dimen name="map_company_item_title_text_size">15sp</dimen>
-    <dimen name="map_company_item_price_text_size">14sp</dimen>
     <dimen name="map_company_item_padding">10dp</dimen>
 
     <!-- Company List Fragment -->
-    <dimen name="float_button_margin_right">16dp</dimen>
     <dimen name="float_button_margin_bottom">72dp</dimen>
-    <dimen name="company_list_fragment_title_text_size">15sp</dimen>
     <dimen name="company_list_fragment_title_vertical_margin">20dp</dimen>
     <dimen name="company_list_fragment_horizontal_margin">10dp</dimen>
     <dimen name="action_button_size">91dp</dimen>
 
     <!-- City Item -->
     <dimen name="city_item_vertical_margin">30dp</dimen>
-    <dimen name="city_item_text_size">15sp</dimen>
     <dimen name="city_item_margin_top">16dp</dimen>
     <dimen name="city_item_margin_bottom">13dp</dimen>
 
@@ -124,10 +84,8 @@
     <dimen name="choose_city_text_view_margin_start">20dp</dimen>
     <dimen name="choose_city_text_view_margin_top">15dp</dimen>
     <dimen name="choose_city_text_size">21sp</dimen>
-    <dimen name="choose_city_edit_text_search_city_margin_end">20dp</dimen>
 
     <!-- Menu -->
-    <dimen name="menu_header_height">98dp</dimen>
     <dimen name="menu_header_padding_top">21dp</dimen>
     <dimen name="menu_header_user_name_text_size">35sp</dimen>
     <dimen name="menu_header_email_text_size">13sp</dimen>
@@ -136,7 +94,6 @@
     <dimen name="menu_item_height">55dp</dimen>
 
     <!-- Company Detail -->
-    <dimen name="company_detail_float_button_margin">16dp</dimen>
     <dimen name="company_detail_parallax_toolbar_height">250dp</dimen>
     <dimen name="company_detail_parallax_toolbar_gradient_height">75.5dp</dimen>
     <dimen name="company_detail_margin_side">20dp</dimen>
@@ -164,16 +121,13 @@
     <dimen name="company_detail_payment_methods_bottom_separate_margin_top">20dp</dimen>
     <dimen name="company_detail_additional_services_margin_top">40dp</dimen>
     <dimen name="company_detail_recycler_additional_services_margin_top">15dp</dimen>
-    <dimen name="company_detail_reviews_text_margin_top">40dp</dimen>
     <dimen name="company_detail_recycler_reviews_margin_top">20dp</dimen>
-    <dimen name="company_detail_button_all_reviews_margin_top">30dp</dimen>
     <dimen name="company_detail_button_all_reviews_drawable_padding">10dp</dimen>
     <dimen name="company_detail_reviews_bottom_separate_margin_top">40dp</dimen>
     <dimen name="company_detail_vote_object_text_margin_top">15dp</dimen>
     <dimen name="company_detail_image_map_height">200dp</dimen>
     <dimen name="company_detail_image_map_margin_top">40dp</dimen>
     <dimen name="company_detail_button_navigate_margin_top">15dp</dimen>
-    <dimen name="company_detail_button_navigate_drawable_padding">8dp</dimen>
     <dimen name="company_detail_recycler_view_services_margin_top">20dp</dimen>
     <dimen name="company_detail_button_all_services_margin_start">40dp</dimen>
     <dimen name="company_detail_button_all_services_padding">10dp</dimen>
@@ -204,10 +158,7 @@
     <dimen name="dialog_fragment_height">489dp</dimen>
 
     <!-- Category dialog fragment -->
-    <dimen name="category_dialog_title_padding_horizontal">20dp</dimen>
     <dimen name="category_dialog_title_padding_vertical">15dp</dimen>
-    <dimen name="category_dialog_title_text_size">21sp</dimen>
-    <dimen name="category_dialog_title_height">57dp</dimen>
 
     <!-- Sort Dialog Fragment -->
     <dimen name="sort_item_margin">20dp</dimen>
@@ -215,14 +166,11 @@
 
     <!-- Review item -->
     <dimen name="image_button_expand_width">39dp</dimen>
-    <dimen name="image_button_expand_height">158dp</dimen>
-    <dimen name="image_button_expand_margin_end">27dp</dimen>
     <dimen name="review_item_bottom_margin">35dp</dimen>
     <dimen name="review_title_margin_start">20dp</dimen>
     <dimen name="review_title_margin_end">25dp</dimen>
     <dimen name="review_rating_width">80dp</dimen>
     <dimen name="review_rating_height">10dp</dimen>
-    <dimen name="review_rating_side_margin">15dp</dimen>
     <dimen name="text_view_date_margin_start">8dp</dimen>
     <dimen name="text_view_date_margin_top">22dp</dimen>
     <dimen name="text_view_user_name_margin_start">20dp</dimen>

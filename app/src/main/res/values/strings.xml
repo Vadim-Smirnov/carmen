@@ -68,7 +68,6 @@
     <string name="choose_city_string">Выберите город: </string>
 
     <!-- Company -->
-    <string name="company_price">%d грн</string>
     <string name="recently_watched_title">Недавно просмотренные</string>
     <string name="popular_title">Популярные в городе %s</string>
 
