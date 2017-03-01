@@ -52,12 +52,8 @@ class FiltersActivity : BaseActivity <FiltersContract.View, FiltersContract.Pres
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-            }
-            R.id.menu_item_reset_filters -> {
-                resetFiltersFields()
-            }
+            android.R.id.home -> onBackPressed()
+            R.id.menu_item_reset_filters -> resetFiltersFields()
         }
         return true
     }
@@ -85,7 +81,13 @@ class FiltersActivity : BaseActivity <FiltersContract.View, FiltersContract.Pres
     override fun updateFilterResultsCount(count: Int) {
         mProgressBarCounter.visibility = View.GONE
         mTextViewResultsCount.visibility = View.VISIBLE
-        mTextViewResultsCount.text = String.format(getString(R.string.results_count_string), count)
+        mTextViewResultsCount.text = if (count != 0) {
+            findViewById(R.id.text_view_show_results).visibility = View.VISIBLE
+            String.format(getString(R.string.results_count_string), count)
+        } else {
+            findViewById(R.id.text_view_show_results).visibility = View.INVISIBLE
+            getString(R.string.no_filters_result_string)
+        }
     }
 
     override fun showFilters(filters: List<FilterModel>) {
@@ -112,9 +114,7 @@ class FiltersActivity : BaseActivity <FiltersContract.View, FiltersContract.Pres
         mTextViewResultsCount = findViewById(R.id.text_view_filters_result_count) as TextView
         mProgressBarCounter = findViewById(R.id.progress_bar_filter) as ProgressBar
 
-        findViewById(R.id.text_view_show_results).setOnClickListener {
-            confirmFilters()
-        }
+        findViewById(R.id.text_view_show_results).setOnClickListener { confirmFilters() }
     }
 
     override fun updateDependencies() {

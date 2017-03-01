@@ -60,9 +60,9 @@ public class FilterEditText extends LinearLayout {
         @Override
         public void onClick(View view) {
             mFilterQuery = "";
+            mSelectedFilterOption = null;
             mEditTextFilter.getText().clear();
             mEditTextFilter.clearFocus();
-            mSelectedFilterOption = null;
         }
     };
     private final OnTouchListener mEditTextClickListener = new OnTouchListener() {
@@ -100,6 +100,9 @@ public class FilterEditText extends LinearLayout {
 
             if (mFilterModel != null) {
                 if (mFilterModel.getFilterOptions() == null) {
+                    mFilterQuery = "";
+                }
+                if (mSelectedFilterOption == null) {
                     mFilterQuery = "";
                 }
             }

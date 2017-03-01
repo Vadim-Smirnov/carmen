@@ -91,6 +91,7 @@
     <!-- Filter Activity -->
     <string name="filter_activity_title">Поиск</string>
     <string name="show_results_string">Показать результаты</string>
+    <string name="no_filters_result_string">Нет компаний</string>
     <string name="results_count_string">Результатов: %d</string>
     <string name="filters_example">[
     {
@@ -121,15 +122,19 @@
         "filter_field" : "price_rel",
         "dialog" : [
             {
-                "key" : "50",
+                "key" : "1",
                 "value" : "Дешевый"
             },
             {
-                "key" : "150",
+                "key" : "2",
                 "value" : "Средний"
             },
             {
-                "key" : "250",
+                "key" : "3",
+                "value" : "Дорогой"
+            },
+            {
+                "key" : "4",
                 "value" : "Дорогой"
             }
         ]
