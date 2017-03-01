@@ -19,7 +19,7 @@ interface FilterService {
             @Path(ApiSettings.Catalog.Params.ID) categoryId: Int,
             @Query(ApiSettings.Catalog.Params.SEARCH) filter: String = "",
             @Query(ApiSettings.Catalog.Params.LIMIT) limit: Int = 1,
-            @Query(ApiSettings.Catalog.Params.SEARCH_FIELD_TYPE) searchField: String = "name:ilike"
+            @Query(ApiSettings.Catalog.Params.SEARCH_FIELD_TYPE) searchField: String = "name:ilike;city_id:=;rating:=;price_rel:="
     ): Observable <ResponseModel <List <CompanyModel>>>
 
     companion object {
