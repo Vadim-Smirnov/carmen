@@ -15,8 +15,8 @@
         android:rating="1"
         android:layout_marginBottom="3dp"
         android:layout_gravity="center"
-        app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating"
-        app:crv_fillDrawable="@drawable/ic_medium_price_fill_rating"
+        app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating_white"
+        app:crv_fillDrawable="@drawable/ic_medium_price_fill_rating_white"
         app:crv_indicatorSpacing="2.5dp"/>
 
 </LinearLayout>
