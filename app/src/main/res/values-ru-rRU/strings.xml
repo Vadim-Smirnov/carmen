@@ -66,8 +66,6 @@
     <string name="location_measure">км</string>
 
     <!-- Navigation view -->
-    <string name="navigation_drawer_open">Open</string>
-    <string name="navigation_drawer_close">Close</string>
     <string name="main_item_title">Главная</string>
     <string name="category_item_title">Рубрики услуг</string>
     <string name="favorite_item_title">Избранные</string>
@@ -147,8 +145,6 @@
     <string name="clear_filters_string">Очистить все</string>
 
     <!-- Sort Fragment -->
-    <string name="sort_field_tag_id">field</string>
-    <string name="sort_type_tag_id">type</string>
     <string name="sort_fragment_title">Сортировка</string>
     <string name="sort_confirm_button_text">ПРИМЕНИТЬ</string>
     <string name="sorting_example">[

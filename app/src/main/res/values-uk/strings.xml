@@ -2,95 +2,93 @@
 <resources>
 
     <!-- Dialog messages -->
-    <string name="error_dialog_title">Ошибка</string>
-    <string name="warning_dialog_title">Информация</string>
+    <string name="error_dialog_title">Помилка</string>
+    <string name="warning_dialog_title">Інформація</string>
 
-    <string name="loading_progress_message">Загрузка…</string>
-    <string name="authorization_progress_message">Авторизация…</string>
-    <string name="registration_progress_message">Регистрация…</string>
-    <string name="fetching_cities_progress_messag">Получение категорий…</string>
+    <string name="loading_progress_message">Завантаження…</string>
+    <string name="authorization_progress_message">Авторизація…</string>
+    <string name="registration_progress_message">Реєстрація…</string>
+    <string name="fetching_cities_progress_messag">Отримання категорій…</string>
 
     <!-- Network error -->
-    <string name="no_network_connection_message">Нет интернет соединения</string>
-    <string name="try_again_string">Попробовать еще</string>
+    <string name="no_network_connection_message">Немає інтернет з\u0027єднання</string>
+    <string name="try_again_string">Спробувати ще</string>
 
     <!-- Access error -->
-    <string name="sign_in_now_string">Войти</string>
-    <string name="sign_in_later_string">Позже</string>
-    <string name="access_denied_message">Эта операция не доступна неавторизованым пользователям!</string>
+    <string name="sign_in_now_string">Увійти</string>
+    <string name="sign_in_later_string">Пізніше</string>
+    <string name="access_denied_message">Ця операція не може бути виконана неавторизованим користувачем!</string>
 
     <!-- Favorite company confirmation messages -->
-    <string name="company_added_to_favorites_message">Компания добавлена в избранные</string>
-    <string name="company_not_added_to_favorites_message">Компания не добавлена в избранные</string>
-    <string name="company_removed_from_favorites_message">Компания удалена из избранных</string>
-    <string name="company_not_removed_from_favorites_message">Компания не удалена из избранных</string>
-    <string name="undo_company_removed_message">ОТМЕНА</string>
+    <string name="company_added_to_favorites_message">Компанія додана в обрані</string>
+    <string name="company_not_added_to_favorites_message">Компанія не додана в обрані</string>
+    <string name="company_removed_from_favorites_message">Компанія видалена з обраних</string>
+    <string name="company_not_removed_from_favorites_message">Компанія не видалена з обраних</string>
+    <string name="undo_company_removed_message">ВІДМІНИТИ</string>
 
     <!-- SignIn Activity -->
-    <string name="skip_view_string">Пропустить</string>
-    <string name="email_hint_string">Введите email</string>
-    <string name="password_hint_string">Введите пароль</string>
-    <string name="sign_in_string">Войти</string>
-    <string name="or_string">или</string>
-    <string name="sign_in_with_facebook_string">Войти через Facebook</string>
-    <string name="sign_in_with_google_string">Войти через Google</string>
-    <string name="dont_have_account_string">Еще нет аккаунта?</string>
-    <string name="sign_up_label_string">Регистрация</string>
+    <string name="skip_view_string">Пропустити</string>
+    <string name="email_hint_string">Введіть email</string>
+    <string name="password_hint_string">Введіть пароль</string>
+    <string name="sign_in_string">Увійти</string>
+    <string name="or_string">чи</string>
+    <string name="sign_in_with_facebook_string">Увійти через Facebook</string>
+    <string name="sign_in_with_google_string">Увійти через Google</string>
+    <string name="dont_have_account_string">Ще немає аккаунту?</string>
+    <string name="sign_up_label_string">Реєстрація</string>
 
     <!-- SignUp Activity -->
-    <string name="name_hint_string">Введите имя</string>
-    <string name="confirm_password_hint_string">Подтвердите пароль</string>
-    <string name="sign_up_string">Регистрация</string>
-    <string name="have_account_string">Уже есть аккаунт?</string>
-    <string name="sign_in_label_string">Войти</string>
+    <string name="name_hint_string">Введіть ім\u0027я</string>
+    <string name="confirm_password_hint_string">Підтвердіть пароль</string>
+    <string name="sign_up_string">Реєстрація</string>
+    <string name="have_account_string">Вже є аккаунт?</string>
+    <string name="sign_in_label_string">Увійти</string>
 
     <!-- Validation Errors -->
-    <string name="wrong_name_string">Пожалуйста, введите корректное имя</string>
-    <string name="wrong_email_string">Пожалуйста, введите корректный email</string>
-    <string name="wrong_password_string">Пароль не должен быть короче 6 символов</string>
-    <string name="wrong_password_confirmation_string">Пароль не совпадает</string>
+    <string name="wrong_name_string">Будь ласка, введіть коректне ім\u0027я</string>
+    <string name="wrong_email_string">Будь ласка, введіть коректний email</string>
+    <string name="wrong_password_string">Пароль не повинен бути коротше 6 символів</string>
+    <string name="wrong_password_confirmation_string">Пароль не співпадає</string>
 
     <!-- Category -->
     <plurals name="category_items_count_string">
-        <item quantity="one">%d КОМПАНИЯ</item>
-        <item quantity="few">%d КОМПАНИИ</item>
-        <item quantity="other">%d КОМПАНИЙ</item>
-        <item quantity="many">%d КОМПАНИЙ</item>
+        <item quantity="one">%d КОМПАНІЯ</item>
+        <item quantity="few">%d КОМПАНІЇ</item>
+        <item quantity="other">%d КОМПАНІЙ</item>
+        <item quantity="many">%d КОМПАНІЙ</item>
     </plurals>
 
     <!-- City -->
-    <string name="choose_city_string">Выберите город: </string>
+    <string name="choose_city_string">Оберіть місто: </string>
 
     <!-- Company -->
-    <string name="recently_watched_title">Недавно просмотренные</string>
-    <string name="popular_title">Популярные в городе %s</string>
+    <string name="recently_watched_title">Нещодавно переглянуті</string>
+    <string name="popular_title">Популярні у місті %s</string>
     <string name="location_measure">км</string>
 
     <!-- Navigation view -->
-    <string name="navigation_drawer_open">Open</string>
-    <string name="navigation_drawer_close">Close</string>
-    <string name="main_item_title">Главная</string>
-    <string name="category_item_title">Рубрики услуг</string>
-    <string name="favorite_item_title">Избранные</string>
-    <string name="recent_item_title">Недавно просмотренные</string>
-    <string name="profile_item_title">Профиль</string>
-    <string name="logout_item_text">Выйти</string>
-    <string name="sign_in_item_text">Войти</string>
-    <string name="privacy_item_text">Политика конфиденциальности</string>
-    <string name="terms_item_text">Условия пользователя</string>
+    <string name="main_item_title">Головна</string>
+    <string name="category_item_title">Категорії</string>
+    <string name="favorite_item_title">Обрані</string>
+    <string name="recent_item_title">Нещодавно переглянуті</string>
+    <string name="profile_item_title">Профіль</string>
+    <string name="logout_item_text">Вийти</string>
+    <string name="sign_in_item_text">Увійти</string>
+    <string name="privacy_item_text">Політика конфіденційності</string>
+    <string name="terms_item_text">Умови користувача</string>
 
     <!-- Category dialog -->
-    <string name="category_dialog_title">Выбор категории</string>
-    <string name="button_category_dialog_cancel">ОТМЕНА</string>
+    <string name="category_dialog_title">Вибір категорії</string>
+    <string name="button_category_dialog_cancel">ВІДМІНИТИ</string>
 
     <!-- Filter Activity -->
-    <string name="filter_activity_title">Поиск</string>
-    <string name="show_results_string">Показать результаты</string>
-    <string name="no_filters_result_string">Нет компаний</string>
-    <string name="results_count_string">Результатов: %d</string>
+    <string name="filter_activity_title">Пошук</string>
+    <string name="show_results_string">Показати результати</string>
+    <string name="no_filters_result_string">Нема компаній</string>
+    <string name="results_count_string">Результатів: %d</string>
     <string name="filters_example">[
     {
-        "name" : "Поиск",
+        "name" : "Пошук",
         "filter_field" : "name",
         "dialog" : null
     },
@@ -100,28 +98,28 @@
         "dialog" : [
             {
                 "key" : "1",
-                "value" : "Ужасно"
+                "value" : "Жахливо"
             },
             {
                 "key" : "2",
-                "value" : "Плохо"
+                "value" : "Погано"
             },
             {
                 "key" : "3",
-                "value" : "Неплохо"
+                "value" : "Непогано"
             },
             {
                 "key" : "4",
-                "value" : "Хорошо"
+                "value" : "Добре"
             },
             {
                 "key" : "5",
-                "value" : "Отлично"
+                "value" : "Відмінно"
             }
         ]
     },
     {
-        "name" : "Цена",
+        "name" : "Ціна",
         "filter_field" : "price_rel",
         "dialog" : [
             {
@@ -130,7 +128,7 @@
             },
             {
                 "key" : "2",
-                "value" : "Средняя&#160;цена"
+                "value" : "Середня&#160;ціна"
             },
             {
                 "key" : "3",
@@ -138,20 +136,18 @@
             },
             {
                 "key" : "4",
-                "value" : "Очень&#160;дорого"
+                "value" : "Дуже&#160;дорого"
             }
         ]
     }
 ] </string>
 
     <!-- Filter Activity Menu -->
-    <string name="clear_filters_string">Очистить все</string>
+    <string name="clear_filters_string">Очистити все</string>
 
     <!-- Sort Fragment -->
-    <string name="sort_field_tag_id">field</string>
-    <string name="sort_type_tag_id">type</string>
-    <string name="sort_fragment_title">Сортировка</string>
-    <string name="sort_confirm_button_text">ПРИМЕНИТЬ</string>
+    <string name="sort_fragment_title">Сортування</string>
+    <string name="sort_confirm_button_text">ЗАСТОСУВАТИ</string>
     <string name="sorting_example">[
     {
         "name" : "По&#160;рейтингу",
@@ -159,17 +155,17 @@
         "sort_type" : "desc"
     },
     {
-        "name" : "От&#160;дешевых&#160;к&#160;дорогим",
+        "name" : "Від&#160;дешевих&#160;до&#160;дорогих",
         "sort_field" : "price_rel",
         "sort_type" : "asc"
     },
     {
-        "name" : "От&#160;дорогих&#160;к&#160;дешевым",
+        "name" : "Від&#160;дорогих&#160;до&#160;дешевых",
         "sort_field" : "price_rel",
         "sort_type" : "desc"
     },
     {
-        "name" : "Ближайшие",
+        "name" : "Найближчі",
         "sort_field" : "distance",
         "sort_type" : "asc"
     }
@@ -178,50 +174,50 @@
 
     <!-- Company detail -->
     <plurals name="review_count_string">
-        <item quantity="one">%1$d отзыв</item>
-        <item quantity="few">%1$d отзыва</item>
-        <item quantity="many">%1$d отзывов</item>
-        <item quantity="other">%1$d отзывов</item>
+        <item quantity="one">%1$d відгук</item>
+        <item quantity="few">%1$d відгука</item>
+        <item quantity="many">%1$d відгуків</item>
+        <item quantity="other">%1$d відгуків</item>
     </plurals>
 
-    <string name="choose_company_phone">Выберите номер:</string>
-    <string name="button_show_on_map_text">Отобразить на карте</string>
-    <string name="work_time_text">Открыто до %s</string>
-    <string name="payment_methods_text">Способы оплаты</string>
-    <string name="button_cash_text">Наличными</string>
-    <string name="button_cashless_text">Безналичными</string>
-    <string name="button_open_navigator_text">Открыть в навигаторе</string>
-    <string name="additional_services_title_text">Дополнительные услуги</string>
-    <string name="reviews_title_text">Отзывы</string>
-    <string name="vote_object_text">Нажмите, чтобы оставить оценку</string>
-    <string name="vote_object_title_text">Оцените объект</string>
-    <string name="button_all_reviews_text">Все отзывы автовладельцев</string>
-    <string name="button_all_text_on">Меньше</string>
-    <string name="button_all_text_off">Еще</string>
-    <string name="error_vote_object">Вы уже оценили эту компанию!</string>
-    <string name="all_review_title">Все отзывы</string>
-    <string name="all_review_subtitle">всего</string>
+    <string name="choose_company_phone">Оберіть номер:</string>
+    <string name="button_show_on_map_text">Відобразити на мапі</string>
+    <string name="work_time_text">Відчинено до %s</string>
+    <string name="payment_methods_text">Способи оплати</string>
+    <string name="button_cash_text">Готівкою</string>
+    <string name="button_cashless_text">Безготівковий</string>
+    <string name="button_open_navigator_text">Відкрити в навігаторі</string>
+    <string name="additional_services_title_text">Додаткові послуги</string>
+    <string name="reviews_title_text">Відгуки</string>
+    <string name="vote_object_text">Натисніть, щоб залишити оцінку</string>
+    <string name="vote_object_title_text">Оцініть об\u0027єкт</string>
+    <string name="button_all_reviews_text">Усі відгуки автовласників</string>
+    <string name="button_all_text_on">Менше</string>
+    <string name="button_all_text_off">Ще</string>
+    <string name="error_vote_object">Ви вже оцінили цю компанію!</string>
+    <string name="all_review_title">Усі відгуки</string>
+    <string name="all_review_subtitle">усього</string>
 
     <string-array name="rating_price_array">
         <item>Дешево</item>
-        <item>Средняя цена</item>
+        <item>Середня ціна</item>
         <item>Дорого</item>
-        <item>Очень дорого</item>
+        <item>Дуже дорого</item>
     </string-array>
 
     <string-array name="rating_array">
-        <item>Ужасно</item>
-        <item>Плохо</item>
-        <item>Неплохо</item>
-        <item>Хорошо</item>
-        <item>Отлично</item>
+        <item>Жахливо</item>
+        <item>Погано</item>
+        <item>Непогано</item>
+        <item>Добре</item>
+        <item>Відмінно</item>
     </string-array>
 
     <!-- Vote Object Activity Menu -->
-    <string name="send_string">Отправить</string>
+    <string name="send_string">Відправити</string>
 
     <!-- Map Activity -->
-    <string name="search_button_string">Повторить поиск</string>
-    <string name="filter_button_string">Фильтры</string>
+    <string name="search_button_string">Повторити пошук</string>
+    <string name="filter_button_string">Фільтри</string>
 
 </resources>
