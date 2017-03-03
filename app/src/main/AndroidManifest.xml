@@ -23,6 +23,7 @@
         tools:replace="android:icon">
 
         <!-- Kotlin -->
+
         <activity
             android:name=".kotlin.view.activity.SplashActivity"
             android:screenOrientation="portrait"
@@ -73,6 +74,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_api_key" />
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="06439662b9c527c089f408117e05ad8daa577731" />
 
     </application>
 

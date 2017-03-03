@@ -117,6 +117,7 @@ class MapCompaniesFragment
             fetchCompanies()
             isNeedFetchCompanies = false
         }
+        showSearchView(true)
     }
 
     override fun onCameraMoveStarted(p0: Int) {
