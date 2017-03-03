@@ -17,10 +17,9 @@ import net.ginteam.carmen.view.custom.rating.CarmenRatingView
 /**
  * Created by eugene_shcherbinock on 2/16/17.
  */
-
-open abstract class BaseCompaniesAdapter(protected val companies: MutableList <CompanyModel>,
-                                         val onCompanyItemClick: (CompanyModel) -> Unit,
-                                         val onFavoriteClick: (CompanyModel, Boolean) -> Unit)
+abstract class BaseCompaniesAdapter(protected val companies: MutableList <CompanyModel>,
+                                    val onCompanyItemClick: (CompanyModel) -> Unit,
+                                    val onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : RecyclerView.Adapter <RecyclerView.ViewHolder>() {
 
     fun invalidateCompany(company: CompanyModel) {
@@ -36,8 +35,8 @@ open abstract class BaseCompaniesAdapter(protected val companies: MutableList <C
             width = calculatePhotoSize()
             height = calculatePhotoSize()
         }
-        companyViewHolder?.mImageViewPhoto.requestLayout()
-        companyViewHolder?.bindData(companies[position])
+        companyViewHolder.mImageViewPhoto.requestLayout()
+        companyViewHolder.bindData(companies[position])
     }
 
     override fun getItemCount(): Int = companies.size

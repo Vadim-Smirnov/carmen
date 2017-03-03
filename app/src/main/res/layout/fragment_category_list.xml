@@ -2,7 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/LinearLayout.WrappedHeight.Vertical"
-    tools:context="net.ginteam.carmen.view.fragment.category.CategoryListFragment">
+    tools:context="net.ginteam.carmen.kotlin.view.activity.MainActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_categories"

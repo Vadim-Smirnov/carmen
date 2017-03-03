@@ -50,9 +50,7 @@ abstract class BaseSignActivity<in V : BaseSignContract.View, T : BaseSignContra
         mEditTextEmail = findViewById(R.id.edit_text_email) as EditText
         mEditTextPassword = findViewById(R.id.edit_text_password) as EditText
 
-        findViewById(R.id.text_view_skip_auth).setOnClickListener {
-            showMainActivity()
-        }
+        findViewById(R.id.text_view_skip_auth).setOnClickListener { showMainActivity() }
     }
 
     override fun updateDependencies() {

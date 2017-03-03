@@ -246,7 +246,7 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
     private fun setUserRatingIfExists(userRating: ResponseModel<List<RatingModel>>?) {
         userRating?.data?.let {
             if (it.isNotEmpty()) {
-                val rating: Float = it.first().totalRating.toFloat()
+                val rating: Float = it.first().totalRating
                 mRatingViewUser.rating = rating
                 mUserRating = rating
             }
@@ -278,7 +278,7 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
 
         AlertDialog.Builder(this)
                 .setTitle(R.string.choose_company_phone)
-                .setAdapter(phonesAdapter) { dialog, which ->
+                .setAdapter(phonesAdapter) { _, which ->
                     phoneSelectionListener(phonesAdapter.getItem(which))
                 }.show()
     }

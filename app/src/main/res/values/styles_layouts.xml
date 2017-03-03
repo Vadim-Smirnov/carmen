@@ -63,12 +63,12 @@
         <item name="android:background">@android:color/transparent</item>
     </style>
 
-    <style name="AppBarLayout.Toolbar.Base">
+    <style name="AppBarLayout.ToolbarBase">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
     </style>
 
-    <style name="AppBarLayout.Toolbar" parent="AppBarLayout.Toolbar.Base">
+    <style name="AppBarLayout.Toolbar" parent="AppBarLayout.ToolbarBase">
         <item name="android:background">@color/colorPrimary</item>
         <item name="popupTheme">@style/AppTheme.PopupOverlay</item>
         <item name="layout_collapseMode">pin</item>

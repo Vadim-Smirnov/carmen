@@ -1,67 +1,68 @@
 <resources>
 
-    <string name="google_api_key">AIzaSyAKzwJXWkDJpr0mYdSH1bwwI_Zj_7dlPwc</string>
-
-    <!-- Dialog messages -->
-    <string name="error_dialog_title">Error</string>
-    <string name="warning_dialog_title">Information</string>
-
-    <string name="loading_progress_message">Loading…</string>
-    <string name="authorization_progress_message">Authorization…</string>
-    <string name="registration_progress_message">Registration…</string>
-    <string name="fetching_cities_progress_message">Fetching categories…</string>
-
-    <!-- Network error -->
-    <string name="no_network_connection_message">No Internet connection</string>
-    <string name="try_again_string">Try again</string>
-
-    <!-- Access error -->
-    <string name="sign_in_now_string">Sign in</string>
-    <string name="sign_in_later_string">Later</string>
-    <string name="access_denied_message">This operation does not supported for not authorized users!</string>
-
-    <!-- Favorite company confirmation messages -->
-    <string name="company_added_to_favorites_message">Company successfully added to favorites</string>
-    <string name="company_not_added_to_favorites_message">Company not added to favorites</string>
-    <string name="company_removed_from_favorites_message">Company successfully removed from favorites</string>
-    <string name="company_not_removed_from_favorites_message">Company not removed from favorites</string>
-    <string name="undo_company_removed_message">UNDO</string>
+    <string translatable="false" name="google_api_key">AIzaSyAKzwJXWkDJpr0mYdSH1bwwI_Zj_7dlPwc</string>
 
     <!-- Fonts -->
-    <string name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
-    <string name="open_sans_font">fonts/OpenSans-Regular.ttf</string>
-    <string name="open_sans_semibold_font">fonts/OpenSans-Semibold.ttf</string>
-    <string name="avenir_book_font">fonts/Avenir-Book.ttf</string>
+    <string translatable="false" name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
+    <string translatable="false" name="open_sans_font">fonts/OpenSans-Regular.ttf</string>
+    <string translatable="false" name="open_sans_semibold_font">fonts/OpenSans-Semibold.ttf</string>
+    <string translatable="false" name="avenir_book_font">fonts/Avenir-Book.ttf</string>
+
+    <!-- Dialog messages -->
+    <string name="error_dialog_title">Ошибка</string>
+    <string name="warning_dialog_title">Информация</string>
+
+    <string name="loading_progress_message">Загрузка…</string>
+    <string name="authorization_progress_message">Авторизация…</string>
+    <string name="registration_progress_message">Регистрация…</string>
+    <string name="fetching_cities_progress_message">Получение категорий…</string>
+
+    <!-- Network error -->
+    <string name="no_network_connection_message">Нет интернет соединения</string>
+    <string name="try_again_string">Попробовать еще</string>
+
+    <!-- Access error -->
+    <string name="sign_in_now_string">Войти</string>
+    <string name="sign_in_later_string">Позже</string>
+    <string name="access_denied_message">Эта операция не доступна неавторизованым пользователям!</string>
+
+    <!-- Favorite company confirmation messages -->
+    <string name="company_added_to_favorites_message">Компания добавлена в избранные</string>
+    <string name="company_not_added_to_favorites_message">Компания не добавлена в избранные</string>
+    <string name="company_removed_from_favorites_message">Компания удалена из избранных</string>
+    <string name="company_not_removed_from_favorites_message">Компания не удалена из избранных</string>
+    <string name="undo_company_removed_message">ОТМЕНА</string>
 
     <!-- SignIn Activity -->
-    <string name="skip_view_string">Skip</string>
-    <string name="email_hint_string">Enter email</string>
-    <string name="password_hint_string">Enter password</string>
-    <string name="sign_in_string">Sign In</string>
-    <string name="or_string">or</string>
-    <string name="sign_in_with_facebook_string">Sign In with Facebook</string>
-    <string name="sign_in_with_google_string">Sign In with Google</string>
-    <string name="dont_have_account_string">DON\’T HAVE AN ACCOUNT?</string>
-    <string name="sign_up_label_string">SIGN UP</string>
+    <string name="skip_view_string">Пропустить</string>
+    <string name="email_hint_string">Введите email</string>
+    <string name="password_hint_string">Введите пароль</string>
+    <string name="sign_in_string">Войти</string>
+    <string name="or_string">или</string>
+    <string name="sign_in_with_facebook_string">Войти через Facebook</string>
+    <string name="sign_in_with_google_string">Войти через Google</string>
+    <string name="dont_have_account_string">Еще нет аккаунта?</string>
+    <string name="sign_up_label_string">Регистрация</string>
 
     <!-- SignUp Activity -->
-    <string name="name_hint_string">Enter your name</string>
-    <string name="confirm_password_hint_string">Confirm password</string>
-    <string name="sign_up_string">Sign Up</string>
-    <string name="have_account_string">HAVE AN ACCOUNT?</string>
-    <string name="sign_in_label_string">SIGN IN</string>
+    <string name="name_hint_string">Введите имя</string>
+    <string name="confirm_password_hint_string">Подтвердите пароль</string>
+    <string name="sign_up_string">Регистрация</string>
+    <string name="have_account_string">Уже есть аккаунт?</string>
+    <string name="sign_in_label_string">Войти</string>
 
     <!-- Validation Errors -->
-    <string name="wrong_name_string">Please, enter the correct name</string>
-    <string name="wrong_email_string">Please, enter the correct email address</string>
-    <string name="wrong_password_string">Password can not contains at least 6 symbols</string>
-    <string name="wrong_password_confirmation_string">Password does not match</string>
+    <string name="wrong_name_string">Пожалуйста, введите корректное имя</string>
+    <string name="wrong_email_string">Пожалуйста, введите корректный email</string>
+    <string name="wrong_password_string">Пароль не должен быть короче 6 символов</string>
+    <string name="wrong_password_confirmation_string">Пароль не совпадает</string>
 
     <!-- Category -->
     <plurals name="category_items_count_string">
         <item quantity="one">%d КОМПАНИЯ</item>
         <item quantity="few">%d КОМПАНИИ</item>
         <item quantity="other">%d КОМПАНИЙ</item>
+        <item quantity="many">%d КОМПАНИЙ</item>
     </plurals>
 
     <!-- City -->
@@ -70,6 +71,7 @@
     <!-- Company -->
     <string name="recently_watched_title">Недавно просмотренные</string>
     <string name="popular_title">Популярные в городе %s</string>
+    <string name="location_measure">км</string>
 
     <!-- Navigation view -->
     <string name="navigation_drawer_open">Open</string>
@@ -189,7 +191,7 @@
         <item quantity="other">%1$d отзывов</item>
     </plurals>
 
-    <string name="choose_company_phone">Choose phone number:</string>
+    <string name="choose_company_phone">Выберите номер:</string>
     <string name="button_show_on_map_text">Отобразить на карте</string>
     <string name="work_time_text">Открыто до %s</string>
     <string name="payment_methods_text">Способы оплаты</string>
@@ -203,6 +205,9 @@
     <string name="button_all_reviews_text">Все отзывы автовладельцев</string>
     <string name="button_all_text_on">Меньше</string>
     <string name="button_all_text_off">Еще</string>
+    <string name="error_vote_object">Вы уже оценили эту компанию!</string>
+    <string name="all_review_title">Все отзывы</string>
+    <string name="all_review_subtitle">всего</string>
 
     <string-array name="rating_price_array">
         <item>Дешево</item>

@@ -39,17 +39,13 @@ public abstract class BaseFragment extends DialogFragment {
         getDialog().setCancelable(true);
     }
 
-    public boolean isNotNestedFragment() {
-        return getParentFragment() == null;
-    }
-
     public void setToolbarTitle(String title, String subtitle) {
         if (mSetToolbarTitleListener != null) {
             mSetToolbarTitleListener.setToolbarTitle(title, subtitle);
         }
     }
 
-    public interface OnSetToolbarTitleListener {
+    interface OnSetToolbarTitleListener {
 
         void setToolbarTitle(String title, String subtitle);
 

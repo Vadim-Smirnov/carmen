@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ConstraintLayout.Base"
-    tools:context="net.ginteam.carmen.view.fragment.SortingFragment">
+    tools:context="net.ginteam.carmen.kotlin.view.activity.MainActivity">
 
     <LinearLayout
         android:id="@+id/layout_title"

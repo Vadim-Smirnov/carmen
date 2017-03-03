@@ -15,3 +15,23 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+#-dontwarn com.squareup.okhttp.**
+#-dontwarn okio.**
+#-dontwarn retrofit2.**
+#
+#-renamesourcefileattribute SourceFile
+#
+#-keepattributes Signature
+#-keepattributes Exceptions
+#-keepattributes *Annotation*
+#
+#-keep class com.mobsandgeeks.saripaar.** { *; }
+#-keep @com.mobsandgeeks.saripaar.annotation.ValidateUsing class * { *; }
+#-keep class cn.pedant.SweetAlert.Rotate3dAnimation {
+#   public <init>(...);
+#}
+#-keep class android.support.v4.app.** { *; }
+#-keep interface android.support.v4.app.** { *; }
+#-keep class android.support.v7.app.** { *; }
+#-keep interface android.support.v7.app.** { *; }

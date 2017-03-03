@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/LinearLayout.WrappedHeight.Vertical"
-    tools:context="net.ginteam.carmen.view.fragment.city.CityListFragment"
+    tools:context="net.ginteam.carmen.kotlin.view.activity.authentication.BaseSignActivity"
     tools:ignore="MissingPrefix">
 
     <LinearLayout

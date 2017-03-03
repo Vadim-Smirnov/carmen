@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/LinearLayout.Vertical"
-    tools:context="net.ginteam.carmen.view.activity.AllReviewsActivity">
+    tools:context="net.ginteam.carmen.kotlin.view.activity.company.CompanyRatingsActivity">
 
 
     <include layout="@layout/toolbar"/>

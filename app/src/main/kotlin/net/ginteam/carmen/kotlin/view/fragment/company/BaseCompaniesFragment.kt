@@ -16,8 +16,7 @@ import net.ginteam.carmen.kotlin.view.fragment.BaseFragment
 /**
  * Created by eugene_shcherbinock on 2/16/17.
  */
-
-open abstract class BaseCompaniesFragment<E : BaseCompaniesAdapter, in V : BaseCompaniesContract.View,
+abstract class BaseCompaniesFragment<E : BaseCompaniesAdapter, in V : BaseCompaniesContract.View,
         T : BaseCompaniesContract.Presenter <V>>
     : BaseFragment <V, T>(), BaseCompaniesContract.View,
         (CompanyModel) -> Unit, (CompanyModel, Boolean) -> Unit {

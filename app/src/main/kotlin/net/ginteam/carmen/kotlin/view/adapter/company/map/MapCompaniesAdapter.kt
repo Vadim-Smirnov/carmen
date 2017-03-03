@@ -46,8 +46,8 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
 
         val companyViewHolder: ViewHolder? = holder as ViewHolder?
         companyViewHolder?.mImageViewPhoto!!.layoutParams.height = calculatePhotoSize()
-        companyViewHolder?.mImageViewPhoto.requestLayout()
-        companyViewHolder?.bindData(companies[position])
+        companyViewHolder.mImageViewPhoto.requestLayout()
+        companyViewHolder.bindData(companies[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
