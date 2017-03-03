@@ -36,7 +36,7 @@ class CompaniesFragment
     private val mUiThreadHandler: Handler = Handler()
     override lateinit var mCompaniesAdapter: PaginatableCompaniesAdapter
 
-    private var isNeedProccedSearchChanges: Boolean = false
+    private var isNeedProceedSearchChanges: Boolean = false
     private lateinit var mSearchView: SearchView
 
     // set default sort options
@@ -50,9 +50,7 @@ class CompaniesFragment
     private var mMenuItemSelectedListener: OnBottomMenuItemSelectedListener? = null
 
     companion object {
-        private const val SEARCH_DELAY_SECONDS: Long = 1
         private const val SEARCH_BUTTON_ID: Int = android.support.v7.appcompat.R.id.search_button
-
         private const val CATEGORY_ARGUMENT = "category"
 
         fun newInstance(category: CategoryModel): CompaniesFragment {
@@ -83,7 +81,7 @@ class CompaniesFragment
     // Filterable & Sortable implementation
 
     override fun setFilterQuery(filter: String) {
-        isNeedProccedSearchChanges = false
+        isNeedProceedSearchChanges = false
         mSearchView.setQuery("", false)
         mSearchView.isIconified = true
 
@@ -147,9 +145,7 @@ class CompaniesFragment
 
         val showMapButton = mFragmentView.findViewById(R.id.float_button_show_map)
         showMapButton.visibility = View.VISIBLE
-        showMapButton.setOnClickListener {
-            mMenuItemSelectedListener?.onShowMap(mSelectedCategory)
-        }
+        showMapButton.setOnClickListener { mMenuItemSelectedListener?.onShowMap(mSelectedCategory) }
     }
 
     override fun updateDependencies() {
@@ -162,9 +158,7 @@ class CompaniesFragment
             override fun loadMoreItems() {
                 mCurrentPaginationPage++
                 isLoadingNow = true
-                mUiThreadHandler.post {
-                    mCompaniesAdapter.showLoading()
-                }
+                mUiThreadHandler.post { mCompaniesAdapter.showLoading() }
                 fetchCompanies()
             }
 
@@ -181,10 +175,10 @@ class CompaniesFragment
 
         mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (isNeedProccedSearchChanges && TextUtils.isEmpty(newText)) {
+                if (isNeedProceedSearchChanges && TextUtils.isEmpty(newText)) {
                     onQueryTextSubmit(newText)
                 }
-                isNeedProccedSearchChanges = true
+                isNeedProceedSearchChanges = true
                 return true
             }
 

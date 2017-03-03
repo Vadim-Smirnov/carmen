@@ -113,8 +113,6 @@ class MapCompaniesFragment
 
     override fun onCameraIdle() {
         mGoogleMapClusterManager.onCameraIdle()
-        mUiThreadHandler.postDelayed({ showSearchView(true) }, 1000)
-
         if (isNeedFetchCompanies) {
             fetchCompanies()
             isNeedFetchCompanies = false
@@ -157,7 +155,13 @@ class MapCompaniesFragment
     }
 
     override fun showSearchView(show: Boolean) {
-        mSearchView.animate().alpha(if (show) 1f else 0f).start()
+        if (show) {
+            mUiThreadHandler.postDelayed({
+                mSearchView.animate().alpha(1f).start()
+            }, 1000)
+        } else {
+            mSearchView.animate().alpha(0f).start()
+        }
     }
 
     override fun showCompaniesView(show: Boolean) {
@@ -243,7 +247,6 @@ class MapCompaniesFragment
                             mUserSelectedCompany!!.position,
                             mGoogleMapInstance.cameraPosition.zoom)
         }
-        mUiThreadHandler.postDelayed({ showSearchView(true) }, 1000)
     }
 
     override fun updateDependencies() {
