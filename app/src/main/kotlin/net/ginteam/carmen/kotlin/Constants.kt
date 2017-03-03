@@ -13,4 +13,6 @@ object Constants {
         const val CITY = "city"
     }
 
+    const val PRIVACY_POLICY_URL = "https://github.com/lgvalle/Material-Animations"
+
 }

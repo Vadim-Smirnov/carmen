@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout
 import android.view.MenuItem
 import android.widget.TextView
 import net.ginteam.carmen.R
+import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.contract.MainActivityContract
 import net.ginteam.carmen.kotlin.disableScrollbars
 import net.ginteam.carmen.kotlin.interfaces.Filterable
@@ -25,6 +26,7 @@ import net.ginteam.carmen.kotlin.view.activity.company.CompanyDetailsActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.fragment.MainFragment
+import net.ginteam.carmen.kotlin.view.fragment.WebViewFragment
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.CompaniesFragment
@@ -66,6 +68,9 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             }
             R.id.navigation_item_categories -> {
                 selectedFragment = CategoriesFragment.newInstance(false)
+            }
+            R.id.navigation_item_privacy_policy -> {
+                selectedFragment = WebViewFragment.newInstance(Constants.PRIVACY_POLICY_URL)
             }
 
             // items for only signed in users
