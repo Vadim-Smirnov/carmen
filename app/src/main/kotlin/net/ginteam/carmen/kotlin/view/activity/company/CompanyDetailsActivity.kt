@@ -72,7 +72,6 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_favorite -> {
-                Toast.makeText(getContext(), "sosi", Toast.LENGTH_LONG).show()
                 if (userHaveAccess()) {
                     if (mSelectedCompany.isFavorite) {
                         mPresenter.removeCompanyFromFavorites(mSelectedCompany)

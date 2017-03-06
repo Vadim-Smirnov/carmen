@@ -63,15 +63,9 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
             // common menu items
 
-            R.id.navigation_item_main -> {
-                selectedFragment = MainFragment.newInstance()
-            }
-            R.id.navigation_item_categories -> {
-                selectedFragment = CategoriesFragment.newInstance(false)
-            }
-            R.id.navigation_item_privacy_policy -> {
-                selectedFragment = WebViewFragment.newInstance(Constants.PRIVACY_POLICY_URL)
-            }
+            R.id.navigation_item_main -> selectedFragment = MainFragment.newInstance()
+            R.id.navigation_item_categories -> selectedFragment = CategoriesFragment.newInstance(false)
+            R.id.navigation_item_privacy_policy -> selectedFragment = WebViewFragment.newInstance(Constants.PRIVACY_POLICY_URL)
 
             // items for only signed in users
 

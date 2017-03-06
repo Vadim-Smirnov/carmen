@@ -48,7 +48,7 @@ abstract class BaseActivity<in V : BaseContract.View, T : BaseContract.Presenter
     override fun getContext(): Context = this
 
     override fun showError(message: String?, isNetworkError: Boolean, confirmAction: (() -> Unit)?) {
-        if (mProgressDialog != null && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
+        if (mProgressDialog != null && mProgressDialog!!.isShowing && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
             mProgressDialog!!.changeAlertType(SweetAlertDialog.ERROR_TYPE)
             mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
             mProgressDialog!!.contentText = message
