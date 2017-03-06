@@ -1,5 +1,6 @@
 package net.ginteam.carmen.kotlin.view.activity.company
 
+import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
@@ -83,6 +84,16 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
             else -> onBackPressed()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                SignInActivity.SIGN_IN_REQUEST_CODE -> mPresenter.fetchCompanyDetail(mSelectedCompany)
+            }
+        }
     }
 
     override fun onCompanySelected(company: CompanyModel) {

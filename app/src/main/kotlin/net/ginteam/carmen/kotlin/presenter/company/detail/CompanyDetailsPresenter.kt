@@ -1,6 +1,5 @@
 package net.ginteam.carmen.kotlin.presenter.company.detail
 
-import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.api.ApiSettings
 import net.ginteam.carmen.kotlin.api.response.ModelSubscriber
 import net.ginteam.carmen.kotlin.contract.CompanyDetailsContract
@@ -17,7 +16,6 @@ import java.io.Serializable
  */
 class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), CompanyDetailsContract.Presenter {
 
-    private val mAuthProvider: AuthProvider = AuthenticationProvider
     private val mCompaniesDataSourceProvider: CompaniesDataSourceProvider = OnlineCompaniesDataSourceProvider()
 
     override fun fetchCompanyDetail(company: CompanyModel) {
@@ -75,7 +73,7 @@ class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), Co
     }
 
     override fun isUserSignedIn(): Boolean {
-        return mAuthProvider.currentCachedUser != null
+        return AuthenticationProvider.currentCachedUser != null
     }
 
     override fun addCompanyToFavorites(company: CompanyModel) {

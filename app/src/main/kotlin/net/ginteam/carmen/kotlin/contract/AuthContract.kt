@@ -9,7 +9,7 @@ object AuthContract {
     interface View : LocationContract.View {
 
         fun showCitiesDialog()
-        fun showMainActivity()
+        fun authorizationConfirmed()
         fun showSignInActivity()
 
     }

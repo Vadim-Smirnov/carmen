@@ -30,7 +30,7 @@ class SplashActivity : BaseLocationActivity<AuthContract.View, AuthContract.Pres
         mPresenter.checkUserStatus()
     }
 
-    override fun showMainActivity() {
+    override fun authorizationConfirmed() {
         val intent = Intent(getContext(), MainActivity::class.java)
         startActivity(intent)
         finish()

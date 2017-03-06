@@ -27,7 +27,7 @@ class AuthenticationPresenter : BaseLocationPresenter <AuthContract.View>(), Aut
                 .fetchCurrentUser()
                 .subscribe(object : ModelSubscriber <UserModel>() {
                     override fun success(model: UserModel) {
-                        mView?.showMainActivity()
+                        mView?.authorizationConfirmed()
                     }
 
                     override fun error(message: String, isNetworkError: Boolean) {

@@ -53,6 +53,11 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        mPresenter.prepareNavigationViewForUserStatus()
+    }
+
+    override fun onStart() {
+        super.onStart()
         mPresenter.prepareNavigationViewForUserStatus()
     }
 
@@ -107,7 +112,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             when (requestCode) {
                 SignInActivity.SIGN_IN_REQUEST_CODE -> {
                     // invalidate navigation view
-                    mPresenter.prepareNavigationViewForUserStatus()
+//                    mPresenter.prepareNavigationViewForUserStatus()
                 }
                 FiltersActivity.FILTER_CONFIRM_REQUEST_CODE -> {
                     (mCurrentFragment as? Filterable)?.setFilterQuery(
