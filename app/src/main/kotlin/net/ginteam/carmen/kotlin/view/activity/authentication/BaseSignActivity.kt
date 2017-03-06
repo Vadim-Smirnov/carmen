@@ -26,10 +26,6 @@ abstract class BaseSignActivity<in V : BaseSignContract.View, T : BaseSignContra
 
     protected lateinit var mFieldsValidator: Validator
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun showMainActivity() {
         val intent = Intent(getContext(), MainActivity::class.java)
         startActivity(intent)

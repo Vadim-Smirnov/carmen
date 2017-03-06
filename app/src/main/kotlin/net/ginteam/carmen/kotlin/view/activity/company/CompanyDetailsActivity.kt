@@ -22,6 +22,7 @@ import net.ginteam.carmen.kotlin.model.*
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.company.detail.CompanyDetailsPresenter
 import net.ginteam.carmen.kotlin.view.activity.BaseActivity
+import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.PopularCompaniesFragment
@@ -71,10 +72,13 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.action_favorite -> {
-                if (mSelectedCompany.isFavorite) {
-                    mPresenter.removeCompanyFromFavorites(mSelectedCompany)
-                } else {
-                    mPresenter.addCompanyToFavorites(mSelectedCompany)
+                Toast.makeText(getContext(), "sosi", Toast.LENGTH_LONG).show()
+                if (userHaveAccess()) {
+                    if (mSelectedCompany.isFavorite) {
+                        mPresenter.removeCompanyFromFavorites(mSelectedCompany)
+                    } else {
+                        mPresenter.addCompanyToFavorites(mSelectedCompany)
+                    }
                 }
             }
             else -> onBackPressed()
@@ -164,7 +168,7 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
                 return@setOnRatingBarChangeListener
             }
 
-            if (!mPresenter.isUserSignedIn()) {
+            if (!userHaveAccess()) {
                 ratingBar.rating = 0f
                 return@setOnRatingBarChangeListener
             }
@@ -336,4 +340,22 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
             mIndicators[position].setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.selecteditem_dot))
         }
     }
+
+    private fun userHaveAccess(): Boolean {
+        return if (mPresenter.isUserSignedIn()) {
+            true
+        } else {
+            showError(R.string.access_denied_message) {
+                // confirm dialog action
+                startSignInActivityForResult()
+            }
+            false
+        }
+    }
+
+    private fun startSignInActivityForResult() {
+        val intent = Intent(getContext(), SignInActivity::class.java)
+        startActivityForResult(intent, SignInActivity.SIGN_IN_REQUEST_CODE)
+    }
+
 }

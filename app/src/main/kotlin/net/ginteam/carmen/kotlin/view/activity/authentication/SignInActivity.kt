@@ -24,6 +24,7 @@ class SignInActivity : BaseSignActivity <SignInContract.View, SignInContract.Pre
         mPresenter.signIn(mEditTextEmail.text.toString(), mEditTextPassword.text.toString())
     }
 
+    //TODO: rename
     override fun showMainActivity() {
         // if activity was started for result from main
         callingActivity?.let {

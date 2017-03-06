@@ -75,18 +75,10 @@ class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), Co
     }
 
     override fun isUserSignedIn(): Boolean {
-        if (mAuthProvider.currentCachedUser == null) {
-            mView?.showMessage(R.string.access_denied_message)
-            return false
-        }
-        return true
+        return mAuthProvider.currentCachedUser != null
     }
 
     override fun addCompanyToFavorites(company: CompanyModel) {
-        if (!isUserSignedIn()) {
-            return
-        }
-
         mCompaniesDataSourceProvider
                 .addUserFavoriteCompany(company.id)
                 .subscribe(object : ModelSubscriber<String>() {
@@ -101,10 +93,6 @@ class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), Co
     }
 
     override fun removeCompanyFromFavorites(company: CompanyModel) {
-        if (!isUserSignedIn()) {
-            return
-        }
-
         mCompaniesDataSourceProvider
                 .removeUserFavoriteCompany(company.id)
                 .subscribe(object : ModelSubscriber<String>() {
