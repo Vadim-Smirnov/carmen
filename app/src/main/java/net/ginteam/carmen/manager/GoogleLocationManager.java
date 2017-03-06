@@ -30,6 +30,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 public class GoogleLocationManager implements GoogleApiClient.ConnectionCallbacks, LocationListener, GoogleApiClient.OnConnectionFailedListener {
 
+    public static final int REQUEST_CODE = 500;
     private static final int REQUEST_LOCATION = 199;
 
     private AppCompatActivity mActivity;
@@ -76,8 +77,7 @@ public class GoogleLocationManager implements GoogleApiClient.ConnectionCallback
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                         try {
                             status.startResolutionForResult(mActivity, REQUEST_LOCATION);
-                        } catch (IntentSender.SendIntentException ignored) {
-                        }
+                        } catch (IntentSender.SendIntentException ignored) {}
                         break;
                 }
             }
@@ -111,7 +111,7 @@ public class GoogleLocationManager implements GoogleApiClient.ConnectionCallback
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 500) {
+        if (requestCode == REQUEST_CODE) {
             boolean permissionsGranted;
             for (int currentResult : grantResults) {
                 permissionsGranted = (currentResult == PackageManager.PERMISSION_GRANTED);
@@ -166,11 +166,10 @@ public class GoogleLocationManager implements GoogleApiClient.ConnectionCallback
 
         ActivityCompat.requestPermissions(
                 mActivity,
-                new String[]{
+                new String[] {
                         Manifest.permission.ACCESS_COARSE_LOCATION,
                         Manifest.permission.ACCESS_FINE_LOCATION
-                },
-                500);
+                }, REQUEST_CODE);
         return false;
     }
 

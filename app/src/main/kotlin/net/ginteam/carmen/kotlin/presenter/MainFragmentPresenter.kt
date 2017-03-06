@@ -18,13 +18,9 @@ class MainFragmentPresenter : BasePresenter <MainFragmentContract.View>(), MainF
     private val mAuthProvider: AuthProvider = AuthenticationProvider
 
     override fun prepareFragments() {
-        mView?.showLoading(true)
-
         // check connection before loading
         // it's necessary for showing only one error dialog instead of three
         if (isNetworkAvailable()) {
-            mView?.showLoading(false)
-
             mView?.showCategoriesFragment()
             mView?.showPopularCompaniesFragment()
             updateRecentlyWatchedCompaniesFragmentIfExists()

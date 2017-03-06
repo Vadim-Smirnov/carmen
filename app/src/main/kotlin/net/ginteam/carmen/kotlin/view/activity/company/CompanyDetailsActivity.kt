@@ -85,7 +85,11 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
         val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
         intent.putExtra(COMPANY_ARGUMENT, company)
         startActivity(intent)
-        finish()
+    }
+
+    override fun showLoading(show: Boolean, messageResId: Int) {
+        super.showLoading(show, messageResId)
+        findViewById(R.id.layout_content).visibility = if (show) View.GONE else View.VISIBLE
     }
 
     override fun getLayoutResId(): Int = R.layout.activity_company_detail
@@ -202,7 +206,7 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
         (findViewById(R.id.rating_view_company_price) as CarmenRatingView).rating = company.price.toFloat()
         (findViewById(R.id.rating_view_company) as CarmenRatingView).rating = company.rating.toFloat()
         (findViewById(R.id.text_view_company_distance) as TextView).text = if (company.distance == 0.0) {
-            String.format("%s %s", "???", getString(R.string.location_measure))
+            String.format("%s %s", "?", getString(R.string.location_measure))
         } else {
             String.format("%.1f %s", company.distance / 1000, getString(R.string.location_measure))
         }
@@ -214,7 +218,7 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
         }
         company.details?.data?.let {
             (findViewById(R.id.text_view_company_work_time) as TextView).text = String.format(
-                    getString(R.string.work_time_text), it.closedTime)
+                    getString(R.string.work_time_text), it.closedTime ?: "24:00")
 
             it.phones?.let {
                 if (it.isNotEmpty()) {

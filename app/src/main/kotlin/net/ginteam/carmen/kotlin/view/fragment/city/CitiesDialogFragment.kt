@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.TextView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CitiesContract
 import net.ginteam.carmen.kotlin.model.CityModel
@@ -40,8 +41,24 @@ class CitiesDialogFragment : BaseFragment <CitiesContract.View, CitiesContract.P
         setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogStyle)
     }
 
+    override fun onStart() {
+        super.onStart()
+        dialog.setCancelable(false)
+    }
+
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         mPresenter.fetchCities()
+    }
+
+    override fun showLoading(show: Boolean, messageResId: Int) {
+        if (show) {
+            mFragmentView.findViewById(R.id.progress_bar).visibility = View.VISIBLE
+            (mFragmentView.findViewById(R.id.text_view_loading_message) as TextView).text = getString(messageResId)
+            mFragmentView.findViewById(R.id.layout_content).visibility = View.GONE
+            return
+        }
+        mFragmentView.findViewById(R.id.progress_bar).visibility = View.GONE
+        mFragmentView.findViewById(R.id.layout_content).visibility = View.VISIBLE
     }
 
     override fun getLayoutResId(): Int = R.layout.fragment_city_list

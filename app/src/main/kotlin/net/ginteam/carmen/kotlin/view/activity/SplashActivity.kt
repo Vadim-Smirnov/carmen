@@ -1,7 +1,6 @@
 package net.ginteam.carmen.kotlin.view.activity
 
 import android.content.Intent
-import android.os.Bundle
 import net.ginteam.carmen.kotlin.contract.AuthContract
 import net.ginteam.carmen.kotlin.model.CityModel
 import net.ginteam.carmen.kotlin.presenter.authentication.AuthenticationPresenter
@@ -13,14 +12,16 @@ class SplashActivity : BaseLocationActivity<AuthContract.View, AuthContract.Pres
 
     override var mPresenter: AuthContract.Presenter = AuthenticationPresenter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
         mPresenter.fetchUserLocation()
     }
 
     override fun getLayoutResId(): Int = 0
 
     override fun showCitiesDialog() {
+        super.onPostResume()
+
         val citiesDialog = CitiesDialogFragment.newInstance()
         citiesDialog.show(supportFragmentManager, "")
     }

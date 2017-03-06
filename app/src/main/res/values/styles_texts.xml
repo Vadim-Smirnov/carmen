@@ -51,7 +51,10 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
-
+    <style name="TextView.LoadingMessage" parent="TextView.Wrapped.OpenSans">
+        <item name="android:textSize">@dimen/loading_message_text_size</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 
     <style name="TextView.SignMessage" parent="TextView.Wrapped.WhiteColor.Avenir">
         <item name="android:textSize">@dimen/sign_up_text_size</item>

@@ -17,7 +17,7 @@ data class DetailModel(val phones: List <String>?,
                        @SerializedName("desc") val description: String,
                        @SerializedName("email") val emails: List <String>,
                        @SerializedName("website") val websites: List <String>,
-                       @SerializedName("closing_time") val closedTime: String) : Serializable
+                       @SerializedName("closing_time") val closedTime: String?) : Serializable
 
 open class CompanyModel : ClusterItem, Serializable {
     val id: Int = 0

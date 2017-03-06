@@ -83,7 +83,7 @@ abstract class BaseCompaniesAdapter(protected val companies: MutableList <Compan
 
                 val locationMeasure = CarmenApplication.getContext().getString(R.string.location_measure)
                 mTextViewDistance?.text = if (distance == 0.0) {
-                    "??? $locationMeasure"
+                    "? $locationMeasure"
                 } else {
                     String.format("%.1f $locationMeasure", distance / 1000)
                 }
@@ -107,12 +107,8 @@ abstract class BaseCompaniesAdapter(protected val companies: MutableList <Compan
                     }
                 }
 
-                itemView.setOnClickListener {
-                    onClick(this)
-                }
-                mImageButtonAddToFavorite.setOnClickListener {
-                    onFavoriteClick(this, !isFavorite)
-                }
+                itemView.setOnClickListener { onClick(this) }
+                mImageButtonAddToFavorite.setOnClickListener { onFavoriteClick(this, !isFavorite) }
             }
         }
     }
