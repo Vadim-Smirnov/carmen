@@ -70,9 +70,7 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
                     )
                 }
             }
-            else -> {
-                super.onActivityResult(requestCode, resultCode, data)
-            }
+            else -> super.onActivityResult(requestCode, resultCode, data)
         }
     }
 
@@ -91,6 +89,7 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
     override fun getLayoutResId(): Int = R.layout.activity_map_new
 
     override fun showCompaniesMapFragment(startLocation: LatLng) {
+        super.onPostResume()
         mCurrentFragment = MapCompaniesFragment.newInstance(mSelectedCategory!!, startLocation)
         prepareFragment(R.id.main_fragment_container, mCurrentFragment)
     }

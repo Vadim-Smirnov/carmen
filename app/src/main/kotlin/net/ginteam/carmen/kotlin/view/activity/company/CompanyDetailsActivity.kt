@@ -3,6 +3,7 @@ package net.ginteam.carmen.kotlin.view.activity.company
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
+import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
@@ -54,8 +55,8 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
         const val COMPANY_ARGUMENT = "company"
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         mPresenter.fetchCompanyDetail(mSelectedCompany)
     }
 
@@ -188,7 +189,8 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
             val galleryAdapter: GalleryRecyclerAdapter = GalleryRecyclerAdapter(getContext(), imagesUrls)
             val layoutManager: LinearLayoutManager = LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false)
             val gallerySnapHelper: GravitySnapHelper = GravitySnapHelper(Gravity.START, true) {
-                position -> setIndicator(position)
+                position ->
+                setIndicator(position)
             }
 
             recyclerViewGallery.layoutManager = layoutManager

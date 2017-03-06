@@ -28,11 +28,6 @@ class MainFragment : BaseFragment <MainFragmentContract.View, MainFragmentContra
         mPresenter.prepareFragments()
     }
 
-    override fun onStart() {
-        super.onStart()
-//        mPresenter.updateRecentlyWatchedCompaniesFragmentIfExists()
-    }
-
     override fun getLayoutResId(): Int = R.layout.fragment_main
 
     override fun getNetworkErrorAction(): (() -> Unit)? = {
