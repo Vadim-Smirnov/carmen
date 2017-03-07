@@ -78,7 +78,7 @@ class MapCompaniesAdapter(companies: MutableList <CompanyModel>,
 
     override fun calculateItemWidth(): Int {
         val screenSize = DisplayUtils.getScreenSize(CarmenApplication.getContext())
-        val itemSpacing = CarmenApplication.getContext().resources.getDimension(R.dimen.company_item_spacing).toInt()
+        val itemSpacing = CarmenApplication.getContext().resources.getDimension(R.dimen.vertical_list_item_spacing).toInt()
         return screenSize.x / VISIBLE_ITEMS_COUNT - itemSpacing
     }
 

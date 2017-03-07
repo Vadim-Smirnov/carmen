@@ -5,13 +5,8 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.SearchView
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
-import android.widget.ImageView
 import net.ginteam.carmen.R
-import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.contract.BaseNewsContract
 import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.kotlin.view.adapter.news.BaseNewsAdapter
@@ -27,8 +22,6 @@ abstract class BaseNewsFragment <E : BaseNewsAdapter, in V : BaseNewsContract.Vi
 
     protected var mNewsItemSelectedListener: OnNewsItemSelectedListener? = null
 
-    private lateinit var mSearchView: SearchView
-
     protected lateinit var mLayoutManager: LinearLayoutManager
     protected lateinit var mRecyclerViewNews: RecyclerView
     protected abstract var mNewsAdapter: E
@@ -41,16 +34,6 @@ abstract class BaseNewsFragment <E : BaseNewsAdapter, in V : BaseNewsContract.Vi
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         fetchNews()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.search_menu, menu)
-    }
-
-    override fun onPrepareOptionsMenu(menu: Menu?) {
-        super.onPrepareOptionsMenu(menu)
-        menu?.let { prepareSearchView(it) }
     }
 
     override fun getNetworkErrorAction(): (() -> Unit)? = {
@@ -95,19 +78,10 @@ abstract class BaseNewsFragment <E : BaseNewsAdapter, in V : BaseNewsContract.Vi
     override fun updateViewDependencies() {
         super.updateViewDependencies()
 
-        setHasOptionsMenu(true)
-
         mRecyclerViewNews = mFragmentView.findViewById(R.id.recycler_view_companies) as RecyclerView
         mRecyclerViewNews.addItemDecoration(getRecyclerViewItemDecorator())
         mLayoutManager = getRecyclerViewLayoutManager()
         mRecyclerViewNews.layoutManager = mLayoutManager
-    }
-
-    private fun prepareSearchView(menu: Menu) {
-        mSearchView = menu.findItem(R.id.action_search).actionView as SearchView
-
-        // set search icon
-        (mSearchView.findViewById(Constants.SEARCH_BUTTON_ID) as ImageView).setImageResource(R.drawable.ic_search)
     }
 
     interface OnNewsItemSelectedListener {

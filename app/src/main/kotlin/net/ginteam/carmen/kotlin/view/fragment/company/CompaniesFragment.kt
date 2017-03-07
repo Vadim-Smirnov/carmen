@@ -21,7 +21,7 @@ import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.presenter.company.list.CompaniesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.PaginatableCompaniesAdapter
-import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDecorator
+import net.ginteam.carmen.view.adapter.RecyclerListVerticalItemDecorator
 import net.ginteam.carmen.view.adapter.company.PaginationScrollListener
 
 /**
@@ -121,7 +121,7 @@ class CompaniesFragment
     }
 
     override fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration
-            = CompanyRecyclerListVerticalItemDecorator(context, R.dimen.company_item_spacing)
+            = RecyclerListVerticalItemDecorator(context, R.dimen.vertical_list_item_spacing)
 
     override fun getRecyclerViewLayoutManager(): LinearLayoutManager
             = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

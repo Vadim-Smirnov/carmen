@@ -1,4 +1,4 @@
-package net.ginteam.carmen.view.adapter.company;
+package net.ginteam.carmen.view.adapter;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -7,14 +7,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by Eugene on 12/29/16.
+ * Created by Eugene on 1/6/17.
  */
 
-public class CompanyRecyclerListHorizontalItemDecorator extends RecyclerView.ItemDecoration {
+public class RecyclerListVerticalItemDecorator extends RecyclerView.ItemDecoration {
 
     private int mItemSpacing;
 
-    public CompanyRecyclerListHorizontalItemDecorator(Context context, @DimenRes int itemSpacing) {
+    public RecyclerListVerticalItemDecorator(Context context, @DimenRes int itemSpacing) {
         mItemSpacing = context.getResources().getDimensionPixelOffset(itemSpacing);
     }
 
@@ -23,10 +23,12 @@ public class CompanyRecyclerListHorizontalItemDecorator extends RecyclerView.Ite
         super.getItemOffsets(outRect, view, parent, state);
 
         int currentItemPosition = parent.getChildAdapterPosition(view);
-        if (currentItemPosition == state.getItemCount() - 1) {
-            outRect.right = mItemSpacing;
+        if (currentItemPosition == 0) {
+            outRect.top = mItemSpacing;
         }
         outRect.left = mItemSpacing;
+        outRect.right = mItemSpacing;
         outRect.bottom = mItemSpacing;
     }
+
 }
