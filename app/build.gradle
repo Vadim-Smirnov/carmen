@@ -45,7 +45,7 @@ android {
             signingConfig signingConfigs.debug
 
             resValue "string", "app_name", "Carmen Debug"
-            buildConfigField "String", "BASE_API_URL", "\"http://carmen.b4u.com.ua/api/v1/\""
+            buildConfigField "String", "BASE_API_URL", "\"http://dev.car-men.com.ua/api/v1/\""
         }
 
         release {

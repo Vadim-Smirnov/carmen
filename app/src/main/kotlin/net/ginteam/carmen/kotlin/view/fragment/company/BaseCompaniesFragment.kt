@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.BaseCompaniesContract
@@ -52,7 +51,6 @@ abstract class BaseCompaniesFragment<E : BaseCompaniesAdapter, in V : BaseCompan
      * onAddToFavoriteClick implementation for {@link BaseCompaniesAdapter}
      */
     override fun invoke(company: CompanyModel, isFavorite: Boolean) {
-        Log.d("BaseCompaniesFragment", "Is company favorite? - $isFavorite")
         if (isFavorite) {
             mPresenter.addCompanyToFavorites(company)
         } else {

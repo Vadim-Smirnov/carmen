@@ -12,6 +12,7 @@ import android.view.MenuInflater
 import android.view.View
 import android.widget.ImageView
 import net.ginteam.carmen.R
+import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.contract.CompaniesContract
 import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.interfaces.Sortable
@@ -50,7 +51,6 @@ class CompaniesFragment
     private var mMenuItemSelectedListener: OnBottomMenuItemSelectedListener? = null
 
     companion object {
-        private const val SEARCH_BUTTON_ID: Int = android.support.v7.appcompat.R.id.search_button
         private const val CATEGORY_ARGUMENT = "category"
 
         fun newInstance(category: CategoryModel): CompaniesFragment {
@@ -70,7 +70,7 @@ class CompaniesFragment
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.company_list_menu, menu)
+        inflater?.inflate(R.menu.search_menu, menu)
     }
 
     override fun onPrepareOptionsMenu(menu: Menu?) {
@@ -171,7 +171,7 @@ class CompaniesFragment
         mSearchView = menu.findItem(R.id.action_search).actionView as SearchView
 
         // set search icon
-        (mSearchView.findViewById(SEARCH_BUTTON_ID) as ImageView).setImageResource(R.drawable.ic_search)
+        (mSearchView.findViewById(Constants.SEARCH_BUTTON_ID) as ImageView).setImageResource(R.drawable.ic_search)
 
         mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
