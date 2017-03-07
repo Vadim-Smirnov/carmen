@@ -1,7 +1,5 @@
 <resources>
 
-    <string translatable="false" name="google_api_key">AIzaSyAKzwJXWkDJpr0mYdSH1bwwI_Zj_7dlPwc</string>
-
     <!-- Fonts -->
     <string translatable="false" name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
     <string translatable="false" name="open_sans_font">fonts/OpenSans-Regular.ttf</string>

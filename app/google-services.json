@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "923846055169",
+    "firebase_url": "https://carmen-9d932.firebaseio.com",
+    "project_id": "carmen-9d932",
+    "storage_bucket": "carmen-9d932.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:923846055169:android:bf7d47b90d3f442d",
+        "android_client_info": {
+          "package_name": "net.ginteam.carmen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "923846055169-ii67c3q7obr17gcvft8btpeuq6r9l0u8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "net.ginteam.carmen",
+            "certificate_hash": "03fa24b36e86484131bf6f7a108ad67bfe89aa2b"
+          }
+        },
+        {
+          "client_id": "923846055169-7u6etb125kgf6t6h6i67bblqtbt3le0i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-Ls-QRHUuT0KOZm0v3J49l-e78-01xm4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "923846055169-7u6etb125kgf6t6h6i67bblqtbt3le0i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
