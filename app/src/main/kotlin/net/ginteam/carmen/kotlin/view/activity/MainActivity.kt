@@ -8,14 +8,8 @@ import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
-import android.transition.ChangeBounds
-import android.transition.Slide
-import android.util.Log
-import android.view.Gravity
 import android.view.MenuItem
-import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.contract.MainActivityContract
@@ -60,7 +54,6 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        mPresenter.prepareNavigationViewForUserStatus()
     }
 
     override fun onStart() {

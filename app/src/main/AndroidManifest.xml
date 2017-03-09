@@ -71,13 +71,37 @@
             android:name=".kotlin.view.activity.company.CompanyRatingUpdateActivity"
             android:screenOrientation="portrait" />
 
+        <!-- Firebase Cloud Messaging services -->
+        <service
+            android:name=".kotlin.common.notifications.FirebaseTokenRefreshService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".kotlin.common.notifications.FirebaseNotificationsReceiveService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <!-- Google API key -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB-Ls-QRHUuT0KOZm0v3J49l-e78-01xm4" />
 
+        <!-- FabricIO Crashlitycs API key -->
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="06439662b9c527c089f408117e05ad8daa577731" />
+
+        <!-- FCM Notifications settings -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
 
     </application>
 
