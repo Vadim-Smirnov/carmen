@@ -2,12 +2,11 @@ package net.ginteam.carmen.kotlin.view.adapter.company
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.CompanyModel
+import net.ginteam.carmen.kotlin.view.adapter.LoadingViewHolder
 import net.ginteam.carmen.utils.DisplayUtils
 
 /**
@@ -48,8 +47,9 @@ class PaginatableCompaniesAdapter(companies: MutableList <CompanyModel>,
         return if (viewType == ITEM_TYPE.COMPANY.ordinal) {
             super.onCreateViewHolder(parent, viewType)
         } else {
-            LayoutInflater.from(parent?.context)
-                    .inflate(R.layout.list_item_progress, parent, false).let(::ViewHolder)
+            val loadingView = LayoutInflater.from(parent?.context)
+                    .inflate(R.layout.list_item_progress, parent, false)
+            return LoadingViewHolder(loadingView)
         }
     }
 
@@ -70,18 +70,11 @@ class PaginatableCompaniesAdapter(companies: MutableList <CompanyModel>,
 
     override fun getItemLayoutResId(): Int = R.layout.list_item_company_vertical
 
-    override fun calculateItemWidth(): Int = RecyclerView.LayoutParams.MATCH_PARENT;
+    override fun calculateItemWidth(): Int = RecyclerView.LayoutParams.MATCH_PARENT
 
     override fun calculatePhotoSize(): Int {
         val screenSize = DisplayUtils.getScreenSize(CarmenApplication.getContext())
         return 43 * screenSize.x / 100
-    }
-
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val mProgressBar: ProgressBar
-                = itemView.findViewById(R.id.progress_bar_item) as ProgressBar
-
     }
 
 }

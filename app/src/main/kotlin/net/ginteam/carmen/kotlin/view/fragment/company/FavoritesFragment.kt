@@ -10,7 +10,7 @@ import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.presenter.company.list.FavoritesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.FavoriteCompaniesAdapter
-import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDecorator
+import net.ginteam.carmen.view.adapter.RecyclerListVerticalItemDecorator
 
 /**
  * Created by eugene_shcherbinock on 2/17/17.
@@ -62,7 +62,7 @@ class FavoritesFragment
     }
 
     override fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration
-            = CompanyRecyclerListVerticalItemDecorator(context, R.dimen.company_item_spacing)
+            = RecyclerListVerticalItemDecorator(context, R.dimen.vertical_list_item_spacing)
 
     override fun getRecyclerViewLayoutManager(): LinearLayoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

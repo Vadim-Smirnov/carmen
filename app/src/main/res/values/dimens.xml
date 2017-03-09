@@ -46,7 +46,7 @@
 
     <!-- Company Item Vertical -->
     <dimen name="company_item_corner_radius">1dp</dimen>
-    <dimen name="company_item_spacing">10dp</dimen>
+    <dimen name="vertical_list_item_spacing">10dp</dimen>
     <dimen name="company_item_favorite_button_margin">5dp</dimen>
     <dimen name="company_item_space">12dp</dimen>
     <dimen name="company_title_text_size">16sp</dimen>

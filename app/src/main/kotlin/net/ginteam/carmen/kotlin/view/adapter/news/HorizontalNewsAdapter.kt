@@ -1,23 +1,25 @@
-package net.ginteam.carmen.kotlin.view.adapter.company
+package net.ginteam.carmen.kotlin.view.adapter.news
 
 import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
-import net.ginteam.carmen.kotlin.model.CompanyModel
+import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.utils.DisplayUtils
 
 /**
- * Created by eugene_shcherbinock on 2/16/17.
+ * Created by eugene_shcherbinock on 3/7/17.
  */
 
-open class HorizontalCompaniesAdapter(companies: MutableList <CompanyModel>,
-                                      onCompanyItemClick: (CompanyModel) -> Unit,
-                                      onFavoriteClick: (CompanyModel, Boolean) -> Unit)
-    : BaseCompaniesAdapter(companies, onCompanyItemClick, onFavoriteClick) {
+open class HorizontalNewsAdapter(news: MutableList <NewsModel>,
+                                 onNewsItemClick: (NewsModel) -> Unit,
+                                 onFavoriteClick: (NewsModel, Boolean) -> Unit)
+    : BaseNewsAdapter(news, onNewsItemClick, onFavoriteClick) {
 
     open protected var FULL_VISIBLE_ITEMS_COUNT: Int = 2
     open protected var VISIBLE_ITEMS_COUNT: Int = 3
 
-    override fun getItemLayoutResId(): Int = R.layout.list_item_company_horizontal
+    override fun getItemLayoutResId(): Int {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
     override fun calculateItemWidth(): Int {
         val screenSize = DisplayUtils.getScreenSize(CarmenApplication.getContext())
@@ -28,4 +30,5 @@ open class HorizontalCompaniesAdapter(companies: MutableList <CompanyModel>,
     override fun calculatePhotoSize(): Int {
         return calculateItemWidth()
     }
+
 }

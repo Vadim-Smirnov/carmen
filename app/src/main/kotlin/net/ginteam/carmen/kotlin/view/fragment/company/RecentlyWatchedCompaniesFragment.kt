@@ -13,8 +13,8 @@ import net.ginteam.carmen.kotlin.presenter.company.list.RecentlyWatchedCompanies
 import net.ginteam.carmen.kotlin.view.adapter.company.BaseCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.adapter.company.HorizontalCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.adapter.company.VerticalCompaniesAdapter
-import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListHorizontalItemDecorator
-import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListVerticalItemDecorator
+import net.ginteam.carmen.view.adapter.RecyclerListHorizontalItemDecorator
+import net.ginteam.carmen.view.adapter.RecyclerListVerticalItemDecorator
 
 /**
  * Created by eugene_shcherbinock on 2/17/17.
@@ -69,9 +69,9 @@ class RecentlyWatchedCompaniesFragment : BaseCompaniesFragment <BaseCompaniesAda
 
     override fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration {
         return if (isHorizontal) {
-            CompanyRecyclerListHorizontalItemDecorator(context, R.dimen.company_item_spacing)
+            RecyclerListHorizontalItemDecorator(context, R.dimen.vertical_list_item_spacing)
         } else {
-            CompanyRecyclerListVerticalItemDecorator(context, R.dimen.company_item_spacing)
+            RecyclerListVerticalItemDecorator(context, R.dimen.vertical_list_item_spacing)
         }
     }
 

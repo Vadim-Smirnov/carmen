@@ -29,7 +29,7 @@ import net.ginteam.carmen.kotlin.presenter.company.map.MapCompaniesFragmentPrese
 import net.ginteam.carmen.kotlin.view.adapter.company.map.MapCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.view.activity.map.CompanyClusterRenderer
-import net.ginteam.carmen.view.adapter.company.CompanyRecyclerListHorizontalItemDecorator
+import net.ginteam.carmen.view.adapter.RecyclerListHorizontalItemDecorator
 
 /**
  * Created by eugene_shcherbinock on 2/21/17.
@@ -188,7 +188,7 @@ class MapCompaniesFragment
     }
 
     override fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration
-            = CompanyRecyclerListHorizontalItemDecorator(context, R.dimen.company_item_spacing)
+            = RecyclerListHorizontalItemDecorator(context, R.dimen.vertical_list_item_spacing)
 
     override fun getRecyclerViewLayoutManager(): LinearLayoutManager
             = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
