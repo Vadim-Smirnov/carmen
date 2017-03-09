@@ -54,7 +54,7 @@ abstract class BaseNewsFragment <E : BaseNewsAdapter, in V : BaseNewsContract.Vi
         if (isFavorite) {
             mPresenter.addNewsItemToFavorites(newsItem)
         } else {
-            mPresenter.removeNewsItemyFromFavorites(newsItem)
+            mPresenter.removeNewsItemFromFavorites(newsItem)
         }
     }
 

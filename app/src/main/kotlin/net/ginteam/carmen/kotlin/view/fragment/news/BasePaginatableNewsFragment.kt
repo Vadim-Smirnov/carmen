@@ -5,6 +5,7 @@ import net.ginteam.carmen.kotlin.contract.BaseNewsContract
 import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.view.adapter.news.PaginatableNewsAdapter
+import net.ginteam.carmen.kotlin.view.adapter.news.VerticalNewsAdapter
 import net.ginteam.carmen.view.adapter.company.PaginationScrollListener
 
 /**
@@ -21,7 +22,7 @@ abstract class BasePaginatableNewsFragment <E : PaginatableNewsAdapter, in V : B
 
     override fun showNews(news: MutableList<NewsModel>, pagination: PaginationModel?) {
         if (pagination != null) {
-            mNewsAdapter = initializeAdapter(news, this, this)
+            mNewsAdapter = VerticalNewsAdapter(news, this, this) as E
             mRecyclerViewNews.adapter = mNewsAdapter
             mRecyclerViewNews.setOnScrollListener(initializePaginationScrollListener(pagination))
             return
@@ -34,9 +35,9 @@ abstract class BasePaginatableNewsFragment <E : PaginatableNewsAdapter, in V : B
         }
     }
 
-    protected abstract fun initializeAdapter(news: MutableList<NewsModel>,
-                                             onItemClick: (NewsModel) -> Unit,
-                                             onFavoriteClick: (NewsModel, Boolean) -> Unit) : E
+//    protected abstract fun initializeAdapter(news: MutableList<NewsModel>,
+//                                             onItemClick: (NewsModel) -> Unit,
+//                                             onFavoriteClick: (NewsModel, Boolean) -> Unit) : E
 
     private fun initializePaginationScrollListener(paginationDetails: PaginationModel): PaginationScrollListener {
         return object : PaginationScrollListener(mLayoutManager) {

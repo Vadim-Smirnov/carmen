@@ -21,7 +21,43 @@ object BaseNewsContract {
     interface Presenter <in V : View> : BaseContract.Presenter <V> {
 
         fun addNewsItemToFavorites(newsItem: NewsModel)
-        fun removeNewsItemyFromFavorites(newsItem: NewsModel)
+        fun removeNewsItemFromFavorites(newsItem: NewsModel)
+
+    }
+
+}
+
+object RecentNewsContract {
+
+    interface View : BaseNewsContract.View
+
+    interface Presenter : BaseNewsContract.Presenter <View> {
+
+        fun fetchRecentNews(pageNumber: Int = 1)
+
+    }
+
+}
+
+object PopularNewsContract {
+
+    interface View : BaseNewsContract.View
+
+    interface Presenter : BaseNewsContract.Presenter <View> {
+
+        fun fetchPopularNews(pageNumber: Int = 1)
+
+    }
+
+}
+
+object FavoritesNewsContract {
+
+    interface View : BaseNewsContract.View
+
+    interface Presenter : BaseNewsContract.Presenter <View> {
+
+        fun fetchFavoritesNews(pageNumber: Int = 1)
 
     }
 
