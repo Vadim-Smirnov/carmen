@@ -14,6 +14,8 @@ import net.ginteam.carmen.view.adapter.RecyclerListVerticalItemDecorator
 abstract class BaseVerticalNewsFragment<E : VerticalNewsAdapter, in V : BaseNewsContract.View,
         T : BaseNewsContract.Presenter <V>> : BasePaginatableNewsFragment<E, V, T>() {
 
+    override fun getLayoutResId(): Int = R.layout.fragment_news_list
+
     override fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration
             = RecyclerListVerticalItemDecorator(context, R.dimen.vertical_list_item_spacing)
 

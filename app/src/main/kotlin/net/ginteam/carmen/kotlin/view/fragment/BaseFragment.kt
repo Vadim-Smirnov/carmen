@@ -29,8 +29,8 @@ abstract class BaseFragment<in V : BaseContract.View, T : BaseContract.Presenter
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mFragmentView = inflater!!.inflate(getLayoutResId(), container, false)
 
-        updateViewDependencies()
         updateDependencies()
+        updateViewDependencies()
 
         mPresenter.attachView(this as V)
 
@@ -55,7 +55,7 @@ abstract class BaseFragment<in V : BaseContract.View, T : BaseContract.Presenter
     open protected fun getNetworkErrorAction(): (() -> Unit)? = null
 
     override fun showError(message: String?, isNetworkError: Boolean, confirmAction: (() -> Unit)?) {
-        if (mProgressDialog != null && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
+        if (mProgressDialog != null && mProgressDialog!!.isShowing && mProgressDialog!!.alerType == SweetAlertDialog.PROGRESS_TYPE) {
             mProgressDialog!!.changeAlertType(SweetAlertDialog.ERROR_TYPE)
             mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
             mProgressDialog!!.contentText = message
@@ -70,6 +70,11 @@ abstract class BaseFragment<in V : BaseContract.View, T : BaseContract.Presenter
         mProgressDialog!!.titleText = getString(R.string.error_dialog_title)
         mProgressDialog!!.contentText = message
         mProgressDialog!!.setCancelable(false)
+
+        if (getString(R.string.access_denied_message) == message) {
+            prepareAuthorizationErrorDialog(confirmAction)
+        }
+
         mProgressDialog!!.show()
     }
 
@@ -115,6 +120,18 @@ abstract class BaseFragment<in V : BaseContract.View, T : BaseContract.Presenter
         withNetworkErrorAction?.let {
             mProgressDialog!!.setConfirmClickListener {
                 withNetworkErrorAction.invoke()
+                it.dismissWithAnimation()
+            }
+        }
+    }
+
+    private fun prepareAuthorizationErrorDialog(withConfirmAction: (() -> Unit)?) {
+        mProgressDialog!!.cancelText = getString(R.string.sign_in_later_string)
+        mProgressDialog!!.confirmText = getString(R.string.sign_in_now_string)
+
+        withConfirmAction?.let {
+            mProgressDialog!!.setConfirmClickListener {
+                withConfirmAction.invoke()
                 it.dismissWithAnimation()
             }
         }

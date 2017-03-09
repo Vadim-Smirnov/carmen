@@ -78,7 +78,7 @@ abstract class BaseNewsFragment <E : BaseNewsAdapter, in V : BaseNewsContract.Vi
     override fun updateViewDependencies() {
         super.updateViewDependencies()
 
-        mRecyclerViewNews = mFragmentView.findViewById(R.id.recycler_view_companies) as RecyclerView
+        mRecyclerViewNews = mFragmentView.findViewById(R.id.recycler_view_news) as RecyclerView
         mRecyclerViewNews.addItemDecoration(getRecyclerViewItemDecorator())
         mLayoutManager = getRecyclerViewLayoutManager()
         mRecyclerViewNews.layoutManager = mLayoutManager

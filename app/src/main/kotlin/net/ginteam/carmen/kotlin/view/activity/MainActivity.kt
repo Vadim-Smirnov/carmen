@@ -19,6 +19,7 @@ import net.ginteam.carmen.kotlin.interfaces.Sortable
 import net.ginteam.carmen.kotlin.isMenuItemFragment
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.CompanyModel
+import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.kotlin.model.UserModel
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
@@ -33,13 +34,16 @@ import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.CompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.RecentlyWatchedCompaniesFragment
+import net.ginteam.carmen.kotlin.view.fragment.news.BaseNewsFragment
+import net.ginteam.carmen.kotlin.view.fragment.news.MainNewsFragment
 import net.ginteam.carmen.kotlin.view.fragment.sort.SortOptionsDialogFragment
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle
 
 class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContract.Presenter>(),
         MainActivityContract.View, NavigationView.OnNavigationItemSelectedListener,
         CategoriesFragment.OnCategorySelectedListener, BaseCompaniesFragment.OnCompanySelectedListener,
-        CompaniesFragment.OnBottomMenuItemSelectedListener, SortOptionsDialogFragment.OnSortOptionSelectedListener {
+        CompaniesFragment.OnBottomMenuItemSelectedListener, SortOptionsDialogFragment.OnSortOptionSelectedListener,
+        BaseNewsFragment.OnNewsItemSelectedListener {
 
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
@@ -71,6 +75,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             R.id.navigation_item_main -> selectedFragment = MainFragment.newInstance()
             R.id.navigation_item_categories -> selectedFragment = CategoriesFragment.newInstance(false)
             R.id.navigation_item_privacy_policy -> selectedFragment = WebViewFragment.newInstance(Constants.PRIVACY_POLICY_URL)
+            R.id.navigation_item_news -> selectedFragment = MainNewsFragment.newInstance()
 
         // items for only signed in users
 
@@ -218,6 +223,9 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
                 = ActivityOptionsCompat
                 .makeSceneTransitionAnimation(this, company.transitionView?.mImageViewPhoto, getString(R.string.transition_company_photo))
         startActivity(intent, transitionOptions.toBundle())
+    }
+
+    override fun onNewsItemSelected(newsItem: NewsModel) {
     }
 
     override fun onShowMap(category: CategoryModel) {

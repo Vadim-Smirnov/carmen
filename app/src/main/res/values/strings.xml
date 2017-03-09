@@ -82,6 +82,7 @@
     <string name="sign_in_item_text">Sign in</string>
     <string name="privacy_item_text">Privacy policy</string>
     <string name="terms_item_text">Terms of use</string>
+    <string name="news_item_text">News</string>
 
     <!-- Category dialog -->
     <string name="category_dialog_title">Choose category</string>
@@ -230,5 +231,10 @@
 
     <!-- Transition -->
     <string name="transition_company_photo">transition_company_photo</string>
+
+    <!-- News -->
+    <string name="news_tab_title_new">New</string>
+    <string name="news_tab_title_popular">Popular</string>
+    <string name="news_tab_title_favorites">Favorites</string>
 
 </resources>

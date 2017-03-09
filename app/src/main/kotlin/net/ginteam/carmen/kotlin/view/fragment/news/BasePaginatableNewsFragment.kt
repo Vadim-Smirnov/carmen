@@ -20,6 +20,8 @@ abstract class BasePaginatableNewsFragment <E : PaginatableNewsAdapter, in V : B
     protected var isLoadingNow: Boolean = false
     protected var mCurrentPaginationPage: Int = 1
 
+    override lateinit var mNewsAdapter: E
+
     override fun showNews(news: MutableList<NewsModel>, pagination: PaginationModel?) {
         if (pagination != null) {
             mNewsAdapter = VerticalNewsAdapter(news, this, this) as E

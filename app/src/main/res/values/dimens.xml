@@ -193,4 +193,10 @@
     <dimen name="filter_button_vertical_padding">10dp</dimen>
     <dimen name="filter_button_bottom_space">25dp</dimen>
 
+    <!-- News fragment -->
+    <dimen name="news_fragment_news_date_margin_top">12.5dp</dimen>
+    <dimen name="news_fragment_news_site_margin_top">9.5dp</dimen>
+    <dimen name="news_fragment_news_date_text_size">12.5sp</dimen>
+    <dimen name="news_fragment_image_view_news_views_margin_top">16dp</dimen>
+
 </resources>

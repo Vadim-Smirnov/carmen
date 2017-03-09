@@ -6,7 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
+    <style name="Theme228" parent="Widget.Design.TabLayout">
+        <item name="colorAccent">#FF3EC7C2</item>
     </style>
 
     <!-- Splash Activity Theme -->

@@ -36,6 +36,11 @@
             android:icon="@drawable/ic_logout"
             android:title="@string/logout_item_text"/>
 
+        <item
+            android:id="@+id/navigation_item_news"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/news_item_text"/>
+
     </group>
 
     <group android:checkableBehavior="single">

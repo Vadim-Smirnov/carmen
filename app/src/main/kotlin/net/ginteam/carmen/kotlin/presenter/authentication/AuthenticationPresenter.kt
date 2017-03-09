@@ -48,6 +48,7 @@ class AuthenticationPresenter : BaseLocationPresenter <AuthContract.View>(), Aut
                 }
 
                 override fun error(message: String, isNetworkError: Boolean) {
+                    mPreferences.userLocation = null
                     mView?.showCitiesDialog()
                 }
             })

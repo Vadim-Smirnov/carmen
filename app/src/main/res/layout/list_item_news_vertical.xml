@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LinearLayout.WrappedHeight"
+    app:cardCornerRadius="@dimen/company_item_corner_radius"
+    app:cardElevation="1dp"
+    tools:ignore="missingPrefix">
+
+    <android.support.constraint.ConstraintLayout
+        style="@style/ConstraintLayout.Base">
+
+        <ImageView
+            android:id="@+id/image_view_news_photo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_default_photo"/>
+
+        <ImageButton
+            android:id="@+id/image_button_company_favorite"
+            style="@style/ImageButton.Like"
+            app:layout_constraintRight_toRightOf="@+id/image_view_news_photo"
+            app:layout_constraintTop_toTopOf="@+id/image_view_news_photo"/>
+
+        <TextView
+            android:id="@+id/text_view_news_name"
+            style="@style/TextView.WrappedHeight.OpenSans"
+            android:layout_marginEnd="@dimen/company_item_photo_right_space"
+            android:layout_marginStart="@dimen/company_item_photo_right_space"
+            android:layout_marginTop="@dimen/company_item_photo_right_space"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:maxLines="2"
+            android:textColor="#1D1D26"
+            android:textSize="@dimen/company_title_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/image_view_news_photo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Кафе “Гордон-Россе-Чан”"/>
+
+        <TextView
+            android:id="@+id/text_view_news_date"
+            style="@style/TextView.WrappedHeight.OpenSans"
+            android:layout_marginEnd="@dimen/company_item_photo_right_space"
+            android:layout_marginStart="@dimen/company_item_photo_right_space"
+            android:layout_marginTop="@dimen/news_fragment_news_date_margin_top"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#BF040404"
+            android:textSize="@dimen/news_fragment_news_date_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/image_view_news_photo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_news_name"
+            tools:text="12 Декабря 2017"/>
+
+        <TextView
+            android:id="@+id/text_view_news_source"
+            style="@style/TextView.WrappedHeight.OpenSans"
+            android:layout_marginEnd="@dimen/company_item_photo_right_space"
+            android:layout_marginStart="@dimen/company_item_photo_right_space"
+            android:layout_marginTop="@dimen/news_fragment_news_date_margin_top"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="#FF4990E2"
+            android:textSize="@dimen/news_fragment_news_date_text_size"
+            app:layout_constraintLeft_toRightOf="@+id/image_view_news_photo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_news_date"
+            tools:text="http://site.me"/>
+
+
+        <ImageView
+            android:id="@+id/image_view_news_views"
+            style="@style/ImageView.Wrapped"
+            android:layout_marginBottom="@dimen/company_item_rating_bottom_space"
+            android:layout_marginStart="@dimen/company_item_photo_right_space"
+            android:layout_marginTop="@dimen/news_fragment_image_view_news_views_margin_top"
+            app:layout_constraintLeft_toRightOf="@+id/image_view_news_photo"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_news_source"
+            app:srcCompat="@drawable/ic_location"/>
+
+        <TextView
+            android:id="@+id/text_view_news_views_count"
+            style="@style/TextView.WrappedHeight.OpenSans"
+            android:layout_marginEnd="@dimen/company_item_photo_right_space"
+            android:textColor="#FF040404"
+            android:layout_marginStart="8dp"
+            android:textSize="@dimen/company_location_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/image_view_news_views"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image_view_news_views"
+            app:layout_constraintStart_toEndOf="@+id/image_view_news_views"
+            tools:text="228"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

@@ -75,6 +75,7 @@
     <string name="sign_in_item_text">Войти</string>
     <string name="privacy_item_text">Политика конфиденциальности</string>
     <string name="terms_item_text">Условия пользователя</string>
+    <string name="news_item_text">Новости</string>
 
     <!-- Category dialog -->
     <string name="category_dialog_title">Выбор категории</string>
@@ -218,5 +219,10 @@
     <!-- Map Activity -->
     <string name="search_button_string">Повторить поиск</string>
     <string name="filter_button_string">Фильтры</string>
+
+    <!-- News -->
+    <string name="news_tab_title_new">Новые</string>
+    <string name="news_tab_title_popular">Популярные</string>
+    <string name="news_tab_title_favorites">Избранные</string>
 
 </resources>

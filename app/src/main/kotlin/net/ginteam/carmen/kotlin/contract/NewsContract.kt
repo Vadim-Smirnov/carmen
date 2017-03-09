@@ -62,3 +62,15 @@ object FavoritesNewsContract {
     }
 
 }
+
+object MainNewsFragmentContract {
+
+    interface View : BaseContract.View
+
+    interface Presenter : BaseContract.Presenter<View> {
+
+        fun isUserSignedIn(): Boolean
+
+    }
+
+}

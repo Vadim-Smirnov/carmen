@@ -76,6 +76,7 @@
     <string name="sign_in_item_text">Увійти</string>
     <string name="privacy_item_text">Політика конфіденційності</string>
     <string name="terms_item_text">Умови користувача</string>
+    <string name="news_item_text">Новини</string>
 
     <!-- Category dialog -->
     <string name="category_dialog_title">Вибір категорії</string>
@@ -219,5 +220,10 @@
     <!-- Map Activity -->
     <string name="search_button_string">Повторити пошук</string>
     <string name="filter_button_string">Фільтри</string>
+
+    <!-- News -->
+    <string name="news_tab_title_new">Нові</string>
+    <string name="news_tab_title_popular">Популярні</string>
+    <string name="news_tab_title_favorites">Обрані</string>
 
 </resources>

@@ -31,6 +31,11 @@
             android:title="@string/profile_item_title"
             android:visible="false"/>
 
+        <item
+            android:id="@+id/navigation_item_news"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/news_item_text"/>
+
     </group>
 
     <group android:checkableBehavior="single">

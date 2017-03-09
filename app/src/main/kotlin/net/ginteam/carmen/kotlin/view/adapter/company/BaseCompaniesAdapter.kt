@@ -95,7 +95,7 @@ abstract class BaseCompaniesAdapter(protected val companies: MutableList <Compan
 
                 mImageViewPhoto.setImageResource(R.drawable.ic_default_photo)
                 pictures?.let {
-                    if (!it.isEmpty()) {
+                    if (it.isNotEmpty()) {
                         val imageUrl = it.first()
                         if (!imageUrl.isEmpty()) {
                             Picasso

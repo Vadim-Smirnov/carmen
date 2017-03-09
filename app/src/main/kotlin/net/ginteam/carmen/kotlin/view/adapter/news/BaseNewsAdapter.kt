@@ -5,6 +5,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
+import com.squareup.picasso.Picasso
+import net.ginteam.carmen.CarmenApplication
+import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.NewsModel
 
 /**
@@ -25,8 +31,11 @@ abstract class BaseNewsAdapter(protected val news: MutableList <NewsModel>,
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
         val newsItemViewHolder: ViewHolder? = holder as ViewHolder?
-
-        // calculate item size and item photo size
+        with(newsItemViewHolder?.mImageViewNewsPhoto!!.layoutParams) {
+            width = calculatePhotoSize()
+            height = calculatePhotoSize()
+        }
+        newsItemViewHolder?.mImageViewNewsPhoto.requestLayout()
         newsItemViewHolder?.bindData(news[position])
     }
 
@@ -50,8 +59,35 @@ abstract class BaseNewsAdapter(protected val news: MutableList <NewsModel>,
                           val onClick: (NewsModel) -> Unit,
                           val onFavoriteClick: (NewsModel, Boolean) -> Unit) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindData(news: NewsModel) {
+        val mImageViewNewsPhoto = itemView.findViewById(R.id.image_view_news_photo) as ImageView
+        private val mTextViewNewsName = itemView.findViewById(R.id.text_view_news_name) as TextView
+        private val mTextViewNewsDate = itemView.findViewById(R.id.text_view_news_date) as TextView
+        private val mTextViewNewsSource = itemView.findViewById(R.id.text_view_news_source) as TextView
+        private val mTextViewNewsViewsCount = itemView.findViewById(R.id.text_view_news_views_count) as TextView
+        private val mImageButtonAddToFavorite: ImageButton
+                = itemView.findViewById(R.id.image_button_company_favorite) as ImageButton
 
+        fun bindData(newsItem: NewsModel) {
+            with(newsItem) {
+                mTextViewNewsName.text = title
+                mTextViewNewsDate.text = publicationDate.substring(0, publicationDate.indexOf(' '))
+                mTextViewNewsSource.text = source
+                if (image.isNotEmpty()) {
+                    Picasso
+                            .with(CarmenApplication.getContext())
+                            .load(image)
+                            .placeholder(R.drawable.ic_default_photo)
+                            .into(mImageViewNewsPhoto)
+                }
+                mImageButtonAddToFavorite.setImageResource(if (isFavorite) {
+                    R.drawable.ic_company_favorite_enable
+                } else {
+                    R.drawable.ic_company_favorite_disable
+                })
+
+                itemView.setOnClickListener { onClick(this) }
+                mImageButtonAddToFavorite.setOnClickListener { onFavoriteClick(this, !isFavorite) }
+            }
         }
     }
 
