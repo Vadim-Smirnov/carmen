@@ -35,8 +35,8 @@ abstract class BaseCompaniesAdapter(protected val companies: MutableList <Compan
             width = calculatePhotoSize()
             height = calculatePhotoSize()
         }
-        companyViewHolder.mImageViewPhoto.requestLayout()
-        companyViewHolder.bindData(companies[position])
+        companyViewHolder?.mImageViewPhoto.requestLayout()
+        companyViewHolder?.bindData(companies[position])
     }
 
     override fun getItemCount(): Int = companies.size
@@ -106,6 +106,7 @@ abstract class BaseCompaniesAdapter(protected val companies: MutableList <Compan
                         }
                     }
                 }
+                transitionView = this@ViewHolder
 
                 itemView.setOnClickListener { onClick(this) }
                 mImageButtonAddToFavorite.setOnClickListener { onFavoriteClick(this, !isFavorite) }

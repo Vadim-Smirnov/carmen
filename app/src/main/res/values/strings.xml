@@ -228,4 +228,7 @@
     <string name="search_button_string">Repeat search</string>
     <string name="filter_button_string">Filters</string>
 
+    <!-- Transition -->
+    <string name="transition_company_photo">transition_company_photo</string>
+
 </resources>

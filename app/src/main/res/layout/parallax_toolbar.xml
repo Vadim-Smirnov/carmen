@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_bar_layout"
     style="@style/AppBarLayout.Gallery">
@@ -14,8 +15,9 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recycler_view_gallery"
                 style="@style/RelativeLayout.Gallery"
-                tools:listitem = "@layout/list_item_gallery"
-                android:background="@drawable/ic_default_photo"/>
+                android:background="@drawable/ic_default_photo"
+                tools:listitem="@layout/list_item_gallery"
+                android:transitionName="@string/transition_company_photo"/>
 
             <View
                 style="@style/GalleryDecorator.Bottom"
@@ -28,11 +30,11 @@
             <LinearLayout
                 android:id="@+id/gallery_indicator"
                 style="@style/LinearLayout.WrappedHeight.Horizontal"
-                android:paddingEnd="18dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
-                android:gravity="center|end"/>
+                android:gravity="center|end"
+                android:paddingEnd="18dp"/>
 
         </RelativeLayout>
 

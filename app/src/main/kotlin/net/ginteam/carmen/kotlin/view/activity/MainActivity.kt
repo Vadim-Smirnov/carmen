@@ -4,11 +4,18 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
+import android.transition.ChangeBounds
+import android.transition.Slide
+import android.util.Log
+import android.view.Gravity
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.contract.MainActivityContract
@@ -66,13 +73,13 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
         when (item.itemId) {
 
-            // common menu items
+        // common menu items
 
             R.id.navigation_item_main -> selectedFragment = MainFragment.newInstance()
             R.id.navigation_item_categories -> selectedFragment = CategoriesFragment.newInstance(false)
             R.id.navigation_item_privacy_policy -> selectedFragment = WebViewFragment.newInstance(Constants.PRIVACY_POLICY_URL)
 
-            // items for only signed in users
+        // items for only signed in users
 
             R.id.navigation_item_favorites -> {
                 if (userHaveAccessForMenuItem(item)) {
@@ -213,7 +220,11 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     override fun onCompanySelected(company: CompanyModel) {
         val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
         intent.putExtra(CompanyDetailsActivity.COMPANY_ARGUMENT, company)
-        startActivity(intent)
+
+        val transitionOptions: ActivityOptionsCompat
+                = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(this, company.transitionView?.mImageViewPhoto, getString(R.string.transition_company_photo))
+        startActivity(intent, transitionOptions.toBundle())
     }
 
     override fun onShowMap(category: CategoryModel) {

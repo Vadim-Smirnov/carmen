@@ -19,7 +19,7 @@ class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), Co
     private val mCompaniesDataSourceProvider: CompaniesDataSourceProvider = OnlineCompaniesDataSourceProvider()
 
     override fun fetchCompanyDetail(company: CompanyModel) {
-        mView?.showLoading(true)
+//        mView?.showLoading(true)
 
         var relations: String = ""
         with(ApiSettings.Catalog.Relations) {
@@ -44,7 +44,7 @@ class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), Co
                         }
 
                         mView?.showPopularCompanies()
-                        mView?.showLoading(false)
+//                        mView?.showLoading(false)
                     }
 
                     override fun error(message: String, isNetworkError: Boolean) {
@@ -54,7 +54,7 @@ class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), Co
     }
 
     override fun createRating(company: CompanyModel, ratingValue: Float) {
-        mView?.showLoading(true)
+//        mView?.showLoading(true)
 
         val ratingDataSourceProvider: RatingDataSourceProvider = OnlineRatingDataSourceProvider()
         val initialRating: InitialRating = InitialRating(company.id, ratingValue)
@@ -62,7 +62,7 @@ class CompanyDetailsPresenter : BasePresenter<CompanyDetailsContract.View>(), Co
                 .createRating(initialRating)
                 .subscribe(object : ModelSubscriber<RatingModel>() {
                     override fun success(model: RatingModel) {
-                        mView?.showLoading(false)
+//                        mView?.showLoading(false)
                         mView?.showUpdateRatingActivity(model)
                     }
 

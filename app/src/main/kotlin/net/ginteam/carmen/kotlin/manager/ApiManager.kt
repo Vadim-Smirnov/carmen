@@ -1,12 +1,14 @@
 package net.ginteam.carmen.kotlin.manager
 
 import android.util.Log
+import com.google.gson.GsonBuilder
 import net.ginteam.carmen.BuildConfig
 import net.ginteam.carmen.kotlin.api.ApiSettings
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Modifier
 import java.util.concurrent.TimeUnit
 
 /**
@@ -22,7 +24,7 @@ object ApiManager {
         retrofit = Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_API_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).create()))
                 .client(getHttpClient())
                 .build()
     }

@@ -1,8 +1,11 @@
 package net.ginteam.carmen.kotlin.model
 
+import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.google.android.gms.maps.model.LatLng
 import com.google.gson.annotations.SerializedName
 import com.google.maps.android.clustering.ClusterItem
+import net.ginteam.carmen.kotlin.view.adapter.company.BaseCompaniesAdapter
 import java.io.Serializable
 
 /**
@@ -31,7 +34,10 @@ open class CompanyModel : ClusterItem, Serializable {
     val distance: Double = 0.0
 
     // for map view
-    var isSelected: Boolean = false
+    @Transient var isSelected: Boolean = false
+
+    // for transitions
+    @Transient var transitionView: BaseCompaniesAdapter.ViewHolder? = null
 
     @SerializedName("picture") val pictures: List <String>? = null
     @SerializedName("city_id") val cityId: Int = 0

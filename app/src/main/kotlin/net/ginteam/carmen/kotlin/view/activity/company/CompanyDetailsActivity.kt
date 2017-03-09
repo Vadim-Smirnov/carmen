@@ -5,10 +5,12 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.transition.Slide
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -59,6 +61,8 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        postponeEnterTransition()
+
         mPresenter.fetchCompanyDetail(mSelectedCompany)
     }
 
@@ -98,8 +102,12 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
 
     override fun onCompanySelected(company: CompanyModel) {
         val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
-        intent.putExtra(COMPANY_ARGUMENT, company)
-        startActivity(intent)
+        intent.putExtra(CompanyDetailsActivity.COMPANY_ARGUMENT, company)
+
+        val transitionOptions: ActivityOptionsCompat
+                = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(this, company.transitionView?.mImageViewPhoto, getString(R.string.transition_company_photo))
+        startActivity(intent, transitionOptions.toBundle())
     }
 
     override fun showLoading(show: Boolean, messageResId: Int) {
@@ -113,6 +121,8 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
         CompanyDetailsContract.View implementation
      */
     override fun showCompanyDetails(company: CompanyModel) {
+        startPostponedEnterTransition()
+
         mSelectedCompany = company
         invalidateFavoriteIndicator(company.isFavorite)
 
