@@ -70,6 +70,9 @@
         <activity
             android:name=".kotlin.view.activity.company.CompanyRatingUpdateActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlin.view.activity.news.NewsDetailsActivity"
+            android:screenOrientation="portrait" />
 
         <!-- Firebase Cloud Messaging services -->
         <service

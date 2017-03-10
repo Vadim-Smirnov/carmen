@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_content"
+    style="@style/ConstraintLayout.Base"
+    android:background="@color/colorWhite"
+    tools:ignore="MissingPrefix">
+
+    <TextView
+        android:id="@+id/text_view_news_name"
+        style="@style/TextView.DetailHeader"
+        android:layout_marginEnd="@dimen/company_detail_margin_side"
+        android:layout_marginStart="@dimen/company_detail_margin_side"
+        android:layout_marginTop="@dimen/company_detail_company_name_margin_top"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/company_detail_company_name_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Супер новость 228"/>
+
+    <ImageView
+        android:id="@+id/image_view_watched"
+        style="@style/ImageView.Wrapped"
+        android:layout_marginStart="@dimen/company_detail_margin_side"
+        android:layout_marginTop="@dimen/news_activity_image_view_watched_margin_top"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_news_name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/ic_location"/>
+
+    <TextView
+        android:id="@+id/text_view_news_watched"
+        style="@style/TextView.WrappedHeight.OpenSans"
+        android:layout_marginEnd="@dimen/company_detail_margin_side"
+        android:layout_marginStart="8dp"
+        android:textColor="#FF040404"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/image_view_watched"
+        app:layout_constraintTop_toTopOf="@+id/image_view_watched"
+        app:layout_constraintBottom_toBottomOf="@+id/image_view_watched"
+        tools:text="228"/>
+
+    <ImageView
+        android:id="@+id/image_view_source"
+        style="@style/ImageView.Wrapped"
+        android:layout_marginStart="@dimen/company_detail_margin_side"
+        android:layout_marginTop="25dp"
+        app:layout_constraintTop_toBottomOf="@+id/image_view_watched"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:srcCompat="@drawable/ic_location"/>
+
+    <TextView
+        android:id="@+id/text_view_news_source"
+        style="@style/TextView.WrappedHeight.OpenSans"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="#FF4990E2"
+        app:layout_constraintRight_toLeftOf="@+id/text_view_news_date"
+        app:layout_constraintLeft_toRightOf="@+id/image_view_source"
+        app:layout_constraintTop_toTopOf="@+id/image_view_source"
+        app:layout_constraintBottom_toBottomOf="@+id/image_view_source"
+        tools:text="http://228.ru"/>
+
+    <TextView
+        android:id="@+id/text_view_news_date"
+        style="@style/TextView.Wrapped.OpenSans"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/company_detail_margin_side"
+        android:textColor="#BF040404"
+        android:textSize="@dimen/news_fragment_news_date_text_size"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_view_news_source"
+        app:layout_constraintBottom_toBottomOf="@+id/text_view_news_source"
+        tools:text="11 марта 2017"/>
+
+    <TextView
+        android:id="@+id/text_view_news_text"
+        style="@style/TextView.WrappedHeight.OpenSans"
+        android:layout_marginEnd="@dimen/company_detail_margin_side"
+        android:layout_marginStart="@dimen/company_detail_margin_side"
+        android:textColor="@color/colorBlack"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_view_source"
+        android:layout_marginTop="@dimen/news_activity_text_view_news_text_margin_top"
+        tools:text="How do you create a direct mail advertising campaign that gets "/>
+
+    <View
+        android:id="@+id/news_text_bottom_divider"
+        style="@style/LayoutDivider"
+        android:layout_marginTop="@dimen/news_activity_news_text_bottom_divider_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_news_text"/>
+
+    <TextView
+        android:id="@+id/text_view_news_rating"
+        style="@style/TextView.DetailHeader"
+        android:text="@string/news_activity_text_view_news_rating"
+        android:layout_marginTop="@dimen/news_activity_text_view_news_rating_margin_top"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/news_text_bottom_divider"/>
+
+    <LinearLayout
+        android:id="@+id/liner_layout_news_rating"
+        style="@style/LinearLayout.WrappedHeight.Horizontal"
+        android:layout_marginEnd="@dimen/company_detail_payment_methods_margin_side"
+        android:layout_marginStart="@dimen/company_detail_payment_methods_margin_side"
+        android:layout_marginTop="@dimen/news_activity_liner_layout_news_rating_margin_top"
+        android:visibility="gone"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_news_rating">
+
+        <Button
+            android:id="@+id/button_yes"
+            style="@style/Button.NewsRating"
+            android:background="@drawable/button_news_rating"
+            android:text="@string/news_activity_rating_button_yes"
+            android:layout_marginEnd="7.5dp"/>
+
+        <Button
+            android:id="@+id/button_no"
+            style="@style/Button.NewsRating"
+            android:text="@string/news_activity_rating_button_no"
+            android:layout_marginStart="7.5dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/news_rating_bottom_divider"
+        style="@style/LayoutDivider"
+        android:layout_marginTop="@dimen/news_activity_news_rating_bottom_divider_margin_top"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/liner_layout_news_rating"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:id="@+id/popular_news_fragment_container"
+        style="@style/FrameLayout.WrappedHeight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/news_rating_bottom_divider"/>
+
+</android.support.constraint.ConstraintLayout>

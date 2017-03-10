@@ -34,11 +34,6 @@ class MainNewsFragment : BaseFragment<MainNewsFragmentContract.View, MainNewsFra
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.search_menu, menu)
-    }
-
     override fun getLayoutResId(): Int = R.layout.fragment_main_news
 
     override fun updateDependencies() {

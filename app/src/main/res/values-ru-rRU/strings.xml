@@ -224,5 +224,9 @@
     <string name="news_tab_title_new">Новые</string>
     <string name="news_tab_title_popular">Популярные</string>
     <string name="news_tab_title_favorites">Избранные</string>
+    <string name="news_activity_text_view_news_rating">Понравилась новость?</string>
+    <string name="news_activity_rating_button_yes">Да</string>
+    <string name="news_activity_rating_button_no">Нет</string>
+    <string name="news_fragment_popular_title">Популярные новости</string>
 
 </resources>

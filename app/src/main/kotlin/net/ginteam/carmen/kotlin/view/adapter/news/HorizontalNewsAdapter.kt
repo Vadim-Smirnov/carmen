@@ -17,9 +17,7 @@ open class HorizontalNewsAdapter(news: MutableList <NewsModel>,
     open protected var FULL_VISIBLE_ITEMS_COUNT: Int = 2
     open protected var VISIBLE_ITEMS_COUNT: Int = 3
 
-    override fun getItemLayoutResId(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getItemLayoutResId(): Int = R.layout.list_item_news_horizontal
 
     override fun calculateItemWidth(): Int {
         val screenSize = DisplayUtils.getScreenSize(CarmenApplication.getContext())

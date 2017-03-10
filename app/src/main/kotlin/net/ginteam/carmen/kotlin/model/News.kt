@@ -1,6 +1,8 @@
 package net.ginteam.carmen.kotlin.model
 
 import com.google.gson.annotations.SerializedName
+import net.ginteam.carmen.kotlin.view.adapter.company.BaseCompaniesAdapter
+import net.ginteam.carmen.kotlin.view.adapter.news.BaseNewsAdapter
 import java.io.Serializable
 
 /**
@@ -12,6 +14,9 @@ class NewsModel : Serializable {
     val title: String = ""
     val image: String = ""
     var isFavorite: Boolean = false
+    var text: String = ""
     @SerializedName("source_name") val source: String = ""
     @SerializedName("publication_date") val publicationDate: String = ""
+    // for transitions
+    @Transient var transitionViewHolder: BaseNewsAdapter.ViewHolder? = null
 }

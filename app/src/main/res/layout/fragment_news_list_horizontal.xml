@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/LinearLayout.Vertical">
+
+    <TextView
+        android:id="@+id/text_view_news_list_title"
+        style="@style/TextView.Header"
+        android:layout_marginBottom="@dimen/company_list_fragment_title_vertical_margin"
+        android:layout_marginStart="@dimen/company_list_fragment_horizontal_margin"
+        android:layout_marginTop="@dimen/company_list_fragment_title_vertical_margin"
+        android:text="@string/news_fragment_popular_title"/>
+
+    <include layout="@layout/fragment_news_list"/>
+
+</LinearLayout>

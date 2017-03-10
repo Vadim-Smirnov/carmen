@@ -72,11 +72,15 @@ object ApiSettings {
         private const val NEWS = "news"
 
         object Params {
+            const val ID = "id"
             const val PAGE = "page"
             const val LIMIT = "limit"
         }
 
         const val ARTICLES = "$NEWS/articles"
+
+        const val GET_NEWS_BY_ID = "$ARTICLES/{${Params.ID}}"
+
     }
 
 }

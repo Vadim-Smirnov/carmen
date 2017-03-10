@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_bar_layout"
+    style="@style/AppBarLayout.Gallery">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/collapsing_toolbar"
+        style="@style/CollapsingToolbarLayout.Gallery">
+
+        <RelativeLayout
+            style="@style/RelativeLayout.Gallery">
+
+            <ImageView
+                android:id="@+id/image_view_gallery"
+                style="@style/RelativeLayout.Gallery"
+                android:background="@drawable/ic_default_photo"
+                tools:listitem="@layout/list_item_gallery"
+                android:transitionName="@string/transition_news_photo"/>
+
+            <View
+                style="@style/GalleryDecorator.Bottom"
+                android:layout_alignBottom="@+id/image_view_gallery"/>
+
+            <View
+                style="@style/GalleryDecorator.Top"
+                android:layout_alignParentTop="true"/>
+
+        </RelativeLayout>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/AppBarLayout.Toolbar.Transparent"/>
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+
+</android.support.design.widget.AppBarLayout>

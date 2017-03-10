@@ -12,15 +12,20 @@ import rx.Observable
 
 interface NewsDataSourceProvider {
 
-    fun fetchCompaniesCountWithParameters(page: Int): Observable<ResponseModel<MutableList <NewsModel>>>
-
+    fun fetchNews(page: Int): Observable<ResponseModel<MutableList <NewsModel>>>
+    fun fetchNewsDetails(newsId: Int) : Observable <ResponseModel <NewsModel>>
 }
 
 class OnlineNewsDataSourceProvider : NewsDataSourceProvider {
 
     private val newsService: NewsService = NewsService.create()
 
-    override fun fetchCompaniesCountWithParameters(page: Int)
+    override fun fetchNews(page: Int)
             : Observable<ResponseModel<MutableList<NewsModel>>>
-            = newsService.fetchCompaniesCountWithParameters(page).asyncWithCache()
+            = newsService.fetchNews(page).asyncWithCache()
+
+    override fun fetchNewsDetails(newsId: Int)
+            : Observable <ResponseModel <NewsModel>>
+            = newsService.fetchNewsDetails(newsId).asyncWithCache()
+
 }

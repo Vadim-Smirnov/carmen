@@ -19,7 +19,7 @@ class RecentNewsPresenter : BaseNewsPresenter<RecentNewsContract.View>(), Recent
         }
 
         mNewsDataSourceProvider
-                .fetchCompaniesCountWithParameters(pageNumber)
+                .fetchNews(pageNumber)
                 .subscribe(object : MetaSubscriber<MutableList<NewsModel>>() {
                     override fun success(model: MutableList<NewsModel>, pagination: PaginationModel) {
                         mView?.showLoading(false)

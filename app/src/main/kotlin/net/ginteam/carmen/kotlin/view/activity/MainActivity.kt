@@ -29,6 +29,7 @@ import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.activity.company.CompanyDetailsActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
+import net.ginteam.carmen.kotlin.view.activity.news.NewsDetailsActivity
 import net.ginteam.carmen.kotlin.view.fragment.MainFragment
 import net.ginteam.carmen.kotlin.view.fragment.WebViewFragment
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
@@ -239,6 +240,21 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     }
 
     override fun onNewsItemSelected(newsItem: NewsModel) {
+        val intent = Intent(getContext(), NewsDetailsActivity::class.java)
+        intent.putExtra(NewsDetailsActivity.NEWS_ARGUMENT, newsItem)
+
+        if (DeviceUtils.hasLollipop()) {
+            newsItem.transitionViewHolder?.let {
+                val newsPhotoPair: Pair <View, String> = Pair(it.mImageViewNewsPhoto, getString(R.string.transition_news_photo))
+
+                val transitionOptions: ActivityOptionsCompat
+                        = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(this, newsPhotoPair)
+                startActivity(intent, transitionOptions.toBundle())
+            }
+            return
+        }
+        startActivity(intent)
     }
 
     override fun onShowMap(category: CategoryModel) {

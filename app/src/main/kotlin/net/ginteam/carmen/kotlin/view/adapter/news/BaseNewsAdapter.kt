@@ -62,7 +62,7 @@ abstract class BaseNewsAdapter(protected val news: MutableList <NewsModel>,
         val mImageViewNewsPhoto = itemView.findViewById(R.id.image_view_news_photo) as ImageView
         private val mTextViewNewsName = itemView.findViewById(R.id.text_view_news_name) as TextView
         private val mTextViewNewsDate = itemView.findViewById(R.id.text_view_news_date) as TextView
-        private val mTextViewNewsSource = itemView.findViewById(R.id.text_view_news_source) as TextView
+        private val mTextViewNewsSource : TextView? = itemView.findViewById(R.id.text_view_news_source) as TextView?
         private val mTextViewNewsViewsCount = itemView.findViewById(R.id.text_view_news_views_count) as TextView
         private val mImageButtonAddToFavorite: ImageButton
                 = itemView.findViewById(R.id.image_button_company_favorite) as ImageButton
@@ -71,7 +71,7 @@ abstract class BaseNewsAdapter(protected val news: MutableList <NewsModel>,
             with(newsItem) {
                 mTextViewNewsName.text = title
                 mTextViewNewsDate.text = publicationDate.substring(0, publicationDate.indexOf(' '))
-                mTextViewNewsSource.text = source
+                mTextViewNewsSource?.text = source
                 if (image.isNotEmpty()) {
                     Picasso
                             .with(CarmenApplication.getContext())
@@ -84,6 +84,8 @@ abstract class BaseNewsAdapter(protected val news: MutableList <NewsModel>,
                 } else {
                     R.drawable.ic_company_favorite_disable
                 })
+
+                transitionViewHolder = this@ViewHolder
 
                 itemView.setOnClickListener { onClick(this) }
                 mImageButtonAddToFavorite.setOnClickListener { onFavoriteClick(this, !isFavorite) }

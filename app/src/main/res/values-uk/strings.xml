@@ -225,5 +225,9 @@
     <string name="news_tab_title_new">Нові</string>
     <string name="news_tab_title_popular">Популярні</string>
     <string name="news_tab_title_favorites">Обрані</string>
+    <string name="news_activity_text_view_news_rating">Сподобалась новина?</string>
+    <string name="news_activity_rating_button_yes">Так</string>
+    <string name="news_activity_rating_button_no">Ні</string>
+    <string name="news_fragment_popular_title">Популярні новини</string>
 
 </resources>

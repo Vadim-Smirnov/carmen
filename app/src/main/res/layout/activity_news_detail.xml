@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/LinearLayout.Vertical"
+    tools:context="net.ginteam.carmen.kotlin.view.activity.news.NewsDetailsActivity"
+    tools:ignore="ContentDescription"
+    android:background="@color/colorWhite">
+
+    <include layout="@layout/progress_bar"/>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/activity_company_detail"
+        style="@style/CoordinatorLayout.Base">
+
+        <include layout="@layout/paralax_toolbar_news_detail"/>
+
+        <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
+            style="@style/NestedScrollView.WrappedHeight"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <include layout="@layout/activity_news_detail_content"/>
+
+        </android.support.v4.widget.NestedScrollView>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>

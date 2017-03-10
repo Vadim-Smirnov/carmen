@@ -231,6 +231,7 @@
 
     <!-- Transition -->
     <string translatable="false" name="transition_company_photo">transition_company_photo</string>
+    <string translatable="false" name="transition_news_photo">transition_news_photo</string>
     <string translatable="false" name="transition_company_name">transition_company_name</string>
     <string translatable="false" name="transition_company_rating">transition_company_rating</string>
 
@@ -238,5 +239,9 @@
     <string name="news_tab_title_new">New</string>
     <string name="news_tab_title_popular">Popular</string>
     <string name="news_tab_title_favorites">Favorites</string>
+    <string name="news_activity_text_view_news_rating">Good news?</string>
+    <string name="news_activity_rating_button_yes">Yes</string>
+    <string name="news_activity_rating_button_no">No</string>
+    <string name="news_fragment_popular_title">Popular news</string>
 
 </resources>

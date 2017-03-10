@@ -199,4 +199,12 @@
     <dimen name="news_fragment_news_date_text_size">12.5sp</dimen>
     <dimen name="news_fragment_image_view_news_views_margin_top">16dp</dimen>
 
+    <!-- News detail activity -->
+    <dimen name="news_activity_image_view_watched_margin_top">20dp</dimen>
+    <dimen name="news_activity_text_view_news_text_margin_top">35dp</dimen>
+    <dimen name="news_activity_text_view_news_rating_margin_top">15dp</dimen>
+    <dimen name="news_activity_liner_layout_news_rating_margin_top">27.5dp</dimen>
+    <dimen name="news_activity_news_rating_bottom_divider_margin_top">31.5dp</dimen>
+    <dimen name="news_activity_news_text_bottom_divider_margin_top">50dp</dimen>
+
 </resources>
