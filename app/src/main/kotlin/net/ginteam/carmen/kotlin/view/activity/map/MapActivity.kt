@@ -3,8 +3,11 @@ package net.ginteam.carmen.kotlin.view.activity.map
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
+import android.support.v4.util.Pair
 import android.view.MenuItem
+import android.view.View
 import com.google.android.gms.maps.model.LatLng
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.MapActivityContract
@@ -19,6 +22,7 @@ import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompanyFragment
+import net.ginteam.carmen.utils.DeviceUtils
 
 class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityContract.Presenter>(),
         MapActivityContract.View, BaseCompaniesFragment.OnCompanySelectedListener,
@@ -77,6 +81,20 @@ class MapActivity : BaseLocationActivity <MapActivityContract.View, MapActivityC
     override fun onCompanySelected(company: CompanyModel) {
         val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
         intent.putExtra(CompanyDetailsActivity.COMPANY_ARGUMENT, company)
+
+        if (DeviceUtils.hasLollipop()) {
+            company.transitionViewHolder?.let {
+                val companyPhotoPair: Pair<View, String> = Pair(it.mImageViewPhoto, getString(R.string.transition_company_photo))
+                val companyNamePair: Pair<View, String> = Pair(it.mTextViewName, getString(R.string.transition_company_name))
+                val companyRatingPair: Pair<View, String> = Pair(it.mRatingViewRating, getString(R.string.transition_company_rating))
+
+                val transitionOptions: ActivityOptionsCompat
+                        = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(this, companyPhotoPair, companyNamePair, companyRatingPair)
+                startActivity(intent, transitionOptions.toBundle())
+            }
+            return
+        }
         startActivity(intent)
     }
 

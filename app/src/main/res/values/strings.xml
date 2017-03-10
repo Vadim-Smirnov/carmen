@@ -230,7 +230,9 @@
     <string name="filter_button_string">Filters</string>
 
     <!-- Transition -->
-    <string name="transition_company_photo">transition_company_photo</string>
+    <string translatable="false" name="transition_company_photo">transition_company_photo</string>
+    <string translatable="false" name="transition_company_name">transition_company_name</string>
+    <string translatable="false" name="transition_company_rating">transition_company_rating</string>
 
     <!-- News -->
     <string name="news_tab_title_new">New</string>

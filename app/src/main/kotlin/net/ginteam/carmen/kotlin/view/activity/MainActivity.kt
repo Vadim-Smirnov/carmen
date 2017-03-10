@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
+import android.support.v4.util.Pair
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.Constants
@@ -37,6 +39,7 @@ import net.ginteam.carmen.kotlin.view.fragment.company.RecentlyWatchedCompaniesF
 import net.ginteam.carmen.kotlin.view.fragment.news.BaseNewsFragment
 import net.ginteam.carmen.kotlin.view.fragment.news.MainNewsFragment
 import net.ginteam.carmen.kotlin.view.fragment.sort.SortOptionsDialogFragment
+import net.ginteam.carmen.utils.DeviceUtils
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle
 
 class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContract.Presenter>(),
@@ -219,10 +222,20 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
         intent.putExtra(CompanyDetailsActivity.COMPANY_ARGUMENT, company)
 
-        val transitionOptions: ActivityOptionsCompat
-                = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(this, company.transitionView?.mImageViewPhoto, getString(R.string.transition_company_photo))
-        startActivity(intent, transitionOptions.toBundle())
+        if (DeviceUtils.hasLollipop()) {
+            company.transitionViewHolder?.let {
+                val companyPhotoPair: Pair <View, String> = Pair(it.mImageViewPhoto, getString(R.string.transition_company_photo))
+                val companyNamePair: Pair <View, String> = Pair(it.mTextViewName, getString(R.string.transition_company_name))
+                val companyRatingPair: Pair <View, String> = Pair(it.mRatingViewRating, getString(R.string.transition_company_rating))
+
+                val transitionOptions: ActivityOptionsCompat
+                        = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(this, companyPhotoPair, companyNamePair, companyRatingPair)
+                startActivity(intent, transitionOptions.toBundle())
+            }
+            return
+        }
+        startActivity(intent)
     }
 
     override fun onNewsItemSelected(newsItem: NewsModel) {

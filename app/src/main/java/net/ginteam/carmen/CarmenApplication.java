@@ -35,7 +35,8 @@ public class CarmenApplication extends Application {
     }
 
     private void setupFabricCrashlytics() {
-        if (BuildConfig.DEBUG) {
+        Log.d("CarmenApplication", "Is debug? -> " + BuildConfig.DEBUG);
+        if (!BuildConfig.DEBUG) {
             Fabric.with(this, new Crashlytics());
         }
     }

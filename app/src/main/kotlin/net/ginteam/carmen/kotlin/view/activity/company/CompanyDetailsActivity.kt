@@ -10,7 +10,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.transition.Slide
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -106,7 +105,7 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
 
         val transitionOptions: ActivityOptionsCompat
                 = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(this, company.transitionView?.mImageViewPhoto, getString(R.string.transition_company_photo))
+                .makeSceneTransitionAnimation(this, company.transitionViewHolder?.mImageViewPhoto, getString(R.string.transition_company_photo))
         startActivity(intent, transitionOptions.toBundle())
     }
 

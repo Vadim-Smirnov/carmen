@@ -33,8 +33,7 @@ class SignInPresenter : BasePresenter <SignInContract.View>(), SignInContract.Pr
                 })
     }
 
-    override fun isUserSignedInSuccessfully(): Boolean
-            = SharedPreferencesManager.userAccessToken.isNotEmpty()
+    override fun isUserSignedInSuccessfully(): Boolean = SharedPreferencesManager.userAccessToken.isNotEmpty()
 
     override fun facebookSignIn() {
         throw UnsupportedOperationException("not implemented")

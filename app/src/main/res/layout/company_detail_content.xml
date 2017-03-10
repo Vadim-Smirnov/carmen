@@ -10,6 +10,7 @@
 
     <TextView
         android:id="@+id/text_view_company_name"
+        android:transitionName="@string/transition_company_name"
         style="@style/TextView.DetailHeader"
         android:layout_marginTop="@dimen/company_detail_company_name_margin_top"
         android:textColor="@color/colorPrimaryDark"
@@ -52,6 +53,7 @@
 
     <net.ginteam.carmen.view.custom.rating.CarmenRatingView
         android:id="@+id/rating_view_company"
+        android:transitionName="@string/transition_company_rating"
         android:layout_width="105dp"
         android:layout_height="15dp"
         android:layout_marginStart="@dimen/company_detail_margin_side"

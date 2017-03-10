@@ -20,7 +20,7 @@ class FirebaseNotificationsReceiveService : FirebaseMessagingService() {
     private val mNotificationId: Int = 0
 
     override fun onMessageReceived(remoteMessage: RemoteMessage?) {
-        Log.d("FCMReceiver", "Receive notification: $remoteMessage")
+        Log.d("FCMReceiver", "Receive notification: ${remoteMessage?.data}")
         remoteMessage?.let { showNotification(remoteMessage) }
     }
 
