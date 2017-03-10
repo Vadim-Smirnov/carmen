@@ -4,8 +4,6 @@ import android.content.Intent
 import android.os.Handler
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
-import android.view.Menu
-import android.view.MenuInflater
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.MainNewsFragmentContract
 import net.ginteam.carmen.kotlin.listener.ViewPagerListener
@@ -13,7 +11,6 @@ import net.ginteam.carmen.kotlin.presenter.news.MainNewsFragmentPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.adapter.news.ViewPagerAdapter
 import net.ginteam.carmen.kotlin.view.fragment.BaseFragment
-import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
 
 /**
  * Created by vadik on 09.03.17.

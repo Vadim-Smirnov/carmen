@@ -1,7 +1,6 @@
 package net.ginteam.carmen.kotlin.view.activity.authentication
 
 import android.content.Intent
-import android.os.Bundle
 import android.widget.EditText
 import com.mobsandgeeks.saripaar.ValidationError
 import com.mobsandgeeks.saripaar.Validator

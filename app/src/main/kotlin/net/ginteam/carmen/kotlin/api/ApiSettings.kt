@@ -53,6 +53,9 @@ object ApiSettings {
 
         object Params {
             const val ID = "id"
+            const val DEVICE_ID = "deviceId"
+            const val PUSH_TOKEN = "pushToken"
+            const val DEVICE_TYPE = "deviceType"
             const val NAME = "name"
             const val EMAIL = "email"
             const val PASSWORD = "password"
@@ -66,6 +69,8 @@ object ApiSettings {
         const val GET_USER_FAVORITE_COMPANIES = "$GET_CURRENT_USER/companies/favorites"
         const val GET_FAVORITE_COMPANY_BY_ID = "$GET_CURRENT_USER/companies/{${Params.ID}}/favorites"
         const val GET_USER_RECENTLY_WATCHED = "$GET_CURRENT_USER/companies/lastViewed"
+
+        const val DEVICE_INIT = "$AUTH/devices/init"
     }
 
     object News {

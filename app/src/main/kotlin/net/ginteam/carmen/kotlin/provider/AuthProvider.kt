@@ -6,6 +6,7 @@ import net.ginteam.carmen.kotlin.manager.SharedPreferencesManager
 import net.ginteam.carmen.kotlin.model.AuthModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import net.ginteam.carmen.kotlin.model.UserModel
+import net.ginteam.carmen.utils.DeviceUtils
 import rx.Observable
 
 /**
@@ -20,6 +21,12 @@ interface AuthProvider {
     fun userRegister(name: String, email: String, password: String): Observable <ResponseModel <AuthModel>>
     fun fetchCurrentUser(): Observable <ResponseModel <UserModel>>
 
+    /*
+        Device
+     */
+
+    fun deviceRegister(deviceId: String, pushToken: String, deviceType: String): Observable <ResponseModel <String>>
+
 }
 
 object AuthenticationProvider : AuthProvider {
@@ -27,34 +34,34 @@ object AuthenticationProvider : AuthProvider {
 
     override var currentCachedUser: UserModel? = null
 
-    override fun userLogin(email: String, password: String): Observable <ResponseModel <AuthModel>> {
-        return authService
-                .userLogin(email, password)
-                .asyncWithCache(false)
-                .doOnNext {
-                    cacheUser(it.data.user)
-                    saveUserAccessToken(it.data.token)
-                }
-    }
+    override fun userLogin(email: String, password: String): Observable <ResponseModel <AuthModel>>
+            = authService
+            .userLogin(email, password, DeviceUtils.getDeviceId())
+            .asyncWithCache(false)
+            .doOnNext {
+                cacheUser(it.data.user)
+                saveUserAccessToken(it.data.token)
+            }
 
-    override fun userRegister(name: String, email: String, password: String): Observable <ResponseModel <AuthModel>> {
-        return authService
-                .userRegister(name, email, password)
-                .asyncWithCache(false)
-                .doOnNext {
-                    cacheUser(it.data.user)
-                    saveUserAccessToken(it.data.token)
-                }
-    }
+    override fun userRegister(name: String, email: String, password: String): Observable <ResponseModel <AuthModel>>
+            = authService
+            .userRegister(name, email, password, DeviceUtils.getDeviceId())
+            .asyncWithCache(false)
+            .doOnNext {
+                cacheUser(it.data.user)
+                saveUserAccessToken(it.data.token)
+            }
 
-    override fun fetchCurrentUser(): Observable <ResponseModel <UserModel>> {
-        return authService
-                .getCurrentUser()
-                .asyncWithCache()
-                .doOnNext {
-                    cacheUser(it.data)
-                }
-    }
+    override fun fetchCurrentUser(): Observable <ResponseModel <UserModel>>
+            = authService
+            .getCurrentUser()
+            .asyncWithCache()
+            .doOnNext { cacheUser(it.data) }
+
+    override fun deviceRegister(deviceId: String, pushToken: String, deviceType: String): Observable<ResponseModel<String>>
+            = authService
+            .deviceRegister(deviceId, pushToken, deviceType)
+            .asyncWithCache()
 
     private fun cacheUser(user: UserModel) {
         currentCachedUser = user

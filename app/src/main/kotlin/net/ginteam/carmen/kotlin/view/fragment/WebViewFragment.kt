@@ -3,7 +3,6 @@ package net.ginteam.carmen.kotlin.view.fragment
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
-import android.webkit.DownloadListener
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import net.ginteam.carmen.R

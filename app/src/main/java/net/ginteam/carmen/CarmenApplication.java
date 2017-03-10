@@ -28,7 +28,7 @@ public class CarmenApplication extends Application {
 
         sContext = getApplicationContext();
 
-        Log.d("FirebaseToken", "Token exists: " + FirebaseInstanceId.getInstance().getToken());
+        Log.d("FirebaseService", "Token exists: " + FirebaseInstanceId.getInstance().getToken());
 
         setupFabricCrashlytics();
         setupCalligraphy();
