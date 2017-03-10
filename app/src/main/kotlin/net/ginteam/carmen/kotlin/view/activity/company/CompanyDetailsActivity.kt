@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.content.ContextCompat
+import android.support.v4.util.Pair
 import android.support.v7.app.AlertDialog
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -28,6 +29,7 @@ import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.PopularCompaniesFragment
+import net.ginteam.carmen.utils.DeviceUtils
 import net.ginteam.carmen.view.adapter.company.GalleryRecyclerAdapter
 import net.ginteam.carmen.view.custom.rating.CarmenRatingView
 import net.ginteam.carmen.view.fragment.company.AdditionalServicesFragment
@@ -103,10 +105,20 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
         val intent = Intent(getContext(), CompanyDetailsActivity::class.java)
         intent.putExtra(CompanyDetailsActivity.COMPANY_ARGUMENT, company)
 
-        val transitionOptions: ActivityOptionsCompat
-                = ActivityOptionsCompat
-                .makeSceneTransitionAnimation(this, company.transitionViewHolder?.mImageViewPhoto, getString(R.string.transition_company_photo))
-        startActivity(intent, transitionOptions.toBundle())
+        if (DeviceUtils.hasLollipop()) {
+            company.transitionViewHolder?.let {
+                val companyPhotoPair: Pair<View, String> = Pair(it.mImageViewPhoto, getString(R.string.transition_company_photo))
+                val companyNamePair: Pair<View, String> = Pair(it.mTextViewName, getString(R.string.transition_company_name))
+                val companyRatingPair: Pair<View, String> = Pair(it.mRatingViewRating, getString(R.string.transition_company_rating))
+
+                val transitionOptions: ActivityOptionsCompat
+                        = ActivityOptionsCompat
+                        .makeSceneTransitionAnimation(this, companyPhotoPair, companyNamePair, companyRatingPair)
+                startActivity(intent, transitionOptions.toBundle())
+            }
+            return
+        }
+        startActivity(intent)
     }
 
     override fun showLoading(show: Boolean, messageResId: Int) {
@@ -120,7 +132,9 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
         CompanyDetailsContract.View implementation
      */
     override fun showCompanyDetails(company: CompanyModel) {
-        startPostponedEnterTransition()
+        if (DeviceUtils.hasLollipop()) {
+            startPostponedEnterTransition()
+        }
 
         mSelectedCompany = company
         invalidateFavoriteIndicator(company.isFavorite)
