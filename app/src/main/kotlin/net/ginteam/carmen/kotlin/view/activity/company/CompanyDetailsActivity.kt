@@ -108,12 +108,12 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
         if (DeviceUtils.hasLollipop()) {
             company.transitionViewHolder?.let {
                 val companyPhotoPair: Pair<View, String> = Pair(it.mImageViewPhoto, getString(R.string.transition_company_photo))
-                val companyNamePair: Pair<View, String> = Pair(it.mTextViewName, getString(R.string.transition_company_name))
-                val companyRatingPair: Pair<View, String> = Pair(it.mRatingViewRating, getString(R.string.transition_company_rating))
+//                val companyNamePair: Pair<View, String> = Pair(it.mTextViewName, getString(R.string.transition_company_name))
+//                val companyRatingPair: Pair<View, String> = Pair(it.mRatingViewRating, getString(R.string.transition_company_rating))
 
                 val transitionOptions: ActivityOptionsCompat
                         = ActivityOptionsCompat
-                        .makeSceneTransitionAnimation(this, companyPhotoPair, companyNamePair, companyRatingPair)
+                        .makeSceneTransitionAnimation(this, companyPhotoPair)
                 startActivity(intent, transitionOptions.toBundle())
             }
             return
