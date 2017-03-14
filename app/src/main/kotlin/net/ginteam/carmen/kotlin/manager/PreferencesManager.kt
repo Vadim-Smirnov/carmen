@@ -17,6 +17,7 @@ interface PreferencesManager {
     var userAccessToken: String
     var userCityModel: CityModel?
     var userLocation: LatLng?
+    var isFirstLaunch: Boolean
 
 }
 
@@ -64,5 +65,11 @@ object SharedPreferencesManager : PreferencesManager {
                 locationString = String.format("%s %s", value.latitude, value.longitude)
             }
             mPreferences.edit().putString(Constants.Preferences.USER_LOCATION, locationString).apply()
+        }
+
+    override var isFirstLaunch: Boolean
+        get() = mPreferences.getBoolean(Constants.Preferences.LAUNCH, true)
+        set(value) {
+            mPreferences.edit().putBoolean(Constants.Preferences.LAUNCH, value).apply()
         }
 }

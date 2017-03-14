@@ -45,7 +45,7 @@ object PopularNewsContract {
 
     interface Presenter : BaseNewsContract.Presenter <View> {
 
-        fun fetchPopularNews(pageNumber: Int = 1)
+        fun fetchPopularNews(forDays: Int = 30, pageNumber: Int = 1)
 
     }
 
@@ -72,5 +72,13 @@ object MainNewsFragmentContract {
         fun isUserSignedIn(): Boolean
 
     }
+
+}
+
+object PopularNewsActivityContract {
+
+    interface View : BaseContract.View
+
+    interface Presenter : BaseContract.Presenter <View>
 
 }

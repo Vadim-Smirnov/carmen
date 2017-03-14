@@ -2,7 +2,6 @@ package net.ginteam.carmen.kotlin.view.activity
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
@@ -14,15 +13,13 @@ import android.view.View
 import android.widget.TextView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.Constants
+import net.ginteam.carmen.kotlin.common.notifications.FirebaseNotificationsReceiveService
 import net.ginteam.carmen.kotlin.contract.MainActivityContract
 import net.ginteam.carmen.kotlin.disableScrollbars
 import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.interfaces.Sortable
 import net.ginteam.carmen.kotlin.isMenuItemFragment
-import net.ginteam.carmen.kotlin.model.CategoryModel
-import net.ginteam.carmen.kotlin.model.CompanyModel
-import net.ginteam.carmen.kotlin.model.NewsModel
-import net.ginteam.carmen.kotlin.model.UserModel
+import net.ginteam.carmen.kotlin.model.*
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
@@ -30,6 +27,7 @@ import net.ginteam.carmen.kotlin.view.activity.company.CompanyDetailsActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.activity.news.NewsDetailsActivity
+import net.ginteam.carmen.kotlin.view.activity.news.PopularNewsActivity
 import net.ginteam.carmen.kotlin.view.fragment.MainFragment
 import net.ginteam.carmen.kotlin.view.fragment.WebViewFragment
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
@@ -51,6 +49,8 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
+    private var mIntentNotification: NotificationModel? = null
+
     private var mLastAccessibleItem: MenuItem? = null
     private var mPreviousTitle: Pair <String, String>? = null
     private var mPreviousFragment: Fragment? = null
@@ -59,10 +59,6 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mNavigationView: NavigationView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onStart() {
         super.onStart()
@@ -175,11 +171,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         mNavigationView.inflateMenu(menuResId)
         mNavigationView.inflateHeaderView(headerLayoutResId)
 
-        mLastAccessibleItem?.let {
-            onNavigationItemSelected(it)
-            // TODO check not work
-            it.isChecked = true
-        }
+        mLastAccessibleItem?.let { onNavigationItemSelected(it) }
         mLastAccessibleItem = null
 
         // if user does not signed in
@@ -285,6 +277,13 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     /* Private */
 
+    override fun updateDependencies() {
+        super.updateDependencies()
+
+        mIntentNotification = intent
+                .getSerializableExtra(FirebaseNotificationsReceiveService.NOTIFICATION_ARGUMENT) as NotificationModel?
+    }
+
     override fun updateViewDependencies() {
         super.updateViewDependencies()
 
@@ -306,6 +305,14 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
         mNavigationView.disableScrollbars()
         mNavigationView.setNavigationItemSelectedListener(this)
+
+        // if start from notification intent then select news item
+        mIntentNotification?.let {
+            val newsMenuItem = mNavigationView.menu.findItem(R.id.navigation_item_news)
+            onNavigationItemSelected(newsMenuItem)
+
+            startPopularNewsActivity(it)
+        }
     }
 
     /**
@@ -337,6 +344,12 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         val intent = Intent(getContext(), FiltersActivity::class.java)
         intent.putExtra(FiltersActivity.CATEGORY_ARGUMENT, category)
         startActivityForResult(intent, FiltersActivity.FILTER_CONFIRM_REQUEST_CODE)
+    }
+
+    private fun startPopularNewsActivity(notification: NotificationModel) {
+        val intent = Intent(getContext(), PopularNewsActivity::class.java)
+        intent.putExtra(FirebaseNotificationsReceiveService.NOTIFICATION_ARGUMENT, notification)
+        startActivity(intent)
     }
 
     /* -------------------------------------- */

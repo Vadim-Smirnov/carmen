@@ -25,6 +25,7 @@ import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.RecentlyWatchedCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment
+import net.ginteam.carmen.kotlin.view.fragment.news.MainNewsFragment
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -47,7 +48,7 @@ fun Fragment.prepareFragment(@LayoutRes containerLayoutResId: Int, fragment: Fra
 fun Fragment.isMenuItemFragment(): Boolean {
     when (javaClass) {
         CategoriesFragment::class.java, FavoritesFragment::class.java,
-        RecentlyWatchedCompaniesFragment::class.java -> return true
+        RecentlyWatchedCompaniesFragment::class.java, MainNewsFragment::class.java -> return true
         else -> return false
     }
 }

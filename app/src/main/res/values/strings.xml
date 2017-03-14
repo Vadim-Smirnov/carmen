@@ -183,10 +183,10 @@
 
     <!-- Company detail -->
     <plurals name="review_count_string">
-        <item quantity="one">%1$d rating</item>
-        <item quantity="few">%1$d ratings</item>
-        <item quantity="many">%1$d ratings</item>
-        <item quantity="other">%1$d ratings</item>
+        <item quantity="one">%d rating</item>
+        <item quantity="few">%d ratings</item>
+        <item quantity="many">%d ratings</item>
+        <item quantity="other">%d ratings</item>
     </plurals>
 
     <string name="choose_company_phone">Choose number:</string>
@@ -243,5 +243,13 @@
     <string name="news_activity_rating_button_yes">Yes</string>
     <string name="news_activity_rating_button_no">No</string>
     <string name="news_fragment_popular_title">Popular news</string>
+
+    <string name="news_activity_popular_title">Popular</string>
+    <plurals name="news_activity_popular_subtitle">
+        <item quantity="one">за %d day</item>
+        <item quantity="few">за %d days</item>
+        <item quantity="many">за %d days</item>
+        <item quantity="other">за %d days</item>
+    </plurals>
 
 </resources>

@@ -26,6 +26,7 @@ interface AuthProvider {
      */
 
     fun deviceRegister(deviceId: String, pushToken: String, deviceType: String): Observable <ResponseModel <String>>
+    fun updateNotificationStatus(notificationId: String): Observable <ResponseModel <String>>
 
 }
 
@@ -53,15 +54,13 @@ object AuthenticationProvider : AuthProvider {
             }
 
     override fun fetchCurrentUser(): Observable <ResponseModel <UserModel>>
-            = authService
-            .getCurrentUser()
-            .asyncWithCache()
-            .doOnNext { cacheUser(it.data) }
+            = authService.getCurrentUser().asyncWithCache().doOnNext { cacheUser(it.data) }
 
     override fun deviceRegister(deviceId: String, pushToken: String, deviceType: String): Observable<ResponseModel<String>>
-            = authService
-            .deviceRegister(deviceId, pushToken, deviceType)
-            .asyncWithCache()
+            = authService.deviceRegister(deviceId, pushToken, deviceType).asyncWithCache()
+
+    override fun updateNotificationStatus(notificationId: String): Observable <ResponseModel <String>>
+            = authService.updateNotificationStatus(notificationId).asyncWithCache()
 
     private fun cacheUser(user: UserModel) {
         currentCachedUser = user

@@ -229,5 +229,12 @@
     <string name="news_activity_rating_button_yes">Так</string>
     <string name="news_activity_rating_button_no">Ні</string>
     <string name="news_fragment_popular_title">Популярні новини</string>
+    <string name="news_activity_popular_title">Популярні</string>
+    <plurals name="news_activity_popular_subtitle">
+        <item quantity="one">за %d день</item>
+        <item quantity="few">за %d днi</item>
+        <item quantity="many">за %d днiв</item>
+        <item quantity="other">за %d днiв</item>
+    </plurals>
 
 </resources>

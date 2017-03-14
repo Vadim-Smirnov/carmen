@@ -5,9 +5,7 @@ import net.ginteam.carmen.kotlin.manager.ApiManager
 import net.ginteam.carmen.kotlin.model.AuthModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import net.ginteam.carmen.kotlin.model.UserModel
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 import rx.Observable
 
 /**
@@ -43,6 +41,11 @@ interface AuthService {
             @Query(ApiSettings.Auth.Params.DEVICE_ID) deviceId: String,
             @Query(ApiSettings.Auth.Params.PUSH_TOKEN) pushToken: String,
             @Query(ApiSettings.Auth.Params.DEVICE_TYPE) deviceType: String
+    ): Observable <ResponseModel <String>>
+
+    @PUT(ApiSettings.Auth.UPDATE_NOTIFICATION_STATUS)
+    fun updateNotificationStatus(
+            @Path(ApiSettings.Auth.Params.ID) notificationId: String
     ): Observable <ResponseModel <String>>
 
     companion object {

@@ -35,8 +35,8 @@ abstract class BaseNewsAdapter(protected val news: MutableList <NewsModel>,
             width = calculatePhotoSize()
             height = calculatePhotoSize()
         }
-        newsItemViewHolder?.mImageViewNewsPhoto.requestLayout()
-        newsItemViewHolder?.bindData(news[position])
+        newsItemViewHolder.mImageViewNewsPhoto.requestLayout()
+        newsItemViewHolder.bindData(news[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {

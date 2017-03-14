@@ -12,14 +12,14 @@ class PopularNewsPresenter : BaseNewsPresenter<PopularNewsContract.View>(), Popu
 
     private var isFirsLoading: Boolean = true
 
-    override fun fetchPopularNews(pageNumber: Int) {
+    override fun fetchPopularNews(forDays: Int, pageNumber: Int) {
         isFirsLoading = pageNumber == 1
         if (isFirsLoading) {
             mView?.showLoading(true)
         }
 
         mNewsDataSourceProvider
-                .fetchNews(pageNumber)
+                .fetchPopularNews(forDays, pageNumber)
                 .subscribe(object : MetaSubscriber<MutableList<NewsModel>>() {
                     override fun success(model: MutableList<NewsModel>, pagination: PaginationModel) {
                         mView?.showLoading(false)

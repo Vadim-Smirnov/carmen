@@ -7,6 +7,7 @@ import net.ginteam.carmen.kotlin.contract.AuthContract
 import net.ginteam.carmen.kotlin.manager.PreferencesManager
 import net.ginteam.carmen.kotlin.manager.SharedPreferencesManager
 import net.ginteam.carmen.kotlin.model.CityModel
+import net.ginteam.carmen.kotlin.model.NotificationModel
 import net.ginteam.carmen.kotlin.model.UserModel
 import net.ginteam.carmen.kotlin.presenter.BaseLocationPresenter
 import net.ginteam.carmen.kotlin.provider.AuthProvider
@@ -31,9 +32,19 @@ class AuthenticationPresenter : BaseLocationPresenter <AuthContract.View>(), Aut
                     }
 
                     override fun error(message: String, isNetworkError: Boolean) {
-                        mView?.showSignInActivity()
+                        if (mPreferences.isFirstLaunch) {
+                            mPreferences.isFirstLaunch = false
+                            mView?.showSignInActivity()
+                            return
+                        }
+                        mView?.authorizationConfirmed()
                     }
                 })
+    }
+
+    override fun updateNotificationStatus(notification: NotificationModel) {
+        val authProvider: AuthProvider = AuthenticationProvider
+        authProvider.updateNotificationStatus(notification.messageId).subscribe()
     }
 
     override fun onLocationReceived(location: Location?) {

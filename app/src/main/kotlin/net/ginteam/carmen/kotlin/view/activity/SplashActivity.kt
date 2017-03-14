@@ -1,8 +1,10 @@
 package net.ginteam.carmen.kotlin.view.activity
 
 import android.content.Intent
+import net.ginteam.carmen.kotlin.common.notifications.FirebaseNotificationsReceiveService
 import net.ginteam.carmen.kotlin.contract.AuthContract
 import net.ginteam.carmen.kotlin.model.CityModel
+import net.ginteam.carmen.kotlin.model.NotificationModel
 import net.ginteam.carmen.kotlin.presenter.authentication.AuthenticationPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.fragment.city.CitiesDialogFragment
@@ -32,6 +34,11 @@ class SplashActivity : BaseLocationActivity<AuthContract.View, AuthContract.Pres
 
     override fun authorizationConfirmed() {
         val intent = Intent(getContext(), MainActivity::class.java)
+        // put notification in intent if exists
+        tryToGetNotificationFromIntent()?.let {
+            intent.putExtra(FirebaseNotificationsReceiveService.NOTIFICATION_ARGUMENT, it)
+            mPresenter.updateNotificationStatus(it)
+        }
         startActivity(intent)
         finish()
     }
@@ -41,5 +48,8 @@ class SplashActivity : BaseLocationActivity<AuthContract.View, AuthContract.Pres
         startActivity(intent)
         finish()
     }
+
+    private fun tryToGetNotificationFromIntent(): NotificationModel?
+            = intent.getSerializableExtra(FirebaseNotificationsReceiveService.NOTIFICATION_ARGUMENT) as NotificationModel?
 
 }

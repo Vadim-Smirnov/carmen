@@ -2,6 +2,7 @@ package net.ginteam.carmen.kotlin.view.activity
 
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.support.annotation.LayoutRes
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -15,8 +16,9 @@ abstract class BaseActivity<in V : BaseContract.View, T : BaseContract.Presenter
     : AppCompatActivity(), BaseContract.View {
 
     protected abstract var mPresenter: T
-    protected var mToolbar: Toolbar? = null
 
+    protected val mUiThreadHandler: Handler = Handler()
+    protected var mToolbar: Toolbar? = null
     protected var mProgressDialog: SweetAlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -11,6 +11,7 @@ object Constants {
         const val USER_TOKEN = "user_token"
         const val USER_LOCATION = "user_location"
         const val CITY = "city"
+        const val LAUNCH = "launch"
     }
 
     const val SEARCH_BUTTON_ID: Int = android.support.v7.appcompat.R.id.search_button

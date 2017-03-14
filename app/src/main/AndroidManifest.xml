@@ -74,6 +74,9 @@
         <activity
             android:name=".kotlin.view.activity.news.NewsDetailsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlin.view.activity.news.PopularNewsActivity"
+            android:screenOrientation="portrait" />
 
         <!-- Firebase Cloud Messaging services -->
         <service

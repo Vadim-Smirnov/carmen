@@ -71,6 +71,7 @@ object ApiSettings {
         const val GET_USER_RECENTLY_WATCHED = "$GET_CURRENT_USER/companies/lastViewed"
 
         const val DEVICE_INIT = "$AUTH/devices/init"
+        const val UPDATE_NOTIFICATION_STATUS = "$AUTH/notifications/{${Params.ID}}/read"
     }
 
     object News {
@@ -87,7 +88,7 @@ object ApiSettings {
 
         const val GET_NEWS_BY_ID = "$ARTICLES/{${Params.ID}}"
 
-        const val GET_POPULAR_NEWS = "$ARTICLES/popular/{${Params.DAYS}}"
+        const val GET_POPULAR_NEWS = "$ARTICLES/popular/"
 
     }
 

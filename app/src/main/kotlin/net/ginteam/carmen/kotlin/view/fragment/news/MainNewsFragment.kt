@@ -22,7 +22,7 @@ class MainNewsFragment : BaseFragment<MainNewsFragmentContract.View, MainNewsFra
 
     private lateinit var mViewPagerNewsAdapter: ViewPagerAdapter
 
-    private var mCurrentViewPagerPosition: Int = 0
+    private var mCurrentViewPagerPosition: Int = PopularNewsFragment.POSITION
     private val mUiThreadHandler: Handler = Handler()
 
     companion object {
@@ -35,6 +35,7 @@ class MainNewsFragment : BaseFragment<MainNewsFragmentContract.View, MainNewsFra
 
     override fun updateDependencies() {
         super.updateDependencies()
+
         mViewPagerNewsAdapter = ViewPagerAdapter(childFragmentManager)
         mViewPagerNewsAdapter.addFragment(RecentNewsFragment.newInstance(), getString(R.string.news_tab_title_new))
         mViewPagerNewsAdapter.addFragment(PopularNewsFragment.newInstance(), getString(R.string.news_tab_title_popular))
@@ -43,12 +44,13 @@ class MainNewsFragment : BaseFragment<MainNewsFragmentContract.View, MainNewsFra
 
     override fun updateViewDependencies() {
         super.updateViewDependencies()
-
         setHasOptionsMenu(true)
 
         val viewPagerNews = mFragmentView.findViewById(R.id.view_pager_news) as ViewPager
         viewPagerNews.adapter = mViewPagerNewsAdapter
         viewPagerNews.offscreenPageLimit = 3
+        viewPagerNews.currentItem = mCurrentViewPagerPosition
+
         viewPagerNews.addOnPageChangeListener(object : ViewPagerListener() {
             override fun onPageSelected(position: Int) {
                 if (position == FavoritesNewsFragment.POSITION && !mPresenter.isUserSignedIn()) {

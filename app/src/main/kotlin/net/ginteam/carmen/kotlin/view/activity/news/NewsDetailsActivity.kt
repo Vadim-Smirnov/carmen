@@ -43,7 +43,10 @@ class NewsDetailsActivity : BaseActivity<NewsDetailsContract.View, NewsDetailsCo
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        postponeEnterTransition()
+
+        if (DeviceUtils.hasLollipop()) {
+            postponeEnterTransition()
+        }
 
         mPresenter.fetchNewsDetail(mSelectedNewsItem)
     }

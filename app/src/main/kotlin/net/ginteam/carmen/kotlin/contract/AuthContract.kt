@@ -1,5 +1,7 @@
 package net.ginteam.carmen.kotlin.contract
 
+import net.ginteam.carmen.kotlin.model.NotificationModel
+
 /**
  * Created by eugene_shcherbinock on 2/14/17.
  */
@@ -17,6 +19,7 @@ object AuthContract {
     interface Presenter : LocationContract.Presenter <View> {
 
         fun checkUserStatus()
+        fun updateNotificationStatus(notification: NotificationModel)
 
     }
 
