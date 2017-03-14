@@ -13,7 +13,8 @@ import rx.Observable
 interface NewsDataSourceProvider {
 
     fun fetchNews(page: Int): Observable<ResponseModel<MutableList <NewsModel>>>
-    fun fetchNewsDetails(newsId: Int) : Observable <ResponseModel <NewsModel>>
+    fun fetchPopularNews(period: Int): Observable<ResponseModel<MutableList <NewsModel>>>
+    fun fetchNewsDetails(newsId: Int): Observable <ResponseModel <NewsModel>>
 }
 
 class OnlineNewsDataSourceProvider : NewsDataSourceProvider {
@@ -28,4 +29,7 @@ class OnlineNewsDataSourceProvider : NewsDataSourceProvider {
             : Observable <ResponseModel <NewsModel>>
             = newsService.fetchNewsDetails(newsId).asyncWithCache()
 
+    override fun fetchPopularNews(period: Int)
+            : Observable<ResponseModel<MutableList<NewsModel>>>
+            = newsService.fetchPopularNews(period)
 }

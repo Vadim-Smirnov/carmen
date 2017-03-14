@@ -5,6 +5,7 @@ import net.ginteam.carmen.kotlin.manager.ApiManager
 import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 import rx.Observable
@@ -23,6 +24,12 @@ interface NewsService {
     fun fetchNewsDetails(
             @Path(ApiSettings.News.Params.ID) newsId: Int
     ): Observable <ResponseModel <NewsModel>>
+
+
+    @GET(ApiSettings.News.GET_POPULAR_NEWS)
+    fun fetchPopularNews(
+            @Path(ApiSettings.News.Params.DAYS) period: Int
+    ): Observable<ResponseModel<MutableList <NewsModel>>>
 
     companion object {
         fun create(): NewsService = ApiManager.retrofit.create(NewsService::class.java)

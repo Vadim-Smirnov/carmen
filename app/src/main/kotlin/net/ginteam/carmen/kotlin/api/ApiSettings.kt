@@ -80,11 +80,14 @@ object ApiSettings {
             const val ID = "id"
             const val PAGE = "page"
             const val LIMIT = "limit"
+            const val DAYS = "days"
         }
 
         const val ARTICLES = "$NEWS/articles"
 
         const val GET_NEWS_BY_ID = "$ARTICLES/{${Params.ID}}"
+
+        const val GET_POPULAR_NEWS = "$ARTICLES/popular/{${Params.DAYS}}"
 
     }
 
