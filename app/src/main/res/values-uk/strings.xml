@@ -237,4 +237,11 @@
         <item quantity="other">за %d днiв</item>
     </plurals>
 
+    <!-- Favorite news confirmation messages -->
+    <string name="news_added_to_favorites_message">Новина додана в обрані</string>
+    <string name="news_not_added_to_favorites_message">Новина не додана в обрані</string>
+    <string name="news_removed_from_favorites_message">Новина видалена з обраних</string>
+    <string name="news_not_removed_from_favorites_message">Новина не видалена з обраних</string>
+    <string name="undo_news_removed_message">ВІДМІНИТИ</string>
+
 </resources>

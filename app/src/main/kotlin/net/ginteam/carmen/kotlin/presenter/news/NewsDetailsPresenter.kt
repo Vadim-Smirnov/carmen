@@ -36,8 +36,30 @@ class NewsDetailsPresenter : BasePresenter<NewsDetailsContract.View>(), NewsDeta
     }
 
     override fun addNewsToFavorites(news: NewsModel) {
+        mNewsDataSourceProvider
+                .addUserFavoritesNews(news.id)
+                .subscribe(object : ModelSubscriber<String>() {
+                    override fun success(model: String) {
+                        news.isFavorite = true
+                        mView?.invalidateFavoriteIndicator(true)
+                    }
+
+                    override fun error(message: String, isNetworkError: Boolean) {
+                    }
+                })
     }
 
     override fun removeNewsFromFavorites(news: NewsModel) {
+        mNewsDataSourceProvider
+                .removeUserFavoritesNews(news.id)
+                .subscribe(object : ModelSubscriber<String>() {
+                    override fun success(model: String) {
+                        news.isFavorite = false
+                        mView?.invalidateFavoriteIndicator(false)
+                    }
+
+                    override fun error(message: String, isNetworkError: Boolean) {
+                    }
+                })
     }
 }

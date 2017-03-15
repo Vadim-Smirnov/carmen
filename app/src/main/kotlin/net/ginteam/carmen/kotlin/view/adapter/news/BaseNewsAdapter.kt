@@ -70,6 +70,7 @@ abstract class BaseNewsAdapter(protected val news: MutableList <NewsModel>,
         fun bindData(newsItem: NewsModel) {
             with(newsItem) {
                 mTextViewNewsName.text = title
+                mTextViewNewsViewsCount.text = views.toString()
                 mTextViewNewsDate.text = publicationDate.substring(0, publicationDate.indexOf(' '))
                 mTextViewNewsSource?.text = source
                 if (image.isNotEmpty()) {

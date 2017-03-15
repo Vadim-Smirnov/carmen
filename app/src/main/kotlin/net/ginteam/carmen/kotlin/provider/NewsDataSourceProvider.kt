@@ -15,6 +15,9 @@ interface NewsDataSourceProvider {
     fun fetchNews(page: Int): Observable<ResponseModel<MutableList <NewsModel>>>
     fun fetchPopularNews(forDays: Int, page: Int): Observable<ResponseModel<MutableList <NewsModel>>>
     fun fetchNewsDetails(newsId: Int): Observable <ResponseModel <NewsModel>>
+    fun fetchUserFavoritesNews(): Observable <ResponseModel <MutableList <NewsModel>>>
+    fun addUserFavoritesNews(newsId: Int): Observable <ResponseModel <String>>
+    fun removeUserFavoritesNews(newsId: Int): Observable <ResponseModel <String>>
 }
 
 class OnlineNewsDataSourceProvider : NewsDataSourceProvider {
@@ -32,4 +35,17 @@ class OnlineNewsDataSourceProvider : NewsDataSourceProvider {
     override fun fetchPopularNews(forDays: Int, page: Int)
             : Observable<ResponseModel<MutableList<NewsModel>>>
             = newsService.fetchPopularNews(forDays, page).asyncWithCache()
+
+    override fun fetchUserFavoritesNews()
+            : Observable<ResponseModel<MutableList<NewsModel>>>
+            = newsService.fetchUserFavoritesNews().asyncWithCache()
+
+    override fun addUserFavoritesNews(newsId: Int)
+            : Observable<ResponseModel<String>>
+            = newsService.addUserFavoritesNews(newsId).asyncWithCache()
+
+    override fun removeUserFavoritesNews(newsId: Int)
+            : Observable<ResponseModel<String>>
+            = newsService.removeUserFavoritesNews(newsId).asyncWithCache()
+
 }

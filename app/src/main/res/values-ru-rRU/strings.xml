@@ -236,4 +236,11 @@
         <item quantity="other">за %d дней</item>
     </plurals>
 
+    <!-- Favorite news confirmation messages -->
+    <string name="news_added_to_favorites_message">Новость добавлена в избранные</string>
+    <string name="news_not_added_to_favorites_message">Новость не добавлена в избранные</string>
+    <string name="news_removed_from_favorites_message">Новость удалена из избранных</string>
+    <string name="news_not_removed_from_favorites_message">Новость не удалена из избранных</string>
+    <string name="undo_news_removed_message">ОТМЕНИТЬ</string>
+
 </resources>

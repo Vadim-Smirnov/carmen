@@ -13,8 +13,9 @@ class NewsModel : Serializable {
     val id: Int = 0
     val title: String = ""
     val image: String = ""
-    var isFavorite: Boolean = false
-    var text: String = ""
+    @SerializedName("is_favorite") var isFavorite: Boolean = false
+    val text: String = ""
+    val views: Int = 0
     @SerializedName("source_name") val source: String = ""
     @SerializedName("publication_date") val publicationDate: String = ""
     // for transitions

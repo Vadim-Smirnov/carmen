@@ -182,7 +182,7 @@ class NewsDetailsActivity : BaseActivity<NewsDetailsContract.View, NewsDetailsCo
                 newsDetail.publicationDate.substring(0, newsDetail.publicationDate.indexOf(' '))
         (findViewById(R.id.text_view_news_source) as TextView).text = newsDetail.source
         (findViewById(R.id.text_view_news_text) as TextView).text = newsDetail.text
-//        (findViewById(R.id.text_view_news_views_count) as TextView)
+        (findViewById(R.id.text_view_news_watched) as TextView).text = newsDetail.views.toString()
     }
 
 }

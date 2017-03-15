@@ -70,6 +70,9 @@ object ApiSettings {
         const val GET_FAVORITE_COMPANY_BY_ID = "$GET_CURRENT_USER/companies/{${Params.ID}}/favorites"
         const val GET_USER_RECENTLY_WATCHED = "$GET_CURRENT_USER/companies/lastViewed"
 
+        const val GET_USER_FAVORITES_NEWS = "$GET_CURRENT_USER/articles/favorites"
+        const val USER_FAVORITES_NEWS = "$GET_CURRENT_USER/articles/{${Params.ID}}/favorites"
+
         const val DEVICE_INIT = "$AUTH/devices/init"
         const val UPDATE_NOTIFICATION_STATUS = "$AUTH/notifications/{${Params.ID}}/read"
     }

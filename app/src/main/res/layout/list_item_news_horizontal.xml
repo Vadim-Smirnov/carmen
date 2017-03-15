@@ -71,7 +71,7 @@
             <ImageView
                 android:id="@+id/image_view_news_views"
                 style="@style/ImageView.Wrapped"
-                app:srcCompat="@drawable/ic_location"/>
+                app:srcCompat="@drawable/ic_watched"/>
 
             <TextView
                 android:id="@+id/text_view_news_views_count"

@@ -13,13 +13,16 @@ class FavoritesNewsPresenter : BaseNewsPresenter<FavoritesNewsContract.View>(), 
     private var isFirsLoading: Boolean = true
 
     override fun fetchFavoritesNews(pageNumber: Int) {
+        if (!checkUserStatus()) {
+            return
+        }
         isFirsLoading = pageNumber == 1
         if (isFirsLoading) {
             mView?.showLoading(true)
         }
 
         mNewsDataSourceProvider
-                .fetchNews(pageNumber)
+                .fetchUserFavoritesNews()
                 .subscribe(object : MetaSubscriber<MutableList<NewsModel>>() {
                     override fun success(model: MutableList<NewsModel>, pagination: PaginationModel) {
                         mView?.showLoading(false)
