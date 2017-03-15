@@ -7,32 +7,31 @@ import android.support.v7.widget.RecyclerView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.FavoriteCompaniesContract
 import net.ginteam.carmen.kotlin.model.CompanyModel
+import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.presenter.company.list.FavoritesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.FavoriteCompaniesAdapter
+import net.ginteam.carmen.kotlin.view.adapter.news.FavoritesNewsAdapter
 import net.ginteam.carmen.view.adapter.RecyclerListVerticalItemDecorator
 
 /**
  * Created by eugene_shcherbinock on 2/17/17.
  */
-class FavoritesFragment
-    : BaseCompaniesFragment <FavoriteCompaniesAdapter, FavoriteCompaniesContract.View, FavoriteCompaniesContract.Presenter>(),
+class FavoritesFragment : BaseVerticalCompaniesFragment<FavoriteCompaniesAdapter,
+        FavoriteCompaniesContract.View, FavoriteCompaniesContract.Presenter>(),
         FavoriteCompaniesContract.View {
 
     override var mPresenter: FavoriteCompaniesContract.Presenter = FavoritesPresenter()
 
-    override lateinit var mCompaniesAdapter: FavoriteCompaniesAdapter
-
     companion object {
         private const val SNACKBAR_DURATION_SHOW_MILLISECONDS: Int = 5000
-
         fun newInstance(): FavoritesFragment = FavoritesFragment()
     }
 
-    override fun showCompanies(companies: MutableList<CompanyModel>, pagination: PaginationModel?) {
-        mCompaniesAdapter = FavoriteCompaniesAdapter(companies, this, this)
-        mRecyclerViewCompanies.adapter = mCompaniesAdapter
-    }
+    override fun initializeAdapter(company: MutableList<CompanyModel>,
+                                   onItemClick: (CompanyModel) -> Unit,
+                                   onFavoriteClick: (CompanyModel, Boolean) -> Unit
+    ): FavoriteCompaniesAdapter = FavoriteCompaniesAdapter(company, onItemClick, onFavoriteClick)
 
     override fun showFavoriteConfirmationMessage(company: CompanyModel, messageResId: Int) {
         val snackbar: Snackbar = Snackbar.make(mFragmentView, getString(messageResId), Snackbar.LENGTH_LONG)
@@ -55,15 +54,8 @@ class FavoritesFragment
         snackbar.show()
     }
 
-    override fun getLayoutResId(): Int = R.layout.fragment_company_list
-
     override fun fetchCompanies() {
-        mPresenter.fetchUserFavorites()
+        mPresenter.fetchUserFavorites(mCurrentPaginationPage)
     }
 
-    override fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration
-            = RecyclerListVerticalItemDecorator(context, R.dimen.vertical_list_item_spacing)
-
-    override fun getRecyclerViewLayoutManager(): LinearLayoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 }

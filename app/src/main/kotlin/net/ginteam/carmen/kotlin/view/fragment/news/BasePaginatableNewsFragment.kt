@@ -24,7 +24,7 @@ abstract class BasePaginatableNewsFragment <E : PaginatableNewsAdapter, in V : B
 
     override fun showNews(news: MutableList<NewsModel>, pagination: PaginationModel?) {
         if (pagination != null) {
-            mNewsAdapter = VerticalNewsAdapter(news, this, this) as E
+            mNewsAdapter = initializeAdapter(news, this, this)
             mRecyclerViewNews.adapter = mNewsAdapter
             mRecyclerViewNews.setOnScrollListener(initializePaginationScrollListener(pagination))
             return
@@ -37,9 +37,9 @@ abstract class BasePaginatableNewsFragment <E : PaginatableNewsAdapter, in V : B
         }
     }
 
-//    protected abstract fun initializeAdapter(news: MutableList<NewsModel>,
-//                                             onItemClick: (NewsModel) -> Unit,
-//                                             onFavoriteClick: (NewsModel, Boolean) -> Unit) : E
+    protected abstract fun initializeAdapter(news: MutableList<NewsModel>,
+                                             onItemClick: (NewsModel) -> Unit,
+                                             onFavoriteClick: (NewsModel, Boolean) -> Unit) : E
 
     private fun initializePaginationScrollListener(paginationDetails: PaginationModel): PaginationScrollListener {
         return object : PaginationScrollListener(mLayoutManager) {

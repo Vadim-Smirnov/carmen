@@ -15,7 +15,7 @@ open class FavoritesNewsAdapter(news: MutableList <NewsModel>,
     private var mLastRemovedNewsItem: NewsModel? = null
 
     fun removeNewsItem(newsItem: NewsModel) {
-        mLastRemovedNewsItem = newsItem
+        mLastRemovedNewsItem = news.find { newsItem.id == it.id }!!
         mLastRemovedPosition = news.indexOf(mLastRemovedNewsItem!!)
 
         news.removeAt(mLastRemovedPosition!!)

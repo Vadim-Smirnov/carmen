@@ -72,7 +72,7 @@ object FavoriteCompaniesContract {
 
     interface Presenter : BaseCompaniesContract.Presenter <View> {
 
-        fun fetchUserFavorites()
+        fun fetchUserFavorites(pageNumber: Int)
 
     }
 

@@ -13,7 +13,7 @@ import net.ginteam.carmen.utils.DisplayUtils
  * Created by eugene_shcherbinock on 2/16/17.
  */
 
-class PaginatableCompaniesAdapter(companies: MutableList <CompanyModel>,
+abstract class PaginatableCompaniesAdapter(companies: MutableList <CompanyModel>,
                                   onCompanyItemClick: (CompanyModel) -> Unit,
                                   onFavoriteClick: (CompanyModel, Boolean) -> Unit)
     : BaseCompaniesAdapter(companies, onCompanyItemClick, onFavoriteClick) {
@@ -66,15 +66,6 @@ class PaginatableCompaniesAdapter(companies: MutableList <CompanyModel>,
         } else {
             ITEM_TYPE.COMPANY.ordinal
         }
-    }
-
-    override fun getItemLayoutResId(): Int = R.layout.list_item_company_vertical
-
-    override fun calculateItemWidth(): Int = RecyclerView.LayoutParams.MATCH_PARENT
-
-    override fun calculatePhotoSize(): Int {
-        val screenSize = DisplayUtils.getScreenSize(CarmenApplication.getContext())
-        return 43 * screenSize.x / 100
     }
 
 }

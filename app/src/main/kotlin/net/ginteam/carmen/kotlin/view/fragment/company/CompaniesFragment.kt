@@ -2,9 +2,6 @@ package net.ginteam.carmen.kotlin.view.fragment.company
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Handler
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SearchView
 import android.text.TextUtils
 import android.view.Menu
@@ -17,25 +14,19 @@ import net.ginteam.carmen.kotlin.contract.CompaniesContract
 import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.interfaces.Sortable
 import net.ginteam.carmen.kotlin.model.CategoryModel
-import net.ginteam.carmen.kotlin.model.CompanyModel
-import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.presenter.company.list.CompaniesPresenter
-import net.ginteam.carmen.kotlin.view.adapter.company.PaginatableCompaniesAdapter
-import net.ginteam.carmen.view.adapter.RecyclerListVerticalItemDecorator
-import net.ginteam.carmen.view.adapter.company.PaginationScrollListener
+import net.ginteam.carmen.kotlin.view.adapter.company.VerticalCompaniesAdapter
 
 /**
  * Created by eugene_shcherbinock on 2/16/17.
  */
 
-class CompaniesFragment
-    : BaseCompaniesFragment<PaginatableCompaniesAdapter, CompaniesContract.View, CompaniesContract.Presenter>(),
+class CompaniesFragment : BaseVerticalCompaniesFragment<VerticalCompaniesAdapter,
+        CompaniesContract.View, CompaniesContract.Presenter>(),
         CompaniesContract.View, Filterable, Sortable {
 
     override var mPresenter: CompaniesContract.Presenter = CompaniesPresenter()
 
-    private val mUiThreadHandler: Handler = Handler()
-    override lateinit var mCompaniesAdapter: PaginatableCompaniesAdapter
 
     private var isNeedProceedSearchChanges: Boolean = false
     private lateinit var mSearchView: SearchView
@@ -46,8 +37,6 @@ class CompaniesFragment
     private var mSortType: String = "desc"
 
     private lateinit var mSelectedCategory: CategoryModel
-    private var isLoadingNow: Boolean = false
-    private var mCurrentPaginationPage: Int = 1
     private var mMenuItemSelectedListener: OnBottomMenuItemSelectedListener? = null
 
     companion object {
@@ -99,32 +88,9 @@ class CompaniesFragment
 
     // ------------------------------------
 
-    override fun getLayoutResId(): Int = R.layout.fragment_company_list
-
-    override fun showCompanies(companies: MutableList<CompanyModel>, pagination: PaginationModel?) {
-        if (pagination != null) {
-            mCompaniesAdapter = PaginatableCompaniesAdapter(companies, this, this)
-            mRecyclerViewCompanies.adapter = mCompaniesAdapter
-            mRecyclerViewCompanies.setOnScrollListener(initializePaginationScrollListener(pagination))
-            return
-        }
-
-        isLoadingNow = false
-        mUiThreadHandler.post {
-            mCompaniesAdapter.hideLoading()
-            mCompaniesAdapter.addCompanies(companies)
-        }
-    }
-
     override fun fetchCompanies() {
         mPresenter.fetchCompanies(mSelectedCategory.id, mFilterQuery, mSortField, mSortType, mCurrentPaginationPage)
     }
-
-    override fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration
-            = RecyclerListVerticalItemDecorator(context, R.dimen.vertical_list_item_spacing)
-
-    override fun getRecyclerViewLayoutManager(): LinearLayoutManager
-            = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 
     override fun updateViewDependencies() {
         super.updateViewDependencies()
@@ -151,20 +117,6 @@ class CompaniesFragment
     override fun updateDependencies() {
         super.updateDependencies()
         mSelectedCategory = arguments.getSerializable(CATEGORY_ARGUMENT) as CategoryModel
-    }
-
-    private fun initializePaginationScrollListener(paginationDetails: PaginationModel): PaginationScrollListener {
-        return object : PaginationScrollListener(mLayoutManager) {
-            override fun loadMoreItems() {
-                mCurrentPaginationPage++
-                isLoadingNow = true
-                mUiThreadHandler.post { mCompaniesAdapter.showLoading() }
-                fetchCompanies()
-            }
-
-            override fun isLastPage(): Boolean = mCurrentPaginationPage == paginationDetails.totalPages
-            override fun isLoading(): Boolean = isLoadingNow
-        }
     }
 
     private fun prepareSearchView(menu: Menu) {
