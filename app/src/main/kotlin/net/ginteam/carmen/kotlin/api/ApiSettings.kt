@@ -91,7 +91,7 @@ object ApiSettings {
 
         const val GET_NEWS_BY_ID = "$ARTICLES/{${Params.ID}}"
 
-        const val GET_POPULAR_NEWS = "$ARTICLES/popular/"
+        const val GET_POPULAR_NEWS = "$ARTICLES/popular"
 
     }
 

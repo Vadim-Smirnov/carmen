@@ -8,6 +8,7 @@ import com.crashlytics.android.Crashlytics;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import io.fabric.sdk.android.Fabric;
+import io.realm.Realm;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 
 /**
@@ -30,6 +31,7 @@ public class CarmenApplication extends Application {
 
         Log.d("FirebaseService", "Token exists: " + FirebaseInstanceId.getInstance().getToken());
 
+        setupRealm(this);
         setupFabricCrashlytics();
         setupCalligraphy();
     }
@@ -46,6 +48,10 @@ public class CarmenApplication extends Application {
                 .setDefaultFontPath(getString(R.string.open_sans_light_font))
                 .setFontAttrId(R.attr.fontPath)
                 .build());
+    }
+
+    private void setupRealm(Context context) {
+        Realm.init(context);
     }
 
 }
