@@ -207,4 +207,14 @@
     <dimen name="news_activity_news_rating_bottom_divider_margin_top">31.5dp</dimen>
     <dimen name="news_activity_news_text_bottom_divider_margin_top">50dp</dimen>
 
+    <!-- Update rating activity -->
+    <dimen name="text_view_rating_title_margin_top">30dp</dimen>
+    <dimen name="text_view_rating_margin_top">20dp</dimen>
+    <dimen name="rating_view_company_margin_top">10dp</dimen>
+    <dimen name="update_rating_activity_separator_margin_top">30dp</dimen>
+    <dimen name="update_rating_activity_margin_side">20dp</dimen>
+    <dimen name="text_view_price_rating_title_margin_top">25dp</dimen>
+    <dimen name="text_view_your_rating_margin_top">30dp</dimen>
+
+
 </resources>

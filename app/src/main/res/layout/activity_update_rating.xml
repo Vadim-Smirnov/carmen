@@ -18,8 +18,8 @@
             <TextView
                 android:id="@+id/text_view_rating_title"
                 style="@style/TextView.DetailHeader"
-                android:layout_marginTop="30dp"
-                android:text="Ваша оценка"
+                android:layout_marginTop="@dimen/text_view_rating_title_margin_top"
+                android:text="@string/update_rating_activity_text_view_rating_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
@@ -28,8 +28,8 @@
                 android:id="@+id/text_view_rating"
                 style="@style/TextView.DetailHeader"
                 android:layout_width="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Ай молодець!"
+                android:layout_marginTop="@dimen/text_view_rating_margin_top"
+                tools:text="Ай молодець!"
                 android:textColor="@color/colorGreen"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -37,10 +37,9 @@
 
             <net.ginteam.carmen.view.custom.rating.CarmenRatingView
                 android:id="@+id/rating_view_company"
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:padding="2dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/rating_view_company_margin_top"
                 android:stepSize="1"
                 app:crv_emptyDrawable="@drawable/ic_large_empty_new_rating"
                 app:crv_fillDrawable="@drawable/ic_large_fill_new_rating"
@@ -52,7 +51,7 @@
             <View
                 android:id="@+id/view3"
                 style="@style/LayoutDivider"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/update_rating_activity_separator_margin_top"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rating_view_company"/>
@@ -61,9 +60,9 @@
                 android:id="@+id/text_view_price_rating_title"
                 style="@style/TextView.Header"
                 android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="25dp"
-                android:text="Стоимость"
+                android:layout_marginStart="@dimen/update_rating_activity_margin_side"
+                android:layout_marginTop="@dimen/text_view_price_rating_title_margin_top"
+                android:text="@string/update_rating_activity_text_view_price_rating_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3"/>
 
@@ -71,7 +70,7 @@
                 android:id="@+id/text_view_price_rating"
                 style="@style/TextView.Header"
                 android:layout_width="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/update_rating_activity_margin_side"
                 android:layout_marginTop="1dp"
                 android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -79,10 +78,10 @@
 
             <net.ginteam.carmen.view.custom.rating.CarmenRatingView
                 android:id="@+id/rating_view_company_price"
-                android:layout_width="105dp"
-                android:layout_height="37dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/update_rating_activity_margin_side"
+                android:layout_marginTop="@dimen/text_view_price_rating_title_margin_top"
                 android:numStars="4"
                 android:stepSize="1"
                 app:crv_emptyDrawable="@drawable/ic_medium_price_empty_rating"
@@ -94,7 +93,7 @@
             <View
                 android:id="@+id/view4"
                 style="@style/LayoutDivider"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/update_rating_activity_separator_margin_top"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/text_view_price_rating"/>
@@ -108,10 +107,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/view4"/>
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/text_view_your_rating"
                 style="@style/TextView.DetailHeader"
-                android:layout_marginTop="30dp"
-                android:text="Оставьте ваш отзыв"
+                android:layout_marginTop="@dimen/text_view_your_rating_margin_top"
+                android:text="@string/update_rating_activity_text_view_your_rating"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/recyclerView"/>
@@ -119,15 +118,15 @@
             <net.ginteam.carmen.view.custom.FilterEditText
                 android:id="@+id/filter_edit_text_name"
                 style="@style/EditText.Review"
-                app:filterHint="ИМЯ"
+                app:filterHint="@string/update_rating_activity_filter_edit_text_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView13"/>
+                app:layout_constraintTop_toBottomOf="@+id/text_view_your_rating"/>
 
             <net.ginteam.carmen.view.custom.FilterEditText
                 android:id="@+id/filter_edit_text_title"
                 style="@style/EditText.Review"
-                app:filterHint="ЗАГОЛОВОК"
+                app:filterHint="@string/update_rating_activity_filter_edit_text_title"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_edit_text_name"/>
@@ -135,7 +134,7 @@
             <net.ginteam.carmen.view.custom.FilterEditText
                 android:id="@+id/filter_edit_text_review"
                 style="@style/EditText.Review"
-                app:filterHint="ОТЗЫВ"
+                app:filterHint="@string/update_rating_activity_filter_edit_text_review"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/filter_edit_text_title"/>

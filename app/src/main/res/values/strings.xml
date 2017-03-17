@@ -259,4 +259,12 @@
     <string name="news_not_removed_from_favorites_message">The news has already removed from favorites</string>
     <string name="undo_news_removed_message">UNDO</string>
 
+    <!-- Update rating activity -->
+    <string name="update_rating_activity_text_view_rating_title">Ваша оценка</string>
+    <string name="update_rating_activity_text_view_price_rating_title">Стоимость</string>
+    <string name="update_rating_activity_text_view_your_rating">Оставьте ваш отзыв</string>
+    <string name="update_rating_activity_filter_edit_text_name">ИМЯ</string>
+    <string name="update_rating_activity_filter_edit_text_title">ЗАГОЛОВОК</string>
+    <string name="update_rating_activity_filter_edit_text_review">ОТЗЫВ</string>
+
 </resources>

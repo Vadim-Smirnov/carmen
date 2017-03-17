@@ -13,7 +13,7 @@ class FavoritesNewsPresenter : BaseNewsPresenter<FavoritesNewsContract.View>(), 
     private var isFirsLoading: Boolean = true
 
     override fun fetchFavoritesNews(pageNumber: Int) {
-        if (!checkUserStatus()) {
+        if (mAuthProvider.currentCachedUser == null) {
             return
         }
         isFirsLoading = pageNumber == 1

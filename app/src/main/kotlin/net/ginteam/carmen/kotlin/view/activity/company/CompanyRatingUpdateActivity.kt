@@ -64,7 +64,7 @@ class CompanyRatingUpdateActivity : BaseActivity <CompanyRatingUpdateContract.Vi
         }
     }
 
-    override fun getLayoutResId(): Int = R.layout.activity_vote_object
+    override fun getLayoutResId(): Int = R.layout.activity_update_rating
 
     override fun dismiss() {
         finish()

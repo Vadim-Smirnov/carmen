@@ -67,6 +67,10 @@ class CompanyDetailsActivity : BaseActivity<CompanyDetailsContract.View, Company
             postponeEnterTransition()
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
         mPresenter.fetchCompanyDetail(mSelectedCompany)
     }
 

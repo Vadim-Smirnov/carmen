@@ -41,7 +41,7 @@
             app:layout_constraintLeft_toRightOf="@+id/image_view_news_photo"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Кафе “Гордон-Россе-Чан”"/>
+            tools:text="Кафе “Гордон-Россе-Чан кт ыапв ап влп л пи атпьитат втитк”"/>
 
         <TextView
             android:id="@+id/text_view_news_date"

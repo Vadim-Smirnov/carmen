@@ -1,7 +1,9 @@
 package net.ginteam.carmen.kotlin.view.fragment.news
 
+import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.view.View
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.FavoritesNewsContract
 import net.ginteam.carmen.kotlin.model.NewsModel
@@ -23,6 +25,15 @@ class FavoritesNewsFragment : BaseVerticalNewsFragment<FavoritesNewsAdapter,
 
         fun newInstance(): FavoritesNewsFragment = FavoritesNewsFragment()
 
+    }
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        fetchNews()
     }
 
     override fun initializeAdapter(news: MutableList<NewsModel>,
