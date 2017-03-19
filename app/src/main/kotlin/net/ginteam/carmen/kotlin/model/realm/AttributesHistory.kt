@@ -11,6 +11,7 @@ open class AttributesHistoryModel : RealmObject() {
     open var id: Long = 0
     open var value: String = ""
 
+    open var costAttribute: CostTypeAttributeModel? = null
     open var history: HistoryModel? = null
 
 }

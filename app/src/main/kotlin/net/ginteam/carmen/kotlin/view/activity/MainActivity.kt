@@ -2,6 +2,8 @@ package net.ginteam.carmen.kotlin.view.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
@@ -11,6 +13,13 @@ import android.support.v4.widget.DrawerLayout
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
+import com.wangjie.androidbucket.utils.ABTextUtil
+import com.wangjie.androidbucket.utils.imageprocess.ABShape
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
+import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
+import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.common.notifications.FirebaseNotificationsReceiveService
@@ -20,6 +29,7 @@ import net.ginteam.carmen.kotlin.interfaces.Filterable
 import net.ginteam.carmen.kotlin.interfaces.Sortable
 import net.ginteam.carmen.kotlin.isMenuItemFragment
 import net.ginteam.carmen.kotlin.model.*
+import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
@@ -59,6 +69,13 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mNavigationView: NavigationView
+
+    private lateinit var mFloatButtonHelper: RapidFloatingActionHelper
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mPresenter.fetchCosts()
+    }
 
     override fun onStart() {
         super.onStart()
@@ -180,6 +197,20 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
                 showSignInActivity()
             }
         }
+    }
+
+    override fun showCosts(costs: List<CostTypeModel>) {
+        val mainFloatButton = findViewById(R.id.float_button_main) as RapidFloatingActionButton
+        mainFloatButton.visibility = View.VISIBLE
+
+        val floatButtonContent: RapidFloatingActionContentLabelList = RapidFloatingActionContentLabelList(getContext())
+        floatButtonContent.items = convertCostsToLabelList(costs)
+
+        mFloatButtonHelper = RapidFloatingActionHelper(
+                getContext(),
+                findViewById(R.id.float_button_layout) as RapidFloatingActionLayout,
+                mainFloatButton,
+                floatButtonContent).build()
     }
 
     override fun showUserInformation(user: UserModel) {
@@ -313,6 +344,24 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
             startPopularNewsActivity(it)
         }
+    }
+
+    private fun convertCostsToLabelList(costs: List<CostTypeModel>): List <RFACLabelItem <CostTypeModel>> {
+        val labelsList: MutableList <RFACLabelItem<CostTypeModel>> = ArrayList()
+        costs.forEach {
+            val costLabel: RFACLabelItem <CostTypeModel> = RFACLabelItem()
+//            costLabel.drawable = it.icon
+            costLabel.resId = R.drawable.ic_float_button_map
+            costLabel.labelColor = Color.WHITE
+            costLabel.labelBackgroundDrawable = ABShape.generateCornerShapeDrawable(Color.BLACK, ABTextUtil.dip2px(getContext(), 4f))
+            costLabel.iconNormalColor = Color.parseColor(it.color)
+            costLabel.iconPressedColor = Color.parseColor(it.color)
+            costLabel.label = it.name
+            costLabel.wrapper = it
+
+            labelsList.add(costLabel)
+        }
+        return labelsList
     }
 
     /**

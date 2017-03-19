@@ -248,4 +248,13 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="FloatButtonLayout" />
+
+    <style name="FloatButtonLayout.Base">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="rfal_frame_alpha">0.7</item>
+        <item name="rfal_frame_color">@color/colorBlack</item>
+    </style>
+
 </resources>

@@ -1,10 +1,12 @@
 package net.ginteam.carmen.kotlin.presenter
 
+import io.realm.Realm
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.MainActivityContract
 import net.ginteam.carmen.kotlin.manager.PreferencesManager
 import net.ginteam.carmen.kotlin.manager.SharedPreferencesManager
 import net.ginteam.carmen.kotlin.model.UserModel
+import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
 import net.ginteam.carmen.kotlin.provider.AuthProvider
 import net.ginteam.carmen.kotlin.provider.AuthenticationProvider
 
@@ -24,6 +26,15 @@ class MainActivityPresenter : BasePresenter <MainActivityContract.View>(), MainA
             return
         }
         mView?.inflateNavigationView(R.menu.navigation_menu_short, R.layout.navigation_view_default_header)
+    }
+
+    override fun fetchCosts() {
+        val realmInstance: Realm = Realm.getDefaultInstance()
+        realmInstance
+                .where(CostTypeModel::class.java)
+                .findAllAsync()
+                .asObservable()
+                .subscribe { mView?.showCosts(it) }
     }
 
     override fun isUserSignedIn(): Boolean = mAuthProvider.currentCachedUser != null

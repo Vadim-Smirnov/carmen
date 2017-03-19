@@ -216,5 +216,11 @@
     <dimen name="text_view_price_rating_title_margin_top">25dp</dimen>
     <dimen name="text_view_your_rating_margin_top">30dp</dimen>
 
+    <!-- Float button -->
+    <dimen name="main_float_button_margin">16dp</dimen>
+    <dimen name="main_float_button_padding">8dp</dimen>
+    <dimen name="main_float_button_shadow_radius">7dp</dimen>
+    <dimen name="main_float_shadow_x">0dp</dimen>
+    <dimen name="main_float_shadow_y">5dp</dimen>
 
 </resources>

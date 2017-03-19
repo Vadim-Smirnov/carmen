@@ -7,6 +7,8 @@ import android.util.Log;
 import com.crashlytics.android.Crashlytics;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import net.ginteam.carmen.utils.RealmUtils;
+
 import io.fabric.sdk.android.Fabric;
 import io.realm.Realm;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
@@ -52,6 +54,7 @@ public class CarmenApplication extends Application {
 
     private void setupRealm(Context context) {
         Realm.init(context);
+        Realm.setDefaultConfiguration(RealmUtils.getInitialConfiguration());
     }
 
 }

@@ -11,8 +11,8 @@ open class CostTypeModel : RealmObject() {
 
     open var id: Long = 0
     open var name: String = ""
-    open var iconId: Long = 0
-    open var color: Long = 0
+    open var icon: String = ""
+    open var color: String = ""
 
     open var attributes: RealmList <CostTypeAttributeModel>? = null
 

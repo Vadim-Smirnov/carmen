@@ -22,6 +22,9 @@
     <color name="colorTextHeader">#1D1D26</color>
 
     <color name="colorCheckBox">#3EC7C2</color>
-
     <color name="colorDialogBackground">#DADADA</color>
+
+    <!-- Float button -->
+    <color name="colorShadow">#999999</color>
+
 </resources>

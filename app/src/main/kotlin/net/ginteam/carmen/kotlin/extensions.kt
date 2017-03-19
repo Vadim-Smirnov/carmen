@@ -19,7 +19,6 @@ import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.FilterModel
-import net.ginteam.carmen.kotlin.model.ResponseModel
 import net.ginteam.carmen.kotlin.model.SortModel
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
@@ -60,7 +59,7 @@ fun MapCompaniesFragment.checkPermission(): Boolean {
                     != PackageManager.PERMISSION_GRANTED)
 }
 
-fun <T> Observable <ResponseModel <T>>.asyncWithCache(cache: Boolean = true): Observable<ResponseModel<T>> {
+fun <T> Observable <T>.asyncWithCache(cache: Boolean = true): Observable<T> {
     val originObservable = this
     val newObservable = originObservable
             .subscribeOn(Schedulers.io())
