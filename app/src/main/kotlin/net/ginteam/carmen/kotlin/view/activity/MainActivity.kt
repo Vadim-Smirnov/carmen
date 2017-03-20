@@ -34,6 +34,7 @@ import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.activity.company.CompanyDetailsActivity
+import net.ginteam.carmen.kotlin.view.activity.costs.CostDetailsActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.activity.news.NewsDetailsActivity
@@ -55,7 +56,8 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         MainActivityContract.View, NavigationView.OnNavigationItemSelectedListener,
         CategoriesFragment.OnCategorySelectedListener, BaseCompaniesFragment.OnCompanySelectedListener,
         CompaniesFragment.OnBottomMenuItemSelectedListener, SortOptionsDialogFragment.OnSortOptionSelectedListener,
-        BaseNewsFragment.OnNewsItemSelectedListener {
+        BaseNewsFragment.OnNewsItemSelectedListener,
+        RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<CostTypeModel> {
 
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
@@ -205,6 +207,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
         val floatButtonContent: RapidFloatingActionContentLabelList = RapidFloatingActionContentLabelList(getContext())
         floatButtonContent.items = convertCostsToLabelList(costs)
+        floatButtonContent.setOnRapidFloatingActionContentLabelListListener(this)
 
         mFloatButtonHelper = RapidFloatingActionHelper(
                 getContext(),
@@ -302,6 +305,13 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override fun onSortOptionSelected(field: String, type: String) {
         (mCurrentFragment as? Sortable)?.setSortQuery(field, type)
+    }
+
+    override fun onRFACItemLabelClick(p0: Int, p1: RFACLabelItem<CostTypeModel>?) {}
+
+    override fun onRFACItemIconClick(p0: Int, p1: RFACLabelItem<CostTypeModel>?) {
+        val intent = Intent(getContext(), CostDetailsActivity::class.java)
+        startActivity(intent)
     }
 
     /* -------------------------------------- */

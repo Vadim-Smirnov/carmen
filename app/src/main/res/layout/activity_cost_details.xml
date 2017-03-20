@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ScrollView.Base"
+    tools:context="net.ginteam.carmen.kotlin.view.activity.costs.CostDetailsActivity">
+
+    <LinearLayout style="@style/LinearLayout.Vertical">
+
+        <include layout="@layout/toolbar"/>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayout.WrappedHeight"
+            android:hint="Дата">
+
+            <EditText
+                android:id="@+id/edit_text_date"
+                style="@style/EditText.WrappedHeight" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayout.WrappedHeight"
+            android:hint="Пробег">
+
+            <EditText
+                android:id="@+id/edit_text_odometer"
+                style="@style/EditText.WrappedHeight" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayout.WrappedHeight"
+            android:hint="Коментарий">
+
+            <EditText
+                android:id="@+id/edit_text_comment"
+                style="@style/EditText.WrappedHeight" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <FrameLayout
+            android:id="@+id/cost_details_fragment_container"
+            style="@style/FrameLayout.WrappedHeight" />
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayout.WrappedHeight"
+            android:hint="Сумма">
+
+            <EditText
+                android:id="@+id/edit_text_sum"
+                style="@style/EditText.WrappedHeight" />
+
+        </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
+</ScrollView>

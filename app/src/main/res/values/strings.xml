@@ -1,10 +1,10 @@
 <resources>
 
     <!-- Fonts -->
-    <string translatable="false" name="open_sans_light_font">fonts/OpenSans-Light.ttf</string>
-    <string translatable="false" name="open_sans_font">fonts/OpenSans-Regular.ttf</string>
-    <string translatable="false" name="open_sans_semibold_font">fonts/OpenSans-Semibold.ttf</string>
-    <string translatable="false" name="avenir_book_font">fonts/Avenir-Book.ttf</string>
+    <string name="open_sans_light_font" translatable="false">fonts/OpenSans-Light.ttf</string>
+    <string name="open_sans_font" translatable="false">fonts/OpenSans-Regular.ttf</string>
+    <string name="open_sans_semibold_font" translatable="false">fonts/OpenSans-Semibold.ttf</string>
+    <string name="avenir_book_font" translatable="false">fonts/Avenir-Book.ttf</string>
 
     <!-- Dialog messages -->
     <string name="error_dialog_title">Error</string>
@@ -71,8 +71,8 @@
     <string name="location_measure">km</string>
 
     <!-- Navigation view -->
-    <string translatable="false" name="navigation_drawer_open">Open</string>
-    <string translatable="false" name="navigation_drawer_close">Close</string>
+    <string name="navigation_drawer_open" translatable="false">Open</string>
+    <string name="navigation_drawer_close" translatable="false">Close</string>
     <string name="main_item_title">Main</string>
     <string name="category_item_title">Categories</string>
     <string name="favorite_item_title">Favorites</string>
@@ -153,8 +153,8 @@
     <string name="clear_filters_string">Clear all</string>
 
     <!-- Sort Fragment -->
-    <string translatable="false" name="sort_field_tag_id">field</string>
-    <string translatable="false" name="sort_type_tag_id">type</string>
+    <string name="sort_field_tag_id" translatable="false">field</string>
+    <string name="sort_type_tag_id" translatable="false">type</string>
     <string name="sort_fragment_title">Sort type</string>
     <string name="sort_confirm_button_text">ACCEPT</string>
     <string name="sorting_example">[
@@ -230,10 +230,10 @@
     <string name="filter_button_string">Filters</string>
 
     <!-- Transition -->
-    <string translatable="false" name="transition_company_photo">transition_company_photo</string>
-    <string translatable="false" name="transition_news_photo">transition_news_photo</string>
-    <string translatable="false" name="transition_company_name">transition_company_name</string>
-    <string translatable="false" name="transition_company_rating">transition_company_rating</string>
+    <string name="transition_company_photo" translatable="false">transition_company_photo</string>
+    <string name="transition_news_photo" translatable="false">transition_news_photo</string>
+    <string name="transition_company_name" translatable="false">transition_company_name</string>
+    <string name="transition_company_rating" translatable="false">transition_company_rating</string>
 
     <!-- News -->
     <string name="news_tab_title_new">New</string>

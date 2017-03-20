@@ -79,18 +79,17 @@
             android:screenOrientation="portrait" />
 
         <!-- Firebase Cloud Messaging services -->
-        <service
-            android:name=".kotlin.common.notifications.FirebaseTokenRefreshService">
+        <service android:name=".kotlin.common.notifications.FirebaseTokenRefreshService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-        <service
-            android:name=".kotlin.common.notifications.FirebaseNotificationsReceiveService">
+        <service android:name=".kotlin.common.notifications.FirebaseNotificationsReceiveService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <activity android:name=".kotlin.view.activity.costs.CostDetailsActivity" />
 
         <!-- Google API key -->
         <meta-data
