@@ -3,6 +3,7 @@ package net.ginteam.carmen.view.activity.map;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -57,7 +58,7 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<CompanyModel>
             markerView = LayoutInflater.from(mContext).inflate(R.layout.layout_marker, null);
         }
         companyRatingView = (CarmenRatingView) markerView.findViewById(R.id.rating_view_company_price);
-        companyRatingView.setRating(item.getRating());
+        companyRatingView.setRating(item.getPrice());
 
         mIconGenerator.setContentView(markerView);
         Bitmap bitmap = mIconGenerator.makeIcon();
