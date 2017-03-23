@@ -22,7 +22,7 @@ object MainActivityContract {
 
     interface Presenter : BaseContract.Presenter <View> {
 
-        fun prepareNavigationViewForUserStatus()
+        fun prepareNavigationViewByUserStatus()
         fun fetchCosts()
 
         fun isUserSignedIn(): Boolean

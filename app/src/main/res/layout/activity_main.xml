@@ -11,16 +11,4 @@
 
     <include layout="@layout/navigation_view_layout" />
 
-    <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
-        android:id="@+id/float_button_layout"
-        style="@style/FloatButtonLayout.Base">
-
-        <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
-            xmlns:rfab="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/float_button_main"
-            style="@style/FloatButton.Main"
-            android:visibility="gone"/>
-
-    </com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout>
-
 </android.support.v4.widget.DrawerLayout>

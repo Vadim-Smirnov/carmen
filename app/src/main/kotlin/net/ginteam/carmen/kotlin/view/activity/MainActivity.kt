@@ -83,7 +83,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override fun onStart() {
         super.onStart()
-        mPresenter.prepareNavigationViewForUserStatus()
+        mPresenter.prepareNavigationViewByUserStatus()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -138,7 +138,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             when (requestCode) {
                 SignInActivity.SIGN_IN_REQUEST_CODE -> {
                     // invalidate navigation view
-//                    mPresenter.prepareNavigationViewForUserStatus()
+//                    mPresenter.prepareNavigationViewByUserStatus()
                 }
                 FiltersActivity.FILTER_CONFIRM_REQUEST_CODE -> {
                     (mCurrentFragment as? Filterable)?.setFilterQuery(
@@ -176,7 +176,6 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
             mPreviousFragment = null
             mPreviousTitle = null
-
             return
         }
     }
@@ -213,8 +212,6 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         floatButtonContent.setIconShadowColor(ContextCompat.getColor(getContext(), R.color.colorShadow))
         floatButtonContent.setIconShadowDy(ABTextUtil.dip2px(getContext(), 4f))
         floatButtonContent.setOnRapidFloatingActionContentLabelListListener(this)
-
-        floatButtonContent.rootView.animation
 
         mFloatButtonHelper = RapidFloatingActionHelper(
                 getContext(),
