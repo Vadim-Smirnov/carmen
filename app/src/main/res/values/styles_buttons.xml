@@ -214,15 +214,6 @@
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_margin">@dimen/main_float_button_margin</item>
         <item name="android:padding">@dimen/main_float_button_padding</item>
-
-        <item name="rfab_color_normal">@color/colorBlack</item>
-        <item name="rfab_color_pressed">@color/colorBlack</item>
-        <item name="rfab_drawable">@drawable/rfab__drawable_rfab_default</item>
-        <item name="rfab_shadow_radius">@dimen/main_float_button_shadow_radius</item>
-        <item name="rfab_shadow_color">@color/colorShadow</item>
-        <item name="rfab_shadow_dx">@dimen/main_float_shadow_x</item>
-        <item name="rfab_shadow_dy">@dimen/main_float_shadow_y</item>
-        <item name="rfab_size">normal</item>
     </style>
 
 </resources>

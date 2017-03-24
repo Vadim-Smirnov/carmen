@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/LinearLayout.Base">
+
+    <android.support.v7.widget.RecyclerView
+        style="@style/RecyclerView.Base"/>
+
+</LinearLayout>

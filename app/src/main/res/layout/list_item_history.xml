@@ -1,0 +1,97 @@
+<LinearLayout style="@style/LinearLayout.WrappedHeight.Horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="@dimen/list_item_history_horizontal_padding"
+    android:paddingEnd="@dimen/list_item_history_horizontal_padding"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="@dimen/list_item_history_icon_size"
+        android:layout_height="@dimen/list_item_history_height">
+
+        <View
+            style="@style/HistoryLine"/>
+
+        <ImageButton
+            android:id="@+id/image_button_history_icon"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/list_item_history_icon_size"
+            android:background="@drawable/history_icon_design"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/liner_layout_history_content"
+        style="@style/LinearLayout.Vertical"
+        android:layout_height="@dimen/list_item_history_icon_size"
+        android:paddingStart="@dimen/list_item_history_content_padding_start">
+
+        <android.support.constraint.ConstraintLayout
+            style="@style/ConstraintLayout.Base"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/text_view_cost_date"
+                style="@style/TextView.Wrapped.OpenSans"
+                android:textColor="#FF9B9B9B"
+                android:textSize="@dimen/list_item_history_text_view_cost_date_text_size"
+                tools:text="19 March"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_view_cost_name"
+                style="@style/TextView.Header"
+                tools:text="Ремонт"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/text_view_cost_date"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            style="@style/ConstraintLayout.Base"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/image_view_odometer"
+                style="@style/ImageView.Wrapped"
+                android:src="@drawable/ic_timer"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_view_odometer"
+                style="@style/TextView.CostDetail"
+                tools:text="300 km"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_view_odometer"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:id="@+id/image_view_cost_sum"
+                style="@style/ImageView.Wrapped"
+                android:src="@drawable/ic_coins_gray"
+                android:layout_marginStart="@dimen/list_item_history_image_view_cost_sum_margin_start"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/text_view_odometer"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <TextView
+                android:id="@+id/text_view_cost_sum"
+                style="@style/TextView.CostDetail"
+                tools:text="228 grn"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/image_view_cost_sum"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -15,11 +15,6 @@ import android.view.View
 import android.widget.TextView
 import com.wangjie.androidbucket.utils.ABTextUtil
 import com.wangjie.androidbucket.utils.imageprocess.ABShape
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.common.notifications.FirebaseNotificationsReceiveService
@@ -56,8 +51,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         MainActivityContract.View, NavigationView.OnNavigationItemSelectedListener,
         CategoriesFragment.OnCategorySelectedListener, BaseCompaniesFragment.OnCompanySelectedListener,
         CompaniesFragment.OnBottomMenuItemSelectedListener, SortOptionsDialogFragment.OnSortOptionSelectedListener,
-        BaseNewsFragment.OnNewsItemSelectedListener,
-        RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<CostTypeModel> {
+        BaseNewsFragment.OnNewsItemSelectedListener {
 
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
@@ -71,8 +65,6 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mNavigationView: NavigationView
-
-    private lateinit var mFloatButtonHelper: RapidFloatingActionHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -202,18 +194,18 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     }
 
     override fun showCosts(costs: List<CostTypeModel>) {
-        val mainFloatButton = findViewById(R.id.float_button_main) as RapidFloatingActionButton
-        mainFloatButton.visibility = View.VISIBLE
-
-        val floatButtonContent: RapidFloatingActionContentLabelList = RapidFloatingActionContentLabelList(getContext())
-        floatButtonContent.items = convertCostsToLabelList(costs)
-        floatButtonContent.setOnRapidFloatingActionContentLabelListListener(this)
-
-        mFloatButtonHelper = RapidFloatingActionHelper(
-                getContext(),
-                findViewById(R.id.float_button_layout) as RapidFloatingActionLayout,
-                mainFloatButton,
-                floatButtonContent).build()
+//        val mainFloatButton = findViewById(R.id.float_button_main) as RapidFloatingActionButton
+//        mainFloatButton.visibility = View.VISIBLE
+//
+//        val floatButtonContent: RapidFloatingActionContentLabelList = RapidFloatingActionContentLabelList(getContext())
+//        floatButtonContent.items = convertCostsToLabelList(costs)
+//        floatButtonContent.setOnRapidFloatingActionContentLabelListListener(this)
+//
+//        mFloatButtonHelper = RapidFloatingActionHelper(
+//                getContext(),
+//                findViewById(R.id.float_button_layout) as RapidFloatingActionLayout,
+//                mainFloatButton,
+//                floatButtonContent).build()
     }
 
     override fun showUserInformation(user: UserModel) {
@@ -307,12 +299,12 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         (mCurrentFragment as? Sortable)?.setSortQuery(field, type)
     }
 
-    override fun onRFACItemLabelClick(p0: Int, p1: RFACLabelItem<CostTypeModel>?) {}
-
-    override fun onRFACItemIconClick(p0: Int, p1: RFACLabelItem<CostTypeModel>?) {
-        val intent = Intent(getContext(), CostDetailsActivity::class.java)
-        startActivity(intent)
-    }
+//    override fun onRFACItemLabelClick(p0: Int, p1: RFACLabelItem<CostTypeModel>?) {}
+//
+//    override fun onRFACItemIconClick(p0: Int, p1: RFACLabelItem<CostTypeModel>?) {
+//        val intent = Intent(getContext(), CostDetailsActivity::class.java)
+//        startActivity(intent)
+//    }
 
     /* -------------------------------------- */
 
@@ -356,23 +348,23 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         }
     }
 
-    private fun convertCostsToLabelList(costs: List<CostTypeModel>): List <RFACLabelItem <CostTypeModel>> {
-        val labelsList: MutableList <RFACLabelItem<CostTypeModel>> = ArrayList()
-        costs.forEach {
-            val costLabel: RFACLabelItem <CostTypeModel> = RFACLabelItem()
-//            costLabel.drawable = it.icon
-            costLabel.resId = R.drawable.ic_float_button_map
-            costLabel.labelColor = Color.WHITE
-            costLabel.labelBackgroundDrawable = ABShape.generateCornerShapeDrawable(Color.BLACK, ABTextUtil.dip2px(getContext(), 4f))
-            costLabel.iconNormalColor = Color.parseColor(it.color)
-            costLabel.iconPressedColor = Color.parseColor(it.color)
-            costLabel.label = it.name
-            costLabel.wrapper = it
-
-            labelsList.add(costLabel)
-        }
-        return labelsList
-    }
+//    private fun convertCostsToLabelList(costs: List<CostTypeModel>): List <RFACLabelItem <CostTypeModel>> {
+//        val labelsList: MutableList <RFACLabelItem<CostTypeModel>> = ArrayList()
+//        costs.forEach {
+//            val costLabel: RFACLabelItem <CostTypeModel> = RFACLabelItem()
+////            costLabel.drawable = it.icon
+//            costLabel.resId = R.drawable.ic_float_button_map
+//            costLabel.labelColor = Color.WHITE
+//            costLabel.labelBackgroundDrawable = ABShape.generateCornerShapeDrawable(Color.BLACK, ABTextUtil.dip2px(getContext(), 4f))
+//            costLabel.iconNormalColor = Color.parseColor(it.color)
+//            costLabel.iconPressedColor = Color.parseColor(it.color)
+//            costLabel.label = it.name
+//            costLabel.wrapper = it
+//
+//            labelsList.add(costLabel)
+//        }
+//        return labelsList
+//    }
 
     /**
      * Check user access for menu item
