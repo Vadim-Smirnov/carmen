@@ -18,7 +18,7 @@ class MainActivityPresenter : BasePresenter <MainActivityContract.View>(), MainA
     private val mAuthProvider: AuthProvider = AuthenticationProvider
     private val mPreferences: PreferencesManager = SharedPreferencesManager
 
-    override fun prepareNavigationViewForUserStatus() {
+    override fun prepareNavigationViewByUserStatus() {
         val currentUser: UserModel? = mAuthProvider.currentCachedUser
         if (currentUser != null) {
             mView?.inflateNavigationView(R.menu.navigation_menu_full, R.layout.navigation_view_user_header)

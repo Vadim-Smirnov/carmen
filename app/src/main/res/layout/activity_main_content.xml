@@ -4,8 +4,25 @@
 
     <include layout="@layout/toolbar" />
 
-    <FrameLayout
-        android:id="@+id/main_fragment_container"
-        style="@style/FragmentContainer" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/main_fragment_container"
+            style="@style/FragmentContainer" />
+
+        <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
+            android:id="@+id/float_button_layout"
+            style="@style/FloatButtonLayout.Base">
+
+            <com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
+                android:id="@+id/float_button_main"
+                style="@style/FloatButton.Main"
+                android:visibility="invisible" />
+
+        </com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ScrollView.Base"
-    tools:context="net.ginteam.carmen.kotlin.view.activity.costs.CostDetailsActivity">
+    tools:context="net.ginteam.carmen.kotlin.view.activity.costs.BaseCostDetailsActivity">
 
     <LinearLayout style="@style/LinearLayout.Vertical">
 
@@ -47,10 +47,43 @@
             android:hint="Сумма">
 
             <EditText
-                android:id="@+id/edit_text_sum"
+                android:id="@+id/edit_text_price"
                 style="@style/EditText.WrappedHeight" />
 
         </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayout.WrappedHeight" >
+
+            <EditText
+                android:id="@+id/edit_text_fuel_type"
+                style="@style/EditText.WrappedHeight" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayout.WrappedHeight" >
+
+            <EditText
+                android:id="@+id/edit_text_liters"
+                style="@style/EditText.WrappedHeight" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            style="@style/TextInputLayout.WrappedHeight" >
+
+            <EditText
+                android:id="@+id/edit_text_price_per_liter"
+                style="@style/EditText.WrappedHeight" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/float_button_save_details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </ScrollView>

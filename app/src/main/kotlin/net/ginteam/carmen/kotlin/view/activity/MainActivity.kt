@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
@@ -15,6 +16,11 @@ import android.view.View
 import android.widget.TextView
 import com.wangjie.androidbucket.utils.ABTextUtil
 import com.wangjie.androidbucket.utils.imageprocess.ABShape
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
+import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
+import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
+import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.common.notifications.FirebaseNotificationsReceiveService
@@ -29,7 +35,8 @@ import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.activity.company.CompanyDetailsActivity
-import net.ginteam.carmen.kotlin.view.activity.costs.CostDetailsActivity
+import net.ginteam.carmen.kotlin.view.activity.costs.BaseCostDetailsActivity
+import net.ginteam.carmen.kotlin.view.activity.costs.FuelDetailsActivity
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.activity.news.NewsDetailsActivity
@@ -73,7 +80,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
     override fun onStart() {
         super.onStart()
-        mPresenter.prepareNavigationViewForUserStatus()
+        mPresenter.prepareNavigationViewByUserStatus()
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
@@ -128,7 +135,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             when (requestCode) {
                 SignInActivity.SIGN_IN_REQUEST_CODE -> {
                     // invalidate navigation view
-//                    mPresenter.prepareNavigationViewForUserStatus()
+//                    mPresenter.prepareNavigationViewByUserStatus()
                 }
                 FiltersActivity.FILTER_CONFIRM_REQUEST_CODE -> {
                     (mCurrentFragment as? Filterable)?.setFilterQuery(
@@ -166,7 +173,6 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
             mPreviousFragment = null
             mPreviousTitle = null
-
             return
         }
     }
@@ -199,6 +205,21 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 //
 //        val floatButtonContent: RapidFloatingActionContentLabelList = RapidFloatingActionContentLabelList(getContext())
 //        floatButtonContent.items = convertCostsToLabelList(costs)
+//        floatButtonContent.setOnRapidFloatingActionContentLabelListListener(this)
+//
+//        mFloatButtonHelper = RapidFloatingActionHelper(
+//                getContext(),
+//                findViewById(R.id.float_button_layout) as RapidFloatingActionLayout,
+//                mainFloatButton,
+//                floatButtonContent).build()
+//        val mainFloatButton = findViewById(R.id.float_button_main) as RapidFloatingActionButton
+//        mainFloatButton.visibility = View.VISIBLE
+//
+//        val floatButtonContent: RapidFloatingActionContentLabelList = RapidFloatingActionContentLabelList(getContext())
+//        floatButtonContent.items = convertCostsToLabelList(costs)
+//        floatButtonContent.setIconShadowRadius(ABTextUtil.dip2px(getContext(), 4f))
+//        floatButtonContent.setIconShadowColor(ContextCompat.getColor(getContext(), R.color.colorShadow))
+//        floatButtonContent.setIconShadowDy(ABTextUtil.dip2px(getContext(), 4f))
 //        floatButtonContent.setOnRapidFloatingActionContentLabelListListener(this)
 //
 //        mFloatButtonHelper = RapidFloatingActionHelper(
@@ -299,11 +320,15 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         (mCurrentFragment as? Sortable)?.setSortQuery(field, type)
     }
 
-//    override fun onRFACItemLabelClick(p0: Int, p1: RFACLabelItem<CostTypeModel>?) {}
+//    override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<CostTypeModel>?) {
+//        onRFACItemIconClick(position, item)
+//    }
 //
-//    override fun onRFACItemIconClick(p0: Int, p1: RFACLabelItem<CostTypeModel>?) {
-//        val intent = Intent(getContext(), CostDetailsActivity::class.java)
+//    override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<CostTypeModel>?) {
+//        val intent = Intent(getContext(), FuelDetailsActivity::class.java)
+//        intent.putExtra(BaseCostDetailsActivity.COST_ID_ARGUMENT, item!!.wrapper.id)
 //        startActivity(intent)
+//        mFloatButtonHelper.toggleContent()
 //    }
 
     /* -------------------------------------- */
