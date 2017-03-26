@@ -3,11 +3,9 @@ package net.ginteam.carmen.kotlin.view.adapter.company
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.CompanyModel
 import net.ginteam.carmen.kotlin.view.adapter.LoadingViewHolder
-import net.ginteam.carmen.utils.DisplayUtils
 
 /**
  * Created by eugene_shcherbinock on 2/16/17.

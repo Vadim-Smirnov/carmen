@@ -2,17 +2,11 @@ package net.ginteam.carmen.kotlin.view.fragment.company
 
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.FavoriteCompaniesContract
 import net.ginteam.carmen.kotlin.model.CompanyModel
-import net.ginteam.carmen.kotlin.model.NewsModel
-import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.presenter.company.list.FavoritesPresenter
 import net.ginteam.carmen.kotlin.view.adapter.company.FavoriteCompaniesAdapter
-import net.ginteam.carmen.kotlin.view.adapter.news.FavoritesNewsAdapter
-import net.ginteam.carmen.view.adapter.RecyclerListVerticalItemDecorator
 
 /**
  * Created by eugene_shcherbinock on 2/17/17.

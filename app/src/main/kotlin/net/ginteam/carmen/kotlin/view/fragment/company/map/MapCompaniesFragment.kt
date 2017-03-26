@@ -7,6 +7,7 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.SnapHelper
+import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.LinearInterpolator
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.maps.android.clustering.Cluster
 import com.google.maps.android.clustering.ClusterManager
 import net.ginteam.carmen.R
@@ -29,6 +31,7 @@ import net.ginteam.carmen.kotlin.presenter.company.map.MapCompaniesFragmentPrese
 import net.ginteam.carmen.kotlin.view.adapter.company.map.MapCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.view.activity.map.CompanyClusterRenderer
+import net.ginteam.carmen.view.activity.map.MarkerInfoWindowAdapter
 import net.ginteam.carmen.view.adapter.RecyclerListHorizontalItemDecorator
 
 /**
@@ -126,7 +129,7 @@ class MapCompaniesFragment
 
     override fun onClusterItemClick(company: CompanyModel?): Boolean {
         selectCompany(company, withScroll = true)
-        return false
+        return true
     }
 
     override fun onClusterClick(companyCluster: Cluster<CompanyModel>?): Boolean {
@@ -216,6 +219,7 @@ class MapCompaniesFragment
 
     private fun selectCompany(company: CompanyModel?, withScroll: Boolean = false) {
         val companyRenderer: CompanyClusterRenderer = mGoogleMapClusterManager.renderer as CompanyClusterRenderer
+        var unselectedCompanyPosition: Int = 0
 
         // if we already have selected company
         mUserSelectedCompany?.let {
@@ -224,7 +228,8 @@ class MapCompaniesFragment
 
             // invalidate marker and adapter item
             companyRenderer.updateClusterItem(it)
-            mCompaniesAdapter.updateCompanyItem(it)
+            companyRenderer.getMarker(mUserSelectedCompany)?.let { Marker::hideInfoWindow }
+            unselectedCompanyPosition = mCompaniesAdapter.updateCompanyItem(it)
         }
 
         // if we select company
@@ -236,10 +241,15 @@ class MapCompaniesFragment
 
             // invalidate marker and adapter item
             companyRenderer.updateClusterItem(mUserSelectedCompany)
-            val updatedPosition = mCompaniesAdapter.updateCompanyItem(mUserSelectedCompany!!)
+            companyRenderer.getMarker(mUserSelectedCompany)?.let(Marker::showInfoWindow)
 
+            val selectedCompanyPosition = mCompaniesAdapter.updateCompanyItem(mUserSelectedCompany!!)
             if (withScroll) {
-                mRecyclerViewCompanies.scrollToPosition(updatedPosition)
+                mRecyclerViewCompanies.scrollToPosition(if (unselectedCompanyPosition > selectedCompanyPosition) {
+                    selectedCompanyPosition
+                } else {
+                    selectedCompanyPosition + 1
+                })
             }
 
             // animate camera to marker position
@@ -266,6 +276,7 @@ class MapCompaniesFragment
         mGoogleMapInstance.setOnCameraIdleListener(this)
         mGoogleMapInstance.setOnCameraMoveStartedListener(this)
         mGoogleMapInstance.setOnMarkerClickListener(mGoogleMapClusterManager)
+        mGoogleMapInstance.setInfoWindowAdapter(MarkerInfoWindowAdapter(LayoutInflater.from(context)))
     }
 
     interface OnShowFiltersActivityListener {

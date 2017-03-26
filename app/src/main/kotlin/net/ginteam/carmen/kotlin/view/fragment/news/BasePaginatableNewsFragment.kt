@@ -5,7 +5,6 @@ import net.ginteam.carmen.kotlin.contract.BaseNewsContract
 import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.kotlin.model.PaginationModel
 import net.ginteam.carmen.kotlin.view.adapter.news.PaginatableNewsAdapter
-import net.ginteam.carmen.kotlin.view.adapter.news.VerticalNewsAdapter
 import net.ginteam.carmen.view.adapter.company.PaginationScrollListener
 
 /**

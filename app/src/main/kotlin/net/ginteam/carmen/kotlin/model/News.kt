@@ -1,7 +1,6 @@
 package net.ginteam.carmen.kotlin.model
 
 import com.google.gson.annotations.SerializedName
-import net.ginteam.carmen.kotlin.view.adapter.company.BaseCompaniesAdapter
 import net.ginteam.carmen.kotlin.view.adapter.news.BaseNewsAdapter
 import java.io.Serializable
 

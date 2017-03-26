@@ -3,7 +3,6 @@ package net.ginteam.carmen.view.activity.map;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -30,6 +29,8 @@ import java.util.Map;
  */
 
 public class CompanyClusterRenderer extends DefaultClusterRenderer<CompanyModel> {
+
+    private final String UNNECESSARY_TITLE = "title";
 
     private Context mContext;
     private IconGenerator mIconGenerator;
@@ -129,7 +130,7 @@ public class CompanyClusterRenderer extends DefaultClusterRenderer<CompanyModel>
         options.flat(marker.isFlat());
         options.position(marker.getPosition());
         options.rotation(marker.getRotation());
-        options.title(marker.getTitle());
+        options.title(UNNECESSARY_TITLE);
         options.snippet(marker.getSnippet());
         options.visible(marker.isVisible());
         options.zIndex(marker.getZIndex());

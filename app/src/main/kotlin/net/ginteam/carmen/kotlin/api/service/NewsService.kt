@@ -5,9 +5,6 @@ import net.ginteam.carmen.kotlin.manager.ApiManager
 import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.kotlin.model.ResponseModel
 import retrofit2.http.*
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 import rx.Observable
 
 /**

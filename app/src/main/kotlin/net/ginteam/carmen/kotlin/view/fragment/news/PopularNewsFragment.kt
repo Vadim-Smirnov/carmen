@@ -2,7 +2,6 @@ package net.ginteam.carmen.kotlin.view.fragment.news
 
 import android.os.Bundle
 import net.ginteam.carmen.kotlin.contract.PopularNewsContract
-import net.ginteam.carmen.kotlin.model.NewsModel
 import net.ginteam.carmen.kotlin.presenter.news.PopularNewsPresenter
 import net.ginteam.carmen.kotlin.view.adapter.news.VerticalNewsAdapter
 
