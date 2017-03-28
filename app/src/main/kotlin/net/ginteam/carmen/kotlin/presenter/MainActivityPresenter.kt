@@ -32,7 +32,7 @@ class MainActivityPresenter : BasePresenter <MainActivityContract.View>(), MainA
         val realmInstance: Realm = Realm.getDefaultInstance()
         realmInstance
                 .where(CostTypeModel::class.java)
-                .findAllAsync()
+                .findAll()
                 .asObservable()
                 .subscribe { mView?.showCosts(it) }
     }

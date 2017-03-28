@@ -3,6 +3,7 @@ package net.ginteam.carmen.kotlin.view.activity
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.design.widget.NavigationView
 import android.support.v4.app.ActivityOptionsCompat
@@ -11,16 +12,10 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
-import com.wangjie.androidbucket.utils.ABTextUtil
-import com.wangjie.androidbucket.utils.imageprocess.ABShape
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionButton
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionHelper
-import com.wangjie.rapidfloatingactionbutton.RapidFloatingActionLayout
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RFACLabelItem
-import com.wangjie.rapidfloatingactionbutton.contentimpl.labellist.RapidFloatingActionContentLabelList
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.common.notifications.FirebaseNotificationsReceiveService
@@ -31,6 +26,7 @@ import net.ginteam.carmen.kotlin.interfaces.Sortable
 import net.ginteam.carmen.kotlin.isMenuItemFragment
 import net.ginteam.carmen.kotlin.model.*
 import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
+import net.ginteam.carmen.kotlin.model.realm.HistoryModel
 import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
@@ -48,18 +44,21 @@ import net.ginteam.carmen.kotlin.view.fragment.company.BaseCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.CompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.RecentlyWatchedCompaniesFragment
+import net.ginteam.carmen.kotlin.view.fragment.cost.CostHistoryListFragment
 import net.ginteam.carmen.kotlin.view.fragment.news.BaseNewsFragment
 import net.ginteam.carmen.kotlin.view.fragment.news.MainNewsFragment
 import net.ginteam.carmen.kotlin.view.fragment.sort.SortOptionsDialogFragment
 import net.ginteam.carmen.utils.DeviceUtils
 import net.ginteam.carmen.view.custom.ToolbarDrawerToggle
+import net.ginteam.carmenfloatbutton.FloatingActionButton
+import net.ginteam.carmenfloatbutton.FloatingActionMenu
 
 class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContract.Presenter>(),
         MainActivityContract.View, NavigationView.OnNavigationItemSelectedListener,
         CategoriesFragment.OnCategorySelectedListener, BaseCompaniesFragment.OnCompanySelectedListener,
         CompaniesFragment.OnBottomMenuItemSelectedListener, SortOptionsDialogFragment.OnSortOptionSelectedListener,
-        BaseNewsFragment.OnNewsItemSelectedListener,
-        RapidFloatingActionContentLabelList.OnRapidFloatingActionContentLabelListListener<CostTypeModel> {
+        BaseNewsFragment.OnNewsItemSelectedListener, CostHistoryListFragment.OnHistoryItemSelectedListener,
+        FloatingActionMenu.OnMenuItemClickListener{
 
     override var mPresenter: MainActivityContract.Presenter = MainActivityPresenter()
 
@@ -69,12 +68,13 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     private var mPreviousTitle: Pair <String, String>? = null
     private var mPreviousFragment: Fragment? = null
 
+    private lateinit var mCosts: List<CostTypeModel>
+
     private lateinit var mCurrentFragment: Fragment
 
     private lateinit var mDrawerLayout: DrawerLayout
     private lateinit var mNavigationView: NavigationView
-
-    private lateinit var mFloatButtonHelper: RapidFloatingActionHelper
+    private lateinit var mFloatingActionMenu: net.ginteam.carmenfloatbutton.FloatingActionMenu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,6 +97,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             R.id.navigation_item_categories -> selectedFragment = CategoriesFragment.newInstance(false)
             R.id.navigation_item_privacy_policy -> selectedFragment = WebViewFragment.newInstance(Constants.PRIVACY_POLICY_URL)
             R.id.navigation_item_news -> selectedFragment = MainNewsFragment.newInstance()
+            R.id.navigation_item_cost_history -> selectedFragment = CostHistoryListFragment.newInstance()
 
         // items for only signed in users
 
@@ -203,21 +204,12 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     }
 
     override fun showCosts(costs: List<CostTypeModel>) {
-        val mainFloatButton = findViewById(R.id.float_button_main) as RapidFloatingActionButton
-        mainFloatButton.visibility = View.VISIBLE
+        mCosts = costs
+        mFloatingActionMenu = findViewById(R.id.floating_action_menu) as FloatingActionMenu
+        mFloatingActionMenu.visibility = View.VISIBLE
+        mFloatingActionMenu.onMenuItemClickListener = this
 
-        val floatButtonContent: RapidFloatingActionContentLabelList = RapidFloatingActionContentLabelList(getContext())
-        floatButtonContent.items = convertCostsToLabelList(costs)
-        floatButtonContent.setIconShadowRadius(ABTextUtil.dip2px(getContext(), 4f))
-        floatButtonContent.setIconShadowColor(ContextCompat.getColor(getContext(), R.color.colorShadow))
-        floatButtonContent.setIconShadowDy(ABTextUtil.dip2px(getContext(), 4f))
-        floatButtonContent.setOnRapidFloatingActionContentLabelListListener(this)
-
-        mFloatButtonHelper = RapidFloatingActionHelper(
-                getContext(),
-                findViewById(R.id.float_button_layout) as RapidFloatingActionLayout,
-                mainFloatButton,
-                floatButtonContent).build()
+        createFloatingMenu(costs)
     }
 
     override fun showUserInformation(user: UserModel) {
@@ -311,16 +303,28 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         (mCurrentFragment as? Sortable)?.setSortQuery(field, type)
     }
 
-    override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<CostTypeModel>?) {
-        onRFACItemIconClick(position, item)
+    override fun onHistoryItemSelected(historyItem: HistoryModel) {
+        val intent = Intent(getContext(), FuelDetailsActivity::class.java)
+        intent.putExtra(BaseCostDetailsActivity.HISTORY_ID_ARGUMENT, historyItem.id)
+        startActivity(intent)
     }
 
-    override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<CostTypeModel>?) {
+    override fun onMenuItemClick(fam: FloatingActionMenu?, index: Int, item: FloatingActionButton?) {
         val intent = Intent(getContext(), FuelDetailsActivity::class.java)
-        intent.putExtra(BaseCostDetailsActivity.COST_ID_ARGUMENT, item!!.wrapper.id)
+        intent.putExtra(BaseCostDetailsActivity.COST_ID_ARGUMENT, mCosts[index].id)
         startActivity(intent)
-        mFloatButtonHelper.toggleContent()
     }
+
+    //    override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<CostTypeModel>?) {
+//        onRFACItemIconClick(position, item)
+//    }
+//
+//    override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<CostTypeModel>?) {
+//        val intent = Intent(getContext(), FuelDetailsActivity::class.java)
+//        intent.putExtra(BaseCostDetailsActivity.COST_ID_ARGUMENT, item!!.wrapper.id)
+//        startActivity(intent)
+//        mFloatButtonHelper.toggleContent()
+//    }
 
     /* -------------------------------------- */
 
@@ -364,22 +368,23 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         }
     }
 
-    private fun convertCostsToLabelList(costs: List<CostTypeModel>): List <RFACLabelItem <CostTypeModel>> {
-        val labelsList: MutableList <RFACLabelItem<CostTypeModel>> = ArrayList()
+    private fun createFloatingMenu(costs: List<CostTypeModel>) {
         costs.forEach {
-            val costLabel: RFACLabelItem <CostTypeModel> = RFACLabelItem()
-//            costLabel.drawable = it.icon
-            costLabel.resId = R.drawable.ic_float_button_map
-            costLabel.labelColor = Color.WHITE
-            costLabel.labelBackgroundDrawable = ABShape.generateCornerShapeDrawable(Color.BLACK, ABTextUtil.dip2px(getContext(), 4f))
-            costLabel.iconNormalColor = Color.parseColor(it.color)
-            costLabel.iconPressedColor = Color.parseColor(it.color)
-            costLabel.label = it.name
-            costLabel.wrapper = it
-
-            labelsList.add(costLabel)
+            val floatingActionButton: FloatingActionButton = FloatingActionButton(getContext())
+            floatingActionButton.colorNormal = Color.parseColor(it.color)
+            floatingActionButton.colorPressed = Color.parseColor(it.color)
+            floatingActionButton.labelText = it.name
+            floatingActionButton.buttonSize = FloatingActionButton.SIZE_MINI
+            var drawable: Drawable = ContextCompat.getDrawable(this, R.drawable.ic_carwash_float_button)
+            when (costs.indexOf(it)) {
+                0 -> {drawable = ContextCompat.getDrawable(this, R.drawable.ic_refuelling_float_button)}
+                1 -> {drawable = ContextCompat.getDrawable(this, R.drawable.ic_carwash_float_button)}
+                2 -> {drawable = ContextCompat.getDrawable(this, R.drawable.ic_car_service_float_button)}
+                3 -> {drawable = ContextCompat.getDrawable(this, R.drawable.ic_costs_float_button)}
+            }
+            floatingActionButton.setImageDrawable(drawable)
+            mFloatingActionMenu.addMenuButton(floatingActionButton)
         }
-        return labelsList
     }
 
     /**

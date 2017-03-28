@@ -41,6 +41,11 @@
             android:icon="@drawable/ic_profile"
             android:title="@string/news_item_text"/>
 
+        <item
+            android:id="@+id/navigation_item_cost_history"
+            android:icon="@drawable/ic_profile"
+            android:title="Расходы"/>
+
     </group>
 
     <group android:checkableBehavior="single">

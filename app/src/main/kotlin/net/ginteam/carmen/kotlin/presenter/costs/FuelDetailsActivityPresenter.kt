@@ -17,7 +17,7 @@ import java.util.*
 class FuelDetailsActivityPresenter : CostDetailsActivityPresenter <FuelDetailsActivityContract.View>(),
         FuelDetailsActivityContract.Presenter {
 
-    override fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Double, comment: String, price: Double,
+    override fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double,
                                  attributes: List <EditText>) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
@@ -49,7 +49,7 @@ class FuelDetailsActivityPresenter : CostDetailsActivityPresenter <FuelDetailsAc
         mView?.close()
     }
 
-    override fun updateFuelHistory(date: Date, odometer: Double, comment: String, price: Double,
+    override fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double,
                                    attributes: List<EditText>, attributesHistory: MutableList<AttributesHistoryModel>) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()

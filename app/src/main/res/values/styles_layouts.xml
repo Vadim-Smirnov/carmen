@@ -248,13 +248,11 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
-    <style name="FloatButtonLayout" />
-
-    <style name="FloatButtonLayout.Base">
-        <item name="android:layout_width">match_parent</item>
+    <style name="HistoryLine">
+        <item name="android:layout_width">3dp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="rfal_frame_alpha">0.3</item>
-        <item name="rfal_frame_color">@color/colorBlack</item>
+        <item name="android:background">#FFD9D9D9</item>
+        <item name="android:layout_centerHorizontal">true</item>
     </style>
 
 </resources>
