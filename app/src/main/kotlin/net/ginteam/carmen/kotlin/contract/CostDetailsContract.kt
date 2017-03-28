@@ -35,10 +35,10 @@ object FuelDetailsActivityContract {
 
     interface Presenter : CostDetailsActivityContract.Presenter <View> {
 
-        fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Double, comment: String, price: Double,
+        fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double,
                             attributes: List <EditText>)
 
-        fun updateFuelHistory(date: Date, odometer: Double, comment: String, price: Double,
+        fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double,
                               attributes: List <EditText>, attributesHistory: MutableList<AttributesHistoryModel>)
 
     }

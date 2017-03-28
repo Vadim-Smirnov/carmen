@@ -49,13 +49,13 @@ class FuelDetailsActivity : BaseCostDetailsActivity <FuelDetailsActivityContract
         }
     }
 
-    override fun saveHistory(cost: CostTypeModel, date: Date, odometer: Double, comment: String, price: Double) {
+    override fun saveHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double) {
         mPresenter.saveFuelHistory(
                 cost, date, odometer, comment, price,
                 mAttributesViews)
     }
 
-    override fun updateHistory(date: Date, odometer: Double, comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>) {
+    override fun updateHistory(date: Date, odometer: Int, comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>) {
         mPresenter.updateFuelHistory(
                 date, odometer, comment, price,
                 mAttributesViews, attributesHistory)

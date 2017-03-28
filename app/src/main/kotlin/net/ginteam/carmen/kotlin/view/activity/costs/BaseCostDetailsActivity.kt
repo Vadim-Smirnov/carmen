@@ -93,7 +93,7 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
             saveHistoryOrUpdate(
                     mFetchedCost,
                     Date(mEditTextDate?.text.toString()),
-                    "${mEditTextOdometer?.text}".toDouble(),
+                    "${mEditTextOdometer?.text}".toInt(),
                     mEditTextComment?.text.toString(),
                     "${mEditTextPrice?.text}".toDouble(),
                     mUpdatableAttributes
@@ -101,10 +101,10 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
         }
     }
 
-    protected abstract fun saveHistory(cost: CostTypeModel, date: Date, odometer: Double,
+    protected abstract fun saveHistory(cost: CostTypeModel, date: Date, odometer: Int,
                                        comment: String, price: Double)
 
-    protected abstract fun updateHistory(date: Date, odometer: Double,
+    protected abstract fun updateHistory(date: Date, odometer: Int,
                                          comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>)
 
     protected fun fetchInformation() {
@@ -115,7 +115,7 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
         mPresenter.fetchHistoryById(mHistoryId)
     }
 
-    private fun saveHistoryOrUpdate(cost: CostTypeModel, date: Date, odometer: Double,
+    private fun saveHistoryOrUpdate(cost: CostTypeModel, date: Date, odometer: Int,
                                     comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>? = null) {
         attributesHistory?.let {
             updateHistory(date, odometer, comment, price, it)

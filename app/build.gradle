@@ -106,9 +106,6 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.artemzin.rxjava:proguard-rules:1.2.7.0'
     // other dependencies
-    compile 'com.github.wangjiegulu:AndroidBucket:1.0.4'
-//    compile 'com.github.wangjiegulu:ShadowViewHelper:1.0.0'
-    compile 'com.github.clans:fab:1.6.4'
     compile 'com.mobsandgeeks:android-saripaar:2.0.0'
     compile 'com.github.rubensousa:gravitysnaphelper:1.0'
     compile 'uk.co.chrisjenx:calligraphy:2.2.0'
@@ -117,6 +114,7 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.7@aar') {
         transitive = true;
     }
+    compile project(path: ':net.ginteam.carmenfloatbutton')
 }
 
 apply plugin: 'com.google.gms.google-services'
