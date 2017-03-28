@@ -12,7 +12,6 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -315,17 +314,6 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         startActivity(intent)
     }
 
-    //    override fun onRFACItemLabelClick(position: Int, item: RFACLabelItem<CostTypeModel>?) {
-//        onRFACItemIconClick(position, item)
-//    }
-//
-//    override fun onRFACItemIconClick(position: Int, item: RFACLabelItem<CostTypeModel>?) {
-//        val intent = Intent(getContext(), FuelDetailsActivity::class.java)
-//        intent.putExtra(BaseCostDetailsActivity.COST_ID_ARGUMENT, item!!.wrapper.id)
-//        startActivity(intent)
-//        mFloatButtonHelper.toggleContent()
-//    }
-
     /* -------------------------------------- */
 
     /* Private */
@@ -377,10 +365,10 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             floatingActionButton.buttonSize = FloatingActionButton.SIZE_MINI
             var drawable: Drawable = ContextCompat.getDrawable(this, R.drawable.ic_carwash_float_button)
             when (costs.indexOf(it)) {
-                0 -> {drawable = ContextCompat.getDrawable(this, R.drawable.ic_refuelling_float_button)}
-                1 -> {drawable = ContextCompat.getDrawable(this, R.drawable.ic_carwash_float_button)}
-                2 -> {drawable = ContextCompat.getDrawable(this, R.drawable.ic_car_service_float_button)}
-                3 -> {drawable = ContextCompat.getDrawable(this, R.drawable.ic_costs_float_button)}
+                0 -> drawable = ContextCompat.getDrawable(this, R.drawable.ic_refuelling_float_button)
+                1 -> drawable = ContextCompat.getDrawable(this, R.drawable.ic_carwash_float_button)
+                2 -> drawable = ContextCompat.getDrawable(this, R.drawable.ic_car_service_float_button)
+                3 -> drawable = ContextCompat.getDrawable(this, R.drawable.ic_costs_float_button)
             }
             floatingActionButton.setImageDrawable(drawable)
             mFloatingActionMenu.addMenuButton(floatingActionButton)
