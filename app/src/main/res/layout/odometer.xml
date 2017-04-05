@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout style="@style/LinearLayout.WrappedHeight.Horizontal"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/odometer">
+
+    <net.ginteam.carmen.view.custom.NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
+    <net.ginteam.carmen.view.custom.NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-3dp" />
+
+    <net.ginteam.carmen.view.custom.NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-3dp" />
+
+    <net.ginteam.carmen.view.custom.NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-3dp" />
+
+    <net.ginteam.carmen.view.custom.NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-3dp" />
+
+    <net.ginteam.carmen.view.custom.NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-3dp" />
+
+</LinearLayout>

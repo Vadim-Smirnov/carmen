@@ -5,6 +5,7 @@
         <attr name="filterText" format="string" localization="suggested" />
         <attr name="filterHint" format="string" localization="suggested" />
         <attr name="imageFilledText" format="integer" />
+        <attr name="imageEmptyText" format="integer" />
         <attr name="imageClearText" format="integer" />
         <attr name="maxLine" format="integer" />
         <attr name="imageClearTextVisibility" format="boolean" />

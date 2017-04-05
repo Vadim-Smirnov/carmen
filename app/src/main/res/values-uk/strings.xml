@@ -244,4 +244,7 @@
     <string name="news_not_removed_from_favorites_message">Новина не видалена з обраних</string>
     <string name="undo_news_removed_message">ВІДМІНИТИ</string>
 
+    <!-- Cost Details Activity Menu -->
+    <string name="save_string">Зберегти</string>
+
 </resources>

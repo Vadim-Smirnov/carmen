@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CostHistoryListContract
 import net.ginteam.carmen.kotlin.model.realm.HistoryModel
-import net.ginteam.carmen.kotlin.presenter.cost.CostHistoryListPresenter
+import net.ginteam.carmen.kotlin.presenter.costs.CostHistoryListPresenter
 import net.ginteam.carmen.kotlin.view.adapter.cost.CostHistoryAdapter
 import net.ginteam.carmen.kotlin.view.fragment.BaseFragment
 
@@ -29,6 +29,11 @@ class CostHistoryListFragment : BaseFragment<CostHistoryListContract.View,
         fun newInstance(): CostHistoryListFragment = CostHistoryListFragment()
     }
 
+    override fun onStart() {
+        super.onStart()
+        mPresenter.fetchHistoryList()
+    }
+
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         mHistoryItemSelectedListener = context as OnHistoryItemSelectedListener?
@@ -47,8 +52,8 @@ class CostHistoryListFragment : BaseFragment<CostHistoryListContract.View,
         super.updateViewDependencies()
         mRecyclerViewHistory = mFragmentView.findViewById(R.id.recycler_view_history) as RecyclerView
         val layoutManager: LinearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, true)
-        layoutManager.stackFromEnd = true
         mRecyclerViewHistory.layoutManager = layoutManager
+        mRecyclerViewHistory.setHasFixedSize(false)
     }
 
     interface OnHistoryItemSelectedListener {

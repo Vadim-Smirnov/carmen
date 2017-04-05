@@ -1,6 +1,7 @@
 package net.ginteam.carmen.kotlin.view.adapter.cost
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.LayerDrawable
 import android.support.v4.content.ContextCompat
@@ -13,6 +14,7 @@ import android.widget.TextView
 import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.realm.HistoryModel
+import java.text.SimpleDateFormat
 
 /**
  * Created by vadimsmirnov on 24.03.17.
@@ -53,14 +55,19 @@ class CostHistoryAdapter(private val history: List <HistoryModel>,
 
         fun bindData(history: HistoryModel) {
             with(history) {
-                mImageButtonCostIcon.setImageDrawable(ContextCompat.getDrawable(CarmenApplication.getContext(),
-                        R.drawable.ic_refuelling_float_button))
+                var icon: Drawable = ContextCompat.getDrawable(CarmenApplication.getContext(), R.drawable.ic_carwash_float_button)
+                when (history.costType!!.id) {
+                    1L -> icon = ContextCompat.getDrawable(CarmenApplication.getContext(), R.drawable.ic_refuelling_float_button)
+                    2L -> icon = ContextCompat.getDrawable(CarmenApplication.getContext(), R.drawable.ic_carwash_float_button)
+                    3L -> icon = ContextCompat.getDrawable(CarmenApplication.getContext(), R.drawable.ic_car_service_float_button)
+                    4L -> icon = ContextCompat.getDrawable(CarmenApplication.getContext(), R.drawable.ic_costs_float_button)
+                }
+                mImageButtonCostIcon.setImageDrawable(icon)
 
-                shape.setColor(ContextCompat.getColor(CarmenApplication.getContext(),
-                        Color.parseColor(costType!!.color)))
+                shape.setColor(Color.parseColor(costType!!.color))
 
                 mTextViewCostName.text = costType!!.name
-                mTextViewCostDate.text = date.toString()
+                mTextViewCostDate.text = SimpleDateFormat("dd MMMMMM").format(date)
                 mTextViewOdometer.text = odometer.toString()
                 mTextViewCostPrice.text = price.toString()
                 itemView.setOnClickListener {

@@ -2,27 +2,26 @@ package net.ginteam.carmen.kotlin.view.activity.costs
 
 import android.util.Log
 import net.ginteam.carmen.R
-import net.ginteam.carmen.kotlin.contract.FuelDetailsActivityContract
+import net.ginteam.carmen.kotlin.contract.ServiceDetailsActivityContract
 import net.ginteam.carmen.kotlin.model.realm.AttributesHistoryModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeAttributeModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
 import net.ginteam.carmen.kotlin.model.realm.HistoryModel
-import net.ginteam.carmen.kotlin.presenter.costs.FuelDetailsActivityPresenter
+import net.ginteam.carmen.kotlin.presenter.costs.ServiceDetailsActivityPresenter
 import net.ginteam.carmen.view.custom.FilterEditText
 import java.util.*
 
 /**
- * Created by eugene_shcherbinock on 3/21/17.
+ * Created by vadimsmirnov on 05.04.17.
  */
 
-class FuelDetailsActivity : BaseCostDetailsActivity <FuelDetailsActivityContract.View, FuelDetailsActivityContract.Presenter>(),
-        FuelDetailsActivityContract.View {
 
-    override var mPresenter: FuelDetailsActivityContract.Presenter = FuelDetailsActivityPresenter()
+class ServiceDetailsActivity : BaseCostDetailsActivity <ServiceDetailsActivityContract.View,
+        ServiceDetailsActivityContract.Presenter>(), ServiceDetailsActivityContract.View {
 
-    private lateinit var mEditTextFuelType: FilterEditText
-    private lateinit var mEditTextLiters: FilterEditText
-    private lateinit var mEditTextLiterPrice: FilterEditText
+    override var mPresenter: ServiceDetailsActivityContract.Presenter = ServiceDetailsActivityPresenter()
+
+    private lateinit var mEditTextServiceName: FilterEditText
 
     override fun setCostInformation(cost: CostTypeModel) {
         super.setCostInformation(cost)
@@ -61,17 +60,14 @@ class FuelDetailsActivity : BaseCostDetailsActivity <FuelDetailsActivityContract
                 mAttributesViews, attributesHistory)
     }
 
-    override fun getLayoutResId(): Int = R.layout.activity_fuel_details
+    override fun getLayoutResId(): Int = R.layout.activity_service_details
 
     override fun updateViewDependencies() {
         super.updateViewDependencies()
 
-        mEditTextFuelType = findViewById(R.id.filter_edit_text_fuel_type) as FilterEditText
-        mEditTextLiters = findViewById(R.id.filter_edit_text_liters) as FilterEditText
-        mEditTextLiterPrice = findViewById(R.id.filter_edit_text_liter_price) as FilterEditText
+        mEditTextServiceName = findViewById(R.id.filter_edit_text_service_name) as FilterEditText
 
-        mAttributesViews.add(mEditTextFuelType)
-        mAttributesViews.add(mEditTextLiters)
-        mAttributesViews.add(mEditTextLiterPrice)
+        mAttributesViews.add(mEditTextServiceName)
     }
+
 }

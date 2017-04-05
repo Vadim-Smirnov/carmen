@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingPrefix">
+
+    <net.ginteam.carmen.view.custom.NumberPickerButton android:id="@+id/increment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_increment_button"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <EditText
+        android:id="@+id/number_picker_input"
+        android:layout_width="40dp"
+        fontPath="@string/open_sans_semibold_font"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:focusable="false"
+        android:clickable="false"
+        android:includeFontPadding="false"
+        android:textColor="@android:color/primary_text_light"
+        android:cursorVisible="false"
+        android:textSize="40sp"
+        android:background="@drawable/number_picker_input" />
+
+    <net.ginteam.carmen.view.custom.NumberPickerButton android:id="@+id/decrement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_decrement_button"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+</merge>

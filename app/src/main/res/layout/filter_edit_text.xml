@@ -10,6 +10,8 @@
     <ImageView
         android:id="@+id/image_view_filled_edit_text"
         style="@style/ImageView.WrappedWidth"
+        android:paddingEnd="@dimen/edit_text_filter_margin_start"
+
         app:layout_constraintBottom_toBottomOf="@+id/text_input_layout_filter"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_input_layout_filter"/>
@@ -18,6 +20,7 @@
         android:id="@+id/image_view_clear_edit_text"
         style="@style/ImageView.WrappedWidth"
         android:visibility="invisible"
+        android:paddingStart="@dimen/edit_text_filter_margin_end"
         app:layout_constraintBottom_toBottomOf="@+id/text_input_layout_filter"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/text_input_layout_filter"/>
@@ -26,8 +29,6 @@
         android:id="@+id/text_input_layout_filter"
         fontPath="@string/open_sans_font"
         style="@style/TextInputLayout.WrappedHeight"
-        android:layout_marginEnd="@dimen/edit_text_filter_margin_end"
-        android:layout_marginStart="@dimen/edit_text_filter_margin_start"
         app:layout_constraintLeft_toRightOf="@+id/image_view_filled_edit_text"
         app:layout_constraintRight_toLeftOf="@+id/image_view_clear_edit_text"
         app:layout_constraintTop_toTopOf="parent">

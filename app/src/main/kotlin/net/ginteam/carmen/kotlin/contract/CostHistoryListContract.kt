@@ -16,6 +16,8 @@ object CostHistoryListContract {
 
     interface Presenter : BaseContract.Presenter <View> {
 
+        fun fetchHistoryList()
+
     }
 
 }

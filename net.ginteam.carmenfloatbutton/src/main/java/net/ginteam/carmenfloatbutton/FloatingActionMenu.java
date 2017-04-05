@@ -12,6 +12,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ContextThemeWrapper;
 import android.view.MotionEvent;
@@ -128,7 +129,7 @@ public class FloatingActionMenu extends ViewGroup {
                 int i = mMenuItems.indexOf(v);
                 if (onMenuItemClickListener != null) {
                     onMenuItemClickListener
-                            .onMenuItemClick(FloatingActionMenu.this, i, (FloatingActionButton) v);
+                            .onMenuItemClick(FloatingActionMenu.this, i - 1, (FloatingActionButton) v);
                 }
             }
             close(true);

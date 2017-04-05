@@ -77,6 +77,19 @@
         <activity
             android:name=".kotlin.view.activity.news.PopularNewsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".kotlin.view.activity.costs.FuelDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".kotlin.view.activity.costs.CarWashDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".kotlin.view.activity.costs.ServiceDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".kotlin.view.activity.costs.CostDetailsActivity"
+            android:screenOrientation="portrait"/>
+
 
         <!-- Firebase Cloud Messaging services -->
         <service android:name=".kotlin.common.notifications.FirebaseTokenRefreshService">
@@ -89,7 +102,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <activity android:name=".kotlin.view.activity.costs.FuelDetailsActivity" />
 
         <!-- Google API key -->
         <meta-data

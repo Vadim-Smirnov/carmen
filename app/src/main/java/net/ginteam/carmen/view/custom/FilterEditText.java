@@ -42,10 +42,14 @@ public class FilterEditText extends LinearLayout {
     private TextInputLayout mTextInputLayoutFilter;
     private EditText mEditTextFilter;
 
+
     private String mFilterText;
     private String mFilterHint;
     private int mImageFilledText;
+    private boolean mImageFilledTextVisibility;
+    private int mImageEmptyText;
     private int mImageClearText;
+    private boolean mImageClearTextVisibility;
     private int mMaxLine;
 
     private String mFilterType;
@@ -86,17 +90,19 @@ public class FilterEditText extends LinearLayout {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            mImageViewClearEditText
-                    .setVisibility(mEditTextFilter
-                            .getText()
-                            .toString()
-                            .isEmpty() ? INVISIBLE : VISIBLE);
+            if (mImageClearTextVisibility) {
+                mImageViewClearEditText
+                        .setVisibility(mEditTextFilter
+                                .getText()
+                                .toString()
+                                .isEmpty() ? INVISIBLE : VISIBLE);
+            }
 
             mImageViewFilledEditText
                     .setImageResource(mEditTextFilter
                             .getText()
                             .toString()
-                            .isEmpty() ? IMAGE_EMPTY_TEXT : IMAGE_FILLED_TEXT);
+                            .isEmpty() ? mImageFilledText : mImageEmptyText);
 
             if (mFilterModel != null) {
                 if (mFilterModel.getFilterOptions() == null) {
@@ -185,6 +191,18 @@ public class FilterEditText extends LinearLayout {
         mEditTextFilter.setText(mFilterText);
     }
 
+    public void setOnFilterClickListener(OnTouchListener listener) {
+        mEditTextFilter.setOnTouchListener(listener);
+    }
+
+    public int getImageEmptyText() {
+        return mImageEmptyText;
+    }
+
+    public void setImageEmptyText(int imageEmptyText) {
+        mImageEmptyText = imageEmptyText;
+    }
+
     // ----------------------------------------------------------------------------
 
     // -------------------------- Private Methods ---------------------------------
@@ -193,14 +211,22 @@ public class FilterEditText extends LinearLayout {
         mContext = context;
 
         mImageFilledText = IMAGE_FILLED_TEXT;
+        mImageEmptyText = IMAGE_EMPTY_TEXT;
         mImageClearText = IMAGE_CLEAR_TEXT;
+        mImageClearTextVisibility = true;
+        mImageFilledTextVisibility = true;
 
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.FilterEditText, 0, 0);
         try {
             mFilterText = attributes.getString(R.styleable.FilterEditText_filterText);
             mFilterHint = attributes.getString(R.styleable.FilterEditText_filterHint);
-            mImageFilledText = attributes.getResourceId(R.styleable.FilterEditText_imageFilledText, IMAGE_EMPTY_TEXT);
+            mImageFilledText = attributes.getResourceId(R.styleable.FilterEditText_imageFilledText, IMAGE_FILLED_TEXT);
+            mImageEmptyText = attributes.getResourceId(R.styleable.FilterEditText_imageEmptyText, IMAGE_EMPTY_TEXT);
             mImageClearText = attributes.getResourceId(R.styleable.FilterEditText_imageClearText, IMAGE_CLEAR_TEXT);
+            mImageClearTextVisibility = attributes.getBoolean(R.styleable.FilterEditText_imageClearTextVisibility, true);
+            mImageFilledTextVisibility = attributes.getBoolean(R.styleable.FilterEditText_imageFilledTextVisibility, true);
+
+
             mMaxLine = attributes.getResourceId(R.styleable.FilterEditText_maxLine, 0);
         } finally {
             attributes.recycle();
@@ -220,7 +246,9 @@ public class FilterEditText extends LinearLayout {
         mEditTextFilter = (EditText) findViewById(R.id.edit_text_filter);
 
         mImageViewFilledEditText.setImageResource(mImageFilledText);
+        mImageViewFilledEditText.setVisibility(mImageFilledTextVisibility ? VISIBLE :GONE);
         mImageViewClearEditText.setImageResource(mImageClearText);
+        mImageViewClearEditText.setVisibility(mImageClearTextVisibility ? INVISIBLE :GONE);
         mTextInputLayoutFilter.setHint(mFilterHint);
         mEditTextFilter.setText(mFilterText);
 

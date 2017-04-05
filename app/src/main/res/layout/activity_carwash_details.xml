@@ -45,39 +45,6 @@
 
             <include layout="@layout/odometer" />
 
-            <net.ginteam.carmen.view.custom.FilterEditText
-                android:id="@+id/filter_edit_text_fuel_type"
-                style="@style/EditText.WrappedHeight"
-                android:layout_marginTop="@dimen/costs_details_activity_filter_edit_text_fuel_type_margin_top"
-                app:filterHint="@string/cost_detail_activity_filter_edit_text_fuel_type_hint"
-                app:imageEmptyText="@drawable/ic_calendar_white"
-                app:imageFilledText="@drawable/ic_calendar_white" />
-
-            <LinearLayout
-                style="@style/LinearLayout.Horizontal"
-                android:layout_marginTop="@dimen/costs_details_activity_filter_edit_text_liters_margin_top"
-                android:paddingEnd="@dimen/costs_details_activity_filter_edit_text_liters_margin_end">
-
-                <net.ginteam.carmen.view.custom.FilterEditText
-                    android:id="@+id/filter_edit_text_liters"
-                    style="@style/EditText.WrappedHeight"
-                    android:layout_weight="1.4"
-                    app:filterHint="@string/cost_detail_activity_filter_edit_text_liters_hint"
-                    app:imageClearTextVisibility="false"
-                    app:imageEmptyText="@drawable/ic_refresh_white"
-                    app:imageFilledText="@drawable/ic_refresh_white" />
-
-                <net.ginteam.carmen.view.custom.FilterEditText
-                    android:id="@+id/filter_edit_text_liter_price"
-                    style="@style/EditText.WrappedHeight"
-                    android:layout_marginStart="@dimen/costs_details_activity_filter_edit_text_liter_price_margin_start"
-                    android:layout_weight="1.6"
-                    app:filterHint="@string/cost_detail_activity_filter_edit_text_liter_price_hint"
-                    app:imageClearTextVisibility="false"
-                    app:imageFilledTextVisibility="false" />
-
-            </LinearLayout>
-
             <LinearLayout
                 style="@style/LinearLayout.Horizontal"
                 android:layout_marginTop="@dimen/costs_details_activity_filter_edit_text_liters_margin_top"

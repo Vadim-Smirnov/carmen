@@ -1,21 +1,28 @@
 package net.ginteam.carmen.kotlin.view.activity.costs
 
+import android.app.DatePickerDialog
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
+import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
+import android.view.MotionEvent
+import android.widget.DatePicker
+import android.widget.LinearLayout
 import net.ginteam.carmen.R
-import net.ginteam.carmen.kotlin.contract.CostDetailsActivityContract
+import net.ginteam.carmen.kotlin.contract.BaseCostDetailsActivityContract
 import net.ginteam.carmen.kotlin.model.realm.AttributesHistoryModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
 import net.ginteam.carmen.kotlin.model.realm.HistoryModel
 import net.ginteam.carmen.kotlin.view.activity.BaseActivity
+import net.ginteam.carmen.view.custom.FilterEditText
+import net.ginteam.carmen.view.custom.NumberPicker
+import java.text.SimpleDateFormat
 import java.util.*
 
-abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, T : CostDetailsActivityContract.Presenter <V>>
+
+abstract class BaseCostDetailsActivity<in V : BaseCostDetailsActivityContract.View, T : BaseCostDetailsActivityContract.Presenter <V>>
     : BaseActivity <V, T>(),
-        CostDetailsActivityContract.View {
+        BaseCostDetailsActivityContract.View, DatePickerDialog.OnDateSetListener {
 
     protected var mCostId: Long = -1
     protected var mHistoryId: Long = -1
@@ -23,13 +30,14 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
     protected lateinit var mFetchedCost: CostTypeModel
     protected var mUpdatableAttributes: MutableList <AttributesHistoryModel>? = null
 
-    protected var mEditTextDate: EditText? = null
-    protected var mEditTextOdometer: EditText? = null
-    protected var mEditTextComment: EditText? = null
-    protected var mEditTextPrice: EditText? = null
-    protected var mFloatButtonSave: FloatingActionButton? = null
+    protected var mEditTextDate: FilterEditText? = null
+    protected var mLinearLayoutOdometer: LinearLayout? = null
+    protected var mEditTextComment: FilterEditText? = null
+    protected var mEditTextPrice: FilterEditText? = null
 
-    protected lateinit var mAttributesViews: MutableList <EditText>
+    protected var mSelectedDate: Calendar? = null
+
+    protected lateinit var mAttributesViews: MutableList <FilterEditText>
 
     companion object {
         const val COST_ID_ARGUMENT = "cost_argument"
@@ -41,23 +49,67 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
         fetchInformation()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        onBackPressed()
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun setCostInformation(cost: CostTypeModel) {
         mFetchedCost = cost
         mToolbar?.setBackgroundColor(Color.parseColor(cost.color))
         setToolbarTitle(cost.name)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menu?.let { menuInflater.inflate(R.menu.cost_details_menu, menu) }
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.menu_item_save -> {
+                var odometer: String = ""
+                for (i in 0..mLinearLayoutOdometer!!.childCount - 1 step 1) {
+                    odometer += (mLinearLayoutOdometer!!.getChildAt(i) as NumberPicker).current
+                }
+                saveHistoryOrUpdate(
+                        mFetchedCost,
+                        mSelectedDate!!.time,
+                        odometer.toInt(),
+                        mEditTextComment?.text.toString(),
+                        "${mEditTextPrice?.text}".toDouble(),
+                        mUpdatableAttributes
+                )
+            }
+            else -> onBackPressed()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun setHistoryInformation(history: HistoryModel, attributesHistory: MutableList <AttributesHistoryModel>) {
         mUpdatableAttributes = attributesHistory
-        mEditTextDate?.setText(history.date.toString())
-        mEditTextOdometer?.setText(history.odometer.toString())
-        mEditTextComment?.setText(history.comment)
-        mEditTextPrice?.setText(history.price.toString())
+        mSelectedDate!!.time = history.date
+
+        mEditTextDate?.text = SimpleDateFormat("dd MMMMMM").format(mSelectedDate!!.time)
+
+        val historyOdometer: String = history.odometer.toString()
+
+        for (i in 0..historyOdometer.length - 1 step 1) {
+            (mLinearLayoutOdometer!!.getChildAt(i + mLinearLayoutOdometer!!.childCount - historyOdometer.length)
+                    as NumberPicker).current = historyOdometer[i].toString().toInt()
+        }
+        mEditTextComment?.text = history.comment
+        mEditTextPrice?.text = history.price.toString()
+    }
+
+    override fun setHistoryInformation(history: HistoryModel) {
+        mSelectedDate!!.time = history.date
+
+        mEditTextDate?.text = SimpleDateFormat("dd MMMMMM").format(mSelectedDate!!.time)
+
+        val historyOdometer: String = history.odometer.toString()
+
+        for (i in 0..historyOdometer.length - 1 step 1) {
+            (mLinearLayoutOdometer!!.getChildAt(i + mLinearLayoutOdometer!!.childCount - historyOdometer.length)
+                    as NumberPicker).current = historyOdometer[i].toString().toInt()
+        }
+        mEditTextComment?.text = history.comment
+        mEditTextPrice?.text = history.price.toString()
     }
 
     override fun close() {
@@ -70,7 +122,7 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
         mCostId = intent.getLongExtra(COST_ID_ARGUMENT, -1)
         mHistoryId = intent.getLongExtra(HISTORY_ID_ARGUMENT, -1)
 
-        mAttributesViews = ArrayList <EditText>()
+        mAttributesViews = ArrayList <FilterEditText>()
     }
 
     override fun updateViewDependencies() {
@@ -81,24 +133,24 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_back_button)
 
-        mEditTextDate = findViewById(R.id.edit_text_date) as EditText?
-        mEditTextOdometer = findViewById(R.id.edit_text_odometer) as EditText?
-        mEditTextComment = findViewById(R.id.edit_text_comment) as EditText?
-        mEditTextPrice = findViewById(R.id.edit_text_price) as EditText?
+        mEditTextDate = findViewById(R.id.filter_edit_text_date) as FilterEditText?
+        mLinearLayoutOdometer = findViewById(R.id.odometer) as LinearLayout?
+        mEditTextComment = findViewById(R.id.filter_edit_text_comment) as FilterEditText?
+        mEditTextPrice = findViewById(R.id.filter_edit_text_price) as FilterEditText?
 
-        mEditTextDate?.setText("${Date()}")
-
-        mFloatButtonSave = findViewById(R.id.float_button_save_details) as FloatingActionButton?
-        mFloatButtonSave?.setOnClickListener {
-            saveHistoryOrUpdate(
-                    mFetchedCost,
-                    Date(mEditTextDate?.text.toString()),
-                    "${mEditTextOdometer?.text}".toInt(),
-                    mEditTextComment?.text.toString(),
-                    "${mEditTextPrice?.text}".toDouble(),
-                    mUpdatableAttributes
-            )
+        mEditTextDate!!.setOnFilterClickListener { v, event ->
+            when (event.action) {
+                MotionEvent.ACTION_UP -> {
+                    showDatePickerDialog()
+                    v.requestFocus()
+                }
+            }
+            false
         }
+
+        mSelectedDate = Calendar.getInstance()
+        mEditTextDate?.text = SimpleDateFormat("dd MMMMMM").format(mSelectedDate!!.time)
+
     }
 
     protected abstract fun saveHistory(cost: CostTypeModel, date: Date, odometer: Int,
@@ -112,6 +164,7 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
             mPresenter.fetchCostById(mCostId)
             return
         }
+
         mPresenter.fetchHistoryById(mHistoryId)
     }
 
@@ -123,4 +176,20 @@ abstract class BaseCostDetailsActivity<in V : CostDetailsActivityContract.View, 
         }
         saveHistory(cost, date, odometer, comment, price)
     }
+
+    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        mSelectedDate!!.set(Calendar.YEAR, year)
+        mSelectedDate!!.set(Calendar.MONTH, month)
+        mSelectedDate!!.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        mEditTextDate?.text = SimpleDateFormat("dd MMMMMM").format(mSelectedDate!!.time)
+    }
+
+    private fun showDatePickerDialog() {
+        val dialog: DatePickerDialog = DatePickerDialog(this, this,
+                mSelectedDate!!.get(Calendar.YEAR),
+                mSelectedDate!!.get(Calendar.MONTH),
+                mSelectedDate!!.get(Calendar.DAY_OF_MONTH))
+        dialog.show()
+    }
+
 }

@@ -243,4 +243,7 @@
     <string name="news_not_removed_from_favorites_message">Новость не удалена из избранных</string>
     <string name="undo_news_removed_message">ОТМЕНИТЬ</string>
 
+    <!-- Cost Details Activity Menu -->
+    <string name="save_string">Сохранить</string>
+
 </resources>

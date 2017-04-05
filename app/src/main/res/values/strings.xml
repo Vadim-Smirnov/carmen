@@ -268,4 +268,16 @@
     <string name="update_rating_activity_filter_edit_text_title">ЗАГОЛОВОК</string>
     <string name="update_rating_activity_filter_edit_text_review">ОТЗЫВ</string>
 
+    <!-- Cost Details Activity -->
+    <string name="save_string">Save</string>
+    <string name="cost_detail_activity_filter_edit_text_date_hint">Дата</string>
+    <string name="cost_detail_activity_filter_edit_text_fuel_type_hint">Бензин</string>
+    <string name="cost_detail_activity_filter_edit_text_liters_hint">Заправлено</string>
+    <string name="cost_detail_activity_filter_edit_text_service_name_hint">Наименование</string>
+    <string name="cost_detail_activity_filter_edit_text_liter_price_hint">Цена за 1 л.</string>
+    <string name="cost_detail_activity_filter_edit_text_price_hint">Цена</string>
+    <string name="cost_detail_activity_filter_edit_text_comment_hint">Комментарий</string>
+    <string name="cost_detail_activity_odometer_text">Текущий пробег</string>
+
+
 </resources>

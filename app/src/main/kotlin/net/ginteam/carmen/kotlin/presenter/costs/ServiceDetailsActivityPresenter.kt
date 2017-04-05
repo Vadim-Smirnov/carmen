@@ -2,7 +2,7 @@ package net.ginteam.carmen.kotlin.presenter.costs
 
 import io.realm.Realm
 import net.ginteam.carmen.kotlin.Constants
-import net.ginteam.carmen.kotlin.contract.FuelDetailsActivityContract
+import net.ginteam.carmen.kotlin.contract.ServiceDetailsActivityContract
 import net.ginteam.carmen.kotlin.model.realm.AttributesHistoryModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeAttributeModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
@@ -11,14 +11,13 @@ import net.ginteam.carmen.view.custom.FilterEditText
 import java.util.*
 
 /**
- * Created by eugene_shcherbinock on 3/21/17.
+ * Created by vadimsmirnov on 05.04.17.
  */
 
-class FuelDetailsActivityPresenter : BaseCostDetailsActivityPresenter <FuelDetailsActivityContract.View>(),
-        FuelDetailsActivityContract.Presenter {
+class ServiceDetailsActivityPresenter : BaseCostDetailsActivityPresenter <ServiceDetailsActivityContract.View>(),
+        ServiceDetailsActivityContract.Presenter {
 
-    override fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double,
-                                 attributes: List <FilterEditText>) {
+    override fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double, attributes: List<FilterEditText>) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
 
@@ -46,11 +45,9 @@ class FuelDetailsActivityPresenter : BaseCostDetailsActivityPresenter <FuelDetai
         }
         realm.commitTransaction()
         realm.close()
-        mView?.close()
-    }
+        mView?.close()    }
 
-    override fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double,
-                                   attributes: List<FilterEditText>, attributesHistory: MutableList<AttributesHistoryModel>) {
+    override fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double, attributes: List<FilterEditText>, attributesHistory: MutableList<AttributesHistoryModel>) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
 

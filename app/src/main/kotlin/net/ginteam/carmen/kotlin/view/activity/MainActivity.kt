@@ -12,6 +12,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v4.util.Pair
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
@@ -30,8 +31,7 @@ import net.ginteam.carmen.kotlin.prepareFragment
 import net.ginteam.carmen.kotlin.presenter.MainActivityPresenter
 import net.ginteam.carmen.kotlin.view.activity.authentication.SignInActivity
 import net.ginteam.carmen.kotlin.view.activity.company.CompanyDetailsActivity
-import net.ginteam.carmen.kotlin.view.activity.costs.BaseCostDetailsActivity
-import net.ginteam.carmen.kotlin.view.activity.costs.FuelDetailsActivity
+import net.ginteam.carmen.kotlin.view.activity.costs.*
 import net.ginteam.carmen.kotlin.view.activity.filter.FiltersActivity
 import net.ginteam.carmen.kotlin.view.activity.map.MapActivity
 import net.ginteam.carmen.kotlin.view.activity.news.NewsDetailsActivity
@@ -96,6 +96,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             R.id.navigation_item_categories -> selectedFragment = CategoriesFragment.newInstance(false)
             R.id.navigation_item_privacy_policy -> selectedFragment = WebViewFragment.newInstance(Constants.PRIVACY_POLICY_URL)
             R.id.navigation_item_news -> selectedFragment = MainNewsFragment.newInstance()
+
             R.id.navigation_item_cost_history -> selectedFragment = CostHistoryListFragment.newInstance()
 
         // items for only signed in users
@@ -303,13 +304,25 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
     }
 
     override fun onHistoryItemSelected(historyItem: HistoryModel) {
-        val intent = Intent(getContext(), FuelDetailsActivity::class.java)
+        val intent: Intent
+        when (mCosts.indexOf(historyItem.costType)) {
+            0 -> intent = Intent(getContext(), FuelDetailsActivity::class.java)
+            1 -> intent = Intent(getContext(), CarWashDetailsActivity::class.java)
+            2 -> intent = Intent(getContext(), ServiceDetailsActivity::class.java)
+            else -> intent = Intent(getContext(), CostDetailsActivity::class.java)
+        }
         intent.putExtra(BaseCostDetailsActivity.HISTORY_ID_ARGUMENT, historyItem.id)
         startActivity(intent)
     }
 
     override fun onMenuItemClick(fam: FloatingActionMenu?, index: Int, item: FloatingActionButton?) {
-        val intent = Intent(getContext(), FuelDetailsActivity::class.java)
+        val intent: Intent
+        when (index) {
+            0 -> intent = Intent(getContext(), FuelDetailsActivity::class.java)
+            1 -> intent = Intent(getContext(), CarWashDetailsActivity::class.java)
+            2 -> intent = Intent(getContext(), ServiceDetailsActivity::class.java)
+            else -> intent = Intent(getContext(), CostDetailsActivity::class.java)
+        }
         intent.putExtra(BaseCostDetailsActivity.COST_ID_ARGUMENT, mCosts[index].id)
         startActivity(intent)
     }
