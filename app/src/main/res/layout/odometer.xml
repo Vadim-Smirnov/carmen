@@ -5,38 +5,22 @@
     android:id="@+id/odometer">
 
     <net.ginteam.carmen.view.custom.NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+        style="@style/OdometerItem"
+        android:layout_marginStart="0dp"/>
 
     <net.ginteam.carmen.view.custom.NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-3dp" />
+        style="@style/OdometerItem"/>
 
     <net.ginteam.carmen.view.custom.NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-3dp" />
+        style="@style/OdometerItem"/>
 
     <net.ginteam.carmen.view.custom.NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-3dp" />
+                style="@style/OdometerItem"/>
 
     <net.ginteam.carmen.view.custom.NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-3dp" />
+                style="@style/OdometerItem"/>
 
     <net.ginteam.carmen.view.custom.NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-3dp" />
+                style="@style/OdometerItem"/>
 
 </LinearLayout>

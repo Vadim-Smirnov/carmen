@@ -18,6 +18,7 @@ interface PreferencesManager {
     var userCityModel: CityModel?
     var userLocation: LatLng?
     var isFirstLaunch: Boolean
+    var odometer: String
 
 }
 
@@ -71,5 +72,11 @@ object SharedPreferencesManager : PreferencesManager {
         get() = mPreferences.getBoolean(Constants.Preferences.LAUNCH, true)
         set(value) {
             mPreferences.edit().putBoolean(Constants.Preferences.LAUNCH, value).apply()
+        }
+
+    override var odometer: String
+        get() = mPreferences.getString(Constants.Preferences.ODOMETER, "")
+        set(value) {
+            mPreferences.edit().putString(Constants.Preferences.ODOMETER, value).apply()
         }
 }

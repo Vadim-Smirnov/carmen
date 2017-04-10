@@ -113,7 +113,7 @@ public class FilterEditText extends LinearLayout {
                 }
             }
 
-            callListener();
+            callListener(editable);
         }
     };
 
@@ -167,6 +167,10 @@ public class FilterEditText extends LinearLayout {
             return mFilterQuery;
         }
         return mFilterQuery;
+    }
+
+    public EditText getEditTextFilter() {
+        return mEditTextFilter;
     }
 
     public void resetFilter() {
@@ -307,9 +311,9 @@ public class FilterEditText extends LinearLayout {
         });
     }
 
-    private void callListener() {
+    private void callListener(Editable editable) {
         if (mFilterChangeCompleteListener != null) {
-            mFilterChangeCompleteListener.onFilterChanged(this);
+            mFilterChangeCompleteListener.onFilterChanged(this, editable);
         }
     }
 
@@ -319,7 +323,7 @@ public class FilterEditText extends LinearLayout {
 
     public interface OnFilterChangeListener {
 
-        void onFilterChanged(FilterEditText filterEditText);
+        void onFilterChanged(FilterEditText filterEditText, Editable editable);
 
     }
 

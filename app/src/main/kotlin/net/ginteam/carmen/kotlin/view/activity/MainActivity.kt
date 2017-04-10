@@ -119,6 +119,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         }
 
         selectedFragment?.let {
+            showFloatMenu(it)
             if (it.javaClass != mCurrentFragment.javaClass) {
                 mCurrentFragment = it
                 prepareFragment(R.id.main_fragment_container, mCurrentFragment)
@@ -165,6 +166,7 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
             mCurrentFragment = MainFragment.newInstance()
             prepareFragment(R.id.main_fragment_container, mCurrentFragment)
             setToolbarTitle(getString(R.string.main_item_title))
+            showFloatMenu(mCurrentFragment)
             return
         }
 
@@ -174,6 +176,8 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
 
             setToolbarTitle(mPreviousTitle!!.first)
             setToolbarSubtitle(mPreviousTitle!!.second)
+
+            showFloatMenu(mCurrentFragment)
 
             mPreviousFragment = null
             mPreviousTitle = null
@@ -423,6 +427,14 @@ class MainActivity : BaseActivity <MainActivityContract.View, MainActivityContra
         val intent = Intent(getContext(), PopularNewsActivity::class.java)
         intent.putExtra(FirebaseNotificationsReceiveService.NOTIFICATION_ARGUMENT, notification)
         startActivity(intent)
+    }
+
+    private fun showFloatMenu(fragment: Fragment) {
+//        when (fragment::javaClass) {
+//            MainFragment::class.java, CostHistoryListFragment::class.java
+//            -> mFloatingActionMenu.visibility = View.VISIBLE
+//            else ->  mFloatingActionMenu.visibility = View.GONE
+//        }
     }
 
     /* -------------------------------------- */

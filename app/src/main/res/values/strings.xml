@@ -84,6 +84,7 @@
     <string name="privacy_item_text">Privacy policy</string>
     <string name="terms_item_text">Terms of use</string>
     <string name="news_item_text">News</string>
+    <string name="costs_item_text">Costs</string>
 
     <!-- Category dialog -->
     <string name="category_dialog_title">Choose category</string>
@@ -279,5 +280,57 @@
     <string name="cost_detail_activity_filter_edit_text_comment_hint">Комментарий</string>
     <string name="cost_detail_activity_odometer_text">Текущий пробег</string>
 
+    <!-- Cost Details Validation Wrong -->
+    <string name="cost_details_date_wrong">Выберите дату</string>
+    <string name="cost_details_fuel_type_wrong">Выберите топливо</string>
+    <string name="cost_details_cost_name_wrong">Выберите вид затрат</string>
+    <string name="cost_details_liters_wrong">Введите количество литров</string>
+    <string name="cost_details_liter_price_wrong">Введите цену за литр</string>
+    <string name="cost_details_price_wrong">Введите цену</string>
+    <string name="cost_details_service_name_wrong">Введите название ремонта</string>
+
+    <string name="fuel_type">
+    {
+    "name" : Тип&#160;топлива",
+    "filter_field" : "fuel_type",
+    "dialog" : [
+        {
+            "key" : "1",
+            "value" : "А-95"
+        },
+        {
+        "key" : "2",
+        "value" : "А-92"
+        },
+        {
+        "key" : "3",
+        "value" : "А-98"
+        },
+        {
+        "key" : "4",
+        "value" : "gas"
+        },
+        {
+        "key" : "5",
+        "value" : "А-72"
+        }
+    ]
+    }
+    </string>
+
+    <string-array name="month">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </string-array>
 
 </resources>

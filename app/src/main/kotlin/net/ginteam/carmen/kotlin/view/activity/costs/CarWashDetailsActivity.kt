@@ -41,10 +41,10 @@ class CarWashDetailsActivity : BaseCostDetailsActivity <CarWashDetailsActivityCo
     }
 
     override fun saveHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double) {
-        mPresenter.saveFuelHistory(cost, date, odometer, comment, price, mAttributesViews)
+        mPresenter.saveCarWashHistory(cost, date, odometer, comment, price)
     }
 
-    override fun updateHistory(date: Date, odometer: Int, comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>) {
-        mPresenter.updateFuelHistory(date, odometer, comment, price, mAttributesViews, attributesHistory)
+    override fun updateHistory(date: Date, odometer: Int, comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>?, history: HistoryModel?) {
+        mPresenter.updateCarWashHistory(date, odometer, comment, price, history!!)
     }
 }

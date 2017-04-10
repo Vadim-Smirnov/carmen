@@ -3,6 +3,7 @@ package net.ginteam.carmen.kotlin.view.activity.filter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -58,7 +59,7 @@ class FiltersActivity : BaseActivity <FiltersContract.View, FiltersContract.Pres
         return true
     }
 
-    override fun onFilterChanged(filterEditText: FilterEditText?) {
+    override fun onFilterChanged(filterEditText: FilterEditText?, editable: Editable?) {
         mFilterQuery = getFilterQueryWithFields()
         mPresenter.updateResultsCount(mSelectedCategory, mFilterQuery)
     }

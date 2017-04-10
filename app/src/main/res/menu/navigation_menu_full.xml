@@ -38,13 +38,13 @@
 
         <item
             android:id="@+id/navigation_item_news"
-            android:icon="@drawable/ic_profile"
+            android:icon="@drawable/ic_news_menu"
             android:title="@string/news_item_text"/>
 
         <item
             android:id="@+id/navigation_item_cost_history"
-            android:icon="@drawable/ic_profile"
-            android:title="Расходы"/>
+            android:icon="@drawable/ic_coins_menu"
+            android:title="@string/costs_item_text"/>
 
     </group>
 

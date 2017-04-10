@@ -3,6 +3,7 @@ package net.ginteam.carmen.kotlin.contract
 import net.ginteam.carmen.kotlin.model.realm.AttributesHistoryModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
 import net.ginteam.carmen.kotlin.model.realm.HistoryModel
+import net.ginteam.carmen.model.filter.FilterModel
 import net.ginteam.carmen.view.custom.FilterEditText
 import java.util.*
 
@@ -33,7 +34,11 @@ object BaseCostDetailsActivityContract {
 
 object FuelDetailsActivityContract {
 
-    interface View : BaseCostDetailsActivityContract.View
+    interface View : BaseCostDetailsActivityContract.View {
+
+        fun showFuelType(fuelTypes: FilterModel)
+
+    }
 
     interface Presenter : BaseCostDetailsActivityContract.Presenter <View> {
 
@@ -42,6 +47,8 @@ object FuelDetailsActivityContract {
 
         fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double,
                               attributes: List <FilterEditText>, attributesHistory: MutableList<AttributesHistoryModel>)
+
+        fun fetchFuelType()
 
     }
 
@@ -53,11 +60,9 @@ object CarWashDetailsActivityContract {
 
     interface Presenter : BaseCostDetailsActivityContract.Presenter <View> {
 
-        fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double,
-                            attributes: List <FilterEditText>)
+        fun saveCarWashHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double)
 
-        fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double,
-                              attributes: List <FilterEditText>, attributesHistory: MutableList<AttributesHistoryModel>)
+        fun updateCarWashHistory(date: Date, odometer: Int, comment: String, price: Double, history: HistoryModel)
 
     }
 
@@ -69,10 +74,10 @@ object ServiceDetailsActivityContract {
 
     interface Presenter : BaseCostDetailsActivityContract.Presenter <View> {
 
-        fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double,
+        fun saveServiceHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double,
                             attributes: List <FilterEditText>)
 
-        fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double,
+        fun updateServiceHistory(date: Date, odometer: Int, comment: String, price: Double,
                               attributes: List <FilterEditText>, attributesHistory: MutableList<AttributesHistoryModel>)
 
     }
@@ -85,10 +90,10 @@ object CostDetailsActivityContract {
 
     interface Presenter : BaseCostDetailsActivityContract.Presenter <View> {
 
-        fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double,
+        fun saveCostHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double,
                             attributes: List <FilterEditText>)
 
-        fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double,
+        fun updateCostHistory(date: Date, odometer: Int, comment: String, price: Double,
                               attributes: List <FilterEditText>, attributesHistory: MutableList<AttributesHistoryModel>)
 
     }

@@ -1,8 +1,12 @@
 package net.ginteam.carmen.kotlin.presenter.costs
 
 import io.realm.Realm
+import net.ginteam.carmen.CarmenApplication
 import net.ginteam.carmen.kotlin.Constants
 import net.ginteam.carmen.kotlin.contract.FuelDetailsActivityContract
+import net.ginteam.carmen.kotlin.getFilters
+import net.ginteam.carmen.kotlin.getFuelTypes
+import net.ginteam.carmen.kotlin.model.FilterModel
 import net.ginteam.carmen.kotlin.model.realm.AttributesHistoryModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeAttributeModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
@@ -69,5 +73,11 @@ class FuelDetailsActivityPresenter : BaseCostDetailsActivityPresenter <FuelDetai
         realm.commitTransaction()
         realm.close()
         mView?.close()
+    }
+
+    override fun fetchFuelType() {
+        val resources = CarmenApplication.getContext().resources
+        val fuelTypes: FilterModel = resources.getFuelTypes()
+        mView?.showFuelType(fuelTypes)
     }
 }

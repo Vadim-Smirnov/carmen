@@ -227,6 +227,7 @@
     <dimen name="list_item_history_horizontal_padding">7dp</dimen>
     <dimen name="list_item_cost_icon_size">55dp</dimen>
     <dimen name="list_item_history_height">110dp</dimen>
+    <dimen name="list_item_stick_height">64dp</dimen>
     <dimen name="list_item_history_content_padding_start">17dp</dimen>
     <dimen name="list_item_history_text_view_cost_date_text_size">12.5sp</dimen>
     <dimen name="list_item_history_text_view_cost_detail_margin_start">10dp</dimen>
@@ -244,5 +245,8 @@
     <dimen name="costs_details_activity_odometer_text_margin_bottom">15dp</dimen>
     <dimen name="costs_details_activity_odometer_text_size">12sp</dimen>
     <dimen name="costs_details_activity_odometer_text_margin_start">17dp</dimen>
+    <dimen name="costs_details_activity_text_view_history_date_margin_start">15dp</dimen>
+    <dimen name="costs_details_activity_text_view_history_date_text_size">15sp</dimen>
+    <dimen name="costs_details_activity_padding_bottom">30dp</dimen>
 
 </resources>

@@ -1,6 +1,9 @@
 package net.ginteam.carmen.kotlin.view.activity.costs
 
 import android.util.Log
+import android.widget.EditText
+import com.mobsandgeeks.saripaar.annotation.NotEmpty
+import com.mobsandgeeks.saripaar.annotation.Order
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.CostDetailsActivityContract
 import net.ginteam.carmen.kotlin.model.realm.AttributesHistoryModel
@@ -21,7 +24,11 @@ class CostDetailsActivity : BaseCostDetailsActivity <CostDetailsActivityContract
 
     override var mPresenter: CostDetailsActivityContract.Presenter = CostDetailsActivityPresenter()
 
-    private lateinit var mEditTextCostName: FilterEditText
+    private lateinit var mFilterEditTextCostName: FilterEditText
+
+    @Order(6)
+    @NotEmpty(messageResId = R.string.cost_details_cost_name_wrong)
+    private lateinit var mEditTextCostName: EditText
 
     override fun setCostInformation(cost: CostTypeModel) {
         super.setCostInformation(cost)
@@ -49,15 +56,15 @@ class CostDetailsActivity : BaseCostDetailsActivity <CostDetailsActivityContract
     }
 
     override fun saveHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double) {
-        mPresenter.saveFuelHistory(
+        mPresenter.saveCostHistory(
                 cost, date, odometer, comment, price,
                 mAttributesViews)
     }
 
-    override fun updateHistory(date: Date, odometer: Int, comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>) {
-        mPresenter.updateFuelHistory(
+    override fun updateHistory(date: Date, odometer: Int, comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>?, history: HistoryModel?) {
+        mPresenter.updateCostHistory(
                 date, odometer, comment, price,
-                mAttributesViews, attributesHistory)
+                mAttributesViews, attributesHistory!!)
     }
 
     override fun getLayoutResId(): Int = R.layout.activity_cost_details
@@ -65,9 +72,9 @@ class CostDetailsActivity : BaseCostDetailsActivity <CostDetailsActivityContract
     override fun updateViewDependencies() {
         super.updateViewDependencies()
 
-        mEditTextCostName = findViewById(R.id.filter_edit_text_cost_name) as FilterEditText
-
-        mAttributesViews.add(mEditTextCostName)
+        mFilterEditTextCostName = findViewById(R.id.filter_edit_text_cost_name) as FilterEditText
+        mEditTextCostName = mFilterEditTextCostName.editTextFilter
+        mAttributesViews.add(mFilterEditTextCostName)
     }
 
 }

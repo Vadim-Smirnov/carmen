@@ -17,7 +17,7 @@ import java.util.*
 class CarWashDetailsActivityPresenter : BaseCostDetailsActivityPresenter <CarWashDetailsActivityContract.View>(),
         CarWashDetailsActivityContract.Presenter {
 
-    override fun saveFuelHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double, attributes: List<FilterEditText>) {
+    override fun saveCarWashHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
 
@@ -32,37 +32,20 @@ class CarWashDetailsActivityPresenter : BaseCostDetailsActivityPresenter <CarWas
         history.price = price
         history.costType = cost
 
-        for (i in 0 until attributes.size) {
-            val editText = attributes[i]
-            val attribute = editText.tag as CostTypeAttributeModel
-            val attributeHistory: AttributesHistoryModel = realm.createObject(AttributesHistoryModel::class.java)
-
-            val lastAttributeId: Number? = realm.where(AttributesHistoryModel::class.java).max(Constants.Realm.AttributesHistory.ID)
-            attributeHistory.id = if (lastAttributeId == null) 0 else lastAttributeId.toLong() + 1
-            attributeHistory.value = editText.text.toString()
-            attributeHistory.costAttribute = attribute
-            attributeHistory.history = history
-        }
         realm.commitTransaction()
         realm.close()
         mView?.close()
     }
 
-    override fun updateFuelHistory(date: Date, odometer: Int, comment: String, price: Double, attributes: List<FilterEditText>, attributesHistory: MutableList<AttributesHistoryModel>) {
+    override fun updateCarWashHistory(date: Date, odometer: Int, comment: String, price: Double, history: HistoryModel) {
         val realm: Realm = Realm.getDefaultInstance()
         realm.beginTransaction()
 
-        val updateHistory: HistoryModel = attributesHistory.first().history!!
+        val updateHistory: HistoryModel = history
         updateHistory.date = date
         updateHistory.odometer = odometer
         updateHistory.comment = comment
         updateHistory.price = price
-
-        for (i in 0 until attributesHistory.size) {
-            val editText = attributes[i]
-            val attributeHistory: AttributesHistoryModel = attributesHistory[i]
-            attributeHistory.value = editText.text.toString()
-        }
 
         realm.commitTransaction()
         realm.close()

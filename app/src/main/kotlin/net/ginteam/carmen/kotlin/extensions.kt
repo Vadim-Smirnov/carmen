@@ -9,6 +9,7 @@ import android.support.design.widget.NavigationView
 import android.support.v13.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.CameraPosition
@@ -20,10 +21,12 @@ import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.model.CategoryModel
 import net.ginteam.carmen.kotlin.model.FilterModel
 import net.ginteam.carmen.kotlin.model.SortModel
+import net.ginteam.carmen.kotlin.view.fragment.MainFragment
 import net.ginteam.carmen.kotlin.view.fragment.category.CategoriesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.FavoritesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.RecentlyWatchedCompaniesFragment
 import net.ginteam.carmen.kotlin.view.fragment.company.map.MapCompaniesFragment
+import net.ginteam.carmen.kotlin.view.fragment.cost.CostHistoryListFragment
 import net.ginteam.carmen.kotlin.view.fragment.news.MainNewsFragment
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -33,7 +36,12 @@ import rx.schedulers.Schedulers
  * Created by eugene_shcherbinock on 2/10/17.
  */
 
-fun AppCompatActivity.prepareFragment(@LayoutRes containerLayoutResId: Int, fragment: Fragment) {
+fun AppCompatActivity.prepareFragment(@LayoutRes containerLayoutResId: Int, fragment: Fragment, floatMenuId: Int = R.id.floating_action_menu) {
+    when (fragment::class.java) {
+        MainFragment::class.java, CostHistoryListFragment::class.java
+        -> findViewById(floatMenuId)?.visibility = View.VISIBLE
+        else ->  findViewById(floatMenuId)?.visibility = View.GONE
+    }
     supportFragmentManager
             .beginTransaction()
             .replace(containerLayoutResId, fragment)
@@ -74,6 +82,12 @@ fun Resources.getFilters(): List <FilterModel> {
     val json = CarmenApplication.getContext().getString(R.string.filters_example)
     val filters = Gson().fromJson(json, Array<FilterModel>::class.java)
     return filters.toList()
+}
+
+fun Resources.getFuelTypes(): FilterModel {
+    val json = CarmenApplication.getContext().getString(R.string.fuel_type)
+    val filters = Gson().fromJson(json, FilterModel::class.java)
+    return filters
 }
 
 fun Resources.getSortOptions(): List <SortModel> {

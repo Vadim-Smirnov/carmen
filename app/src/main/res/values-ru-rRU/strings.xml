@@ -76,6 +76,7 @@
     <string name="privacy_item_text">Политика конфиденциальности</string>
     <string name="terms_item_text">Условия пользователя</string>
     <string name="news_item_text">Новости</string>
+    <string name="costs_item_text">Расходы</string>
 
     <!-- Category dialog -->
     <string name="category_dialog_title">Выбор категории</string>
@@ -243,7 +244,77 @@
     <string name="news_not_removed_from_favorites_message">Новость не удалена из избранных</string>
     <string name="undo_news_removed_message">ОТМЕНИТЬ</string>
 
-    <!-- Cost Details Activity Menu -->
+    <!-- Update rating activity -->
+    <string name="update_rating_activity_text_view_rating_title">Ваша оценка</string>
+    <string name="update_rating_activity_text_view_price_rating_title">Стоимость</string>
+    <string name="update_rating_activity_text_view_your_rating">Оставьте ваш отзыв</string>
+    <string name="update_rating_activity_filter_edit_text_name">ИМЯ</string>
+    <string name="update_rating_activity_filter_edit_text_title">ЗАГОЛОВОК</string>
+    <string name="update_rating_activity_filter_edit_text_review">ОТЗЫВ</string>
+
+    <!-- Cost Details Activity -->
     <string name="save_string">Сохранить</string>
+    <string name="cost_detail_activity_filter_edit_text_date_hint">Дата</string>
+    <string name="cost_detail_activity_filter_edit_text_fuel_type_hint">Бензин</string>
+    <string name="cost_detail_activity_filter_edit_text_liters_hint">Заправлено</string>
+    <string name="cost_detail_activity_filter_edit_text_service_name_hint">Наименование</string>
+    <string name="cost_detail_activity_filter_edit_text_liter_price_hint">Цена за 1 л.</string>
+    <string name="cost_detail_activity_filter_edit_text_price_hint">Цена</string>
+    <string name="cost_detail_activity_filter_edit_text_comment_hint">Комментарий</string>
+    <string name="cost_detail_activity_odometer_text">Текущий пробег</string>
+
+    <!-- Cost Details Validation Wrong -->
+    <string name="cost_details_date_wrong">Выберите дату</string>
+    <string name="cost_details_fuel_type_wrong">Выберите топливо</string>
+    <string name="cost_details_cost_name_wrong">Выберите вид затрат</string>
+    <string name="cost_details_liters_wrong">Введите количество литров</string>
+    <string name="cost_details_liter_price_wrong">Введите цену за литр</string>
+    <string name="cost_details_price_wrong">Введите цену</string>
+    <string name="cost_details_service_name_wrong">Введите название ремонта</string>
+
+    <string name="fuel_type">
+    {
+    "name" : Тип&#160;топлива",
+    "filter_field" : "fuel_type",
+    "dialog" : [
+        {
+            "key" : "1",
+            "value" : "А-95"
+        },
+        {
+        "key" : "2",
+        "value" : "А-92"
+        },
+        {
+        "key" : "3",
+        "value" : "А-98"
+        },
+        {
+        "key" : "4",
+        "value" : "Газ"
+        },
+        {
+        "key" : "5",
+        "value" : "А-72"
+        }
+    ]
+    }
+    </string>
+
+    <string-array name="month">
+        <item>Январь</item>
+        <item>Февраль</item>
+        <item>Март</item>
+        <item>Апрель</item>
+        <item>Май</item>
+        <item>Июнь</item>
+        <item>Июль</item>
+        <item>Август</item>
+        <item>Сентябрь</item>
+        <item>Октябрь</item>
+        <item>Ноябрь</item>
+        <item>Декабрь</item>
+    </string-array>
+
 
 </resources>

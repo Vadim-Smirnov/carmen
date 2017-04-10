@@ -1,6 +1,9 @@
 package net.ginteam.carmen.kotlin.view.activity.costs
 
 import android.util.Log
+import android.widget.EditText
+import com.mobsandgeeks.saripaar.annotation.NotEmpty
+import com.mobsandgeeks.saripaar.annotation.Order
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.ServiceDetailsActivityContract
 import net.ginteam.carmen.kotlin.model.realm.AttributesHistoryModel
@@ -21,7 +24,11 @@ class ServiceDetailsActivity : BaseCostDetailsActivity <ServiceDetailsActivityCo
 
     override var mPresenter: ServiceDetailsActivityContract.Presenter = ServiceDetailsActivityPresenter()
 
-    private lateinit var mEditTextServiceName: FilterEditText
+    private lateinit var mFilterEditTextServiceName: FilterEditText
+
+    @Order(5)
+    @NotEmpty(messageResId = R.string.cost_details_service_name_wrong)
+    private lateinit var mEditTextServiceName: EditText
 
     override fun setCostInformation(cost: CostTypeModel) {
         super.setCostInformation(cost)
@@ -49,15 +56,15 @@ class ServiceDetailsActivity : BaseCostDetailsActivity <ServiceDetailsActivityCo
     }
 
     override fun saveHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double) {
-        mPresenter.saveFuelHistory(
+        mPresenter.saveServiceHistory(
                 cost, date, odometer, comment, price,
                 mAttributesViews)
     }
 
-    override fun updateHistory(date: Date, odometer: Int, comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>) {
-        mPresenter.updateFuelHistory(
+    override fun updateHistory(date: Date, odometer: Int, comment: String, price: Double, attributesHistory: MutableList<AttributesHistoryModel>?, history: HistoryModel?) {
+        mPresenter.updateServiceHistory(
                 date, odometer, comment, price,
-                mAttributesViews, attributesHistory)
+                mAttributesViews, attributesHistory!!)
     }
 
     override fun getLayoutResId(): Int = R.layout.activity_service_details
@@ -65,9 +72,10 @@ class ServiceDetailsActivity : BaseCostDetailsActivity <ServiceDetailsActivityCo
     override fun updateViewDependencies() {
         super.updateViewDependencies()
 
-        mEditTextServiceName = findViewById(R.id.filter_edit_text_service_name) as FilterEditText
+        mFilterEditTextServiceName = findViewById(R.id.filter_edit_text_service_name) as FilterEditText
+        mEditTextServiceName = mFilterEditTextServiceName.editTextFilter
 
-        mAttributesViews.add(mEditTextServiceName)
+        mAttributesViews.add(mFilterEditTextServiceName)
     }
 
 }

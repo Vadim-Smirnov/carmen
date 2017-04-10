@@ -12,6 +12,7 @@ object Constants {
         const val USER_LOCATION = "user_location"
         const val CITY = "city"
         const val LAUNCH = "launch"
+        const val ODOMETER = "odometer"
     }
 
     object Realm {
