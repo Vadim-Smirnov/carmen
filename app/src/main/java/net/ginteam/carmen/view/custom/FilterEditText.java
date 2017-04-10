@@ -72,8 +72,10 @@ public class FilterEditText extends LinearLayout {
     private final OnTouchListener mEditTextClickListener = new OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
-            mFilterDialog.show();
-            view.requestFocus();
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                mFilterDialog.show();
+                view.requestFocus();
+            }
             return false;
         }
     };
@@ -250,9 +252,9 @@ public class FilterEditText extends LinearLayout {
         mEditTextFilter = (EditText) findViewById(R.id.edit_text_filter);
 
         mImageViewFilledEditText.setImageResource(mImageFilledText);
-        mImageViewFilledEditText.setVisibility(mImageFilledTextVisibility ? VISIBLE :GONE);
+        mImageViewFilledEditText.setVisibility(mImageFilledTextVisibility ? VISIBLE : GONE);
         mImageViewClearEditText.setImageResource(mImageClearText);
-        mImageViewClearEditText.setVisibility(mImageClearTextVisibility ? INVISIBLE :GONE);
+        mImageViewClearEditText.setVisibility(mImageClearTextVisibility ? INVISIBLE : GONE);
         mTextInputLayoutFilter.setHint(mFilterHint);
         mEditTextFilter.setText(mFilterText);
 
