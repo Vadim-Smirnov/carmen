@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="10dp"
-            fab:layout_behavior="net.ginteam.carmen.view.adapter.category.Behavior222"
+            fab:layout_behavior="net.ginteam.carmen.view.adapter.FloatMenuBehavior"
             fab:menu_animationDelayPerItem="100"
             fab:menu_backgroundColor="#B3000000"
             fab:menu_colorNormal="#3EC7C2"
