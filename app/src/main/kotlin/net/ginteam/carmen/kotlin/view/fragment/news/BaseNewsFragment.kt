@@ -70,7 +70,7 @@ abstract class BaseNewsFragment <E : BaseNewsAdapter, in V : BaseNewsContract.Vi
                 getString(messageResId), Snackbar.LENGTH_LONG).show()
     }
 
-    protected abstract fun fetchNews()
+    public abstract fun fetchNews()
 
     protected abstract fun getRecyclerViewItemDecorator(): RecyclerView.ItemDecoration
     protected abstract fun getRecyclerViewLayoutManager(): LinearLayoutManager

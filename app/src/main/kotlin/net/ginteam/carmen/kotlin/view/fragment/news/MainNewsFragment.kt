@@ -62,6 +62,7 @@ class MainNewsFragment : BaseFragment<MainNewsFragmentContract.View, MainNewsFra
                     }, 50)
                     return
                 }
+                mViewPagerNewsAdapter.getItem(position).fetchNews()
                 mCurrentViewPagerPosition = position
             }
         })

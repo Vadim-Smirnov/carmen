@@ -19,6 +19,8 @@ interface PreferencesManager {
     var userLocation: LatLng?
     var isFirstLaunch: Boolean
     var odometer: String
+    var fuelType: String
+    var literPrice: String
 
 }
 
@@ -78,5 +80,16 @@ object SharedPreferencesManager : PreferencesManager {
         get() = mPreferences.getString(Constants.Preferences.ODOMETER, "")
         set(value) {
             mPreferences.edit().putString(Constants.Preferences.ODOMETER, value).apply()
+        }
+
+    override var fuelType: String
+        get() = mPreferences.getString(Constants.Preferences.FUEL_TYPE, "")
+        set(value) {
+            mPreferences.edit().putString(Constants.Preferences.FUEL_TYPE, value).apply()
+        }
+    override var literPrice: String
+        get() = mPreferences.getString(Constants.Preferences.LITER_PRICE, "")
+        set(value) {
+            mPreferences.edit().putString(Constants.Preferences.LITER_PRICE, value).apply()
         }
 }

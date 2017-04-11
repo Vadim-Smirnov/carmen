@@ -9,6 +9,7 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty
 import com.mobsandgeeks.saripaar.annotation.Order
 import net.ginteam.carmen.R
 import net.ginteam.carmen.kotlin.contract.FuelDetailsActivityContract
+import net.ginteam.carmen.kotlin.manager.SharedPreferencesManager
 import net.ginteam.carmen.kotlin.model.realm.AttributesHistoryModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeAttributeModel
 import net.ginteam.carmen.kotlin.model.realm.CostTypeModel
@@ -74,6 +75,9 @@ class FuelDetailsActivity : BaseCostDetailsActivity <FuelDetailsActivityContract
     }
 
     override fun saveHistory(cost: CostTypeModel, date: Date, odometer: Int, comment: String, price: Double) {
+        SharedPreferencesManager.fuelType = mFilterEditTextFuelType.text
+        SharedPreferencesManager.literPrice = mFilterEditTextLiterPrice.text
+
         mPresenter.saveFuelHistory(
                 cost, date, odometer, comment, price,
                 mAttributesViews)
@@ -104,6 +108,9 @@ class FuelDetailsActivity : BaseCostDetailsActivity <FuelDetailsActivityContract
         mFilterEditTextLiters.setOnFilterChangeListener(this)
         mFilterEditTextLiterPrice.setOnFilterChangeListener(this)
 
+        mFilterEditTextFuelType.text = SharedPreferencesManager.fuelType
+        mFilterEditTextLiterPrice.text = SharedPreferencesManager.literPrice
+
         mAttributesViews.add(mFilterEditTextFuelType)
         mAttributesViews.add(mFilterEditTextLiters)
         mAttributesViews.add(mFilterEditTextLiterPrice)
@@ -128,7 +135,7 @@ class FuelDetailsActivity : BaseCostDetailsActivity <FuelDetailsActivityContract
             R.id.filter_edit_text_price -> {
                 if (!price.isEmpty() && !literPrice.isEmpty()) {
                     mFilterEditTextLiters.setOnFilterChangeListener(null)
-                    mFilterEditTextLiters.text = (price.toDouble() / literPrice.toDouble()).toString()
+                    mFilterEditTextLiters.text = String.format("%.2f", price.toDouble() / literPrice.toDouble())
                     mFilterEditTextLiters.setOnFilterChangeListener(this)
                 }
             }
@@ -136,7 +143,7 @@ class FuelDetailsActivity : BaseCostDetailsActivity <FuelDetailsActivityContract
 
                 if (!liters.isEmpty() && !literPrice.isEmpty()) {
                     mFilterEditTextPrice!!.setOnFilterChangeListener(null)
-                    mFilterEditTextPrice!!.text = (liters.toDouble() * literPrice.toDouble()).toString()
+                    mFilterEditTextPrice!!.text = String.format("%.2f",liters.toDouble() * literPrice.toDouble())
                     mFilterEditTextPrice!!.setOnFilterChangeListener(this)
 
                 } else {

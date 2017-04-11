@@ -22,77 +22,94 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/liner_layout_history_content"
-        style="@style/LinearLayout.Vertical"
-        android:layout_height="@dimen/list_item_cost_icon_size"
-        android:paddingStart="@dimen/list_item_history_content_padding_start">
+        style="@style/LinearLayout.Vertical">
 
-        <android.support.constraint.ConstraintLayout
-            style="@style/ConstraintLayout.Base"
-            android:layout_weight="1">
+        <LinearLayout
+            android:id="@+id/liner_layout_history_content"
+            style="@style/LinearLayout.Vertical"
+            android:layout_height="@dimen/list_item_cost_icon_size"
+            android:paddingStart="@dimen/list_item_history_content_padding_start">
 
-            <TextView
-                android:id="@+id/text_view_cost_date"
-                style="@style/TextView.Wrapped.OpenSans"
-                android:textColor="#FF9B9B9B"
-                android:textSize="@dimen/list_item_history_text_view_cost_date_text_size"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="19 March"/>
+            <android.support.constraint.ConstraintLayout
+                style="@style/ConstraintLayout.Base"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/text_view_cost_name"
-                style="@style/TextView.Header"
-                android:ellipsize="end"
-                android:maxLines="1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/text_view_cost_date"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Ремонт"/>
+                <TextView
+                    android:id="@+id/text_view_cost_date"
+                    style="@style/TextView.Wrapped.OpenSans"
+                    android:textColor="#FF9B9B9B"
+                    android:textSize="@dimen/list_item_history_text_view_cost_date_text_size"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="19 March"/>
 
-        </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/text_view_cost_name"
+                    style="@style/TextView.Header"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/text_view_cost_date"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Ремонт"/>
 
-        <android.support.constraint.ConstraintLayout
-            style="@style/ConstraintLayout.Base"
-            android:layout_weight="1">
+            </android.support.constraint.ConstraintLayout>
 
-            <ImageView
-                android:id="@+id/image_view_odometer"
-                style="@style/ImageView.Wrapped"
-                android:src="@drawable/ic_timer"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            <android.support.constraint.ConstraintLayout
+                style="@style/ConstraintLayout.Base"
+                android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/text_view_odometer"
-                style="@style/TextView.CostDetail"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/image_view_odometer"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="300 km"/>
+                <ImageView
+                    android:id="@+id/image_view_odometer"
+                    style="@style/ImageView.Wrapped"
+                    android:src="@drawable/ic_timer"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-            <ImageView
-                android:id="@+id/image_view_cost_price"
-                style="@style/ImageView.Wrapped"
-                android:layout_marginStart="@dimen/list_item_history_image_view_cost_sum_margin_start"
-                android:src="@drawable/ic_coins_gray"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/text_view_odometer"
-                app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                    android:id="@+id/text_view_odometer"
+                    style="@style/TextView.CostDetail"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_view_odometer"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="300 km"/>
 
-            <TextView
-                android:id="@+id/text_view_cost_price"
-                style="@style/TextView.CostDetail"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/image_view_cost_price"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="228 grn"/>
+                <ImageView
+                    android:id="@+id/image_view_cost_price"
+                    style="@style/ImageView.Wrapped"
+                    android:layout_marginStart="@dimen/list_item_history_image_view_cost_sum_margin_start"
+                    android:src="@drawable/ic_coins_gray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/text_view_odometer"
+                    app:layout_constraintTop_toTopOf="parent"/>
 
-        </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/text_view_cost_price"
+                    style="@style/TextView.CostDetail"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_view_cost_price"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="228 grn"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/LinearLayout.Vertical"
+            android:layout_height="@dimen/list_item_cost_icon_size"
+            android:gravity="center"
+            android:paddingStart="@dimen/list_item_history_content_padding_start">
+
+            <View
+                style="@style/LayoutDivider"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
 
 </LinearLayout>

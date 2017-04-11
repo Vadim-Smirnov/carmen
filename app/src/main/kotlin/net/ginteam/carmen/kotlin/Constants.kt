@@ -13,6 +13,8 @@ object Constants {
         const val CITY = "city"
         const val LAUNCH = "launch"
         const val ODOMETER = "odometer"
+        const val FUEL_TYPE = "fuel_type"
+        const val LITER_PRICE = "liter_price"
     }
 
     object Realm {
